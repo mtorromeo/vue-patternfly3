@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="node_modules/patternfly/dist/css/patternfly.css">
   <link rel="stylesheet" href="node_modules/patternfly/dist/css/patternfly-additions.css">
   <link rel="stylesheet" href="styles/patternfly-alt.css">
+  <style>
+    header+.container-fluid {
+      padding-bottom: 50px;
+      padding-top: 72px;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -36,6 +42,22 @@
         <pf-aggregate-status-card icon-class="fa fa-paper-plane" title="Amet" count="9" layout="mini" :accented="false">
           <pf-card-notification icon-class="pficon pficon-ok"></pf-card-notification>
         </pf-aggregate-status-card>
+      </div>
+    </div>
+
+
+    <h2>Utilization Bar Card</h2>
+    <div class="row">
+      <div class="col-md-6 col-lg-4">
+        <pf-card title="System Resources" foot-note="Footer" :filter="{
+          position: 'header',
+          filters: [
+            {label: 'Filtro 1'},
+            {label: 'Filtro 2'},
+          ]
+        }">
+          <p>test</p>
+        </pf-card>
       </div>
     </div>
   </div>
