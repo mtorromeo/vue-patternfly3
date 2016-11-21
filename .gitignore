@@ -1,0 +1,10 @@
+*.bak
+*.gz
+*.log
+Thumbs.db
+.*
+!.git*
+!.babelrc
+!.eslint*
+!.editorconfig
+node_modules

@@ -1,0 +1,45 @@
+<html>
+<head>
+	<meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue PatternFly</title>
+  <link rel="shortcut icon" href="node_modules/patternfly/dist/img/favicon.ico">
+  <link rel="stylesheet" href="node_modules/patternfly/dist/css/patternfly.css">
+  <link rel="stylesheet" href="node_modules/patternfly/dist/css/patternfly-additions.css">
+  <link rel="stylesheet" href="styles/patternfly-alt.css">
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header"><a href="/" class="navbar-brand">Vue Patternfly</a></div>
+      </div>
+    </nav>
+  </header>
+  <div id="app" class="container-fluid">
+    <h2>Aggregate Status Card</h2>
+    <div class="row">
+      <div class="col-md-3 col-lg-2">
+        <pf-aggregate-status-card icon-class="fa fa-shield" title="Nodes" count="793" href="#">
+          <pf-card-notification icon-class="pficon pficon-error-circle-o" href="#" count="3"></pf-card-notification>
+          <pf-card-notification icon-class="pficon pficon-warning-triangle-o" href="#" count="1"></pf-card-notification>
+        </pf-aggregate-status-card>
+      </div>
+      <div class="col-md-3 col-lg-2">
+        <pf-aggregate-status-card title="Ipsum" count="0" layout="tall">
+          <pf-card-notification icon-class="pficon pficon-error-circle-o" href="#" count="3"></pf-card-notification>
+          <pf-card-notification icon-class="pficon pficon-warning-triangle-o" href="#" count="1"></pf-card-notification>
+        </pf-aggregate-status-card>
+      </div>
+      <div class="col-md-3 col-lg-2">
+        <pf-aggregate-status-card icon-class="fa fa-paper-plane" title="Amet" count="9" layout="mini" :accented="false">
+          <pf-card-notification icon-class="pficon pficon-ok"></pf-card-notification>
+        </pf-aggregate-status-card>
+      </div>
+    </div>
+  </div>
+
+  <script src="docs.js"></script>
+</body>
+</html>
