@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/mtorromeo/vue-patternfly#readme",
   "dependencies": {
+    "c3": "^0.4.11",
     "patternfly": "^3.14.0",
     "vue": "^2.0.8"
   },
