@@ -4,6 +4,8 @@ import CardNotification from './components/CardNotification.vue';
 import C3Chart from './components/C3Chart.vue';
 import UtilizationBarChart from './components/UtilizationBarChart.vue';
 import EmptyChart from './components/EmptyChart.vue';
+import Toolbar from './components/Toolbar.vue';
+import Sort from './components/Sort.vue';
 
 export default {
   install(Vue) {
@@ -13,5 +15,7 @@ export default {
     Vue.component(C3Chart.name, C3Chart);
     Vue.component(UtilizationBarChart.name, UtilizationBarChart);
     Vue.component(EmptyChart.name, EmptyChart);
+    Vue.component(Toolbar.name, Toolbar);
+    Vue.component(Sort.name, Sort);
   },
 };
