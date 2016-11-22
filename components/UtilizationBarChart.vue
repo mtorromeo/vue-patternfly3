@@ -46,7 +46,7 @@
       </div>
     </div>
   </template>
-  <div pf-empty-chart v-if="!dataAvailable" chart-height="45"></div>
+  <pf-empty-chart v-if="!dataAvailable" :height="45"></pf-empty-chart>
 </div>
 </template>
 

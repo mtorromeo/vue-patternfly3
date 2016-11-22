@@ -3,6 +3,7 @@ import Card from './components/Card.vue';
 import CardNotification from './components/CardNotification.vue';
 import C3Chart from './components/C3Chart.vue';
 import UtilizationBarChart from './components/UtilizationBarChart.vue';
+import EmptyChart from './components/EmptyChart.vue';
 
 export default {
   install(Vue) {
@@ -11,5 +12,6 @@ export default {
     Vue.component(CardNotification.name, CardNotification);
     Vue.component(C3Chart.name, C3Chart);
     Vue.component(UtilizationBarChart.name, UtilizationBarChart);
+    Vue.component(EmptyChart.name, EmptyChart);
   },
 };
