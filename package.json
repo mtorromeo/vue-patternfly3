@@ -36,7 +36,8 @@
     "eslint": "^3.10.2",
     "eslint-plugin-html": "^1.7.0",
     "vue-html-loader": "^1.2.3",
-    "vue-loader": "^9.9.5",
+    "vue-loader": "^10.0.0",
+    "vue-template-compiler": "^2.1.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
   }
