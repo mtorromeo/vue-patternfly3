@@ -2,19 +2,13 @@
 <div class="sort-pf">
   <form>
     <div class="form-group">
-      <div class="dropdown btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          {{current.title}}
-          <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu">
-          <li v-for="(i, item) in fields" :class="{'selected': item === current}">
-            <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="selected = i">
-              {{item.title}}
-            </a>
-          </li>
-        </ul>
-      </div>
+      <pf-dropdown :text="current.title">
+        <li v-for="(item, i) in fields" :class="{'selected': item === current}">
+          <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="select(i)">
+            {{item.title}}
+          </a>
+        </li>
+      </pf-dropdown>
       <button class="btn btn-link" type="button"  @click="invert">
         <span class="sort-direction" :class="sortIconClass"></span>
       </button>
@@ -43,11 +37,18 @@ export default {
 
   data() {
     return {
+      active: -1,
       ascending: true,
     };
   },
 
   watch: {
+    selected: {
+      handler () {
+        this.active = this.selected;
+      },
+      immediate: true,
+    },
     direction: {
       handler () {
         this.ascending = this.direction == 'ascending';
@@ -58,10 +59,11 @@ export default {
 
   computed: {
     current() {
-      if (typeof this.selected === 'undefined' || this.selected >= this.fields.length) {
+      if (typeof this.active === 'undefined' || this.active >= this.fields.length || this.active < 0) {
+        this.select(0);
         return this.fields.length ? this.fields[0] : {};
       }
-      return this.fields[this.selected];
+      return this.fields[this.active];
     },
 
     sortIconClass() {
@@ -72,8 +74,13 @@ export default {
   },
 
   methods: {
+    select(i) {
+      this.active = i;
+      this.$emit('change', this.current, this.ascending);
+    },
     invert() {
       this.ascending = !this.ascending;
+      this.$emit('change', this.current, this.ascending);
     },
   },
 };

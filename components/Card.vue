@@ -1,19 +1,13 @@
 <template>
 <div class="card-pf" :class="{'card-pf-accented': accented}">
   <div v-if="showHeader" :class="{'card-pf-heading': showTitlesSeparator, 'card-pf-heading-no-bottom': !showTitlesSeparator}">
-    <div v-if="showFilterInHeader" class="dropdown card-pf-time-frame-filter">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{currentFilter.label}}
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-right" role="menu">
-        <li v-for="item in filter.filters" :class="{'selected': item === currentFilter}">
-          <a role="menuitem" tabindex="-1" @click="filterClicked(item)">
-            {{item.label}}
-          </a>
-        </li>
-      </ul>
-    </div>
+    <pf-dropdown v-if="showFilterInHeader" class="card-pf-time-frame-filter pull-right" :text="currentFilter.label">
+      <li v-for="item in filter.filters" :class="{'selected': item === currentFilter}">
+        <a href="javascript:void(0)" role="menuitem" tabindex="-1" @click="filterClicked(item)">
+          {{item.label}}
+        </a>
+      </li>
+    </pf-dropdown>
     <h2 class="card-pf-title">{{title}}</h2>
   </div>
 
@@ -22,20 +16,15 @@
   <div class="card-pf-body">
     <slot></slot>
   </div>
+
   <div v-if="showFooter || showFilterInFooter" class="card-pf-footer">
-    <div v-if="showFilterInFooter" class="dropdown card-pf-time-frame-filter">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        {{currentFilter.label}}
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-right" role="menu">
-        <li v-for="item in filter.filters" :class="{'selected': item === currentFilter}">
-          <a role="menuitem" tabindex="-1" @click="filterClicked(item)">
-            {{item.label}}
-          </a>
-        </li>
-      </ul>
-    </div>
+    <pf-dropdown v-if="showFilterInFooter" class="card-pf-time-frame-filter pull-right" :text="currentFilter.label">
+      <li v-for="item in filter.filters" :class="{'selected': item === currentFilter}">
+        <a href="javascript:void(0)" role="menuitem" tabindex="-1" @click="filterClicked(item)">
+          {{item.label}}
+        </a>
+      </li>
+    </pf-dropdown>
     <p v-if="showFooter">
       <a v-if="footHref" :href="footHref" :class="{'card-pf-link-with-icon': footIcon, 'card-pf-link': !footIcon}">
         <span v-if="footIcon" class="card-pf-footer-text" :class="footIcon"></span>

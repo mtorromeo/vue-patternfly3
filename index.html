@@ -29,7 +29,9 @@
     <pf-toolbar :sort-fields="[
       {title: 'Name'},
       {title: 'Date'},
-    ]"></pf-toolbar>
+    ]" @sort-change="setSort"></pf-toolbar>
+
+    <pre>Sort: {{ sortField.title }} {{ sortAscending ? 'ascending' : 'descending' }}</pre>
 
     <h2>Aggregate Status Card</h2>
     <div class="row">
