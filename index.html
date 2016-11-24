@@ -26,10 +26,21 @@
   </header>
   <div id="app" class="container-fluid">
     <h2>Toolbar</h2>
-    <pf-toolbar :sort-fields="[
-      {title: 'Name'},
-      {title: 'Date'},
-    ]"></pf-toolbar>
+    <pf-toolbar @filter="addFilter"
+                :filter-fields="[{
+                  title: 'Name',
+                  values: ['Mario', 'Luigi'],
+                  placeholder: 'Choose a name',
+                }, {
+                  title: 'Date',
+                }]" :sort-fields="[{
+                  title: 'Name',
+                }, {
+                  title: 'Date',
+                }]">
+    </pf-toolbar>
+
+    <pre>Filters: {{filters}}</pre>
 
     <h2>Aggregate Status Card</h2>
     <div class="row">
