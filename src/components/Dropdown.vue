@@ -22,5 +22,8 @@
 <script>
 import Dropdown from 'vue-strap/src/components/Dropdown.vue';
 
-export default Dropdown;
+export default {
+  name: 'pf-dropdown',
+  extends: Dropdown,
+};
 </script>
