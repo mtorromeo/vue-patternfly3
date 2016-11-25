@@ -26,12 +26,22 @@
   </header>
   <div id="app" class="container-fluid">
     <h2>Toolbar</h2>
-    <pf-toolbar :sort-fields="[
-      {title: 'Name'},
-      {title: 'Date'},
-    ]" @sort-change="setSort"></pf-toolbar>
+    <pf-toolbar @filter="addFilter" @sort-change="setSort"
+                :filter-fields="[{
+                  title: 'Name',
+                  values: ['Mario', 'Luigi'],
+                  placeholder: 'Choose a name',
+                }, {
+                  title: 'Date',
+                }]" :sort-fields="[{
+                  title: 'Name',
+                }, {
+                  title: 'Date',
+                }]">
+    </pf-toolbar>
 
-    <pre>Sort: {{ sortField.title }} {{ sortAscending ? 'ascending' : 'descending' }}</pre>
+    <pre>Filters: {{filters}}
+Sort: {{ sortField.title }} {{ sortAscending ? 'ascending' : 'descending' }}</pre>
 
     <h2>Aggregate Status Card</h2>
     <div class="row">

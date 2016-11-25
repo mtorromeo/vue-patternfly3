@@ -11,6 +11,7 @@ new Vue({
     return {
       sortField: {},
       sortAscending: true,
+      filters: [],
     };
   },
 
@@ -18,6 +19,11 @@ new Vue({
     setSort(field, ascending) {
       this.sortField = field;
       this.sortAscending = ascending;
-    }
-  }
+    },
+    addFilter(filter, value) {
+      const f = {};
+      f[filter.title] = value;
+      this.filters.push(f);
+    },
+  },
 });

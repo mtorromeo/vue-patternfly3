@@ -7,6 +7,7 @@ import EmptyChart from './components/EmptyChart.vue';
 import Sort from './components/Sort.vue';
 import Toolbar from './components/Toolbar.vue';
 import UtilizationBarChart from './components/UtilizationBarChart.vue';
+import FilterFields from './components/FilterFields.vue';
 
 
 export default {
@@ -19,4 +20,5 @@ export default {
   Sort,
   Toolbar,
   UtilizationBarChart,
+  FilterFields,
 };

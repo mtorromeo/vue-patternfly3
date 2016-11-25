@@ -2,8 +2,8 @@
 <div class="container-fluid">
   <div class="row toolbar-pf">
     <div class="col-sm-12">
-      <form class="toolbar-pf-actions" :class="{'no-filter-results': !config.filterConfig}">
-        <div pf-filter-fields config="config.filterConfig" v-if="config.filterConfig" add-filter-fn="addFilter"></div>
+      <form class="toolbar-pf-actions" :class="{'no-filter-results': !filterConfig}">
+        <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="filterFields.length > 0"></pf-filter-fields>
         <pf-sort :fields="sortFields" v-if="sortFields.length > 0" @change="setSort"></pf-sort>
         <div class="form-group toolbar-actions"
              v-if="config.actionsConfig &&
@@ -42,7 +42,7 @@
           </ul>
         </div>
       </form>
-      <div pf-filter-results config="config.filterConfig" v-if="config.filterConfig"></div>
+      <div pf-filter-results config="filterConfig" v-if="filterConfig"></div>
     </div>
   </div>
 </div>
@@ -61,6 +61,12 @@ export default {
   },
 
   props: {
+    filterFields: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
     sortFields: {
       type: Array,
       default() {
@@ -71,15 +77,17 @@ export default {
 
   data() {
     return {
-      config: {
-        filterConfig: {},
-      },
+      config: {},
+      filterConfig: {},
     };
   },
 
   methods: {
     setSort(field, ascending) {
       this.$emit('sort-change', field, ascending);
+    },
+    setFilter(filter, value) {
+      this.$emit('filter', filter, value);
     },
   },
 };
