@@ -49,8 +49,16 @@
 </template>
 
 <script>
+import PfSort from './Sort.vue';
+import PfDropdown from './Dropdown.vue';
+
 export default {
   name: 'pf-toolbar',
+
+  components: {
+    PfSort,
+    PfDropdown,
+  },
 
   props: {
     sortFields: {

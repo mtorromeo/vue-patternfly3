@@ -18,8 +18,14 @@
 </template>
 
 <script>
+import PfDropdown from './Dropdown.vue';
+
 export default {
   name: 'pf-sort',
+
+  components: {
+    PfDropdown,
+  },
 
   props: {
     fields: {

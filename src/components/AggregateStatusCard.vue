@@ -13,7 +13,7 @@
       <template v-else>
         <span v-if="iconClass" :class="iconClass"></span>
         <span v-if="count" class="card-pf-aggregate-status-count">{{count}}</span>
-        <span class="card-pf-aggregate-status-title">{{title}}</span>
+        <span class="card-pf-aggregate-status-title">{{title}} </span>
       </template>
     </h2>
     <div class="card-pf-body">

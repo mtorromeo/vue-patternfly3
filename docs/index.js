@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VuePatternfly from '..';
+import VuePatternfly from '../src/plugin';
 
 Vue.debug = true;
 Vue.use(VuePatternfly);

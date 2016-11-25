@@ -40,8 +40,14 @@
 </template>
 
 <script>
+import PfDropdown from './Dropdown.vue';
+
 export default {
   name: 'pf-card',
+
+  components: {
+    PfDropdown,
+  },
 
   props: {
     title: String,
