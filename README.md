@@ -1,11 +1,13 @@
 # vue-patternfly
 
+### !! This is a work in progress and is not yet ready for usage !!
+
 Patternfly components for Vue.js 2
 
 <p align="center">
-  <a href="https://circleci.com/gh/mtorromeo/vue-patternfly">
+  <!-- <a href="https://circleci.com/gh/mtorromeo/vue-patternfly">
     <img src="https://circleci.com/gh/mtorromeo/vue-patternfly.svg?style=svg" alt="Build Status" />
-  </a>
+  </a> -->
   <a href="https://coveralls.io/github/mtorromeo/vue-patternfly?branch=master">
     <img src="https://coveralls.io/repos/github/mtorromeo/vue-patternfly/badge.svg?branch=master&style=flat-square" alt="Coverage Status" />
   </a>
