@@ -29,10 +29,14 @@
     <pf-toolbar @filter="addFilter" @sort-change="setSort"
                 :filter-fields="[{
                   title: 'Name',
-                  values: ['Mario', 'Luigi'],
-                  placeholder: 'Choose a name',
                 }, {
-                  title: 'Date',
+                  title: 'Age',
+                }, {
+                  title: 'Address',
+                }, {
+                  title: 'Birth Month',
+                  placeholder: 'Filter by Birth Month...',
+                  values: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                 }]" :sort-fields="[{
                   title: 'Name',
                 }, {
