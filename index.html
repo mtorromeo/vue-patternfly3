@@ -43,6 +43,28 @@
                   title: 'Date',
                 }]"
                 :result-count="0">
+      <button class="btn btn-default" type="button" title="Title 1">
+        Action 1
+      </button>
+      <button class="btn btn-default" type="button" title="Title 2">
+        Action 2
+      </button>
+      <button class="btn btn-danger" type="button" title="Title 3">
+        Action 3
+      </button>
+
+      <dropdown class="dropdown-kebab-pf" type="link">
+        <li role="menuitem">
+          <a title="Menu Title 1">Menu Item 1</a>
+        </li>
+        <li role="menuitem">
+          <a title="Menu Title 2">Menu Item 2</a>
+        </li>
+        <li role="separator" class="divider"></li>
+        <li role="menuitem">
+          <a title="Menu Title 3">Menu Item 3</a>
+        </li>
+      </dropdown>
     </pf-toolbar>
 
     <pre>Filters: {{filters}}

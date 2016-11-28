@@ -1,11 +1,16 @@
 import Vue from 'vue';
 import VuePatternfly from '../src/plugin';
+import Dropdown from 'vue-strap/src/components/Dropdown.vue';
 
 Vue.debug = true;
 Vue.use(VuePatternfly);
 
 new Vue({
   el: '#app',
+
+  components: {
+    Dropdown,
+  },
 
   data() {
     return {

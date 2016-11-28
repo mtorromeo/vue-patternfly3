@@ -5,34 +5,12 @@
       <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}">
         <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="filterFields.length > 0"></pf-filter-fields>
         <pf-sort :fields="sortFields" v-if="sortFields.length > 0" @change="setSort"></pf-sort>
-        <div class="form-group toolbar-actions"
-             v-if="config.actionsConfig &&
-                   ((config.actionsConfig.primaryActions && config.actionsConfig.primaryActions.length > 0) ||
-                    (config.actionsConfig.moreActions && config.actionsConfig.moreActions.length > 0) ||
-                    config.actionsConfig.actionsInclude)">
-          <button class="btn btn-default primary-action" type="button" v-for="action in config.actionsConfig.primaryActions"
-                  :title="action.title"
-                  @click="handleAction(action)"
-                  :disabled="action.isDisabled === true">
-            {{action.name}}
-          </button>
-          <div v-if="config.actionsConfig.actionsInclude" pf-transclude class="toolbar-pf-include-actions" ng-tranclude="actions"></div>
-          <dropdown v-if="config.actionsConfig.moreActions && config.actionsConfig.moreActions.length > 0">
-            <li v-for="action in config.actionsConfig.moreActions"
-                :role="action.isSeparator === true ? 'separator' : 'menuitem'"
-                :class="{'divider': action.isSeparator === true, 'disabled': action.isDisabled === true}">
-              <a v-if="action.isSeparator !== true"
-                 class="secondary-action"
-                 :title="action.title"
-                 @click="handleAction(action)">
-                {{action.name}}
-              </a>
-            </li>
-          </dropdown>
+        <div class="form-group toolbar-actions">
+          <slot></slot>
         </div>
-        <div class="toolbar-pf-view-selector pull-right" v-if="config.viewsConfig && config.viewsConfig.views">
+        <div class="form-group toolbar-pf-view-selector pull-right">
           <ul class="list-inline">
-            <li v-for="view in config.viewsConfig.viewsList"
+            <li v-for="view in views"
                 :class="{'active': isViewSelected(view.id), 'disabled': checkViewDisabled(view)}"
                 :title="view.title">
               <a>
@@ -84,7 +62,7 @@ export default {
 
   data() {
     return {
-      config: {},
+      views: {},
       activeFilters: [],
     };
   },
