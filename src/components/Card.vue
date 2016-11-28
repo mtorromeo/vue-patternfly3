@@ -1,13 +1,13 @@
 <template>
 <div class="card-pf" :class="{'card-pf-accented': accented}">
   <div v-if="showHeader" :class="{'card-pf-heading': showTitlesSeparator, 'card-pf-heading-no-bottom': !showTitlesSeparator}">
-    <pf-dropdown v-if="showFilterInHeader" class="card-pf-time-frame-filter pull-right" :text="currentFilter.label">
+    <dropdown v-if="showFilterInHeader" class="card-pf-time-frame-filter pull-right" :text="currentFilter.label">
       <li v-for="item in filter.filters" :class="{'selected': item === currentFilter}">
         <a href="javascript:void(0)" role="menuitem" tabindex="-1" @click="filterClicked(item)">
           {{item.label}}
         </a>
       </li>
-    </pf-dropdown>
+    </dropdown>
     <h2 class="card-pf-title">{{title}}</h2>
   </div>
 
@@ -18,13 +18,13 @@
   </div>
 
   <div v-if="showFooter || showFilterInFooter" class="card-pf-footer">
-    <pf-dropdown v-if="showFilterInFooter" class="card-pf-time-frame-filter pull-right" :text="currentFilter.label">
+    <dropdown v-if="showFilterInFooter" class="card-pf-time-frame-filter pull-right" :text="currentFilter.label">
       <li v-for="item in filter.filters" :class="{'selected': item === currentFilter}">
         <a href="javascript:void(0)" role="menuitem" tabindex="-1" @click="filterClicked(item)">
           {{item.label}}
         </a>
       </li>
-    </pf-dropdown>
+    </dropdown>
     <p v-if="showFooter">
       <a v-if="footHref" :href="footHref" :class="{'card-pf-link-with-icon': footIcon, 'card-pf-link': !footIcon}">
         <span v-if="footIcon" class="card-pf-footer-text" :class="footIcon"></span>
@@ -40,13 +40,13 @@
 </template>
 
 <script>
-import PfDropdown from './Dropdown.vue';
+import Dropdown from 'vue-strap/src/components/Dropdown.vue';
 
 export default {
   name: 'pf-card',
 
   components: {
-    PfDropdown,
+    Dropdown,
   },
 
   props: {

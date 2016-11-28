@@ -2,13 +2,13 @@
 <div class="sort-pf">
   <form>
     <div class="form-group">
-      <pf-dropdown :text="current.title">
+      <dropdown :text="current.title">
         <li v-for="(item, i) in fields" :class="{'selected': item === current}">
           <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="select(i)">
             {{item.title}}
           </a>
         </li>
-      </pf-dropdown>
+      </dropdown>
       <button class="btn btn-link" type="button"  @click="invert">
         <span class="sort-direction" :class="sortIconClass"></span>
       </button>
@@ -18,13 +18,13 @@
 </template>
 
 <script>
-import PfDropdown from './Dropdown.vue';
+import Dropdown from 'vue-strap/src/components/Dropdown.vue';
 
 export default {
   name: 'pf-sort',
 
   components: {
-    PfDropdown,
+    Dropdown,
   },
 
   props: {

@@ -3,13 +3,13 @@
   <form @submit="$event.preventDefault()">
     <div class="form-group toolbar-pf-filter">
       <div class="input-group">
-        <pf-dropdown :text="current.title" class="input-group-btn">
+        <dropdown :text="current.title" class="input-group-btn">
           <li v-for="(item, i) in fields">
             <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = i">
               {{item.title}}
             </a>
           </li>
-        </pf-dropdown>
+        </dropdown>
         <div v-if="isSelect">
           <input class="form-control" type="text" :value="value"
                  @keyup.enter.stop="set" :placeholder="current.placeholder">
@@ -29,13 +29,13 @@
 </template>
 
 <script>
-import PfDropdown from './Dropdown.vue';
+import Dropdown from 'vue-strap/src/components/Dropdown.vue';
 
 export default {
   name: 'pf-filter-fields',
 
   components: {
-    PfDropdown,
+    Dropdown,
   },
 
   props: {

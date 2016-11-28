@@ -17,7 +17,7 @@
             {{action.name}}
           </button>
           <div v-if="config.actionsConfig.actionsInclude" pf-transclude class="toolbar-pf-include-actions" ng-tranclude="actions"></div>
-          <pf-dropdown v-if="config.actionsConfig.moreActions && config.actionsConfig.moreActions.length > 0">
+          <dropdown v-if="config.actionsConfig.moreActions && config.actionsConfig.moreActions.length > 0">
             <li v-for="action in config.actionsConfig.moreActions"
                 :role="action.isSeparator === true ? 'separator' : 'menuitem'"
                 :class="{'divider': action.isSeparator === true, 'disabled': action.isDisabled === true}">
@@ -28,7 +28,7 @@
                 {{action.name}}
               </a>
             </li>
-          </pf-dropdown>
+          </dropdown>
         </div>
         <div class="toolbar-pf-view-selector pull-right" v-if="config.viewsConfig && config.viewsConfig.views">
           <ul class="list-inline">
@@ -50,14 +50,14 @@
 
 <script>
 import PfSort from './Sort.vue';
-import PfDropdown from './Dropdown.vue';
+import Dropdown from 'vue-strap/src/components/Dropdown.vue';
 
 export default {
   name: 'pf-toolbar',
 
   components: {
     PfSort,
-    PfDropdown,
+    Dropdown,
   },
 
   props: {
