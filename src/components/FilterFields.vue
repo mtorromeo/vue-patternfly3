@@ -10,17 +10,14 @@
             </a>
           </li>
         </dropdown>
-        <div v-if="isSelect">
+        <v-select ref="select" class="filter-select" v-if="isSelect" @input="set" :placeholder="current.placeholder" :close-on-select="true">
+          <slot name="options" :field="current">
+            <v-option :value="item" v-for="item in current.values">{{item}}</v-option>
+          </slot>
+        </v-select>
+        <div v-else>
           <input class="form-control" type="text" :value="value"
                  @keyup.enter.stop="set" :placeholder="current.placeholder">
-        </div>
-        <div v-else>
-          <select class="form-control filter-select" @input="set">
-            <option value="">{{current.placeholder}}</option>
-            <slot name="options" :field="current">
-              <option :value="item" v-for="item in current.values">{{item}}</option>
-            </slot>
-          </select>
         </div>
       </div>
     </div>
@@ -30,12 +27,16 @@
 
 <script>
 import Dropdown from 'vue-strap/src/components/Dropdown.vue';
+import VSelect from 'vue-strap/src/components/Select.vue';
+import VOption from 'vue-strap/src/Option.vue';
 
 export default {
   name: 'pf-filter-fields',
 
   components: {
     Dropdown,
+    VSelect,
+    VOption,
   },
 
   props: {
@@ -49,7 +50,12 @@ export default {
         return [];
       },
     },
-    selected: Number,
+  },
+
+  data() {
+    return {
+      selected: 0,
+    };
   },
 
   computed: {
@@ -61,15 +67,16 @@ export default {
     },
 
     isSelect() {
-      return typeof this.current.values === 'undefined';
+      return typeof this.current.values !== 'undefined';
     },
   },
 
   methods: {
-    set(e) {
-      const input = e.target;
-      this.$emit('filter', this.current, input.value);
-      input.value = '';
+    set(value) {
+      if (value !== null) {
+        this.$emit('filter', this.current, value);
+      }
+      this.$refs.select.clear();
     },
   },
 };

@@ -298,13 +298,24 @@
   width: 275px;
 }
 
-.filter-select .btn-default {
+.filter-select {
+  position: relative;
+  float: left;
+  width: 100%;
+  margin-left: -1px !important;
+}
+
+.filter-select .btn-content {
   font-size: 12px;
   font-style: italic;
   font-weight: 400;
   background-color: #ffffff;
   background-image: none;
   color: #999999;
+}
+
+.filter-select .dropdown-menu {
+  min-width: 100%;
 }
 
 .sort-pf .form-group .btn-link {
