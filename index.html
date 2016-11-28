@@ -26,7 +26,7 @@
   </header>
   <div id="app" class="container-fluid">
     <h2>Toolbar</h2>
-    <pf-toolbar @filter="addFilter" @sort-change="setSort"
+    <pf-toolbar @filters="filters = $event" @sort-change="setSort"
                 :filter-fields="[{
                   title: 'Name',
                 }, {
@@ -41,7 +41,8 @@
                   title: 'Name',
                 }, {
                   title: 'Date',
-                }]">
+                }]"
+                :result-count="0">
     </pf-toolbar>
 
     <pre>Filters: {{filters}}

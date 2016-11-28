@@ -74,9 +74,15 @@ export default {
   methods: {
     set(value) {
       if (value !== null) {
-        this.$emit('filter', this.current, value);
+        if (typeof value == 'object') {
+          this.$emit('filter', this.current, value.target.value);
+        } else {
+          this.$emit('filter', this.current, value);
+        }
       }
-      this.$refs.select.clear();
+      if (this.isSelect) {
+        this.$refs.select.clear();
+      }
     },
   },
 };
