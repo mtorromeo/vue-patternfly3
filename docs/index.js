@@ -17,10 +17,15 @@ new Vue({
       sortField: {},
       sortAscending: true,
       filters: [],
+      notificationMessage: 'Test notification',
+      notificationType: 'info',
     };
   },
 
   methods: {
+    notify() {
+      this.$refs.notifications.add(`<strong>${this.notificationType}!</strong> ${this.notificationMessage}`, this.notificationType);
+    },
     setSort(field, ascending) {
       this.sortField = field;
       this.sortAscending = ascending;
