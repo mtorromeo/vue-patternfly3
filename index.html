@@ -26,7 +26,7 @@
   </header>
   <div id="app" class="container-fluid">
     <h2>Toolbar</h2>
-    <pf-toolbar @filters="filters = $event" @sort-change="setSort"
+    <pf-toolbar ref="toolbar" @filters="filters = $event" @sort-change="setSort"
                 :filter-fields="[{
                   title: 'Name',
                 }, {
@@ -42,8 +42,9 @@
                 }, {
                   title: 'Date',
                 }]"
+                views="table,card,list"
                 :result-count="0">
-      <button class="btn btn-default" type="button" title="Title 1">
+      <button class="btn btn-default" type="button" title="Title 1" @click="$refs.toolbar.filters.push({title: 'Test', value: 1})">
         Action 1
       </button>
       <button class="btn btn-default" type="button" title="Title 2">

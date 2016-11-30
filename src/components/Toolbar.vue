@@ -8,16 +8,12 @@
         <div class="form-group toolbar-actions">
           <slot></slot>
         </div>
-        <div class="form-group toolbar-pf-view-selector pull-right">
-          <ul class="list-inline">
-            <li v-for="view in views"
-                :class="{'active': isViewSelected(view.id), 'disabled': checkViewDisabled(view)}"
-                :title="view.title">
-              <a>
-                <i :class="[view.iconClass]" class="view-selector" @click="viewSelected(view.id)"></i>
-              </a>
-            </li>
-          </ul>
+        <div class="toolbar-pf-action-right">
+          <div class="form-group toolbar-pf-view-selector">
+            <button v-for="(viewData, name) in viewList" class="btn btn-link" :class="{'active': view == name, 'disabled': viewData.disabled}" :title="viewData.title">
+              <i :class="[viewData.iconClass]" class="view-selector" @click="activeView = name"></i>
+            </button>
+          </div>
         </div>
       </form>
       <pf-filter-results v-if="showResultFilter" :count="resultCount" :filters="activeFilters"></pf-filter-results>
@@ -39,6 +35,13 @@ export default {
   },
 
   props: {
+    view: String,
+    views: {
+      type: [Object, String],
+      default() {
+        return {};
+      },
+    },
     filters: {
       type: Array,
       default() {
@@ -62,7 +65,7 @@ export default {
 
   data() {
     return {
-      views: {},
+      activeView: null,
       activeFilters: [],
     };
   },
@@ -86,17 +89,61 @@ export default {
   },
 
   computed: {
+    viewList() {
+      if (typeof this.views != 'string') {
+        return this.views;
+      }
+
+      const viewList = {};
+      const presets = this.views.split(',').map(v => v.trim());
+      if (presets.indexOf('table') > -1) {
+        viewList.table = {
+          iconClass: 'fa fa-th',
+        };
+      }
+      if (presets.indexOf('card') > -1) {
+        viewList.card = {
+          iconClass: 'fa fa-th-large',
+        };
+      }
+      if (presets.indexOf('list') > -1) {
+        viewList.list = {
+          iconClass: 'fa fa-th-list',
+        };
+      }
+      return viewList;
+    },
     showResultFilter() {
       return typeof this.resultCount != 'undefined';
-    }
+    },
   },
 
   watch: {
-    fitlers: {
+    filters: {
       handler() {
         this.activeFilters = this.filters;
       },
       immediate: true,
+    },
+    view: {
+      handler() {
+        this.activeView = this.view;
+      },
+      immediate: true,
+    },
+    views: {
+      handler() {
+        if (!this.views[this.activeView]) {
+          const names = Object.keys(this.views)
+          if (names.length > 0) {
+            this.activeView = names[0];
+          }
+        }
+      },
+      immediate: true,
+    },
+    activeView() {
+      this.$emit('view', this.activeView);
     },
     activeFilters() {
       this.$emit('filters', this.activeFilters);
