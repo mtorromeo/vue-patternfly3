@@ -1,19 +1,24 @@
 <template>
-<div v-show="notifications.length > 0">
-  <pf-inline-notification v-for="(n, i) in notifications" :persistent="n.persistent" :type="n.type" @dismiss="dismiss(i)">
+<div :class="{'toast-notifications-list-pf': toast}" v-show="notifications.length > 0">
+  <slot></slot>
+  <pf-notification ref="notification" v-for="(n, i) in notifications" :persistent="n.persistent" :type="n.type" :toast="toast" @dismiss="dismiss(i)">
     <div v-html="n.message"></div>
-  </pf-inline-notification>
+  </pf-notification>
 </div>
 </template>
 
 <script>
-import PfInlineNotification from './InlineNotification.vue';
+import PfNotification from './Notification.vue';
 
 export default {
   name: 'pf-notifications',
 
   components: {
-    PfInlineNotification,
+    PfNotification,
+  },
+
+  props: {
+    toast: Boolean,
   },
 
   data() {
@@ -23,15 +28,25 @@ export default {
   },
 
   methods: {
-    add(message, type = 'info', persistent = false) {
-      this.notifications.push({
-        message: message,
-        type: type,
-        persistent: persistent,
-      });
+    add(notification, type = 'info', persistent = false) {
+      if (typeof notification == 'string') {
+        notification = {
+          message: notification,
+          type: type,
+          persistent: persistent,
+        };
+      }
+      this.notifications.push(notification);
     },
 
     dismiss(i) {
+      if (typeof i == 'object') {
+        const obj = i;
+        i = this.notifications.indexOf(obj);
+        if (i < 0) {
+          return;
+        }
+      }
       this.notifications.splice(i, 1);
     },
   },

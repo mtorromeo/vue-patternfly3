@@ -24,7 +24,7 @@
 
 <script>
 import PfSort from './Sort.vue';
-import Dropdown from 'vue-strap/src/components/Dropdown.vue';
+import Dropdown from 'vue-strap/src/Dropdown.vue';
 
 export default {
   name: 'pf-toolbar',

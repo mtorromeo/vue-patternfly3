@@ -9,7 +9,7 @@ import UtilizationBarChart from './components/UtilizationBarChart.vue';
 import FilterFields from './components/FilterFields.vue';
 import FilterResults from './components/FilterResults.vue';
 import Notifications from './components/Notifications.vue';
-import InlineNotification from './components/InlineNotification.vue';
+import Notification from './components/Notification.vue';
 import Tooltip from './directives/tooltip';
 
 
@@ -25,6 +25,6 @@ export default {
   FilterFields,
   FilterResults,
   Notifications,
-  InlineNotification,
+  Notification,
   Tooltip,
 };

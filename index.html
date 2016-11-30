@@ -94,7 +94,7 @@ Sort: {{ sortField.title }} {{ sortAscending ? 'ascending' : 'descending' }}</pr
 
 
     <h2>Notifications</h2>
-    <pf-notifications ref="notifications"></pf-notifications>
+    <pf-notifications ref="notifications" :toast="notificationToast"></pf-notifications>
 
     <form class="form-horizontal" @submit.prevent="notify">
       <div class="form-group">
@@ -113,6 +113,13 @@ Sort: {{ sortField.title }} {{ sortAscending ? 'ascending' : 'descending' }}</pr
             <option value="warning">warning</option>
             <option value="danger">danger</option>
           </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label" for="notification-toast">Toast</label>
+        <div class="col-sm-2">
+          <input id="notification-toast" type="checkbox" v-model="notificationToast">
         </div>
       </div>
 

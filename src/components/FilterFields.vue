@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import Dropdown from 'vue-strap/src/components/Dropdown.vue';
-import VSelect from 'vue-strap/src/components/Select.vue';
+import Dropdown from 'vue-strap/src/Dropdown.vue';
+import VSelect from 'vue-strap/src/Select.vue';
 import VOption from 'vue-strap/src/Option.vue';
 
 export default {

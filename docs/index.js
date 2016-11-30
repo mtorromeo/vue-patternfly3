@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VuePatternfly from '../src/plugin';
-import Dropdown from 'vue-strap/src/components/Dropdown.vue';
+import Dropdown from 'vue-strap/src/Dropdown.vue';
 
 Vue.debug = true;
 Vue.use(VuePatternfly);
@@ -19,6 +19,7 @@ new Vue({
       filters: [],
       notificationMessage: 'Test notification',
       notificationType: 'info',
+      notificationToast: false,
     };
   },
 
