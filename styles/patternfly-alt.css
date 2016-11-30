@@ -1,3 +1,7 @@
+.c3-tooltip td {
+  color: inherit;
+}
+
 .card-pf-aggregate-status-alt .card-pf-body {
   padding-bottom: 20px;
 }
