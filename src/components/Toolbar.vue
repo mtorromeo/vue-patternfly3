@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row toolbar-pf">
     <div class="col-sm-12">
-      <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}">
+      <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
         <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="filterFields.length > 0"></pf-filter-fields>
         <pf-sort :fields="sortFields" v-if="sortFields.length > 0" @change="setSort"></pf-sort>
         <div class="form-group toolbar-actions">

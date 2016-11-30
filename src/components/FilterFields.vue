@@ -1,5 +1,5 @@
 <template>
-<form class="filter-pf filter-fields form-group toolbar-pf-filter" @submit="$event.preventDefault()">
+<div class="filter-pf filter-fields form-group toolbar-pf-filter">
   <div class="input-group">
     <dropdown :text="current.title" class="input-group-btn">
       <li v-for="(item, i) in fields">
@@ -18,7 +18,7 @@
              @keyup.enter.stop="set" :placeholder="current.placeholder">
     </div>
   </div>
-</form>
+</div>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-<form class="sort-pf form-group">
+<div class="sort-pf form-group">
   <dropdown :text="current.title">
     <li v-for="(item, i) in fields" :class="{'selected': item === current}">
       <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="select(i)">
@@ -10,7 +10,7 @@
   <button class="btn btn-link" type="button"  @click="invert">
     <span class="sort-direction" :class="sortIconClass"></span>
   </button>
-</form>
+</div>
 </template>
 
 <script>
