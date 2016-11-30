@@ -4,7 +4,7 @@
     <div v-if="title" class="progress-description" v-html="title"></div>
     <div class="progress progress-label-top-right" v-if="dataAvailable">
       <div class="progress-bar" :aria-valuenow="percent" aria-valuemin="0"
-           aria-valuemax="100" :tooltip="percent + '% Used'"
+           aria-valuemax="100" v-tooltip="percent + '% Used'"
            :class="{
              'animate': animate,
              'progress-bar-success': isOk,
@@ -16,7 +16,7 @@
       </div>
       <div class="progress-bar progress-bar-remaining"
            :style="{width: (100 - percent) + '%'}"
-           :tooltip="(100 - percent) + '% Available'">
+           v-tooltip="(100 - percent) + '% Available'">
       </div>
     </div>
   </template>
@@ -29,7 +29,7 @@
       <div v-if="title" class="progress-description"  :style="{'max-width': titleWidth}" v-html="title"></div>
       <div class="progress" v-if="dataAvailable">
         <div class="progress-bar" :aria-valuenow="percent" aria-valuemin="0"
-             aria-valuemax="100" :tooltip="percent + '% Used'"
+             aria-valuemax="100" v-tooltip="percent + '% Used'"
              :class="{
                'animate': animate,
                'progress-bar-success': isOk,
@@ -41,7 +41,7 @@
         </div>
         <div class="progress-bar progress-bar-remaining"
              :style="{width: (100 - percent) + '%'}"
-             :tooltip="(100 - percent) + '% Available'">
+             v-tooltip="(100 - percent) + '% Available'">
         </div>
       </div>
     </div>

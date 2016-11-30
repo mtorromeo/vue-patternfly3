@@ -108,6 +108,10 @@ array-flatten@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
 
+array-to-true-map@~0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/array-to-true-map/-/array-to-true-map-0.1.0.tgz#25b343ab0e2492ec4bcaed432a0bbc0659635b33"
+
 array-union@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/array-union/-/array-union-1.0.2.tgz#9a34410e4f4e3da23dea375be5be70f24778ec39"
@@ -751,6 +755,10 @@ camelcase@^1.0.2:
 caniuse-db@^1.0.30000539, caniuse-db@^1.0.30000578:
   version "1.0.30000588"
   resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000588.tgz#20baa051c5bd7e33ae32c7781b5379289c3d39d2"
+
+capitalize@~1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/capitalize/-/capitalize-1.0.0.tgz#dc802c580aee101929020d2ca14b4ca8a0ae44be"
 
 caseless@~0.11.0:
   version "0.11.0"
@@ -2835,6 +2843,13 @@ pluralize@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-1.2.1.tgz#d1a21483fd22bb41e58a12fa3421823140897c45"
 
+positioner@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/positioner/-/positioner-0.2.0.tgz#55235647237215d467c229fac0a5c088c00fc0e1"
+  dependencies:
+    capitalize "~1.0.0"
+    transition-end "~0.1.0"
+
 postcss-calc@^5.2.0:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/postcss-calc/-/postcss-calc-5.3.1.tgz#77bae7ca928ad85716e2fda42f261bf7c1d65b5e"
@@ -3716,6 +3731,12 @@ tough-cookie@~2.3.0:
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.3.2.tgz#f081f76e4c85720e6c37a5faced737150d84072a"
   dependencies:
     punycode "^1.4.1"
+
+transition-end@~0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/transition-end/-/transition-end-0.1.0.tgz#039d8e276a22618a7ee822d4954e045a8621633d"
+  dependencies:
+    array-to-true-map "~0.1.0"
 
 tryit@^1.0.1:
   version "1.0.3"
