@@ -2,7 +2,7 @@
   "name": "vue-patternfly",
   "version": "0.0.0",
   "description": "Patternfly components for Vue.js 2",
-  "main": "src/index.js",
+  "main": "dist/vue-patternfly.js",
   "directories": {
     "test": "test"
   },
