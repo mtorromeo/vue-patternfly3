@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import VuePatternfly from '../src/plugin';
+import VuePatternfly from '../src';
 import Dropdown from 'vue-strap/src/Dropdown.vue';
 
 Vue.debug = true;

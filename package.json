@@ -2,8 +2,7 @@
   "name": "vue-patternfly",
   "version": "0.0.0",
   "description": "Patternfly components for Vue.js 2",
-  "jsnext": "dist/bundle.js",
-  "main": "dist/bundle.common.js",
+  "main": "src/index.js",
   "directories": {
     "test": "test"
   },

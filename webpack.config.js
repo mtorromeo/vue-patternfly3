@@ -1,7 +1,6 @@
 module.exports = {
   entry: {
-    'vue-patternfly': ['./src/main'],
-    'vue-patternfly.plugin': ['./src/plugin'],
+    'vue-patternfly': ['./src/index'],
     'docs': './docs/index',
   },
 

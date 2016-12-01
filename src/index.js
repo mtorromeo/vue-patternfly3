@@ -13,7 +13,7 @@ import Notification from './components/Notification.vue';
 import Tooltip from './directives/tooltip';
 
 
-export default {
+const components = {
   AggregateStatusCard,
   C3Chart,
   Card,
@@ -28,3 +28,16 @@ export default {
   Notification,
   Tooltip,
 };
+
+components.install = function(Vue) {
+  for (const name of Object.keys(components)) {
+    const component = components[name];
+    if (component.bind) {
+      Vue.directive(component.name || name, component);
+    } else {
+      Vue.component(component.name || name, component);
+    }
+  }
+};
+
+export default components;
