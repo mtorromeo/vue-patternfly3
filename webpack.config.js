@@ -9,6 +9,7 @@ module.exports = {
     publicPath: 'dist',
     filename: '[name].js',
     library: 'VuePatternfly',
+    libraryTarget: 'umd',
   },
 
   module: {
