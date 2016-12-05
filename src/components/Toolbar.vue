@@ -1,5 +1,5 @@
 <template>
-<div class="toolbar-pf">
+<div class="clearfix toolbar-pf">
   <div class="col-sm-12">
     <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
       <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="filterFields.length > 0"></pf-filter-fields>
