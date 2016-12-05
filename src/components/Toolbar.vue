@@ -1,23 +1,21 @@
 <template>
-<div class="container-fluid">
-  <div class="row toolbar-pf">
-    <div class="col-sm-12">
-      <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
-        <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="filterFields.length > 0"></pf-filter-fields>
-        <pf-sort :fields="sortFields" v-if="sortFields.length > 0" @change="setSort"></pf-sort>
-        <div class="form-group toolbar-actions">
-          <slot></slot>
+<div class="toolbar-pf">
+  <div class="col-sm-12">
+    <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
+      <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="filterFields.length > 0"></pf-filter-fields>
+      <pf-sort :fields="sortFields" v-if="sortFields.length > 0" @change="setSort"></pf-sort>
+      <div class="form-group toolbar-actions">
+        <slot></slot>
+      </div>
+      <div class="toolbar-pf-action-right">
+        <div class="form-group toolbar-pf-view-selector">
+          <button v-for="(viewData, name) in viewList" class="btn btn-link" :class="{'active': view == name, 'disabled': viewData.disabled}" :title="viewData.title">
+            <i :class="[viewData.iconClass]" class="view-selector" @click="activeView = name"></i>
+          </button>
         </div>
-        <div class="toolbar-pf-action-right">
-          <div class="form-group toolbar-pf-view-selector">
-            <button v-for="(viewData, name) in viewList" class="btn btn-link" :class="{'active': view == name, 'disabled': viewData.disabled}" :title="viewData.title">
-              <i :class="[viewData.iconClass]" class="view-selector" @click="activeView = name"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-      <pf-filter-results v-if="showResultFilter" :count="resultCount" :filters="activeFilters"></pf-filter-results>
-    </div>
+      </div>
+    </form>
+    <pf-filter-results v-if="showResultFilter" :count="resultCount" :filters="activeFilters"></pf-filter-results>
   </div>
 </div>
 </template>
