@@ -8,7 +8,7 @@
   },
   "scripts": {
     "purge": "rm -rf dist/",
-    "dev": "webpack-dev-server --inline --hot -dw",
+    "dev": "webpack-dev-server --inline --hot -dw --port 8000",
     "compile": "webpack --progress --hide-modules -pc",
     "build": "npm run purge && npm run compile",
     "lint": "eslint src/* test/*",
@@ -51,6 +51,7 @@
     "style-loader": "^0.13.1",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^10.0.0",
+    "vue-router": "^2.1.1",
     "vue-template-compiler": "^2.1.0",
     "webpack": "^1.13.3",
     "webpack-dev-server": "^1.16.2"
