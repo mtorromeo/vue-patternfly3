@@ -10,6 +10,7 @@ import FilterFields from './components/FilterFields.vue';
 import FilterResults from './components/FilterResults.vue';
 import Notifications from './components/Notifications.vue';
 import Notification from './components/Notification.vue';
+import Layout from './components/Layout.vue';
 import Tooltip from './directives/tooltip';
 
 
@@ -27,6 +28,7 @@ const components = {
   Notifications,
   Notification,
   Tooltip,
+  Layout,
 };
 
 components.install = function(Vue) {
