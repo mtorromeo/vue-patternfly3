@@ -1,6 +1,6 @@
 {
   "name": "vue-patternfly",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Patternfly components for Vue.js 2",
   "main": "dist/vue-patternfly.js",
   "directories": {
@@ -12,7 +12,7 @@
     "compile": "webpack --progress --hide-modules -pc",
     "build": "npm run purge && npm run compile",
     "lint": "eslint src/* test/*",
-    "beforePublish": "npm run lint && npm run build"
+    "prepublish": "npm run lint && npm run build"
   },
   "files": [
     "dist/",
