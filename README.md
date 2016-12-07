@@ -2,7 +2,7 @@
 
 ### !! This is a work in progress and is not yet ready for usage !!
 
-Patternfly components for Vue.js 2
+PatternFly components for Vue.js 2
 
 <p align="center">
   <!-- <a href="https://circleci.com/gh/mtorromeo/vue-patternfly">
