@@ -1,6 +1,6 @@
 <template>
 <div>
-  <nav class="navbar" :class="{
+  <nav v-if="!disabled" class="navbar" :class="{
       'navbar-pf': horizontal,
       'navbar-pf-vertical': !horizontal,
     }" role="navigation">
@@ -25,7 +25,7 @@
     </div>
   </nav>
 
-  <div v-if="!horizontal" class="nav-pf-vertical nav-pf-vertical-with-sub-menus" :class="{
+  <div v-if="!disabled && !horizontal" class="nav-pf-vertical nav-pf-vertical-with-sub-menus" :class="{
       collapsed: collapsed,
       'hidden-icons-pf': !icons,
     }">
@@ -34,10 +34,11 @@
     </ul>
   </div>
 
-  <div class="container-fluid" :class="{
-      'collapsed-nav': collapsed,
-      'container-pf-nav-pf-vertical': !horizontal,
-      'hidden-icons-pf': !icons,
+  <div :class="{
+      'container-fluid': !disabled,
+      'collapsed-nav': !disabled && collapsed,
+      'container-pf-nav-pf-vertical': !disabled && !horizontal,
+      'hidden-icons-pf': !disabled && !icons,
     }">
     <slot></slot>
   </div>
@@ -62,6 +63,11 @@ export default {
     collapsable: {
       type: Boolean,
       default: true,
+    },
+
+    disabled: {
+      type: Boolean,
+      default: false,
     },
   },
 
