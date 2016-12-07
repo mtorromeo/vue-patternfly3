@@ -1,12 +1,9 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+/* global VueRouter */
 
 import HomePage from './pages/home.vue';
 import LayoutPage from './pages/layout.vue';
 import ComponentsPage from './pages/components.vue';
 import NotificationsPage from './pages/notifications.vue';
-
-Vue.use(VueRouter);
 
 const router = new VueRouter({
   routes: [

@@ -12,6 +12,11 @@ module.exports = {
     libraryTarget: 'umd',
   },
 
+  externals: {
+    c3: true,
+    'vue-strap': 'VueStrap',
+  },
+
   module: {
     loaders: [{
       test: /\/javascript\/[^/]+\.js?$/,

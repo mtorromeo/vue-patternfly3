@@ -36,13 +36,13 @@
 </template>
 
 <script>
-import Dropdown from 'vue-strap/src/Dropdown.vue';
+import VueStrap from 'vue-strap';
 
 export default {
   name: 'pf-toast-notification',
 
   components: {
-    Dropdown,
+    dropdown: VueStrap.dropdown,
   },
 
   props: {

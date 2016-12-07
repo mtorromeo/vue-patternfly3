@@ -22,14 +22,14 @@
 
 <script>
 import PfSort from './Sort.vue';
-import Dropdown from 'vue-strap/src/Dropdown.vue';
+import VueStrap from 'vue-strap';
 
 export default {
   name: 'pf-toolbar',
 
   components: {
     PfSort,
-    Dropdown,
+    dropdown: VueStrap.dropdown,
   },
 
   props: {

@@ -8,5 +8,4 @@ Thumbs.db
 !.eslint*
 !.editorconfig
 node_modules
-/dist/docs.js
-/dist/*.map
+/dist/

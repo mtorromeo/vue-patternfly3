@@ -40,13 +40,13 @@
 </template>
 
 <script>
-import Dropdown from 'vue-strap/src/Dropdown.vue';
+import VueStrap from 'vue-strap';
 
 export default {
   name: 'pf-card',
 
   components: {
-    Dropdown,
+    dropdown: VueStrap.dropdown,
   },
 
   props: {

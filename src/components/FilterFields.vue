@@ -22,17 +22,15 @@
 </template>
 
 <script>
-import Dropdown from 'vue-strap/src/Dropdown.vue';
-import VSelect from 'vue-strap/src/Select.vue';
-import VOption from 'vue-strap/src/Option.vue';
+import VueStrap from 'vue-strap';
 
 export default {
   name: 'pf-filter-fields',
 
   components: {
-    Dropdown,
-    VSelect,
-    VOption,
+    dropdown: VueStrap.dropdown,
+    'v-select': VueStrap.select,
+    'v-option': VueStrap.option,
   },
 
   props: {
