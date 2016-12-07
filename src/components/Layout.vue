@@ -15,6 +15,10 @@
     </div>
 
     <div class="collapse navbar-collapse navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-utility">
+        <slot name="utility-menu"></slot>
+      </ul>
+
       <ul v-if="horizontal" class="nav navbar-nav navbar-primary">
         <slot name="horizontal-menu"></slot>
       </ul>
