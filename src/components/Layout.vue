@@ -77,19 +77,34 @@ export default {
     };
   },
 
-  watch: {
-    horizontal: {
-      handler() {
-        const html = window.document.documentElement;
+  methods: {
+    updateHtmlClasses() {
+      const html = window.document.documentElement;
+      html.classList.add('transitions');
+      if (this.disabled) {
+        html.classList.remove('layout-pf');
+        html.classList.remove('layout-pf-fixed');
+      } else {
         html.classList.add('layout-pf');
-        html.classList.add('transitions');
         if (this.horizontal) {
           html.classList.remove('layout-pf-fixed');
         } else {
           html.classList.add('layout-pf-fixed');
         }
+      }
+    },
+  },
+
+  watch: {
+    horizontal: {
+      handler() {
+        this.updateHtmlClasses();
       },
       immediate: true,
+    },
+
+    disabled() {
+      this.updateHtmlClasses();
     },
   },
 };
