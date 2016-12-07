@@ -43,3 +43,7 @@ components.install = function(Vue) {
 };
 
 export default components;
+
+if (typeof window !== 'undefined' && window.Vue) {
+  window.Vue.use(components);
+}
