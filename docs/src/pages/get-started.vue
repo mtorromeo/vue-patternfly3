@@ -14,7 +14,7 @@
       &lt;link rel="stylesheet" href="https://unpkg.com/patternfly/dist/css/patternfly.min.css"&gt;
       &lt;link rel="stylesheet" href="https://unpkg.com/patternfly/dist/css/patternfly-additions.min.css"&gt;
       &lt;link rel="stylesheet" href="https://unpkg.com/c3/c3.min.css"&gt;
-      &lt;link rel="stylesheet" href="https://unpkg.com/vue-patternfly/styles/patternfly-alt.css"&gt;
+      &lt;link rel="stylesheet" href="https://unpkg.com/vue-patternfly/dist/vue-patternfly.css"&gt;
     &lt;/head&gt;
     &lt;body&gt;
       &lt;pf-layout id="app"&gt;&lt;/pf-layout&gt;

@@ -205,7 +205,7 @@
 	
 	  computed: {
 	    github: function github() {
-	      return _package2.default.repository.url.replace(/^git+|\.git$/, '');
+	      return _package2.default.repository.url.replace(/^git\+|\.git$/g, '');
 	    }
 	  }
 	}; //
@@ -457,7 +457,7 @@
 	    staticClass: "page"
 	  }, [_h('header', [_h('h1', ["Get Started"])]), " ", _h('section', [_h('p', ["Using the vue-patternfly module is really simple as it can be simply included in the HTML of the page as a script tag or required/imported following either CommonJS or AMD specs."]), " ", _h('p', ["The guide that you are reading is using vue-patternfly itself and imports every dependency as script/style tags."]), " ", _h('h3', ["HTML"]), " ", _h('pre', [_h('code', {
 	    staticClass: "lang-html"
-	  }, ["<html>\n    <head>\n      <link rel=\"stylesheet\" href=\"https://unpkg.com/patternfly/dist/css/patternfly.min.css\">\n      <link rel=\"stylesheet\" href=\"https://unpkg.com/patternfly/dist/css/patternfly-additions.min.css\">\n      <link rel=\"stylesheet\" href=\"https://unpkg.com/c3/c3.min.css\">\n      <link rel=\"stylesheet\" href=\"https://unpkg.com/vue-patternfly/styles/patternfly-alt.css\">\n    </head>\n    <body>\n      <pf-layout id=\"app\"></pf-layout>\n\n      <script src=\"https://unpkg.com/d3/d3.min.js\"></script>\n      <script src=\"https://unpkg.com/c3/c3.min.js\"></script>\n      <script src=\"https://unpkg.com/vue/dist/vue.min.js\"></script>\n      <script src=\"https://unpkg.com/vue-router/dist/vue-router.min.js\"></script>\n      <script src=\"https://rawgithub.com/yuche/vue-strap/071995989df214c149f5f74a27872d67daa81a10/dist/vue-strap.min.js\"></script>\n      <script src=\"https://unpkg.com/vue-patternfly/dist/vue-patternfly.js\"></script>\n    </body>\n</html>"])]), " ", _h('h3', ["JavaScript"]), " ", _h('pre', [_h('code', {
+	  }, ["<html>\n    <head>\n      <link rel=\"stylesheet\" href=\"https://unpkg.com/patternfly/dist/css/patternfly.min.css\">\n      <link rel=\"stylesheet\" href=\"https://unpkg.com/patternfly/dist/css/patternfly-additions.min.css\">\n      <link rel=\"stylesheet\" href=\"https://unpkg.com/c3/c3.min.css\">\n      <link rel=\"stylesheet\" href=\"https://unpkg.com/vue-patternfly/dist/vue-patternfly.css\">\n    </head>\n    <body>\n      <pf-layout id=\"app\"></pf-layout>\n\n      <script src=\"https://unpkg.com/d3/d3.min.js\"></script>\n      <script src=\"https://unpkg.com/c3/c3.min.js\"></script>\n      <script src=\"https://unpkg.com/vue/dist/vue.min.js\"></script>\n      <script src=\"https://unpkg.com/vue-router/dist/vue-router.min.js\"></script>\n      <script src=\"https://rawgithub.com/yuche/vue-strap/071995989df214c149f5f74a27872d67daa81a10/dist/vue-strap.min.js\"></script>\n      <script src=\"https://unpkg.com/vue-patternfly/dist/vue-patternfly.js\"></script>\n    </body>\n</html>"])]), " ", _h('h3', ["JavaScript"]), " ", _h('pre', [_h('code', {
 	    staticClass: "lang-javascript"
 	  }, ["// If using a module system, import Vue and VuePatternfly and call Vue.use(VuePatternfly).\n\nconst app = new Vue({\n  el: '#app'\n})"])])])])
 	}]}

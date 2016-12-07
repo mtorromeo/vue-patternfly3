@@ -61,7 +61,7 @@ export default {
 
   computed: {
     github() {
-      return pkg.repository.url.replace(/^git+|\.git$/, '');
+      return pkg.repository.url.replace(/^git\+|\.git$/g, '');
     },
   },
 };
