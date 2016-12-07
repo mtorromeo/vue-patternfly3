@@ -1,0 +1,72 @@
+.home .jumbotron {
+  background: -webkit-linear-gradient(#1d1d1d,#040404);
+  text-align: center;
+  color: #e4e4e4;
+}
+
+.home section > h2 {
+  font-size: 32px;
+  color: #58c893;
+  font-weight: 300;
+}
+
+.home p {
+  font-size: 17px;
+  font-weight: 300;
+}
+
+.home .row-cards-pf {
+  margin-top: 50px;
+}
+
+.navbar-pf-vertical .navbar-brand {
+  font-size: 18px;
+  line-height: 35px;
+}
+
+.navbar-brand-name,
+.home .jumbotron h1 {
+  background: -webkit-linear-gradient(#93f9b9,#1d976c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #58c893;
+}
+
+.home .jumbotron h1 {
+  font-size: 52px;
+}
+
+.home .jumbotron .description {
+  font-size: 18px;
+  font-weigth: 300;
+  margin: 50px auto;
+  position: relative;
+}
+
+.home .jumbotron .version {
+  color: #bebebe;
+  font-size: 11px;
+}
+
+.home .jumbotron .description:after {
+  background: #bbb;
+  top: -26px;
+  content: '';
+  height: 2px;
+  left: 50%;
+  margin: 0 0 0 -28px;
+  position: absolute;
+  width: 56px;
+}
+
+.page {
+  vertical-align: middle;
+  margin-bottom: 45px;
+}
+
+.page h1 {
+  border-bottom: 1px solid #D5D5D5;
+  line-height: 60px;
+  margin-top: 0;
+  padding-bottom: 0;
+}

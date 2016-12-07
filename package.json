@@ -1,7 +1,7 @@
 {
   "name": "vue-patternfly",
   "version": "0.0.1",
-  "description": "Patternfly components for Vue.js 2",
+  "description": "PatternFly components for Vue.js 2",
   "main": "dist/vue-patternfly.js",
   "directories": {
     "test": "test"
@@ -48,6 +48,7 @@
     "eslint": "^3.10.2",
     "eslint-plugin-html": "^1.7.0",
     "eslint-plugin-import": "^1.16.0",
+    "json-loader": "^0.5.4",
     "style-loader": "^0.13.1",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^10.0.0",
