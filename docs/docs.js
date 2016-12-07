@@ -3116,14 +3116,14 @@
 
 	module.exports = {
 		"name": "vue-patternfly",
-		"version": "0.0.1",
+		"version": "0.0.2",
 		"description": "PatternFly components for Vue.js 2",
 		"main": "dist/vue-patternfly.js",
 		"directories": {
 			"test": "test"
 		},
 		"scripts": {
-			"purge": "rm -rf dist/",
+			"purge": "rm -rf dist/*.js dist/*.map",
 			"dev": "webpack-dev-server --inline --hot -dw --port 8000",
 			"compile": "webpack --progress --hide-modules -pc",
 			"build": "npm run purge && npm run compile",
