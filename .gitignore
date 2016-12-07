@@ -1,6 +1,7 @@
 *.bak
 *.gz
 *.log
+*.map
 Thumbs.db
 .*
 !.git*
@@ -8,4 +9,4 @@ Thumbs.db
 !.eslint*
 !.editorconfig
 node_modules
-/dist/
+/dist/*.js

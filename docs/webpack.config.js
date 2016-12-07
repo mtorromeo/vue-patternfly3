@@ -1,18 +1,11 @@
 module.exports = {
   entry: {
-    'vue-patternfly': './src/index',
+    'docs': './src/index',
   },
 
   output: {
-    path: 'dist',
+    path: '.',
     filename: '[name].js',
-    library: 'VuePatternfly',
-    libraryTarget: 'umd',
-  },
-
-  externals: {
-    c3: true,
-    'vue-strap': 'VueStrap',
   },
 
   module: {
@@ -26,6 +19,9 @@ module.exports = {
       query: {
         compact: false,
       },
+    }, {
+      test: /\.json$/,
+      loader: 'json',
     }, {
       test: /\.css$/,
       loader: 'style-loader!css-loader',
