@@ -9,7 +9,7 @@
       <router-link to="/get-started" :exact="true">
         <a class="btn btn-primary">Get Started</a>
       </router-link>
-      <a :href="github" class="btn btn-default">GITHUB</a>
+      <a :href="github" class="btn btn-default"><span class="fa fa-github"></span> GITHUB</a>
     </p>
     <p class="version">
       Version {{version}}
