@@ -5,14 +5,25 @@
       <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="filterFields.length > 0"></pf-filter-fields>
       <pf-sort :fields="sortFields" v-if="sortFields.length > 0" @change="setSort"></pf-sort>
 
-      <div class="form-group toolbar-actions" :class="{
+      <div class="toolbar-actions" :class="{
+        'form-group': !hasFindView,
         'pull-right': !hasFindView,
         'toolbar-pf-action-right': !hasFindView,
       }" v-if="$slots.default">
-        <slot></slot>
+        <h5 class="form-group" v-if="showCount && !hasFindView">
+          {{resultCount}} Results
+        </h5>
+
+        <div class="form-group">
+          <slot></slot>
+        </div>
       </div>
 
       <div class="toolbar-pf-action-right" v-if="hasFindView">
+        <h5 class="form-group" v-if="showCount && hasFindView">
+          {{resultCount}} Results
+        </h5>
+
         <div class="form-group toolbar-pf-view-selector">
           <button v-for="(viewData, name) in viewList" class="btn btn-link" :class="{'active': view == name, 'disabled': viewData.disabled}" :title="viewData.title">
             <i :class="[viewData.iconClass]" class="view-selector" @click="activeView = name"></i>
@@ -92,8 +103,11 @@ export default {
   },
 
   computed: {
+    showCount() {
+      return !this.showResultFilter && typeof this.resultCount != 'undefined';
+    },
     hasFindView() {
-      return this.viewList.length > 0;
+      return this.views || this.viewList.length > 0;
     },
     viewList() {
       if (typeof this.views != 'string') {
@@ -120,7 +134,7 @@ export default {
       return viewList;
     },
     showResultFilter() {
-      return typeof this.resultCount != 'undefined';
+      return this.activeFilters.length;
     },
   },
 
@@ -157,3 +171,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+h5.form-group {
+  display: inline-block;
+  line-height: 26.66666667px;
+  margin-bottom: 0;
+  margin-top: 0;
+  font-weight: 700;
+}
+</style>
