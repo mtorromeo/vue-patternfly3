@@ -6,7 +6,14 @@
 
   <section>
     <p>This component handles the application's navigation controls and is a perfect fit for the root element of the Vue.js application.</p>
-    <p>It works well with <a href="http://router.vuejs.org/en/" target="_blank">vue-router <span class="fa fa-external-link"></span></a> to handle the application routing using <code>&lt;router-link&gt;</code> in the menu slots and <code>&lt;router-view&gt;</code> as the default slot (See the vue-router example below).</p>
+    <p>It works well with <i>vue-router</i> to handle the application routing using <code>&lt;router-link&gt;</code> in the menu slots and <code>&lt;router-view&gt;</code> as the default slot (See the vue-router example below).</p>
+
+    <h4>Related documentation</h4>
+    <ol>
+      <li><a href="http://www.patternfly.org/pattern-library/navigation/horizontal-navigation/" target="_blank">Pattern Library > Horizontal Navigation</a></li>
+      <li><a href="http://www.patternfly.org/pattern-library/navigation/vertical-navigation/" target="_blank">Pattern Library > Vertical Navigation</a></li>
+      <li><a href="http://router.vuejs.org/en/" target="_blank">Vue Router</a></li>
+    </ol>
 
     <h3>Props</h3>
     <table class="table table-striped table-hover">
