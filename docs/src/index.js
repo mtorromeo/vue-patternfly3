@@ -9,7 +9,8 @@ new Vue({
 
   data() {
     return {
-      layout: 'vertical',
+      layoutHorizontal: false,
+      layoutDisabled: false,
       layoutIcons: true,
       layoutCollapsable: true,
     };

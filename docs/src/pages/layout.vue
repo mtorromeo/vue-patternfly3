@@ -1,36 +1,121 @@
 <template>
 <article class="page">
   <header>
-    <h1>Layout</h1>
+    <h1>Layout <code>&lt;pf-layout&gt;</code></h1>
   </header>
 
   <section>
-    <p>The pf-layout component handles the application's navigation controls and is a perfect fit as the root element of the Vue.js application.</p>
+    <p>This component handles the application's navigation controls and is a perfect fit for the root element of the Vue.js application.</p>
+    <p>It works well with <a href="http://router.vuejs.org/en/" target="_blank">vue-router <span class="fa fa-external-link"></span></a> to handle the application routing using <code>&lt;router-link&gt;</code> in the menu slots and <code>&lt;router-view&gt;</code> as the default slot (See the vue-router example below).</p>
 
-    <h3>Live Controls</h3>
-    <form class="form-horizontal">
-      <div class="form-group">
-        <label class="col-sm-2 control-label">Direction</label>
-        <div class="col-sm-10">
-          <button-group v-model="$root.layout">
-            <radio :value="$root.layout" checked-value="horizontal">Horizontal</radio>
-            <radio :value="$root.layout" checked-value="vertical">Vertical</radio>
-          </button-group>
-        </div>
-      </div>
+    <h3>Props</h3>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Type</th>
+          <th>Default</th>
+          <th>Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>horizontal</td>
+          <td>Enable horizontal navigation layout</td>
+          <td>Boolean</td>
+          <td>false</td>
+          <td>
+            <input type="checkbox" v-model="$root.layoutHorizontal"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>icons</td>
+          <td>Display icons in the vertical navigation enabling a compact menu when collapsed</td>
+          <td>Boolean</td>
+          <td>false</td>
+          <td>
+            <input type="checkbox" v-model="$root.layoutIcons"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>collapsable</td>
+          <td>Collapse the vertical navigation menu</td>
+          <td>Boolean</td>
+          <td>true</td>
+          <td>
+            <input type="checkbox" v-model="$root.layoutCollapsable"></div>
+          </td>
+        </tr>
+        <tr>
+          <td>disabled</td>
+          <td>Disable all layout elements</td>
+          <td>Boolean</td>
+          <td>false</td>
+          <td>
+            <input type="checkbox" v-model="$root.layoutDisabled"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-      <div class="form-group">
-        <label class="col-sm-2 control-label" for="iconInput">Icons</label>
-        <div class="col-sm-10">
-          <input type="checkbox" id="iconInput" v-model="$root.layoutIcons"></div>
-      </div>
+    <h3>Slots</h3>
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>default</td>
+          <td>Page content</td>
+        </tr>
+        <tr>
+          <td>brand</td>
+          <td>The top-left brand image / title</td>
+        </tr>
+        <tr>
+          <td>utility-menu</td>
+          <td>The top-right utility menu</td>
+        </tr>
+        <tr>
+          <td>horizontal-menu</td>
+          <td>The horizontal navigation menu</td>
+        </tr>
+        <tr>
+          <td>vertical-menu</td>
+          <td>The vertical navigation menu</td>
+        </tr>
+      </tbody>
+    </table>
 
-      <div class="form-group">
-        <label class="col-sm-2 control-label" for="collapseInput">Collapsable</label>
-        <div class="col-sm-10">
-          <input type="checkbox" id="collapseInput" v-model="$root.layoutCollapsable"></div>
-      </div>
-    </form>
+    <h3>Example with vue-router</h3>
+    <pre><code class="lang-html">&lt;pf-layout id="app" :icons="true"&gt;
+  &lt;router-link slot="brand" to="/" :exact="true"&gt;
+    &lt;a class="navbar-brand"&gt;
+      &lt;span class="navbar-brand-name"&gt;Vue PatternFly&lt;/span&gt;
+    &lt;/a&gt;
+  &lt;/router-link&gt;
+
+  &lt;template slot="vertical-menu"&gt;
+    &lt;router-link tag="li" class="list-group-item" active-class="active" to="/get-started" :exact="true"&gt;
+      &lt;a&gt;
+        &lt;span class="fa fa-play-circle" title="Get Started"&gt;&lt;/span&gt;
+        &lt;span class="list-group-item-value"&gt;Get Started&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/router-link&gt;
+    &lt;router-link tag="li" class="list-group-item" active-class="active" to="/layout" :exact="true"&gt;
+      &lt;a&gt;
+        &lt;span class="fa fa-columns" title="Layout"&gt;&lt;/span&gt;
+        &lt;span class="list-group-item-value"&gt;Layout&lt;/span&gt;
+      &lt;/a&gt;
+    &lt;/router-link&gt;
+  &lt;/template&gt;
+
+  &lt;router-view&gt;&lt;/router-view&gt;
+&lt;/pf-layout&gt;</code></pre>
   </section>
 </article>
 </template>
