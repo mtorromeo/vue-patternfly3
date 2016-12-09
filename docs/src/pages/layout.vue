@@ -33,7 +33,7 @@
           <td>Boolean</td>
           <td>false</td>
           <td>
-            <input type="checkbox" v-model="$root.layoutHorizontal"></div>
+            <input type="checkbox" v-model="$root.layoutHorizontal">
           </td>
         </tr>
         <tr>
@@ -42,7 +42,7 @@
           <td>Boolean</td>
           <td>false</td>
           <td>
-            <input type="checkbox" v-model="$root.layoutIcons"></div>
+            <input type="checkbox" v-model="$root.layoutIcons">
           </td>
         </tr>
         <tr>
@@ -51,7 +51,7 @@
           <td>Boolean</td>
           <td>true</td>
           <td>
-            <input type="checkbox" v-model="$root.layoutCollapsable"></div>
+            <input type="checkbox" v-model="$root.layoutCollapsable">
           </td>
         </tr>
         <tr>
@@ -60,7 +60,7 @@
           <td>Boolean</td>
           <td>false</td>
           <td>
-            <input type="checkbox" v-model="$root.layoutDisabled"></div>
+            <input type="checkbox" v-model="$root.layoutDisabled">
           </td>
         </tr>
       </tbody>

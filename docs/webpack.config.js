@@ -8,6 +8,10 @@ module.exports = {
     filename: '[name].js',
   },
 
+  externals: {
+    'vue-patternfly': 'VuePatternfly',
+  },
+
   module: {
     loaders: [{
       test: /\/javascript\/[^/]+\.js?$/,
