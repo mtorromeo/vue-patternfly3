@@ -137,9 +137,7 @@ export default {
       if (typeof action.handler == 'function') {
         action.handler(action);
       }
-      if (action.emit) {
-        this.$emit(action.emit || 'action', action);
-      }
+      this.$emit(action.emit || 'action', action);
     }
   }
 };
