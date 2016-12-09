@@ -128,15 +128,7 @@
 </template>
 
 <script>
-import ButtonGroup from 'vue-strap/src/buttonGroup.vue';
-import Radio from 'vue-strap/src/Radio.vue';
-
 export default {
   name: 'layout-page',
-
-  components: {
-    ButtonGroup,
-    Radio,
-  },
 };
 </script>

@@ -1,3 +1,5 @@
+import './index.css';
+
 import AggregateStatusCard from './components/AggregateStatusCard.vue';
 import C3Chart from './components/C3Chart.vue';
 import Card from './components/Card.vue';

@@ -15,6 +15,7 @@ disabled, as per PatternFly design guidelines.
 
 ### Fixed
 - The pf-notifications container should be able to correctly display "slotted" notifications when present.
+- The externalized dependencies are now being resolved correctly when using the library with ES6 imports.
 
 ## [0.0.2] - 2016-12-08
 ### Added

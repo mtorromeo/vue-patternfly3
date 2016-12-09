@@ -114,13 +114,13 @@
 </template>
 
 <script>
-import Dropdown from 'vue-strap/src/Dropdown.vue';
+import {dropdown} from 'vue-strap';
 
 export default {
   name: 'components-page',
 
   components: {
-    Dropdown,
+    dropdown,
   },
 
   data() {

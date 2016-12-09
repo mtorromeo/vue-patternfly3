@@ -1,5 +1,5 @@
 <template>
-<div class="clearfix toolbar-pf">
+<div class="clearfix toolbar-pf" _v-3RyaW5nJyk>
   <div class="col-sm-12">
     <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
       <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="filterFields.length > 0"></pf-filter-fields>
@@ -173,7 +173,7 @@ export default {
 </script>
 
 <style scoped>
-h5.form-group {
+h5.form-group[_v-3RyaW5nJyk] {
   display: inline-block;
   line-height: 26.66666667px;
   margin-bottom: 0;
