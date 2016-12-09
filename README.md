@@ -1,16 +1,12 @@
-# vue-patternfly
-
-### !! This is a work in progress and is not yet ready for usage !!
-
-PatternFly components for Vue.js 2
+# Vue PatternFly
 
 <p align="center">
   <!-- <a href="https://circleci.com/gh/mtorromeo/vue-patternfly">
     <img src="https://circleci.com/gh/mtorromeo/vue-patternfly.svg?style=svg" alt="Build Status" />
-  </a> -->
+  </a>
   <a href="https://coveralls.io/github/mtorromeo/vue-patternfly?branch=master">
     <img src="https://coveralls.io/repos/github/mtorromeo/vue-patternfly/badge.svg?branch=master&style=flat-square" alt="Coverage Status" />
-  </a>
+  </a> -->
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License" />
   </a>
@@ -25,6 +21,12 @@ PatternFly components for Vue.js 2
     <img src="https://img.shields.io/github/issues/mtorromeo/vue-patternfly.svg?style=flat-square" alt="Issues" />
   </a>
 </p>
+
+PatternFly components for Vue.js 2.
+
+**Be warned:** this is library is in alpha state and only a small set of components is implemented.
+
+More informations on the project [homepage][link-homepage].
 
 ### Installation
 ```
@@ -41,11 +43,12 @@ yarn add vue-patternfly
 
 Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
 
+<!-- Tests are not available yet
 ## Testing
 
 ``` bash
 $ npm run test
-```
+``` -->
 
 ## Contributing
 
@@ -64,5 +67,6 @@ If you discover any security related issues, please email massimiliano.torromeo@
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
+[link-homepage]: https://mtorromeo.github.io/vue-patternfly
 [link-author]: https://github.com/mtorromeo
 [link-contributors]: ../../contributors
