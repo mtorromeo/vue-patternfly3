@@ -87,3 +87,17 @@ export default {
   },
 };
 </script>
+
+<style>
+.sort-pf .form-group .btn-link {
+  color: #222;
+  font-size: 16px;
+  line-height: 1;
+  padding: 4px 0;
+  margin-left: 10px;
+}
+
+.sort-pf .form-group .btn-link:hover {
+  color: #0099d3;
+}
+</style>

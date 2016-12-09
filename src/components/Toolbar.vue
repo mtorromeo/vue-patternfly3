@@ -180,4 +180,40 @@ h5.form-group[_v-3RyaW5nJyk] {
   margin-top: 0;
   font-weight: 700;
 }
+
+.toolbar-pf-actions .toolbar-pf-view-selector a {
+  cursor: pointer;
+}
+
+.toolbar-pf-actions .dropdown-menu a {
+  cursor: pointer;
+}
+
+.toolbar-pf-actions .dropdown-kebab-pf {
+  float: right;
+}
+
+.toolbar-pf-actions .dropdown-kebab-pf .caret {
+  width: auto;
+}
+
+.toolbar-pf-actions .dropdown-kebab-pf .caret:before {
+  font-family: FontAwesome;
+  content: "\f142";
+  line-height: 1;
+}
+
+.toolbar-pf-include-actions {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.toolbar-pf-actions.no-filter-results {
+  margin-bottom: 10px;
+}
+
+.dropdown-kebab-pf.invisible {
+  opacity: 0;
+  pointer-events: none;
+}
 </style>

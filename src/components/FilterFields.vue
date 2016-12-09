@@ -81,3 +81,34 @@ export default {
   },
 };
 </script>
+
+<style>
+.filter-pf a {
+  cursor: pointer;
+}
+
+.filter-pf.filter-fields .form-group {
+  padding-left: 0;
+  width: 275px;
+}
+
+.filter-select {
+  position: relative;
+  float: left;
+  width: 100%;
+  margin-left: -1px !important;
+}
+
+.filter-select .btn-content {
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  background-color: #ffffff;
+  background-image: none;
+  color: #999999;
+}
+
+.filter-select .dropdown-menu {
+  min-width: 100%;
+}
+</style>

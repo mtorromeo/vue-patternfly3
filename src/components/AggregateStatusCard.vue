@@ -50,3 +50,33 @@ export default {
   },
 };
 </script>
+
+<style>
+.card-pf-aggregate-status-alt .card-pf-body {
+  padding-bottom: 20px;
+}
+
+.card-pf-aggregate-status-alt .card-pf-title {
+  line-height: 22px;
+  margin: 20px 0 10px 0;
+  font-weight: 300;
+}
+
+.card-pf-aggregate-status-alt .card-pf-aggregate-status-count {
+  font-size: 24px;
+}
+
+.card-pf-aggregate-status-alt .card-pf-aggregate-status-title {
+  display: block;
+  font-size: 12px;
+}
+
+.card-pf-aggregate-status-alt .card-pf-aggregate-status-notifications .card-pf-aggregate-status-notification {
+  border-left: none;
+}
+
+.card-pf-aggregate-status-alt .card-pf-aggregate-status-notifications .fa, .card-pf-aggregate-status-alt .card-pf-aggregate-status-notifications .pficon {
+  position: relative;
+  top: -1px;
+}
+</style>

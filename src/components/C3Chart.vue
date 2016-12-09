@@ -51,3 +51,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.c3-tooltip td {
+  color: inherit;
+}
+</style>

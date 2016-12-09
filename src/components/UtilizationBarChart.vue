@@ -121,3 +121,17 @@ export default {
   },
 };
 </script>
+
+<style>
+/* Utilization bar chart - Animate load */
+.utilization-bar-chart-pf .progress-bar {
+  -webkit-transition: width .75s ease-in-out;
+  -moz-transition: width .75s ease-in-out;
+  -o-transition: width .75s ease-in-out;
+  transition: width .75s ease-in-out;
+}
+
+.utilization-bar-chart-pf .progress-bar.animate {
+  width: 0% !important;
+}
+</style>

@@ -1,39 +1,3 @@
-table {
-  font-size: inherit;
-}
-
-.c3-tooltip td {
-  color: inherit;
-}
-
-.card-pf-aggregate-status-alt .card-pf-body {
-  padding-bottom: 20px;
-}
-
-.card-pf-aggregate-status-alt .card-pf-title {
-  line-height: 22px;
-  margin: 20px 0 10px 0;
-  font-weight: 300;
-}
-
-.card-pf-aggregate-status-alt .card-pf-aggregate-status-count {
-  font-size: 24px;
-}
-
-.card-pf-aggregate-status-alt .card-pf-aggregate-status-title {
-  display: block;
-  font-size: 12px;
-}
-
-.card-pf-aggregate-status-alt .card-pf-aggregate-status-notifications .card-pf-aggregate-status-notification {
-  border-left: none;
-}
-
-.card-pf-aggregate-status-alt .card-pf-aggregate-status-notifications .fa, .card-pf-aggregate-status-alt .card-pf-aggregate-status-notifications .pficon {
-  position: relative;
-  top: -1px;
-}
-
 .card-pf-heading-no-bottom {
   margin: 0 -20px 0px;
   padding: 0 20px 0;
@@ -43,19 +7,6 @@ table {
   height: 18px;
   margin: 0 5px 5px;
 }
-
-.empty-chart-content {
-  text-align: center;
-}
-
-.empty-chart-content .pficon {
-  font-size: 24px;
-}
-.empty-chart-content span {
-  vertical-align: middle;
-  width: 100%;
-}
-
 
 .utilization-trend-chart-pf .donut-chart-pf {
   width: 100%;
@@ -297,95 +248,10 @@ table {
   color: transparent;
 }
 
-.filter-pf a {
-  cursor: pointer;
-}
-
-.filter-pf.filter-fields .form-group {
-  padding-left: 0;
-  width: 275px;
-}
-
-.filter-select {
-  position: relative;
-  float: left;
-  width: 100%;
-  margin-left: -1px !important;
-}
-
-.filter-select .btn-content {
-  font-size: 12px;
-  font-style: italic;
-  font-weight: 400;
-  background-color: #ffffff;
-  background-image: none;
-  color: #999999;
-}
-
-.filter-select .dropdown-menu {
-  min-width: 100%;
-}
-
-.sort-pf .form-group .btn-link {
-  color: #222;
-  font-size: 16px;
-  line-height: 1;
-  padding: 4px 0;
-  margin-left: 10px;
-}
-
-.sort-pf .form-group .btn-link:hover {
-  color: #0099d3;
-}
-
 .input-group .input-group-btn .dropdown-menu > .selected > a {
   background-color: #0099d3 !important;
   border-color: #0076b7 !important;
   color: #fff !important;
-}
-
-.toolbar-pf-actions .toolbar-pf-view-selector a {
-  cursor: pointer;
-}
-
-.toolbar-pf-actions .dropdown-menu a {
-  cursor: pointer;
-}
-
-.toolbar-pf-actions .dropdown-kebab-pf {
-  float: right;
-}
-
-.toolbar-pf-actions .dropdown-kebab-pf .caret {
-  width: auto;
-}
-
-.toolbar-pf-actions .dropdown-kebab-pf .caret:before {
-  font-family: FontAwesome;
-  content: "\f142";
-  line-height: 1;
-}
-
-.toolbar-pf-include-actions {
-  display: inline-block;
-  margin: 0 5px;
-}
-
-.dropdown-kebab-pf.invisible {
-  opacity: 0;
-  pointer-events: none;
-}
-
-/* Utilization bar chart - Animate load */
-.utilization-bar-chart-pf .progress-bar {
-  -webkit-transition: width .75s ease-in-out;
-  -moz-transition: width .75s ease-in-out;
-  -o-transition: width .75s ease-in-out;
-  transition: width .75s ease-in-out;
-}
-
-.utilization-bar-chart-pf .progress-bar.animate {
-  width: 0% !important;
 }
 
 /* Heap map */
@@ -438,27 +304,12 @@ table {
   padding-right: 5px;
 }
 
-.toolbar-pf-actions.no-filter-results {
-  margin-bottom: 10px;
-}
-
-/* Angular bootstrap classes differ when opneed rather than when collapsed */
+/* Angular bootstrap classes differ when opened rather than when collapsed */
 accordion > .panel-group .panel-default .panel-title > a:before {
   content: "\f105";
 }
 accordion > .panel-group .panel-open .panel-title > a:before {
   content: "\f107";
-}
-
-.navbar-brand-txt {
-  line-height: 34px;
-}
-
-.toast-pf-action > a {
-  cursor: pointer;
-}
-.toast-pf .dropdown-menu > li > a {
-  cursor: pointer;
 }
 
 .wizard-pf-footer .tooltip-wrapper {

@@ -109,3 +109,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.navbar-brand-txt {
+  line-height: 34px;
+}
+</style>

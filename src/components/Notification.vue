@@ -142,3 +142,12 @@ export default {
   }
 };
 </script>
+
+<style>
+.toast-pf-action > a {
+  cursor: pointer;
+}
+.toast-pf .dropdown-menu > li > a {
+  cursor: pointer;
+}
+</style>
