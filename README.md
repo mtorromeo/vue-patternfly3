@@ -24,7 +24,7 @@
 
 PatternFly components for Vue.js 2.
 
-**Be warned:** this is library is in alpha state and only a small set of components is implemented.
+**Be warned:** this library is in alpha state and only a small set of components is implemented.
 
 More informations on the project [homepage][link-homepage].
 
