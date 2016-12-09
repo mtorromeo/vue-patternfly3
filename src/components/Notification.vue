@@ -6,19 +6,21 @@
       }]">
 
   <dropdown v-if="showDropdown">
-    <li v-for="action in actions"
-        :role="isSeparator(action) ? 'separator' : 'menuitem'"
-        v-class="{
-          divider: isSeparator(action),
-          disabled: action.disabled === true,
-        }">
-      <a v-if="isSeparator(action)"
-         class="secondary-action"
-         :title="action.title"
-         @click="triggered(action)">
-        {{action.name}}
-      </a>
-    </li>
+    <slot name="dropdown" :actions="actions">
+      <li v-for="action in actions"
+          :role="isSeparator(action) ? 'separator' : 'menuitem'"
+          :class="{
+            divider: isSeparator(action),
+            disabled: action.disabled === true,
+          }">
+        <a v-if="isSeparator(action)"
+           class="secondary-action"
+           :title="action.title"
+           @click="triggered(action)">
+          {{action.name}}
+        </a>
+      </li>
+    </slot>
   </dropdown>
 
   <button v-show="!persistent && !toast" @click="dismiss"
@@ -26,9 +28,13 @@
     <span class="pficon pficon-close"></span>
   </button>
 
-  <div class="pull-right toast-pf-action" v-if="action && action.title">
-    <button type="button" class="btn btn-link" @click="triggered(action)">{{action.title}}</button>
-  </div>
+  <button type="button" v-if="action && action.name"
+          class="pull-right btn"
+          :class="[buttonClass]"
+          :title="action.title"
+          @click="triggered(action)">
+    {{action.name}}
+  </button>
 
   <span class="pficon" :class="[typeIcon]"></span>
   <slot></slot>
@@ -47,6 +53,7 @@ export default {
 
   props: {
     action: Object,
+    actions: Array,
     delay: {
       type: Number,
       default: 8000,
@@ -67,10 +74,16 @@ export default {
 
   computed: {
     showDropdown() {
-      return this.toast && this.actions && this.actions.length > 0;
+      return this.toast && this.actions && this.actions.length;
     },
     alertClass() {
       return `alert-${this.type || 'info'}`;
+    },
+    buttonClass() {
+      if (!this.action || !this.action.button) {
+        return 'btn-link';
+      }
+      return `btn-${this.action.button}`;
     },
     typeIcon() {
       switch (this.type) {
@@ -125,7 +138,7 @@ export default {
         action.handler(action);
       }
       if (action.emit) {
-        this.$emit(action.emit, action);
+        this.$emit(action.emit || 'action', action);
       }
     }
   }
