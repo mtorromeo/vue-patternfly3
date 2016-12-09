@@ -1,5 +1,5 @@
 <template>
-<div :class="{'toast-notifications-list-pf': toast}" v-show="notifications.length > 0">
+<div :class="{'toast-notifications-list-pf': toast}" v-show="$slots.default || notifications.length">
   <slot></slot>
   <pf-notification ref="notification" v-for="(n, i) in notifications" :persistent="n.persistent" :type="n.type" :toast="toast" @dismiss="dismiss(i)">
     <div v-html="n.message"></div>
@@ -18,7 +18,10 @@ export default {
   },
 
   props: {
-    toast: Boolean,
+    toast: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
