@@ -9,7 +9,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - pf-toolbar actions are aligned to the right if the layout controls are
 disabled, as per PatternFly design guidelines.
-- Changed icon for the pf-toolbar listview control button.
+- Changed icons for the pf-toolbar view control buttons.
 - The result count indication is now inlined inside the toolbar if there are no active filters.
 - The pf-notification will now emit an 'action' event by default if no other name is specified.
 

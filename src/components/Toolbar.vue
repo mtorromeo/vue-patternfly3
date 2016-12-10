@@ -118,12 +118,12 @@ export default {
       const presets = this.views.split(',').map(v => v.trim());
       if (presets.indexOf('table') > -1) {
         viewList.table = {
-          iconClass: 'fa fa-align-justify',
+          iconClass: 'fa fa-table',
         };
       }
       if (presets.indexOf('card') > -1) {
         viewList.card = {
-          iconClass: 'fa fa-th-large',
+          iconClass: 'fa fa-th',
         };
       }
       if (presets.indexOf('list') > -1) {
