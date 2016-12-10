@@ -11,8 +11,9 @@
     "docs": "cd docs && rollup -cw",
     "compile-docs": "cd docs && rollup -c && uglifyjs --screw-ie8 -mco docs.js docs.js",
     "compile": "rollup -c && uglifyjs --screw-ie8 -mco dist/vue-patternfly.min.js dist/vue-patternfly.min.js",
+    "dev": "rollup -cw",
     "build": "npm run purge && npm run compile",
-    "lint": "eslint src/* test/*",
+    "lint": "eslint src/*.js test/*",
     "prepublish": "npm run lint && npm run build"
   },
   "files": [
@@ -54,6 +55,7 @@
     "rollup-plugin-css-only": "^0.1.0",
     "rollup-plugin-json": "^2.0.2",
     "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-plugin-string": "^2.0.2",
     "rollup-plugin-vue2": "^0.6.1",
     "rollup-watch": "^2.5.0",
     "uglifyjs": "^2.4.10",

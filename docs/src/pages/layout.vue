@@ -99,36 +99,21 @@
     </table>
 
     <h3>Example with vue-router</h3>
-    <pre><code class="lang-html">&lt;pf-layout id="app" :icons="true"&gt;
-  &lt;router-link slot="brand" to="/" :exact="true"&gt;
-    &lt;a class="navbar-brand"&gt;
-      &lt;span class="navbar-brand-name"&gt;Vue PatternFly&lt;/span&gt;
-    &lt;/a&gt;
-  &lt;/router-link&gt;
-
-  &lt;template slot="vertical-menu"&gt;
-    &lt;router-link tag="li" class="list-group-item" active-class="active" to="/get-started" :exact="true"&gt;
-      &lt;a&gt;
-        &lt;span class="fa fa-play-circle" title="Get Started"&gt;&lt;/span&gt;
-        &lt;span class="list-group-item-value"&gt;Get Started&lt;/span&gt;
-      &lt;/a&gt;
-    &lt;/router-link&gt;
-    &lt;router-link tag="li" class="list-group-item" active-class="active" to="/layout" :exact="true"&gt;
-      &lt;a&gt;
-        &lt;span class="fa fa-columns" title="Layout"&gt;&lt;/span&gt;
-        &lt;span class="list-group-item-value"&gt;Layout&lt;/span&gt;
-      &lt;/a&gt;
-    &lt;/router-link&gt;
-  &lt;/template&gt;
-
-  &lt;router-view&gt;&lt;/router-view&gt;
-&lt;/pf-layout&gt;</code></pre>
+    <pre><code class="lang-html" v-text="vueroutersample"></code></pre>
   </section>
 </article>
 </template>
 
 <script>
+import vueroutersample from './layout/vue-router.html';
+
 export default {
   name: 'layout-page',
+
+  data() {
+    return {
+      vueroutersample,
+    };
+  },
 };
 </script>

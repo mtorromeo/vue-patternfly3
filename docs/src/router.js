@@ -25,4 +25,12 @@ const router = new VueRouter({
   }],
 });
 
+router.afterEach(() => {
+  router.app.$nextTick(() => {
+    if (typeof window.Prism != 'undefined') {
+      window.Prism.highlightAll();
+    }
+  });
+});
+
 export default router;

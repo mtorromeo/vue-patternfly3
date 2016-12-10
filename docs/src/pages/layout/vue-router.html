@@ -1,0 +1,24 @@
+<pf-layout id="app" :icons="true">
+  <router-link slot="brand" to="/" :exact="true">
+  <a class="navbar-brand">
+    <span class="navbar-brand-name">Vue PatternFly</span>
+  </a>
+  </router-link>
+
+  <template slot="vertical-menu">
+    <router-link tag="li" class="list-group-item" active-class="active" to="/get-started" :exact="true">
+      <a>
+        <span class="fa fa-play-circle" title="Get Started"></span>
+        <span class="list-group-item-value">Get Started</span>
+      </a>
+    </router-link>
+    <router-link tag="li" class="list-group-item" active-class="active" to="/layout" :exact="true">
+      <a>
+        <span class="fa fa-columns" title="Layout"></span>
+        <span class="list-group-item-value">Layout</span>
+      </a>
+    </router-link>
+  </template>
+
+  <router-view></router-view>
+</pf-layout>
