@@ -45,14 +45,14 @@ export default {
       if (typ == 'function') {
         prop.type = def.name;
       } else if (typ == 'object') {
-        if (def.type) {
+        if (def.type instanceof Array) {
+          prop.type = def.type.map(t => t.name).join(' | ');
+        } else if (def.type) {
           prop.type = def.type.name;
         }
         if (def.default) {
           prop.default = def.default;
         }
-      } else {
-        prop.default = def;
       }
       if (!prop.type) {
         prop.type = 'Any';

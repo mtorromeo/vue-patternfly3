@@ -220,11 +220,15 @@ var NotificationsPage = {
   }
 };
 
+var cardcontainersample = "<div class=\"cards-pf container-fluid container-cards-pf\">\n  <div class=\"row-cards-pf\">\n    <div class=\"col-md-4\">\n      <pf-card></pf-card>\n    </div>\n    <div class=\"col-md-4\">\n      <pf-card></pf-card>\n    </div>\n    <div class=\"col-md-4\">\n      <pf-card></pf-card>\n    </div>\n  </div>\n</div>\n";
+
 var Card = VuePatternfly.Card;
+var AggregateStatusCard = VuePatternfly.AggregateStatusCard;
+var CardNotification = VuePatternfly.CardNotification;
 
 var CardsPage = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;return _h('article', { staticClass: "page" }, [_vm._m(0), " ", _h('section', [_h('div', { staticClass: "cards-pf container-fluid container-cards-pf" }, [_h('div', { staticClass: "row-cards-pf" }, [_h('pf-card', { staticClass: "col-md-5", attrs: { "title": _vm.card.title, "sub-title": _vm.card.subTitle, "foot-note": _vm.card.footNote, "foot-href": _vm.card.footHref, "foot-icon": _vm.card.footIcon, "accented": _vm.card.accented, "show-titles-separator": _vm.card.showTitlesSeparator } })])]), " ", _h('props-table', { attrs: { "component-props": _vm.cardProps } }, [_h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.card.title, expression: "card.title" }], attrs: { "name": "title", "description": "Title for the card" }, domProps: { "value": _vm.card.title }, on: { "input": function input($event) {
+    var _vm = this;var _h = _vm.$createElement;return _h('article', { staticClass: "page" }, [_vm._m(0), " ", _h('section', [_h('p', ["This card components are designed for dashboard views and are meant to be placed on a darker background which can be implemented like in the following snippet."]), " ", _h('pre', [_h('code', { staticClass: "language-markup", domProps: { "textContent": _vm._s(_vm.cardcontainersample) } })]), " ", _h('h4', ["Related documentation"]), " ", _vm._m(1), " ", _h('div', { staticClass: "cards-pf container-fluid container-cards-pf" }, [_h('div', { staticClass: "row-cards-pf" }, [_h('pf-card', { staticClass: "col-md-5 col-lg-3", attrs: { "title": _vm.card.title, "sub-title": _vm.card.subTitle, "foot-note": _vm.card.footNote, "foot-href": _vm.card.footHref, "foot-icon": _vm.card.footIcon, "accented": _vm.card.accented, "show-titles-separator": _vm.card.showTitlesSeparator } })])]), " ", _h('props-table', { attrs: { "component-props": _vm.cardProps } }, [_h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.card.title, expression: "card.title" }], attrs: { "name": "title", "description": "Title for the card" }, domProps: { "value": _vm.card.title }, on: { "input": function input($event) {
           _vm.card.title = $event;
         } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.card.subTitle, expression: "card.subTitle" }], attrs: { "name": "subTitle", "description": "Subtitle for the card" }, domProps: { "value": _vm.card.subTitle }, on: { "input": function input($event) {
           _vm.card.subTitle = $event;
@@ -238,15 +242,42 @@ var CardsPage = {
           _vm.card.accented = $event;
         } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.card.showTitlesSeparator, expression: "card.showTitlesSeparator" }], attrs: { "name": "showTitlesSeparator", "description": "Show separation between title and content" }, domProps: { "value": _vm.card.showTitlesSeparator }, on: { "input": function input($event) {
           _vm.card.showTitlesSeparator = $event;
+        } } })])]), " ", _vm._m(2), " ", _h('section', [_vm._m(3), " ", _h('h4', ["Related documentation"]), " ", _vm._m(4), " ", _h('div', { staticClass: "cards-pf container-fluid container-cards-pf" }, [_h('div', { staticClass: "row-cards-pf" }, [_h('pf-aggregate-status-card', { staticClass: "col-md-5 col-lg-3", attrs: { "title": _vm.aggcard.title, "count": _vm.aggcard.count, "href": _vm.aggcard.href, "icon-class": _vm.aggcard.iconClass, "layout": _vm.aggcard.layout, "accented": _vm.aggcard.accented } }, [_h('pf-card-notification', { attrs: { "icon-class": _vm.notcard.iconClass, "href": _vm.notcard.href, "count": _vm.notcard.count } }), " ", _h('pf-card-notification', { attrs: { "icon-class": "pficon pficon-warning-triangle-o", "href": "#", "count": "1" } })])])]), " ", _h('props-table', { attrs: { "title": "pf-aggregate-status-card props", "component-props": _vm.aggcardProps } }, [_h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.aggcard.title, expression: "aggcard.title" }], attrs: { "name": "title", "description": "Name of the represented items" }, domProps: { "value": _vm.aggcard.title }, on: { "input": function input($event) {
+          _vm.aggcard.title = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.aggcard.count, expression: "aggcard.count" }], attrs: { "name": "count", "description": "Number of items represented" }, domProps: { "value": _vm.aggcard.count }, on: { "input": function input($event) {
+          _vm.aggcard.count = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.aggcard.href, expression: "aggcard.href" }], attrs: { "name": "href", "description": "Make the title a link to this href" }, domProps: { "value": _vm.aggcard.href }, on: { "input": function input($event) {
+          _vm.aggcard.href = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.aggcard.iconClass, expression: "aggcard.iconClass" }], attrs: { "name": "iconClass", "description": "Icon represented by icon font CSS classes" }, domProps: { "value": _vm.aggcard.iconClass }, on: { "input": function input($event) {
+          _vm.aggcard.iconClass = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.aggcard.layout, expression: "aggcard.layout" }], attrs: { "name": "layout", "options": ['', 'mini', 'tall'], "description": "Alternative layout" }, domProps: { "value": _vm.aggcard.layout }, on: { "input": function input($event) {
+          _vm.aggcard.layout = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.aggcard.accented, expression: "aggcard.accented" }], attrs: { "name": "accented", "description": "Display accent on top of card" }, domProps: { "value": _vm.aggcard.accented }, on: { "input": function input($event) {
+          _vm.aggcard.accented = $event;
+        } } })]), " ", _h('props-table', { attrs: { "title": "pf-card-notification props", "component-props": _vm.notcardProps } }, [_h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.notcard.count, expression: "notcard.count" }], attrs: { "name": "count", "description": "Number of items represented" }, domProps: { "value": _vm.notcard.count }, on: { "input": function input($event) {
+          _vm.notcard.count = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.notcard.href, expression: "notcard.href" }], attrs: { "name": "href", "description": "Link to this href" }, domProps: { "value": _vm.notcard.href }, on: { "input": function input($event) {
+          _vm.notcard.href = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.notcard.iconClass, expression: "notcard.iconClass" }], attrs: { "name": "iconClass", "description": "Icon represented by icon font CSS classes" }, domProps: { "value": _vm.notcard.iconClass }, on: { "input": function input($event) {
+          _vm.notcard.iconClass = $event;
         } } })])])]);
   },
   staticRenderFns: [function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('header', [_h('h1', ["Card Container ", _h('code', ["<pf-card>"])])]);
+    var _vm = this;var _h = _vm.$createElement;return _h('header', [_h('h1', ["Card ", _h('code', ["<pf-card>"])])]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('ol', [_h('li', [_h('a', { attrs: { "href": "http://www.patternfly.org/pattern-library/dashboard/dashboard-card/#/api", "target": "_blank" } }, ["Pattern Library > Dashboard Cards"])])]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('header', [_h('h1', ["Aggregate Status Card ", _h('code', ["<pf-aggregate-status-card>"]), " + Card Notification ", _h('code', ["<pf-card-notification>"])])]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('p', ["The aggregated status card shows a total number of objects and an aggregated status for those objects. The component works by using a container ", _h('code', ["<pf-aggregate-status-card>"]), " with one or more ", _h('code', ["<pf-card-notification>"]), " components inside."]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('ol', [_h('li', [_h('a', { attrs: { "href": "http://www.patternfly.org/pattern-library/cards/aggregate-status-card/#/api", "target": "_blank" } }, ["Pattern Library > Aggregate Status Card"])])]);
   }],
   name: 'cards-page',
 
   data: function data() {
     return {
+      cardcontainersample: cardcontainersample,
       cardProps: Card.props,
       card: {
         title: 'Test title',
@@ -256,6 +287,21 @@ var CardsPage = {
         footIcon: 'fa fa-bell',
         accented: true,
         showTitlesSeparator: true
+      },
+      aggcardProps: AggregateStatusCard.props,
+      aggcard: {
+        title: 'Issues',
+        count: 4,
+        href: '#',
+        iconClass: 'fa fa-warning',
+        layout: '',
+        accented: true
+      },
+      notcardProps: CardNotification.props,
+      notcard: {
+        count: 3,
+        href: '#',
+        iconClass: 'pficon pficon-error-circle-o'
       }
     };
   }
@@ -354,12 +400,17 @@ router.afterEach(function () {
 
 var PropsTable = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;return _h('section', [_h('h3', ["Props"]), " ", _h('table', { staticClass: "table table-striped table-hover" }, [_h('thead', [_h('tr', [_h('th', ["Name"]), " ", _h('th', ["Description"]), " ", _h('th', ["Type"]), " ", _h('th', ["Default"]), " ", _vm.interactive ? _h('th', ["Value"]) : _vm._e()])]), " ", _h('tbody', [_vm._t("default")])])]);
+    var _vm = this;var _h = _vm.$createElement;return _h('section', [_h('h3', { domProps: { "innerHTML": _vm._s(_vm.title) } }), " ", _h('table', { staticClass: "table table-striped table-hover" }, [_h('thead', [_h('tr', [_h('th', ["Name"]), " ", _h('th', ["Description"]), " ", _h('th', ["Type"]), " ", _h('th', ["Default"]), " ", _vm.interactive ? _h('th', ["Value"]) : _vm._e()])]), " ", _h('tbody', [_vm._t("default")])])]);
   },
   staticRenderFns: [],
   name: 'props-table',
 
   props: {
+    title: {
+      type: String,
+      default: 'Props'
+    },
+
     interactive: {
       type: Boolean,
       default: true
@@ -494,14 +545,16 @@ var PropsRow = {
       if (typ == 'function') {
         prop.type = def.name;
       } else if (typ == 'object') {
-        if (def.type) {
+        if (def.type instanceof Array) {
+          prop.type = def.type.map(function (t) {
+            return t.name;
+          }).join(' | ');
+        } else if (def.type) {
           prop.type = def.type.name;
         }
         if (def.default) {
           prop.default = def.default;
         }
-      } else {
-        prop.default = def;
       }
       if (!prop.type) {
         prop.type = 'Any';

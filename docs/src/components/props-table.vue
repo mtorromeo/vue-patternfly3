@@ -1,6 +1,6 @@
 <template>
 <section>
-  <h3>Props</h3>
+  <h3 v-html="title"></h3>
   <table class="table table-striped table-hover">
     <thead>
       <tr>
@@ -23,6 +23,11 @@ export default {
   name: 'props-table',
 
   props: {
+    title: {
+      type: String,
+      default: 'Props',
+    },
+
     interactive: {
       type: Boolean,
       default: true,
