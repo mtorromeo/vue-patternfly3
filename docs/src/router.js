@@ -3,8 +3,9 @@
 import HomePage from './pages/home.vue';
 import GetStartedPage from './pages/get-started.vue';
 import LayoutPage from './pages/layout.vue';
-import ComponentsPage from './pages/components.vue';
 import NotificationsPage from './pages/notifications.vue';
+import CardsPage from './pages/cards.vue';
+import ComponentsPage from './pages/components.vue';
 
 const router = new VueRouter({
   routes: [{
@@ -19,6 +20,9 @@ const router = new VueRouter({
     }, {
       path: '/notifications',
       component: NotificationsPage,
+    }, {
+      path: '/cards',
+      component: CardsPage,
     }, {
       path: '/components',
       component: ComponentsPage,

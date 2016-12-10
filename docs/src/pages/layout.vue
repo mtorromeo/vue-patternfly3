@@ -15,56 +15,12 @@
       <li><a href="http://router.vuejs.org/en/" target="_blank">Vue Router</a></li>
     </ol>
 
-    <h3>Props</h3>
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Type</th>
-          <th>Default</th>
-          <th>Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>horizontal</td>
-          <td>Enable horizontal navigation layout</td>
-          <td>Boolean</td>
-          <td>false</td>
-          <td>
-            <input type="checkbox" v-model="$root.layoutHorizontal">
-          </td>
-        </tr>
-        <tr>
-          <td>icons</td>
-          <td>Display icons in the vertical navigation enabling a compact menu when collapsed</td>
-          <td>Boolean</td>
-          <td>false</td>
-          <td>
-            <input type="checkbox" v-model="$root.layoutIcons">
-          </td>
-        </tr>
-        <tr>
-          <td>collapsable</td>
-          <td>Collapse the vertical navigation menu</td>
-          <td>Boolean</td>
-          <td>true</td>
-          <td>
-            <input type="checkbox" v-model="$root.layoutCollapsable">
-          </td>
-        </tr>
-        <tr>
-          <td>disabled</td>
-          <td>Disable all layout elements</td>
-          <td>Boolean</td>
-          <td>false</td>
-          <td>
-            <input type="checkbox" v-model="$root.layoutDisabled">
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <props-table :component-props="layoutProps">
+      <props-row name="horizontal" description="Enable horizontal navigation layout" v-model="$root.layoutHorizontal"></props-row>
+      <props-row name="icons" description="Display icons in the vertical navigation enabling a compact menu when collapsed" v-model="$root.layoutIcons"></props-row>
+      <props-row name="collapsable" description="Collapse the vertical navigation menu" v-model="$root.layoutCollapsable"></props-row>
+      <props-row name="disabled" description="Disable all layout elements" v-model="$root.layoutDisabled"></props-row>
+    </props-table>
 
     <h3>Slots</h3>
     <table class="table table-striped table-hover">
@@ -106,6 +62,8 @@
 
 <script>
 import vueroutersample from './layout/vue-router.html';
+import VuePatternfly from 'vue-patternfly';
+const Layout = VuePatternfly.Layout;
 
 export default {
   name: 'layout-page',
@@ -113,6 +71,7 @@ export default {
   data() {
     return {
       vueroutersample,
+      layoutProps: Layout.props,
     };
   },
 };

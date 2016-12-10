@@ -1,4 +1,4 @@
-(function (vueStrap,VuePatternfly) {
+(function (VuePatternfly,vueStrap) {
 'use strict';
 
 VuePatternfly = 'default' in VuePatternfly ? VuePatternfly['default'] : VuePatternfly;
@@ -80,61 +80,19 @@ var GetStartedPage = {
 
 var vueroutersample = "<pf-layout id=\"app\" :icons=\"true\">\n  <router-link slot=\"brand\" to=\"/\" :exact=\"true\">\n  <a class=\"navbar-brand\">\n    <span class=\"navbar-brand-name\">Vue PatternFly</span>\n  </a>\n  </router-link>\n\n  <template slot=\"vertical-menu\">\n    <router-link tag=\"li\" class=\"list-group-item\" active-class=\"active\" to=\"/get-started\" :exact=\"true\">\n      <a>\n        <span class=\"fa fa-play-circle\" title=\"Get Started\"></span>\n        <span class=\"list-group-item-value\">Get Started</span>\n      </a>\n    </router-link>\n    <router-link tag=\"li\" class=\"list-group-item\" active-class=\"active\" to=\"/layout\" :exact=\"true\">\n      <a>\n        <span class=\"fa fa-columns\" title=\"Layout\"></span>\n        <span class=\"list-group-item-value\">Layout</span>\n      </a>\n    </router-link>\n  </template>\n\n  <router-view></router-view>\n</pf-layout>\n";
 
+var Layout = VuePatternfly.Layout;
+
 var LayoutPage = {
   render: function render() {
-    var _vm = this;var _h = _vm.$createElement;return _h('article', { staticClass: "page" }, [_vm._m(0), " ", _h('section', [_h('p', ["This component handles the application's navigation controls and is a perfect fit for the root element of the Vue.js application."]), " ", _vm._m(1), " ", _h('h4', ["Related documentation"]), " ", _vm._m(2), " ", _h('h3', ["Props"]), " ", _h('table', { staticClass: "table table-striped table-hover" }, [_vm._m(3), " ", _h('tbody', [_h('tr', [_h('td', ["horizontal"]), " ", _h('td', ["Enable horizontal navigation layout"]), " ", _h('td', ["Boolean"]), " ", _h('td', ["false"]), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.$root.layoutHorizontal, expression: "$root.layoutHorizontal" }], attrs: { "type": "checkbox" }, domProps: { "checked": Array.isArray(_vm.$root.layoutHorizontal) ? _vm._i(_vm.$root.layoutHorizontal, null) > -1 : _vm._q(_vm.$root.layoutHorizontal, true) }, on: { "change": function change($event) {
-          var $$a = _vm.$root.layoutHorizontal,
-              $$el = $event.target,
-              $$c = $$el.checked ? true : false;if (Array.isArray($$a)) {
-            var $$v = null,
-                $$i = _vm._i($$a, $$v);if ($$c) {
-              $$i < 0 && (_vm.$root.layoutHorizontal = $$a.concat($$v));
-            } else {
-              $$i > -1 && (_vm.$root.layoutHorizontal = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-            }
-          } else {
-            _vm.$root.layoutHorizontal = $$c;
-          }
-        } } })])]), " ", _h('tr', [_h('td', ["icons"]), " ", _h('td', ["Display icons in the vertical navigation enabling a compact menu when collapsed"]), " ", _h('td', ["Boolean"]), " ", _h('td', ["false"]), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.$root.layoutIcons, expression: "$root.layoutIcons" }], attrs: { "type": "checkbox" }, domProps: { "checked": Array.isArray(_vm.$root.layoutIcons) ? _vm._i(_vm.$root.layoutIcons, null) > -1 : _vm._q(_vm.$root.layoutIcons, true) }, on: { "change": function change($event) {
-          var $$a = _vm.$root.layoutIcons,
-              $$el = $event.target,
-              $$c = $$el.checked ? true : false;if (Array.isArray($$a)) {
-            var $$v = null,
-                $$i = _vm._i($$a, $$v);if ($$c) {
-              $$i < 0 && (_vm.$root.layoutIcons = $$a.concat($$v));
-            } else {
-              $$i > -1 && (_vm.$root.layoutIcons = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-            }
-          } else {
-            _vm.$root.layoutIcons = $$c;
-          }
-        } } })])]), " ", _h('tr', [_h('td', ["collapsable"]), " ", _h('td', ["Collapse the vertical navigation menu"]), " ", _h('td', ["Boolean"]), " ", _h('td', ["true"]), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.$root.layoutCollapsable, expression: "$root.layoutCollapsable" }], attrs: { "type": "checkbox" }, domProps: { "checked": Array.isArray(_vm.$root.layoutCollapsable) ? _vm._i(_vm.$root.layoutCollapsable, null) > -1 : _vm._q(_vm.$root.layoutCollapsable, true) }, on: { "change": function change($event) {
-          var $$a = _vm.$root.layoutCollapsable,
-              $$el = $event.target,
-              $$c = $$el.checked ? true : false;if (Array.isArray($$a)) {
-            var $$v = null,
-                $$i = _vm._i($$a, $$v);if ($$c) {
-              $$i < 0 && (_vm.$root.layoutCollapsable = $$a.concat($$v));
-            } else {
-              $$i > -1 && (_vm.$root.layoutCollapsable = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-            }
-          } else {
-            _vm.$root.layoutCollapsable = $$c;
-          }
-        } } })])]), " ", _h('tr', [_h('td', ["disabled"]), " ", _h('td', ["Disable all layout elements"]), " ", _h('td', ["Boolean"]), " ", _h('td', ["false"]), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.$root.layoutDisabled, expression: "$root.layoutDisabled" }], attrs: { "type": "checkbox" }, domProps: { "checked": Array.isArray(_vm.$root.layoutDisabled) ? _vm._i(_vm.$root.layoutDisabled, null) > -1 : _vm._q(_vm.$root.layoutDisabled, true) }, on: { "change": function change($event) {
-          var $$a = _vm.$root.layoutDisabled,
-              $$el = $event.target,
-              $$c = $$el.checked ? true : false;if (Array.isArray($$a)) {
-            var $$v = null,
-                $$i = _vm._i($$a, $$v);if ($$c) {
-              $$i < 0 && (_vm.$root.layoutDisabled = $$a.concat($$v));
-            } else {
-              $$i > -1 && (_vm.$root.layoutDisabled = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-            }
-          } else {
-            _vm.$root.layoutDisabled = $$c;
-          }
-        } } })])])])]), " ", _h('h3', ["Slots"]), " ", _vm._m(4), " ", _h('h3', ["Example with vue-router"]), " ", _h('pre', [_h('code', { staticClass: "lang-html", domProps: { "textContent": _vm._s(_vm.vueroutersample) } })])])]);
+    var _vm = this;var _h = _vm.$createElement;return _h('article', { staticClass: "page" }, [_vm._m(0), " ", _h('section', [_h('p', ["This component handles the application's navigation controls and is a perfect fit for the root element of the Vue.js application."]), " ", _vm._m(1), " ", _h('h4', ["Related documentation"]), " ", _vm._m(2), " ", _h('props-table', { attrs: { "component-props": _vm.layoutProps } }, [_h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.$root.layoutHorizontal, expression: "$root.layoutHorizontal" }], attrs: { "name": "horizontal", "description": "Enable horizontal navigation layout" }, domProps: { "value": _vm.$root.layoutHorizontal }, on: { "input": function input($event) {
+          _vm.$root.layoutHorizontal = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.$root.layoutIcons, expression: "$root.layoutIcons" }], attrs: { "name": "icons", "description": "Display icons in the vertical navigation enabling a compact menu when collapsed" }, domProps: { "value": _vm.$root.layoutIcons }, on: { "input": function input($event) {
+          _vm.$root.layoutIcons = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.$root.layoutCollapsable, expression: "$root.layoutCollapsable" }], attrs: { "name": "collapsable", "description": "Collapse the vertical navigation menu" }, domProps: { "value": _vm.$root.layoutCollapsable }, on: { "input": function input($event) {
+          _vm.$root.layoutCollapsable = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.$root.layoutDisabled, expression: "$root.layoutDisabled" }], attrs: { "name": "disabled", "description": "Disable all layout elements" }, domProps: { "value": _vm.$root.layoutDisabled }, on: { "input": function input($event) {
+          _vm.$root.layoutDisabled = $event;
+        } } })]), " ", _h('h3', ["Slots"]), " ", _vm._m(3), " ", _h('h3', ["Example with vue-router"]), " ", _h('pre', [_h('code', { staticClass: "lang-html", domProps: { "textContent": _vm._s(_vm.vueroutersample) } })])])]);
   },
   staticRenderFns: [function () {
     var _vm = this;var _h = _vm.$createElement;return _h('header', [_h('h1', ["Layout ", _h('code', ["<pf-layout>"])])]);
@@ -143,15 +101,162 @@ var LayoutPage = {
   }, function () {
     var _vm = this;var _h = _vm.$createElement;return _h('ol', [_h('li', [_h('a', { attrs: { "href": "http://www.patternfly.org/pattern-library/navigation/horizontal-navigation/", "target": "_blank" } }, ["Pattern Library > Horizontal Navigation"])]), " ", _h('li', [_h('a', { attrs: { "href": "http://www.patternfly.org/pattern-library/navigation/vertical-navigation/", "target": "_blank" } }, ["Pattern Library > Vertical Navigation"])]), " ", _h('li', [_h('a', { attrs: { "href": "http://router.vuejs.org/en/", "target": "_blank" } }, ["Vue Router"])])]);
   }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('thead', [_h('tr', [_h('th', ["Name"]), " ", _h('th', ["Description"]), " ", _h('th', ["Type"]), " ", _h('th', ["Default"]), " ", _h('th', ["Value"])])]);
-  }, function () {
     var _vm = this;var _h = _vm.$createElement;return _h('table', { staticClass: "table table-striped table-hover" }, [_h('thead', [_h('tr', [_h('th', ["Name"]), " ", _h('th', ["Description"])])]), " ", _h('tbody', [_h('tr', [_h('td', ["default"]), " ", _h('td', ["Page content"])]), " ", _h('tr', [_h('td', ["brand"]), " ", _h('td', ["The top-left brand image / title"])]), " ", _h('tr', [_h('td', ["utility-menu"]), " ", _h('td', ["The top-right utility menu"])]), " ", _h('tr', [_h('td', ["horizontal-menu"]), " ", _h('td', ["The horizontal navigation menu"])]), " ", _h('tr', [_h('td', ["vertical-menu"]), " ", _h('td', ["The vertical navigation menu"])])])]);
   }],
   name: 'layout-page',
 
   data: function data() {
     return {
-      vueroutersample: vueroutersample
+      vueroutersample: vueroutersample,
+      layoutProps: Layout.props
+    };
+  }
+};
+
+var Notification = VuePatternfly.Notification;
+var Notifications = VuePatternfly.Notifications;
+
+var NotificationsPage = {
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;return _h('article', { staticClass: "page" }, [_vm._m(0), " ", _h('section', [_vm._m(1), " ", _vm._m(2), " ", _h('h4', ["Related documentation"]), " ", _vm._m(3), " ", _h('pf-notifications', { ref: "notifications", attrs: { "toast": _vm.notifications.toast } }), " ", _h('props-table', { attrs: { "component-props": _vm.notificationsProps } }, [_h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.notifications.toast, expression: "notifications.toast" }], attrs: { "name": "toast", "description": "Defines this as a container for toast notifications. The property is propagated to every <code>&lt;pf-notification&gt;</code> added programmatically. You are responsible to keep the property in sync for <code>&lt;pf-notification&gt;</code>s inserted manually." }, domProps: { "value": _vm.notifications.toast }, on: { "input": function input($event) {
+          _vm.notifications.toast = $event;
+        } } })]), " ", _h('h3', ["Methods"]), " ", _h('table', { staticClass: "table table-striped table-hover" }, [_vm._m(4), " ", _h('tbody', [_h('tr', [_h('td', { attrs: { "rowspan": "2" } }, ["add()"]), " ", _h('td', ["notification"]), " ", _vm._m(5), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notifications.message, expression: "notifications.message" }], staticClass: "form-control", attrs: { "type": "text" }, domProps: { "value": _vm._s(_vm.notifications.message) }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.notifications.message = $event.target.value;
+        } } })]), " ", _h('td', { attrs: { "rowspan": "2" } }, [_h('button', { staticClass: "btn btn-default", on: { "click": _vm.notify } }, [_h('span', { staticClass: "fa fa-play-circle" }), "\n              Run\n            "])])]), " ", _h('tr', [_h('td', ["type"]), " ", _vm._m(6), " ", _h('td', [_h('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.notifications.type, expression: "notifications.type" }], staticClass: "form-control", on: { "change": function change($event) {
+          _vm.notifications.type = Array.prototype.filter.call($event.target.options, function (o) {
+            return o.selected;
+          }).map(function (o) {
+            var val = "_value" in o ? o._value : o.value;return val;
+          })[0];
+        } } }, [_h('option', { attrs: { "value": "info" } }, ["info"]), " ", _h('option', { attrs: { "value": "success" } }, ["success"]), " ", _h('option', { attrs: { "value": "warning" } }, ["warning"]), " ", _h('option', { attrs: { "value": "danger" } }, ["danger"])])])])])])]), " ", _vm._m(7), " ", _h('section', [_h('pf-notification', { attrs: { "delay": _vm.notification.delay, "type": _vm.notification.type, "toast": _vm.notification.toast, "persistent": _vm.notification.persistent, "action": _vm.notification.action } }, [_h('div', { domProps: { "innerHTML": _vm._s(_vm.notification.message) } })]), " ", _h('props-table', { attrs: { "component-props": _vm.notificationProps } }, [_h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.notification.delay, expression: "notification.delay" }], attrs: { "name": "delay", "description": "The delay in milliseconds after which the notification is automatically dismissed." }, domProps: { "value": _vm.notification.delay }, on: { "input": function input($event) {
+          _vm.notification.delay = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.notification.type, expression: "notification.type" }], attrs: { "name": "type", "description": "The type of notification. Can be on of: info, success, warning, danger.", "options": ['info', 'success', 'warning', 'danger'] }, domProps: { "value": _vm.notification.type }, on: { "input": function input($event) {
+          _vm.notification.type = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.notification.toast, expression: "notification.toast" }], attrs: { "name": "toast", "description": "Make this a toast notification. These need to be placed inside a container with the <code>toast-notifications-list-pf</code> CSS class or inside a <code>&lt;pf-notifications&gt;</code> component." }, domProps: { "value": _vm.notification.toast }, on: { "input": function input($event) {
+          _vm.notification.toast = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.notification.persistent, expression: "notification.persistent" }], attrs: { "name": "persistent", "description": "Disables the controls to dismiss the notification." }, domProps: { "value": _vm.notification.persistent }, on: { "input": function input($event) {
+          _vm.notification.persistent = $event;
+        } } }), " ", _h('tr', [_h('td', ["action.name"]), " ", _h('td', ["The text of an action button to add to the notification. This is mandatory to enable the action."]), " ", _h('td', ["String"]), " ", _h('td'), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notification.action.name, expression: "notification.action.name" }], staticClass: "form-control", attrs: { "type": "text" }, domProps: { "value": _vm._s(_vm.notification.action.name) }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.notification.action.name = $event.target.value;
+        } } })])]), " ", _h('tr', [_h('td', ["action.title"]), " ", _h('td', ["The title for the action button."]), " ", _h('td', ["String"]), " ", _h('td'), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notification.action.title, expression: "notification.action.title" }], staticClass: "form-control", attrs: { "type": "text" }, domProps: { "value": _vm._s(_vm.notification.action.title) }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.notification.action.title = $event.target.value;
+        } } })])]), " ", _h('tr', [_h('td', ["action.button"]), " ", _h('td', ["Controls the type of button to use for the action."]), " ", _h('td', ["String"]), " ", _h('td', ["link"]), " ", _h('td', [_h('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.notification.action.button, expression: "notification.action.button" }], staticClass: "form-control", on: { "change": function change($event) {
+          _vm.notification.action.button = Array.prototype.filter.call($event.target.options, function (o) {
+            return o.selected;
+          }).map(function (o) {
+            var val = "_value" in o ? o._value : o.value;return val;
+          })[0];
+        } } }, [_h('option', { attrs: { "value": "link" } }, ["link"]), " ", _h('option', { attrs: { "value": "default" } }, ["default"]), " ", _h('option', { attrs: { "value": "primary" } }, ["primary"]), " ", _h('option', { attrs: { "value": "info" } }, ["info"]), " ", _h('option', { attrs: { "value": "success" } }, ["success"]), " ", _h('option', { attrs: { "value": "warning" } }, ["warning"]), " ", _h('option', { attrs: { "value": "danger" } }, ["danger"])])])]), " ", _h('tr', [_h('td', ["action.emit"]), " ", _h('td', ["The name of an event that should be emitted when the action is triggered."]), " ", _h('td', ["String"]), " ", _h('td', ["action"]), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notification.action.emit, expression: "notification.action.emit" }], staticClass: "form-control", attrs: { "type": "text" }, domProps: { "value": _vm._s(_vm.notification.action.emit) }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.notification.action.emit = $event.target.value;
+        } } })])])]), " ", _h('h3', ["Slots"]), " ", _h('table', { staticClass: "table table-striped table-hover" }, [_vm._m(8), " ", _h('tbody', [_h('tr', [_h('td', ["default"]), " ", _h('td', ["The notification message"]), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notification.message, expression: "notification.message" }], staticClass: "form-control", attrs: { "type": "text" }, domProps: { "value": _vm._s(_vm.notification.message) }, on: { "input": function input($event) {
+          if ($event.target.composing) {
+            return;
+          }_vm.notification.message = $event.target.value;
+        } } })])])])])])]);
+  },
+  staticRenderFns: [function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('header', [_h('h1', ["Notifications ", _h('code', ["<pf-notifications>"])])]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('p', ["This component is a container for other ", _h('code', ["<pf-notification>"]), " components. Notifications can be placed inside its default slot or added programmatically by calling the ", _h('code', ["add()"]), " method."]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('p', ["Notification dismissals will be handled automatically for the notifications added programmatically. For ", _h('code', ["<pf-notification>"]), " components placed inside the default slot or without using the ", _h('code', ["<pf-notifications>"]), " container you will have to listen to the ", _h('code', ["@dismiss"]), " event."]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('ol', [_h('li', [_h('a', { attrs: { "href": "http://www.patternfly.org/pattern-library/communication/toast-notifications/#/api", "target": "_blank" } }, ["Pattern Library > Toast Notifications"])]), " ", _h('li', [_h('a', { attrs: { "href": "http://www.patternfly.org/pattern-library/communication/inline-notifications/#/api", "target": "_blank" } }, ["Pattern Library > Inline Notifications"])])]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('thead', [_h('tr', [_h('th', ["Name"]), " ", _h('th', ["Argument"]), " ", _h('th', ["Description"]), " ", _h('th', { attrs: { "colspan": "2" } }, ["Value"])])]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('td', ["The notification message string or an ", _h('code', ["Object"]), " with every ", _h('code', ["<pf-notification>"]), " property to use."]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('td', [_h('code', ["<pf-notification>"]), "'s type"]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('header', [_h('h1', ["Notification ", _h('code', ["<pf-notification>"])])]);
+  }, function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('thead', [_h('tr', [_h('th', ["Name"]), " ", _h('th', ["Description"]), " ", _h('th', ["HTML"])])]);
+  }],
+  name: 'notifications-page',
+
+  components: {
+    'pf-notification': Notification
+  },
+
+  data: function data() {
+    return {
+      notificationProps: Notification.props,
+      notification: {
+        delay: Notification.props.delay.default,
+        type: Notification.props.type.default,
+        toast: Notification.props.toast.default,
+        persistent: Notification.props.persistent.default,
+        message: '<strong>Test</strong> notification',
+        action: {
+          name: '',
+          title: '',
+          button: 'link',
+          emit: ''
+        }
+      },
+      notificationsProps: Notifications.props,
+      notifications: {
+        message: '<strong>Test</strong> notification',
+        type: 'info',
+        toast: Notifications.props.toast.default
+      }
+    };
+  },
+
+
+  methods: {
+    notify: function notify() {
+      this.$refs.notifications.add(this.notifications.message, this.notifications.type);
+    }
+  }
+};
+
+var Card = VuePatternfly.Card;
+
+var CardsPage = {
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;return _h('article', { staticClass: "page" }, [_vm._m(0), " ", _h('section', [_h('div', { staticClass: "cards-pf container-fluid container-cards-pf" }, [_h('div', { staticClass: "row-cards-pf" }, [_h('pf-card', { staticClass: "col-md-5", attrs: { "title": _vm.card.title, "sub-title": _vm.card.subTitle, "foot-note": _vm.card.footNote, "foot-href": _vm.card.footHref, "foot-icon": _vm.card.footIcon, "accented": _vm.card.accented, "show-titles-separator": _vm.card.showTitlesSeparator } })])]), " ", _h('props-table', { attrs: { "component-props": _vm.cardProps } }, [_h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.card.title, expression: "card.title" }], attrs: { "name": "title", "description": "Title for the card" }, domProps: { "value": _vm.card.title }, on: { "input": function input($event) {
+          _vm.card.title = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.card.subTitle, expression: "card.subTitle" }], attrs: { "name": "subTitle", "description": "Subtitle for the card" }, domProps: { "value": _vm.card.subTitle }, on: { "input": function input($event) {
+          _vm.card.subTitle = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.card.footNote, expression: "card.footNote" }], attrs: { "name": "footNote", "description": "Display this text in a footer of the card" }, domProps: { "value": _vm.card.footNote }, on: { "input": function input($event) {
+          _vm.card.footNote = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.card.footHref, expression: "card.footHref" }], attrs: { "name": "footHref", "description": "Make the footer a link to this href" }, domProps: { "value": _vm.card.footHref }, on: { "input": function input($event) {
+          _vm.card.footHref = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.card.footIcon, expression: "card.footIcon" }], attrs: { "name": "footIcon", "description": "Footer icon represented by icon font CSS classes" }, domProps: { "value": _vm.card.footIcon }, on: { "input": function input($event) {
+          _vm.card.footIcon = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.card.accented, expression: "card.accented" }], attrs: { "name": "accented", "description": "Display accent on top of card" }, domProps: { "value": _vm.card.accented }, on: { "input": function input($event) {
+          _vm.card.accented = $event;
+        } } }), " ", _h('props-row', { directives: [{ name: "model", rawName: "v-model", value: _vm.card.showTitlesSeparator, expression: "card.showTitlesSeparator" }], attrs: { "name": "showTitlesSeparator", "description": "Show separation between title and content" }, domProps: { "value": _vm.card.showTitlesSeparator }, on: { "input": function input($event) {
+          _vm.card.showTitlesSeparator = $event;
+        } } })])])]);
+  },
+  staticRenderFns: [function () {
+    var _vm = this;var _h = _vm.$createElement;return _h('header', [_h('h1', ["Card Container ", _h('code', ["<pf-card>"])])]);
+  }],
+  name: 'cards-page',
+
+  data: function data() {
+    return {
+      cardProps: Card.props,
+      card: {
+        title: 'Test title',
+        subTitle: '',
+        footNote: '',
+        footHref: '',
+        footIcon: 'fa fa-bell',
+        accented: true,
+        showTitlesSeparator: true
+      }
     };
   }
 };
@@ -215,156 +320,6 @@ var ComponentsPage = {
   }
 };
 
-var Notification = VuePatternfly.Notification;
-var Notifications = VuePatternfly.Notifications;
-
-var NotificationsPage = {
-  render: function render() {
-    var _vm = this;var _h = _vm.$createElement;return _h('article', { staticClass: "page" }, [_vm._m(0), " ", _h('section', [_vm._m(1), " ", _vm._m(2), " ", _h('h4', ["Related documentation"]), " ", _vm._m(3), " ", _h('pf-notifications', { ref: "notifications", attrs: { "toast": _vm.notificationsToast } }), " ", _h('h3', ["Props"]), " ", _h('table', { staticClass: "table table-striped table-hover" }, [_vm._m(4), " ", _h('tbody', [_h('tr', [_h('td', ["toast"]), " ", _vm._m(5), " ", _h('td', ["Boolean"]), " ", _h('td', [_vm._s(_vm.notificationsProps.toast.default)]), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notificationsToast, expression: "notificationsToast" }], attrs: { "type": "checkbox" }, domProps: { "checked": Array.isArray(_vm.notificationsToast) ? _vm._i(_vm.notificationsToast, null) > -1 : _vm._q(_vm.notificationsToast, true) }, on: { "change": function change($event) {
-          var $$a = _vm.notificationsToast,
-              $$el = $event.target,
-              $$c = $$el.checked ? true : false;if (Array.isArray($$a)) {
-            var $$v = null,
-                $$i = _vm._i($$a, $$v);if ($$c) {
-              $$i < 0 && (_vm.notificationsToast = $$a.concat($$v));
-            } else {
-              $$i > -1 && (_vm.notificationsToast = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-            }
-          } else {
-            _vm.notificationsToast = $$c;
-          }
-        } } })])])])]), " ", _h('h3', ["Methods"]), " ", _h('table', { staticClass: "table table-striped table-hover" }, [_vm._m(6), " ", _h('tbody', [_h('tr', [_h('td', { attrs: { "rowspan": "2" } }, ["add()"]), " ", _h('td', ["notification"]), " ", _vm._m(7), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notificationsMessage, expression: "notificationsMessage" }], staticClass: "form-control", attrs: { "type": "text" }, domProps: { "value": _vm._s(_vm.notificationsMessage) }, on: { "input": function input($event) {
-          if ($event.target.composing) {
-            return;
-          }_vm.notificationsMessage = $event.target.value;
-        } } })]), " ", _h('td', { attrs: { "rowspan": "2" } }, [_h('button', { staticClass: "btn btn-default", on: { "click": _vm.notify } }, [_h('span', { staticClass: "fa fa-play-circle" }), "\n              Run\n            "])])]), " ", _h('tr', [_h('td', ["type"]), " ", _vm._m(8), " ", _h('td', [_h('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.notificationsType, expression: "notificationsType" }], staticClass: "form-control", on: { "change": function change($event) {
-          _vm.notificationsType = Array.prototype.filter.call($event.target.options, function (o) {
-            return o.selected;
-          }).map(function (o) {
-            var val = "_value" in o ? o._value : o.value;return val;
-          })[0];
-        } } }, [_h('option', { attrs: { "value": "info" } }, ["info"]), " ", _h('option', { attrs: { "value": "success" } }, ["success"]), " ", _h('option', { attrs: { "value": "warning" } }, ["warning"]), " ", _h('option', { attrs: { "value": "danger" } }, ["danger"])])])])])])]), " ", _vm._m(9), " ", _h('section', [_h('pf-notification', { attrs: { "delay": _vm.notificationDelay, "type": _vm.notificationType, "toast": _vm.notificationToast, "persistent": _vm.notificationPersistent, "action": _vm.notificationAction } }, [_h('div', { domProps: { "innerHTML": _vm._s(_vm.notificationMessage) } })]), " ", _h('h3', ["Props"]), " ", _h('table', { staticClass: "table table-striped table-hover" }, [_vm._m(10), " ", _h('tbody', [_h('tr', [_h('td', ["delay"]), " ", _h('td', ["The delay in milliseconds after which the notification is automatically dismissed."]), " ", _h('td', ["Number"]), " ", _h('td', [_vm._s(_vm.notificationProps.delay.default)]), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notificationDelay, expression: "notificationDelay" }], staticClass: "form-control", attrs: { "type": "text" }, domProps: { "value": _vm._s(_vm.notificationDelay) }, on: { "input": function input($event) {
-          if ($event.target.composing) {
-            return;
-          }_vm.notificationDelay = $event.target.value;
-        } } })])]), " ", _h('tr', [_h('td', ["type"]), " ", _h('td', ["The type of notification. Can be on of: info, success, warning, danger."]), " ", _h('td', ["String"]), " ", _h('td', [_vm._s(_vm.notificationProps.type.default)]), " ", _h('td', [_h('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.notificationType, expression: "notificationType" }], staticClass: "form-control", on: { "change": function change($event) {
-          _vm.notificationType = Array.prototype.filter.call($event.target.options, function (o) {
-            return o.selected;
-          }).map(function (o) {
-            var val = "_value" in o ? o._value : o.value;return val;
-          })[0];
-        } } }, [_h('option', { attrs: { "value": "info" } }, ["info"]), " ", _h('option', { attrs: { "value": "success" } }, ["success"]), " ", _h('option', { attrs: { "value": "warning" } }, ["warning"]), " ", _h('option', { attrs: { "value": "danger" } }, ["danger"])])])]), " ", _h('tr', [_h('td', ["toast"]), " ", _vm._m(11), " ", _h('td', ["Boolean"]), " ", _h('td', [_vm._s(_vm.notificationProps.toast.default)]), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notificationToast, expression: "notificationToast" }], attrs: { "type": "checkbox" }, domProps: { "checked": Array.isArray(_vm.notificationToast) ? _vm._i(_vm.notificationToast, null) > -1 : _vm._q(_vm.notificationToast, true) }, on: { "change": function change($event) {
-          var $$a = _vm.notificationToast,
-              $$el = $event.target,
-              $$c = $$el.checked ? true : false;if (Array.isArray($$a)) {
-            var $$v = null,
-                $$i = _vm._i($$a, $$v);if ($$c) {
-              $$i < 0 && (_vm.notificationToast = $$a.concat($$v));
-            } else {
-              $$i > -1 && (_vm.notificationToast = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-            }
-          } else {
-            _vm.notificationToast = $$c;
-          }
-        } } })])]), " ", _h('tr', [_h('td', ["persistent"]), " ", _h('td', ["Disables the controls to dismiss the notification."]), " ", _h('td', ["Boolean"]), " ", _h('td', [_vm._s(_vm.notificationProps.persistent.default)]), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notificationPersistent, expression: "notificationPersistent" }], attrs: { "type": "checkbox" }, domProps: { "checked": Array.isArray(_vm.notificationPersistent) ? _vm._i(_vm.notificationPersistent, null) > -1 : _vm._q(_vm.notificationPersistent, true) }, on: { "change": function change($event) {
-          var $$a = _vm.notificationPersistent,
-              $$el = $event.target,
-              $$c = $$el.checked ? true : false;if (Array.isArray($$a)) {
-            var $$v = null,
-                $$i = _vm._i($$a, $$v);if ($$c) {
-              $$i < 0 && (_vm.notificationPersistent = $$a.concat($$v));
-            } else {
-              $$i > -1 && (_vm.notificationPersistent = $$a.slice(0, $$i).concat($$a.slice($$i + 1)));
-            }
-          } else {
-            _vm.notificationPersistent = $$c;
-          }
-        } } })])]), " ", _h('tr', [_h('td', ["action.name"]), " ", _h('td', ["The text of an action button to add to the notification. This is mandatory to enable the action."]), " ", _h('td', ["String"]), " ", _h('td'), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notificationAction.name, expression: "notificationAction.name" }], staticClass: "form-control", attrs: { "type": "text" }, domProps: { "value": _vm._s(_vm.notificationAction.name) }, on: { "input": function input($event) {
-          if ($event.target.composing) {
-            return;
-          }_vm.notificationAction.name = $event.target.value;
-        } } })])]), " ", _h('tr', [_h('td', ["action.title"]), " ", _h('td', ["The title for the action button."]), " ", _h('td', ["String"]), " ", _h('td'), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notificationAction.title, expression: "notificationAction.title" }], staticClass: "form-control", attrs: { "type": "text" }, domProps: { "value": _vm._s(_vm.notificationAction.title) }, on: { "input": function input($event) {
-          if ($event.target.composing) {
-            return;
-          }_vm.notificationAction.title = $event.target.value;
-        } } })])]), " ", _h('tr', [_h('td', ["action.button"]), " ", _h('td', ["Controls the type of button to use for the action."]), " ", _h('td', ["String"]), " ", _h('td', ["link"]), " ", _h('td', [_h('select', { directives: [{ name: "model", rawName: "v-model", value: _vm.notificationAction.button, expression: "notificationAction.button" }], staticClass: "form-control", on: { "change": function change($event) {
-          _vm.notificationAction.button = Array.prototype.filter.call($event.target.options, function (o) {
-            return o.selected;
-          }).map(function (o) {
-            var val = "_value" in o ? o._value : o.value;return val;
-          })[0];
-        } } }, [_h('option', { attrs: { "value": "link" } }, ["link"]), " ", _h('option', { attrs: { "value": "default" } }, ["default"]), " ", _h('option', { attrs: { "value": "primary" } }, ["primary"]), " ", _h('option', { attrs: { "value": "info" } }, ["info"]), " ", _h('option', { attrs: { "value": "success" } }, ["success"]), " ", _h('option', { attrs: { "value": "warning" } }, ["warning"]), " ", _h('option', { attrs: { "value": "danger" } }, ["danger"])])])]), " ", _h('tr', [_h('td', ["action.emit"]), " ", _h('td', ["The name of an event that should be emitted when the action is triggered."]), " ", _h('td', ["String"]), " ", _h('td', ["action"]), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notificationAction.emit, expression: "notificationAction.emit" }], staticClass: "form-control", attrs: { "type": "text" }, domProps: { "value": _vm._s(_vm.notificationAction.emit) }, on: { "input": function input($event) {
-          if ($event.target.composing) {
-            return;
-          }_vm.notificationAction.emit = $event.target.value;
-        } } })])])])]), " ", _h('h3', ["Slots"]), " ", _h('table', { staticClass: "table table-striped table-hover" }, [_vm._m(12), " ", _h('tbody', [_h('tr', [_h('td', ["default"]), " ", _h('td', ["The notification message"]), " ", _h('td', [_h('input', { directives: [{ name: "model", rawName: "v-model", value: _vm.notificationMessage, expression: "notificationMessage" }], staticClass: "form-control", attrs: { "type": "text" }, domProps: { "value": _vm._s(_vm.notificationMessage) }, on: { "input": function input($event) {
-          if ($event.target.composing) {
-            return;
-          }_vm.notificationMessage = $event.target.value;
-        } } })])])])])])]);
-  },
-  staticRenderFns: [function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('header', [_h('h1', ["Notifications ", _h('code', ["<pf-notifications>"])])]);
-  }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('p', ["This component is a container for other ", _h('code', ["<pf-notification>"]), " components. Notifications can be placed inside its default slot or added programmatically by calling the ", _h('code', ["add()"]), " method."]);
-  }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('p', ["Notification dismissals will be handled automatically for the notifications added programmatically. For ", _h('code', ["<pf-notification>"]), " components placed inside the default slot or without using the ", _h('code', ["<pf-notifications>"]), " container you will have to listen to the ", _h('code', ["@dismiss"]), " event."]);
-  }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('ol', [_h('li', [_h('a', { attrs: { "href": "http://www.patternfly.org/pattern-library/communication/toast-notifications/#/api", "target": "_blank" } }, ["Pattern Library > Toast Notifications"])]), " ", _h('li', [_h('a', { attrs: { "href": "http://www.patternfly.org/pattern-library/communication/inline-notifications/#/api", "target": "_blank" } }, ["Pattern Library > Inline Notifications"])])]);
-  }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('thead', [_h('tr', [_h('th', ["Name"]), " ", _h('th', ["Description"]), " ", _h('th', ["Type"]), " ", _h('th', ["Default"]), " ", _h('th', ["Value"])])]);
-  }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('td', ["Defines this as a container for toast notifications. The property is propagated to every ", _h('code', ["<pf-notification>"]), " added programmatically. You are responsible to keep the property in sync for ", _h('code', ["<pf-notification>"]), "s inserted manually."]);
-  }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('thead', [_h('tr', [_h('th', ["Name"]), " ", _h('th', ["Argument"]), " ", _h('th', ["Description"]), " ", _h('th', { attrs: { "colspan": "2" } }, ["Value"])])]);
-  }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('td', ["The notification message string or an ", _h('code', ["Object"]), " with every ", _h('code', ["<pf-notification>"]), " property to use."]);
-  }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('td', [_h('code', ["<pf-notification>"]), "'s type"]);
-  }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('header', [_h('h1', ["Notification ", _h('code', ["<pf-notification>"])])]);
-  }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('thead', [_h('tr', [_h('th', ["Name"]), " ", _h('th', ["Description"]), " ", _h('th', ["Type"]), " ", _h('th', ["Default"]), " ", _h('th', ["Value"])])]);
-  }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('td', ["Make this a toast notification. These need to be placed inside a container with the ", _h('code', ["toast-notifications-list-pf"]), " CSS class or inside a ", _h('code', ["<pf-notifications>"]), " component."]);
-  }, function () {
-    var _vm = this;var _h = _vm.$createElement;return _h('thead', [_h('tr', [_h('th', ["Name"]), " ", _h('th', ["Description"]), " ", _h('th', ["HTML"])])]);
-  }],
-  name: 'notifications-page',
-
-  components: {
-    'pf-notification': Notification
-  },
-
-  data: function data() {
-    return {
-      notificationProps: Notification.props,
-      notificationDelay: Notification.props.delay.default,
-      notificationType: Notification.props.type.default,
-      notificationToast: Notification.props.toast.default,
-      notificationPersistent: Notification.props.persistent.default,
-      notificationMessage: '<strong>Test</strong> notification',
-      notificationsProps: Notifications.props,
-      notificationsMessage: '<strong>Test</strong> notification',
-      notificationsType: 'info',
-      notificationsToast: Notifications.props.toast.default,
-      notificationAction: {
-        name: '',
-        title: '',
-        button: 'link',
-        emit: ''
-      }
-    };
-  },
-
-
-  methods: {
-    notify: function notify() {
-      this.$refs.notifications.add(this.notificationsMessage, this.notificationsType);
-    }
-  }
-};
-
 /* global VueRouter */
 
 var router = new VueRouter({
@@ -381,6 +336,9 @@ var router = new VueRouter({
     path: '/notifications',
     component: NotificationsPage
   }, {
+    path: '/cards',
+    component: CardsPage
+  }, {
     path: '/components',
     component: ComponentsPage
   }]
@@ -394,8 +352,180 @@ router.afterEach(function () {
   });
 });
 
+var PropsTable = {
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;return _h('section', [_h('h3', ["Props"]), " ", _h('table', { staticClass: "table table-striped table-hover" }, [_h('thead', [_h('tr', [_h('th', ["Name"]), " ", _h('th', ["Description"]), " ", _h('th', ["Type"]), " ", _h('th', ["Default"]), " ", _vm.interactive ? _h('th', ["Value"]) : _vm._e()])]), " ", _h('tbody', [_vm._t("default")])])]);
+  },
+  staticRenderFns: [],
+  name: 'props-table',
+
+  props: {
+    interactive: {
+      type: Boolean,
+      default: true
+    },
+
+    componentProps: Object
+  }
+};
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var get = function get(object, property, receiver) {
+  if (object === null) object = Function.prototype;
+  var desc = Object.getOwnPropertyDescriptor(object, property);
+
+  if (desc === undefined) {
+    var parent = Object.getPrototypeOf(object);
+
+    if (parent === null) {
+      return undefined;
+    } else {
+      return get(parent, property, receiver);
+    }
+  } else if ("value" in desc) {
+    return desc.value;
+  } else {
+    var getter = desc.get;
+
+    if (getter === undefined) {
+      return undefined;
+    }
+
+    return getter.call(receiver);
+  }
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var set = function set(object, property, value, receiver) {
+  var desc = Object.getOwnPropertyDescriptor(object, property);
+
+  if (desc === undefined) {
+    var parent = Object.getPrototypeOf(object);
+
+    if (parent !== null) {
+      set(parent, property, value, receiver);
+    }
+  } else if ("value" in desc && desc.writable) {
+    desc.value = value;
+  } else {
+    var setter = desc.set;
+
+    if (setter !== undefined) {
+      setter.call(receiver, value);
+    }
+  }
+
+  return value;
+};
+
+var PropsRow = {
+  render: function render() {
+    var _vm = this;var _h = _vm.$createElement;return _h('tr', [_h('td', [_vm._s(_vm.propName)]), " ", _h('td', { domProps: { "innerHTML": _vm._s(_vm.description) } }), " ", _h('td', [_vm._s(_vm.prop.type)]), " ", _h('td', [_vm._s(_vm.prop.default)]), " ", _vm.$parent.interactive ? _h('td', [_vm.prop.type == 'Boolean' ? _h('input', { attrs: { "type": "checkbox" }, domProps: { "checked": _vm.value }, on: { "change": _vm.update } }) : _vm.options.length ? _h('select', { staticClass: "form-control", on: { "change": _vm.update } }, [_vm._l(_vm.options, function (o) {
+      return _h('option', { domProps: { "value": o } }, [_vm._s(o)]);
+    })]) : _h('input', { staticClass: "form-control", attrs: { "type": "text" }, domProps: { "value": _vm.value }, on: { "keyup": _vm.update } }), " ", " "]) : _vm._e()]);
+  },
+  staticRenderFns: [],
+  name: 'props-row',
+
+  props: {
+    name: String,
+    description: String,
+    options: {
+      type: Array,
+      default: function _default() {
+        return [];
+      }
+    },
+    value: {}
+  },
+
+  computed: {
+    propName: function propName() {
+      return this.name.split(/([A-Z][^A-Z]+)/).map(function (v) {
+        return v.toLowerCase();
+      }).filter(function (v) {
+        return v;
+      }).join('-');
+    },
+    prop: function prop() {
+      var def = this.$parent.componentProps[this.name];
+      var prop = {};
+      var typ = typeof def === 'undefined' ? 'undefined' : _typeof(def);
+      if (typ == 'function') {
+        prop.type = def.name;
+      } else if (typ == 'object') {
+        if (def.type) {
+          prop.type = def.type.name;
+        }
+        if (def.default) {
+          prop.default = def.default;
+        }
+      } else {
+        prop.default = def;
+      }
+      if (!prop.type) {
+        prop.type = 'Any';
+      }
+      return prop;
+    }
+  },
+
+  methods: {
+    update: function update(e) {
+      if (this.prop.type == 'Boolean') {
+        this.$emit('input', e.target.checked);
+        return;
+      }
+      this.$emit('input', e.target.value);
+    }
+  }
+};
+
 /* global Vue */
 Vue.debug = true;
+
+Vue.component(PropsTable.name, PropsTable);
+Vue.component(PropsRow.name, PropsRow);
 
 new Vue({
   el: '#app',
@@ -411,5 +541,5 @@ new Vue({
   }
 });
 
-}(VueStrap,VuePatternfly));
+}(VuePatternfly,VueStrap));
 //# sourceMappingURL=docs.js.map
