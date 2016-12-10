@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - The pf-notification dropdown is now slotted so that it can be customized.
 - The pf-notification action button can now be displayed as a button instead of a link.
+- The pf-aggregate-status-card and pf-card-notification components now also accept value of type Number for their count property.
 
 ### Changed
 - pf-toolbar actions are aligned to the right if the layout controls are
