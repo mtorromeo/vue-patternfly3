@@ -1,4 +1,4 @@
-import positioner from 'positioner';
+// import positioner from 'positioner';
 
 let _popover = null;
 
