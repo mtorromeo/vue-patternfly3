@@ -5,52 +5,6 @@
   </header>
 
   <section>
-    <h2>Toolbar</h2>
-    <pf-toolbar ref="toolbar" @filters="filters = $event" @sort-change="setSort"
-                :filter-fields="[{
-                  title: 'Name',
-                }, {
-                  title: 'Age',
-                }, {
-                  title: 'Address',
-                }, {
-                  title: 'Birth Month',
-                  placeholder: 'Filter by Birth Month...',
-                  values: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                }]" :sort-fields="[{
-                  title: 'Name',
-                }, {
-                  title: 'Date',
-                }]"
-                views="table,card,list"
-                :result-count="0">
-      <button class="btn btn-default" type="button" title="Title 1" @click="$refs.toolbar.filters.push({title: 'Test', value: 1})">
-        Action 1
-      </button>
-      <button class="btn btn-default" type="button" title="Title 2">
-        Action 2
-      </button>
-      <button class="btn btn-danger" type="button" title="Title 3">
-        Action 3
-      </button>
-
-      <dropdown class="dropdown-kebab-pf" type="link">
-        <li role="menuitem">
-          <a title="Menu Title 1">Menu Item 1</a>
-        </li>
-        <li role="menuitem">
-          <a title="Menu Title 2">Menu Item 2</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li role="menuitem">
-          <a title="Menu Title 3">Menu Item 3</a>
-        </li>
-      </dropdown>
-    </pf-toolbar>
-
-    <pre>Filters: {{filters}}
-    Sort: {{ sortField.title }} {{ sortAscending ? 'ascending' : 'descending' }}</pre>
-
     <div class="cards-pf">
       <div class="row row-cards-pf">
         <div class="col-md-6 col-lg-4">
@@ -94,33 +48,7 @@
 </template>
 
 <script>
-import {dropdown} from 'vue-strap';
-
 export default {
   name: 'components-page',
-
-  components: {
-    dropdown,
-  },
-
-  data() {
-    return {
-      sortField: {},
-      sortAscending: true,
-      filters: [],
-    };
-  },
-
-  methods: {
-    setSort(field, ascending) {
-      this.sortField = field;
-      this.sortAscending = ascending;
-    },
-    addFilter(filter, value) {
-      const f = {};
-      f[filter.title] = value;
-      this.filters.push(f);
-    },
-  },
 };
 </script>

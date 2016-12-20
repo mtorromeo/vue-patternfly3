@@ -6,6 +6,7 @@ import GetStartedPage from './pages/get-started.vue';
 import LayoutPage from './pages/layout.vue';
 import NotificationsPage from './pages/notifications.vue';
 import CardsPage from './pages/cards.vue';
+import ToolbarPage from './pages/toolbar.vue';
 import ComponentsPage from './pages/components.vue';
 
 Vue.use(VueRouter);
@@ -26,6 +27,9 @@ const router = new VueRouter({
     }, {
       path: '/cards',
       component: CardsPage,
+    }, {
+      path: '/toolbar',
+      component: ToolbarPage,
     }, {
       path: '/components',
       component: ComponentsPage,
