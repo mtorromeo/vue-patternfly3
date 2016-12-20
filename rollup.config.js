@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import vue from 'rollup-plugin-vue2';
+import vue from 'rollup-plugin-vue';
 import css from 'rollup-plugin-css-only';
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
@@ -15,11 +15,9 @@ export default {
   moduleName: 'VuePatternfly',
   globals: {
     c3: 'c3',
-    'vue-strap': 'VueStrap',
   },
   external: [
     'c3',
-    'vue-strap',
   ],
   targets: [{
     format: 'umd',
@@ -36,9 +34,7 @@ export default {
   plugins: [
     vue(),
     css(),
-    babel({
-      exclude: 'node_modules/**'
-    }),
+    babel(),
     resolve({
       jsnext: true,
       main: true,

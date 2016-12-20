@@ -15,6 +15,7 @@ import Notification from './components/Notification.vue';
 import Layout from './components/Layout.vue';
 import Tooltip from './directives/tooltip';
 
+import VueStrap from './vue-strap';
 
 
 const VuePatternfly = {
@@ -43,6 +44,8 @@ VuePatternfly.install = function(Vue) {
       Vue.component(component.name || name, component);
     }
   }
+
+  VueStrap.install(Vue);
 };
 
 export default VuePatternfly;

@@ -38,14 +38,12 @@
 
 <script>
 import PfSort from './Sort.vue';
-import VueStrap from 'vue-strap';
 
 export default {
   name: 'pf-toolbar',
 
   components: {
     PfSort,
-    dropdown: VueStrap.dropdown,
   },
 
   props: {

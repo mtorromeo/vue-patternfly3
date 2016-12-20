@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import VueStrap from 'vue-strap';
+import VueStrap from '../vue-strap';
 
 export default {
   name: 'pf-filter-fields',
