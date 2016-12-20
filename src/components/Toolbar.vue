@@ -92,11 +92,14 @@ export default {
     clearAllFilters() {
       this.activeFilters = [];
     },
-    setFilter(filter, value) {
+    addFilter(title, value) {
       this.activeFilters.push({
-        title: filter.title,
-        value: value,
+        title,
+        value,
       });
+    },
+    setFilter(filter, value) {
+      this.addFilter(filter.title, value);
     },
   },
 
