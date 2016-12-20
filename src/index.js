@@ -16,7 +16,8 @@ import Layout from './components/Layout.vue';
 import Tooltip from './directives/tooltip';
 
 
-const components = {
+
+const VuePatternfly = {
   AggregateStatusCard,
   C3Chart,
   Card,
@@ -33,9 +34,9 @@ const components = {
   Layout,
 };
 
-components.install = function(Vue) {
-  for (const name of Object.keys(components)) {
-    const component = components[name];
+VuePatternfly.install = function(Vue) {
+  for (const name of Object.keys(VuePatternfly)) {
+    const component = VuePatternfly[name];
     if (component.bind) {
       Vue.directive(component.name || name, component);
     } else {
@@ -44,8 +45,8 @@ components.install = function(Vue) {
   }
 };
 
-export default components;
+export default VuePatternfly;
 
 if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(components);
+  window.Vue.use(VuePatternfly);
 }
