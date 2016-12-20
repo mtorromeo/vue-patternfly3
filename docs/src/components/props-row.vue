@@ -4,12 +4,18 @@
   <td v-html="description"></td>
   <td>{{prop.type}}</td>
   <td>{{prop.default}}</td>
-  <td v-if="$parent.interactive">
+  <td v-if="$parent.interactive"
+      :class="{
+        'has-error': error
+      }" :style="{
+        height: code ? '150px' : null,
+      }">
     <input v-if="prop.type == 'Boolean'" type="checkbox" :checked="value" @change="update">
     <select v-else-if="options.length" class="form-control" @change="update">
       <option v-for="o in options" :value="o">{{o}}</option>
     </select>
-    <input v-else type="text" class="form-control" :value="value" @keyup="update">
+    <input v-else-if="!code" type="text" class="form-control" :value="editableValue" @keyup="update">
+    <ace-editor v-else class="form-control" :value="editableValue" @input="update" lang="javascript"></ace-editor>
   </td>
 </tr>
 </template>
@@ -21,6 +27,7 @@ export default {
   props: {
     name: String,
     description: String,
+    code: Boolean,
     options: {
       type: Array,
       default() {
@@ -28,6 +35,12 @@ export default {
       },
     },
     value: {},
+  },
+
+  data() {
+    return {
+      error: false,
+    };
   },
 
   computed: {
@@ -38,20 +51,34 @@ export default {
                        join('-');
     },
 
+    editableValue() {
+      if (this.prop.object) {
+        return JSON.stringify(this.value, null, 2);
+      }
+      return this.value;
+    },
+
     prop() {
       const def = this.$parent.componentProps[this.name];
-      const prop = {};
+      const prop = {
+        object: false,
+      };
       const typ = typeof def;
       if (typ == 'function') {
         prop.type = def.name;
       } else if (typ == 'object') {
+        prop.object = def.type.name != 'String';
         if (def.type instanceof Array) {
           prop.type = def.type.map(t => t.name).join(' | ');
         } else if (def.type) {
           prop.type = def.type.name;
         }
         if (def.default) {
-          prop.default = def.default;
+          if (typeof def.default == 'function') {
+            prop.default = def.default();
+          } else {
+            prop.default = def.default;
+          }
         }
       }
       if (!prop.type) {
@@ -67,7 +94,17 @@ export default {
         this.$emit('input', e.target.checked);
         return;
       }
-      this.$emit('input', e.target.value);
+      const value = e && e.target ? e.target.value : e;
+      if (this.prop.object) {
+        try {
+          this.$emit('input', JSON.parse(value));
+          this.error = false;
+        } catch (exc) {
+          this.error = true;
+        }
+        return;
+      }
+      this.$emit('input', value);
     },
   },
 };
