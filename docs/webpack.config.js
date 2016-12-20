@@ -22,7 +22,7 @@ module.exports = {
       exclude: /\/dist\/|\.sample\.js$/,
     }, {
       test: /\.html?$|\.sample\.js$/,
-      loader: 'html',
+      loader: 'html?-minimize',
     }, {
       test: /\.json$/,
       loader: 'json',
