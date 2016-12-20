@@ -1,0 +1,14 @@
+{
+  "dependencies": {},
+  "devDependencies": {
+    "babel-core": "^6.21.0",
+    "babel-loader": "^6.2.10",
+    "brace": "^0.9.1",
+    "html-loader": "^0.4.4",
+    "json-loader": "^0.5.4",
+    "vue": "^2.1.6",
+    "vue-loader": "^10.0.2",
+    "vue-strap": "yuche/vue-strap#v2",
+    "webpack": "^1.14.0"
+  }
+}

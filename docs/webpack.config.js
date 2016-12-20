@@ -1,6 +1,8 @@
+const path = require('path');
+
 module.exports = {
   entry: {
-    'docs': './src/index',
+    docs: './src',
   },
 
   output: {
@@ -9,35 +11,31 @@ module.exports = {
   },
 
   externals: {
-    'vue-patternfly': 'VuePatternfly',
+    'c3': 'c3',
+    'vue-router': 'VueRouter',
   },
 
   module: {
     loaders: [{
-      test: /\/javascript\/[^/]+\.js?$/,
-      loader: 'script',
-    }, {
       test: /\.jsx?$/,
-      exclude: /(node_modules\/(?!vue-strap)|bower_components|\/javascript\/[^/]+\.js)/,
-      loader: 'babel',
-      query: {
-        compact: false,
-      },
+      loader: 'babel-loader',
+      exclude: /\/dist\/|\.sample\.js$/,
+    }, {
+      test: /\.html?$|\.sample\.js$/,
+      loader: 'html',
     }, {
       test: /\.json$/,
       loader: 'json',
     }, {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader',
-    }, {
       test: /\.vue$/,
       loader: 'vue',
-    }],
+    }]
   },
 
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.common.js'
+      'vue$': 'vue/dist/vue.common.js',
+      'vue-patternfly$': path.resolve('../dist/vue-patternfly.js'),
     }
   },
 };
