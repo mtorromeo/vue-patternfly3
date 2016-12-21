@@ -1,5 +1,5 @@
 <template>
-<div class="sort-pf form-group">
+<div class="sort-pf">
   <bs-dropdown :text="current.title">
     <li v-for="(item, i) in fields" :class="{'selected': item === current}">
       <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="select(i)">

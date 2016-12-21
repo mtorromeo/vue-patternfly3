@@ -5,7 +5,11 @@
   <div class="col-sm-12">
     <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
       <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="filterFields.length > 0"></pf-filter-fields>
-      <pf-sort :fields="sortFields" v-if="sortFields.length > 0" @change="setSort"></pf-sort>
+      <div class="form-group" v-if="sortFields.length || showColumnSelector">
+        <pf-sort :fields="sortFields" v-if="sortFields.length" @change="setSort"></pf-sort>
+
+        <pf-column-picker ref="colpicker" v-if="showColumnSelector" :columns="columns" :value="pickedColumns" @input="setPickedColumns"></pf-column-picker>
+      </div>
 
       <div class="toolbar-actions" :class="{
         'form-group': !hasFindView,
@@ -40,12 +44,14 @@
 
 <script>
 import PfSort from './Sort.vue';
+import PfColumnPicker from './ColumnPicker.vue';
 
 export default {
   name: 'pf-toolbar',
 
   components: {
     PfSort,
+    PfColumnPicker,
   },
 
   props: {
@@ -57,6 +63,18 @@ export default {
       },
     },
     filters: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+    columns: {
+      type: [Array, Object],
+      default() {
+        return [];
+      },
+    },
+    pickedColumns: {
       type: Array,
       default() {
         return [];
@@ -104,9 +122,16 @@ export default {
     setFilter(filter, value) {
       this.addFilter(filter.title, value);
     },
+    setPickedColumns(columns) {
+      this.$refs.colpicker.value = columns;
+      this.$emit('columns', columns);
+    },
   },
 
   computed: {
+    showColumnSelector() {
+      return this.activeView == 'table' && this.columns.length;
+    },
     showCount() {
       return !this.showResultFilter && typeof this.resultCount != 'undefined';
     },
@@ -215,6 +240,15 @@ h5.form-group[_v-3RyaW5nJyk] {
 
 .toolbar-pf-actions.no-filter-results {
   margin-bottom: 10px;
+}
+
+.toolbar-pf .sort-pf {
+  display: inline-block;
+}
+
+.toolbar-pf .column-picker {
+  display: inline-block;
+  margin-left: 10px;
 }
 
 .dropdown-kebab-pf.invisible {

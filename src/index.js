@@ -6,6 +6,7 @@ import Card from './components/Card.vue';
 import CardNotification from './components/CardNotification.vue';
 import EmptyChart from './components/EmptyChart.vue';
 import Sort from './components/Sort.vue';
+import ColumnPicker from './components/ColumnPicker.vue';
 import Toolbar from './components/Toolbar.vue';
 import UtilizationBarChart from './components/UtilizationBarChart.vue';
 import FilterFields from './components/FilterFields.vue';
@@ -25,6 +26,7 @@ const VuePatternfly = {
   CardNotification,
   EmptyChart,
   Sort,
+  ColumnPicker,
   Toolbar,
   UtilizationBarChart,
   FilterFields,
