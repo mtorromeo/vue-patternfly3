@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import vue from 'rollup-plugin-vue';
+import vue from 'rollup-plugin-vue2';
 import css from 'rollup-plugin-css-only';
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
