@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- Bundled a VueStrap build since there is no working distribution available at this moment. Every VueStrap component is installed together with VuePatternfly but using the "bs-" prefix.
+- Implemented the "attached" property on pf-toolbar so that it can be displayed attached to an adjacient table view.
+
+### Fixed
+- Fixed appearance of the additional actions dropdown menu on the pf-toolbar.
 
 ## [0.0.3] - 2016-12-10
 ### Added
