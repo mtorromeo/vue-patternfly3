@@ -27,8 +27,8 @@
         </h5>
 
         <div class="form-group toolbar-pf-view-selector">
-          <button v-for="(viewData, name) in viewList" class="btn btn-link" :class="{'active': view == name, 'disabled': viewData.disabled}" :title="viewData.title">
-            <i :class="[viewData.iconClass]" class="view-selector" @click="activeView = name"></i>
+          <button v-for="(viewData, name) in viewList" class="btn btn-link" :class="{'active': view == name, 'disabled': viewData.disabled}" :title="viewData.title" @click="activeView = name">
+            <i :class="[viewData.iconClass]" class="view-selector"></i>
           </button>
         </div>
       </div>

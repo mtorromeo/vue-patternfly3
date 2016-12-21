@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Fixed appearance of the additional actions dropdown menu on the pf-toolbar.
+- Fixed click on layout controls of pf-toolbar
 
 ## [0.0.3] - 2016-12-10
 ### Added
