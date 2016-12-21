@@ -1,5 +1,7 @@
 <template>
-<div class="clearfix toolbar-pf" _v-3RyaW5nJyk>
+<div class="clearfix toolbar-pf" :class="{
+    'table-view-pf-toolbar': attached,
+  }" _v-3RyaW5nJyk>
   <div class="col-sm-12">
     <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
       <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="filterFields.length > 0"></pf-filter-fields>
@@ -73,6 +75,7 @@ export default {
       },
     },
     resultCount: Number,
+    attached: Boolean,
   },
 
   data() {
