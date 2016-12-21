@@ -5,7 +5,7 @@
        'toast-pf': toast,
       }]">
 
-  <dropdown v-if="showDropdown">
+  <bs-dropdown v-if="showDropdown">
     <slot name="dropdown" :actions="actions">
       <li v-for="action in actions"
           :role="isSeparator(action) ? 'separator' : 'menuitem'"
@@ -21,7 +21,7 @@
         </a>
       </li>
     </slot>
-  </dropdown>
+  </bs-dropdown>
 
   <button v-show="!persistent && !toast" @click="dismiss"
           type="button" class="close" data-dismiss="alert" aria-hidden="true">
@@ -48,7 +48,7 @@ export default {
   name: 'pf-toast-notification',
 
   components: {
-    dropdown: VueStrap.dropdown,
+    BsDropdown: VueStrap.dropdown,
   },
 
   props: {
