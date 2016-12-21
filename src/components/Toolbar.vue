@@ -195,7 +195,8 @@ h5.form-group[_v-3RyaW5nJyk] {
 }
 
 .toolbar-pf-actions .dropdown-kebab-pf .caret {
-  width: auto;
+  height: 1em;
+  vertical-align: inherit;
 }
 
 .toolbar-pf-actions .dropdown-kebab-pf .caret:before {
