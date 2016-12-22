@@ -46,6 +46,7 @@
     </pf-toolbar>
 
     <props-table :component-props="toolbarProps">
+      <props-row name="attached" description="Use the layout for the toolbar attached to an adjacient table" v-model="toolbar.attached"></props-row>
       <props-row name="filterFields" description="List of available fields for filtering" v-model="toolbar.filterFields" code></props-row>
       <props-row name="filters" description="List of active filters" v-model="toolbar.filters" code></props-row>
       <props-row name="view" description="Active view" v-model="toolbar.view"></props-row>
@@ -56,7 +57,6 @@
       <props-row name="columns" description="List of available columns to display" v-model="toolbar.columns" code></props-row>
       <props-row name="pickedColumns" description="List of available columns to display" v-model="toolbar.pickedColumns" code></props-row>
       <props-row name="resultCount" description="Number of elements matching the filter criteria" v-model="toolbar.resultCount"></props-row>
-      <props-row name="attached" description="Use the layout for the toolbar attached to an adjacient table" v-model="toolbar.attached"></props-row>
     </props-table>
 
     <slots-table>
@@ -79,17 +79,22 @@ export default {
         view: 'table',
         views: 'table,card,list',
         filters: [],
-        filterFields: [{
-          title: 'Name',
-        }, {
-          title: 'Age',
-        }, {
-          title: 'Address',
-        }, {
-          title: 'Birth Month',
-          placeholder: 'Filter by Birth Month...',
-          values: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        }],
+        filterFields: {
+          name: {
+            label: 'Name',
+          },
+          age: {
+            label: 'Age',
+          },
+          address: {
+            label: 'Address',
+          },
+          birthMonth: {
+            label: 'Birth Month',
+            placeholder: 'Filter by Birth Month...',
+            values: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          }
+        },
         sortBy: 'date',
         sortDirection: 'ascending',
         sortFields: {
