@@ -105,6 +105,10 @@ export default {
     };
   },
 
+  mounted() {
+    this.activeView = this.view;
+  },
+
   methods: {
     setSortBy(field, direction) {
       this.$emit('sort-by', field, direction);
@@ -179,11 +183,8 @@ export default {
       },
       immediate: true,
     },
-    view: {
-      handler() {
-        this.activeView = this.view;
-      },
-      immediate: true,
+    view() {
+      this.activeView = this.view;
     },
     views: {
       handler() {
