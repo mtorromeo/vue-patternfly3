@@ -8,8 +8,6 @@
   },
   "scripts": {
     "purge": "rm -rf dist/*",
-    "docs": "cd docs && webpack -cdw",
-    "compile-docs": "cd docs && webpack -cp",
     "compile": "rollup -c && uglifyjs --screw-ie8 -mco dist/vue-patternfly.min.js dist/vue-patternfly.min.js",
     "dev": "rollup -cw",
     "build": "npm run purge && npm run compile",
