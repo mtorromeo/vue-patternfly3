@@ -129,7 +129,6 @@ export default {
       this.addFilter(filter, value);
     },
     setPickedColumns(columns) {
-      this.$refs.colpicker.value = columns;
       this.$emit('columns', columns);
     },
   },

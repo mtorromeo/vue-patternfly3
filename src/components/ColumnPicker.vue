@@ -6,7 +6,7 @@
 
     <div slot="content" v-for="(column, i) in columns" class="checkbox" @click.stop>
       <label>
-        <input type="checkbox" :value="columnValue(column, i)" v-model="iValue">
+        <input type="checkbox" :value="columnValue(column, i)" v-model="iValue" @change="setValue">
         {{column}}
       </label>
     </div>
@@ -52,17 +52,15 @@ export default {
     columnValue(column, i) {
       return this.columns instanceof Array ? column : i;
     },
+    setValue() {
+      this.$emit('input', this.iValue);
+    },
   },
 
   watch: {
     value(value) {
       if (value != this.iValue) {
-        this.iValue = value;
-      }
-    },
-    iValue(value) {
-      if (value != this.value) {
-        this.$emit('input', value);
+        this.iValue = value.slice(0);
       }
     },
   },
