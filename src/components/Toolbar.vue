@@ -141,7 +141,7 @@ export default {
       return !this.showResultFilter && typeof this.resultCount != 'undefined';
     },
     hasFindView() {
-      return this.views || this.viewList.length > 0;
+      return Object.keys(this.viewList).length;
     },
     viewList() {
       if (typeof this.views != 'string') {

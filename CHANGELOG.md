@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Display the filter label instead of the filter name in the active filters view.
+- The view controls in the pf-toolbar were not correctly hidden in some cases.
 
 ## [0.0.4] - 2016-12-22
 ### Added
