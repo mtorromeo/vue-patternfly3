@@ -102,7 +102,9 @@ export default {
 
   methods: {
     fieldDefinition(field, name) {
-      if (typeof field != 'object') {
+      if (typeof field == 'object') {
+        field = Object.assign({}, field);
+      } else {
         field = {
           label: field,
         };
