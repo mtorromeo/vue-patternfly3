@@ -7,7 +7,7 @@
       <ul class="list-inline">
         <li v-for="(filter, i) in filters">
           <span class="active-filter label label-info">
-            {{filter.name}}: {{filter.value}}
+            {{filter.label}}: {{filter.value}}
             <a><span class="pficon pficon-close" @click="$parent.clearFilter(i)"></span></a>
           </span>
         </li>

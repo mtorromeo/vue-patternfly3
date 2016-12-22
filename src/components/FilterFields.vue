@@ -107,10 +107,11 @@ export default {
     set(value) {
       if (value !== null) {
         if (typeof value == 'object') {
-          this.$emit('filter', this.current.name, value.target.value);
-        } else {
-          this.$emit('filter', this.current.name, value);
+          value = value.target.value;
         }
+        const filter = Object.assign({}, this.current);
+        filter.value = value;
+        this.$emit('filter', filter);
       }
       if (this.isSelect) {
         this.$refs.select.clear();

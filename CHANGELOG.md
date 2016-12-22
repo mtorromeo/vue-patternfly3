@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Implemented the "nomargin" property on pf-layout.
 
+### Fixed
+- Display the filter label instead of the filter name in the active filters view.
+
 ## [0.0.4] - 2016-12-22
 ### Added
 - Bundled a VueStrap build since there is no working distribution available at this moment. Every VueStrap component is installed together with VuePatternfly but using the "bs-" prefix.

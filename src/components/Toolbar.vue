@@ -4,7 +4,7 @@
   }" _v-3RyaW5nJyk>
   <div class="col-sm-12">
     <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
-      <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="showFilter"></pf-filter-fields>
+      <pf-filter-fields @filter="addFilter" :fields="filterFields" v-if="showFilter"></pf-filter-fields>
       <div class="form-group" v-if="showSorter || showColumnSelector">
         <pf-sort :fields="sortFields" v-if="showSorter" :sortBy="sortBy" :direction="sortDirection" @change="setSortBy"></pf-sort>
 
@@ -119,14 +119,8 @@ export default {
     clearAllFilters() {
       this.activeFilters = [];
     },
-    addFilter(name, value) {
-      this.activeFilters.push({
-        name,
-        value,
-      });
-    },
-    setFilter(filter, value) {
-      this.addFilter(filter, value);
+    addFilter(filter) {
+      this.activeFilters.push(filter);
     },
     setPickedColumns(columns) {
       this.$emit('columns', columns);
