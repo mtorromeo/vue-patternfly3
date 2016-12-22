@@ -9,10 +9,12 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Refactored pf-sort component and renamed sorting properties on pf-toolbar
+- Refactored the filter-fields and filters properties of pf-toolbar.
 
 ### Fixed
 - Fixed appearance of the additional actions dropdown menu on the pf-toolbar.
 - Fixed click on layout controls of pf-toolbar
+- The input is properly cleared after adding a filter in the pf-toolbar.
 
 ## [0.0.3] - 2016-12-10
 ### Added
