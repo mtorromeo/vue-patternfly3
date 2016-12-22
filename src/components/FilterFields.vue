@@ -14,7 +14,7 @@
       </slot>
     </bs-select>
     <div v-else>
-      <input class="form-control" type="text" :value="value"
+      <input ref="input" class="form-control" type="text" :value="value"
              @keyup.enter.stop="set" :placeholder="current.placeholder">
     </div>
   </div>
@@ -76,6 +76,8 @@ export default {
       }
       if (this.isSelect) {
         this.$refs.select.clear();
+      } else {
+        this.$refs.input.value = '';
       }
     },
   },
