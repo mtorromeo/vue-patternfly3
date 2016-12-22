@@ -7,6 +7,9 @@ All notable changes to this project will be documented in this file.
 - Implemented the "attached" property on pf-toolbar so that it can be displayed attached to an adjacient table view.
 - Implemented a column picker for the table layout on the pf-toolbar.
 
+### Changed
+- Refactored pf-sort component and renamed sorting properties on pf-toolbar
+
 ### Fixed
 - Fixed appearance of the additional actions dropdown menu on the pf-toolbar.
 - Fixed click on layout controls of pf-toolbar

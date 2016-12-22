@@ -5,8 +5,8 @@
   <div class="col-sm-12">
     <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
       <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="filterFields.length > 0"></pf-filter-fields>
-      <div class="form-group" v-if="sortFields.length || showColumnSelector">
-        <pf-sort :fields="sortFields" v-if="sortFields.length" @change="setSort"></pf-sort>
+      <div class="form-group" v-if="showSorter || showColumnSelector">
+        <pf-sort :fields="sortFields" v-if="showSorter" :sortBy="sortBy" :direction="sortDirection" @change="setSortBy"></pf-sort>
 
         <pf-column-picker ref="colpicker" v-if="showColumnSelector" :columns="columns" :value="pickedColumns" @input="setPickedColumns"></pf-column-picker>
       </div>
@@ -86,8 +86,10 @@ export default {
         return [];
       },
     },
+    sortBy: String,
+    sortDirection: String,
     sortFields: {
-      type: Array,
+      type: [Array, Object],
       default() {
         return [];
       },
@@ -104,8 +106,8 @@ export default {
   },
 
   methods: {
-    setSort(field, ascending) {
-      this.$emit('sort-change', field, ascending);
+    setSortBy(field, direction) {
+      this.$emit('sort-by', field, direction);
     },
     clearFilter(i) {
       this.activeFilters.splice(i, 1);
@@ -129,6 +131,9 @@ export default {
   },
 
   computed: {
+    showSorter() {
+      return this.sortFields instanceof Array ? this.sortFields.length : Object.keys(this.sortFields).length;
+    },
     showColumnSelector() {
       return this.activeView == 'table' && this.columns.length;
     },

@@ -1,9 +1,9 @@
 <template>
 <div class="sort-pf">
-  <bs-dropdown :text="current.title">
-    <li v-for="(item, i) in fields" :class="{'selected': item === current}">
-      <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="select(i)">
-        {{item.title}}
+  <bs-dropdown :text="current.label">
+    <li v-for="(field, i) in normFields" :class="{'selected': active == field.name}">
+      <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="select(field)">
+        {{field.label}}
       </a>
     </li>
   </bs-dropdown>
@@ -25,29 +25,46 @@ export default {
 
   props: {
     fields: {
-      type: Array,
+      type: [Array, Object],
       default() {
         return [];
       },
     },
+    sortBy: String,
     direction: {
       type: String,
       default: 'ascending',
     },
-    selected: Number,
   },
 
   data() {
     return {
-      active: -1,
+      normFields: [],
+      active: '',
       ascending: true,
     };
   },
 
   watch: {
-    selected: {
-      handler () {
-        this.active = this.selected;
+    fields: {
+      handler (fields) {
+        const normFields = [];
+        if (fields instanceof Array) {
+          for (const f of fields) {
+            normFields.push(this.fieldDefinition(f));
+          }
+        } else {
+          for (const i of Object.keys(fields)) {
+            normFields.push(this.fieldDefinition(fields[i], i));
+          }
+        }
+        this.normFields = normFields;
+      },
+      immediate: true,
+    },
+    sortBy: {
+      handler (sortBy) {
+        this.active = sortBy;
       },
       immediate: true,
     },
@@ -61,11 +78,19 @@ export default {
 
   computed: {
     current() {
-      if (typeof this.active === 'undefined' || this.active >= this.fields.length || this.active < 0) {
-        this.select(0);
-        return this.fields.length ? this.fields[0] : {};
+      if (!this.active) {
+        return {
+          label: 'Sort by',
+        };
       }
-      return this.fields[this.active];
+      for (const field of this.normFields) {
+        if (field.name == this.active) {
+          return field;
+        }
+      }
+      return {
+        label: 'Sort by',
+      };
     },
 
     sortIconClass() {
@@ -76,13 +101,28 @@ export default {
   },
 
   methods: {
-    select(i) {
-      this.active = i;
-      this.$emit('change', this.current, this.ascending);
+    fieldDefinition(field, name) {
+      if (typeof field != 'object') {
+        field = {
+          label: field,
+        };
+      }
+      field.name = name || field.label;
+      if (!field.label) {
+        field.label = name;
+      }
+      if (!field.type) {
+        field.type = 'alpha';
+      }
+      return field;
+    },
+    select(field) {
+      this.active = field.name;
+      this.$emit('change', this.active, this.ascending ? 'ascending' : 'descending');
     },
     invert() {
       this.ascending = !this.ascending;
-      this.$emit('change', this.current, this.ascending);
+      this.$emit('change', this.active, this.ascending ? 'ascending' : 'descending');
     },
   },
 };
