@@ -188,7 +188,7 @@ export default {
     views: {
       handler() {
         if (!this.views[this.activeView]) {
-          const names = Object.keys(this.views)
+          const names = Object.keys(this.views);
           if (names.length > 0) {
             this.activeView = names[0];
           }
