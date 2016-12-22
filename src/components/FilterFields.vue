@@ -1,10 +1,10 @@
 <template>
 <div class="filter-pf filter-fields form-group toolbar-pf-filter">
   <div class="input-group">
-    <bs-dropdown :text="current.title" class="input-group-btn">
-      <li v-for="(item, i) in fields">
-        <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = i">
-          {{item.title}}
+    <bs-dropdown :text="current.label" class="input-group-btn">
+      <li v-for="(item, name) in fields">
+        <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = name">
+          {{item.label}}
         </a>
       </li>
     </bs-dropdown>
@@ -39,23 +39,27 @@ export default {
       default: '',
     },
     fields: {
-      type: Array,
+      type: Object,
       default() {
-        return [];
+        return {};
       },
     },
   },
 
   data() {
     return {
-      selected: 0,
+      selected: '',
     };
   },
 
   computed: {
     current() {
-      if (typeof this.selected === 'undefined' || this.selected >= this.fields.length) {
-        return this.fields.length ? this.fields[0] : {};
+      if (!this.selected || !this.fields[this.selected]) {
+        const names = Object.keys(this.fields);
+        if (!names.length) {
+          return {};
+        }
+        this.selected = names[0];
       }
       return this.fields[this.selected];
     },
@@ -69,9 +73,9 @@ export default {
     set(value) {
       if (value !== null) {
         if (typeof value == 'object') {
-          this.$emit('filter', this.current, value.target.value);
+          this.$emit('filter', this.selected, value.target.value);
         } else {
-          this.$emit('filter', this.current, value);
+          this.$emit('filter', this.selected, value);
         }
       }
       if (this.isSelect) {

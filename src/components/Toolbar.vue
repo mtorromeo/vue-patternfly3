@@ -4,11 +4,11 @@
   }" _v-3RyaW5nJyk>
   <div class="col-sm-12">
     <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
-      <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="filterFields.length > 0"></pf-filter-fields>
+      <pf-filter-fields @filter="setFilter" :fields="filterFields" v-if="showFilter"></pf-filter-fields>
       <div class="form-group" v-if="showSorter || showColumnSelector">
         <pf-sort :fields="sortFields" v-if="showSorter" :sortBy="sortBy" :direction="sortDirection" @change="setSortBy"></pf-sort>
 
-        <pf-column-picker ref="colpicker" v-if="showColumnSelector" :columns="columns" :value="pickedColumns" @input="setPickedColumns"></pf-column-picker>
+        <pf-column-picker ref="colpicker" v-if="showColumnPicker" :columns="columns" :value="pickedColumns" @input="setPickedColumns"></pf-column-picker>
       </div>
 
       <div class="toolbar-actions" :class="{
@@ -62,12 +62,6 @@ export default {
         return {};
       },
     },
-    filters: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
     columns: {
       type: [Array, Object],
       default() {
@@ -81,6 +75,12 @@ export default {
       },
     },
     filterFields: {
+      type: Object,
+      default() {
+        return {};
+      },
+    },
+    filters: {
       type: Array,
       default() {
         return [];
@@ -119,14 +119,14 @@ export default {
     clearAllFilters() {
       this.activeFilters = [];
     },
-    addFilter(title, value) {
+    addFilter(name, value) {
       this.activeFilters.push({
-        title,
+        name,
         value,
       });
     },
     setFilter(filter, value) {
-      this.addFilter(filter.title, value);
+      this.addFilter(filter, value);
     },
     setPickedColumns(columns) {
       this.$refs.colpicker.value = columns;
@@ -138,7 +138,10 @@ export default {
     showSorter() {
       return this.sortFields instanceof Array ? this.sortFields.length : Object.keys(this.sortFields).length;
     },
-    showColumnSelector() {
+    showFilter() {
+      return Object.keys(this.filterFields).length;
+    },
+    showColumnPicker() {
       return this.activeView == 'table' && this.columns.length;
     },
     showCount() {
