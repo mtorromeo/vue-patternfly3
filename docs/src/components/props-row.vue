@@ -73,7 +73,9 @@ export default {
         } else if (def.type) {
           prop.type = def.type.name;
         }
-        if (def.default) {
+        if (prop.type == 'Boolean') {
+          prop.default = Boolean(def.default).toString();
+        } else if (def.default) {
           if (typeof def.default == 'function') {
             prop.default = def.default();
           } else {
