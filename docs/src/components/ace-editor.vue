@@ -8,6 +8,7 @@
 <script>
 var ace = require('brace');
 
+require('brace/mode/html');
 require('brace/mode/javascript');
 require('brace/theme/chrome');
 

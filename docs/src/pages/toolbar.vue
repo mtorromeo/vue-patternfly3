@@ -37,15 +37,8 @@
                 :attached="toolbar.attached"
                 :columns="toolbar.columns"
                 :picked-columns="toolbar.pickedColumns">
-      <button class="btn btn-default" type="button" title="Title 1" @click="$refs.toolbar.addFilter('Test', 1)">
-        Action 1
-      </button>
-      <button class="btn btn-default" type="button" title="Title 2">
-        Action 2
-      </button>
-      <button class="btn btn-danger" type="button" title="Title 3">
-        Action 3
-      </button>
+
+      <div v-if="toolbar.slotDefault" v-html="toolbar.slotDefault" style="float:left"></div>
 
       <bs-dropdown class="dropdown-kebab-pf" type="link">
         <li role="menuitem">
@@ -72,6 +65,10 @@
       <props-row name="resultCount" description="Number of elements matching the filter criteria" v-model="toolbar.resultCount"></props-row>
       <props-row name="attached" description="Use the layout for the toolbar attached to an adjacient table" v-model="toolbar.attached"></props-row>
     </props-table>
+
+    <slots-table>
+      <slots-row name="default" description="Action buttons and dropdowns can be placed here" v-model="toolbar.slotDefault"></slots-row>
+    </slots-table>
   </section>
 </article>
 </template>
@@ -99,6 +96,17 @@ export default {
         pickedColumns: ['Name'],
         resultCount: 0,
         attached: false,
+        slotDefault: `<button class="btn btn-default" type="button" title="Title 1">
+  Action 1
+</button>
+<button class="btn btn-default" type="button" title="Title 2">
+  Action 2
+</button>
+<button class="btn btn-danger" type="button" title="Title 3">
+  Action 3
+</button>
+
+<!-- The "kebab" menu is fixed in this example due to how v-html works -->`,
       },
     };
   },

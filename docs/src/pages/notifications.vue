@@ -128,25 +128,9 @@
       </tr>
     </props-table>
 
-    <h3>Slots</h3>
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>HTML</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>default</td>
-          <td>The notification message</td>
-          <td>
-            <input type="text" class="form-control" v-model="notification.message">
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <slots-table>
+      <slots-row name="default" description="The notification message" v-model="notification.message"></slots-row>
+    </slots-table>
   </section>
 </article>
 </template>
