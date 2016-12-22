@@ -100,6 +100,10 @@ export default {
         sortFields: {
           name: 'Name',
           date: 'Date',
+          age: {
+            label: 'Age',
+            type: 'numeric',
+          },
         },
         columns: ['Name', 'Date'],
         pickedColumns: ['Name'],
