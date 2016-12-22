@@ -8,8 +8,6 @@ import SlotsTable from './components/slots-table.vue';
 import SlotsRow from './components/slots-row.vue';
 import AceEditor from './components/ace-editor.vue';
 
-Vue.debug = true;
-
 Vue.use(VuePatternfly);
 
 Vue.component(PropsTable.name, PropsTable);
