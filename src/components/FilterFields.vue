@@ -2,7 +2,7 @@
 <div class="filter-pf filter-fields form-group toolbar-pf-filter">
   <div class="input-group">
     <bs-dropdown :text="current.label" class="input-group-btn">
-      <li v-for="(item, name) in fields">
+      <li v-for="(item, name) in normFields">
         <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = name">
           {{item.label}}
         </a>
@@ -39,7 +39,7 @@ export default {
       default: '',
     },
     fields: {
-      type: Object,
+      type: [Array, Object],
       default() {
         return {};
       },
@@ -48,20 +48,39 @@ export default {
 
   data() {
     return {
-      selected: '',
+      normFields: [],
+      selected: 0,
     };
+  },
+
+  watch: {
+    fields: {
+      handler (fields) {
+        const normFields = [];
+        if (fields instanceof Array) {
+          for (const f of fields) {
+            normFields.push(this.fieldDefinition(f));
+          }
+        } else {
+          for (const i of Object.keys(fields)) {
+            normFields.push(this.fieldDefinition(fields[i], i));
+          }
+        }
+        this.normFields = normFields;
+      },
+      immediate: true,
+    },
   },
 
   computed: {
     current() {
-      if (!this.selected || !this.fields[this.selected]) {
-        const names = Object.keys(this.fields);
-        if (!names.length) {
+      if (!this.normFields[this.selected]) {
+        if (!this.normFields.length) {
           return {};
         }
-        this.selected = names[0];
+        this.selected = this.normFields[0];
       }
-      return this.fields[this.selected];
+      return this.normFields[this.selected];
     },
 
     isSelect() {
@@ -70,12 +89,27 @@ export default {
   },
 
   methods: {
+    fieldDefinition(field, name) {
+      if (typeof field == 'object') {
+        field = Object.assign({}, field);
+      } else {
+        field = {
+          label: field,
+        };
+      }
+      field.name = name || field.label;
+      if (!field.label) {
+        field.label = name;
+      }
+      return field;
+    },
+
     set(value) {
       if (value !== null) {
         if (typeof value == 'object') {
-          this.$emit('filter', this.selected, value.target.value);
+          this.$emit('filter', this.current.name, value.target.value);
         } else {
-          this.$emit('filter', this.selected, value);
+          this.$emit('filter', this.current.name, value);
         }
       }
       if (this.isSelect) {

@@ -75,7 +75,7 @@ export default {
       },
     },
     filterFields: {
-      type: Object,
+      type: [Array, Object],
       default() {
         return {};
       },
