@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [0.0.4] - 2016-12-22
 ### Added
 - Bundled a VueStrap build since there is no working distribution available at this moment. Every VueStrap component is installed together with VuePatternfly but using the "bs-" prefix.
 - Implemented the "attached" property on pf-toolbar so that it can be displayed attached to an adjacient table view.
@@ -53,6 +55,7 @@ disabled, as per PatternFly design guidelines.
 - pf-toolbar component
 - pf-utilization-bar-chart component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.3...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.4...HEAD
+[0.0.4]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.1...v0.0.2
