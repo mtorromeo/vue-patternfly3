@@ -19,6 +19,7 @@
       <props-row name="horizontal" description="Enable horizontal navigation layout" v-model="$root.layoutHorizontal"></props-row>
       <props-row name="icons" description="Display icons in the vertical navigation enabling a compact menu when collapsed" v-model="$root.layoutIcons"></props-row>
       <props-row name="collapsable" description="Collapse the vertical navigation menu" v-model="$root.layoutCollapsable"></props-row>
+      <props-row name="nomargin" description="Disable margins in the main container" v-model="$root.layoutNomargin"></props-row>
       <props-row name="disabled" description="Disable all layout elements" v-model="$root.layoutDisabled"></props-row>
     </props-table>
 

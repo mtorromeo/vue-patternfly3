@@ -35,7 +35,7 @@
   </div>
 
   <div :class="{
-      'container-fluid': !disabled,
+      'container-fluid': !disabled && !nomargin,
       'collapsed-nav': !disabled && collapsed,
       'container-pf-nav-pf-vertical': !disabled && !horizontal,
       'hidden-icons-pf': !disabled && !icons,
@@ -66,6 +66,11 @@ export default {
     },
 
     disabled: {
+      type: Boolean,
+      default: false,
+    },
+
+    nomargin: {
       type: Boolean,
       default: false,
     },

@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- Implemented the "nomargin" property on pf-layout.
 
 ## [0.0.4] - 2016-12-22
 ### Added

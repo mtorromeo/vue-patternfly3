@@ -23,6 +23,7 @@ new Vue({
   data() {
     return {
       layoutHorizontal: false,
+      layoutNomargin: false,
       layoutDisabled: false,
       layoutIcons: true,
       layoutCollapsable: true,

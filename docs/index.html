@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="docs.css">
 </head>
 <body>
-  <pf-layout id="app" :icons="layoutIcons" :collapsable="layoutCollapsable" :horizontal="layoutHorizontal" :disabled="layoutDisabled || $route.path == '/'">
+  <pf-layout id="app" :icons="layoutIcons" :collapsable="layoutCollapsable" :horizontal="layoutHorizontal" :disabled="layoutDisabled || $route.path == '/'" :nomargin="layoutNomargin">
     <router-link slot="brand" to="/" :exact="true">
       <a class="navbar-brand">
         <span class="navbar-brand-name">Vue PatternFly</span>
