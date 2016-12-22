@@ -12,7 +12,7 @@
       }">
     <input v-if="prop.type == 'Boolean'" type="checkbox" :checked="value" @change="update">
     <select v-else-if="options.length" class="form-control" @change="update">
-      <option v-for="o in options" :value="o">{{o}}</option>
+      <option v-for="o in options" :value="o" :selected="o == value">{{o}}</option>
     </select>
     <input v-else-if="!code" type="text" class="form-control" :value="editableValue" @keyup="update">
     <ace-editor v-else class="form-control" :value="editableValue" @input="update" lang="javascript"></ace-editor>

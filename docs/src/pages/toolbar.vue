@@ -13,11 +13,11 @@
     </ol>
 
     <pf-toolbar ref="toolbar"
-                @sort-change="setSort"
                 :view="toolbar.view"
                 :views="toolbar.views"
-                @view="toolbar.view = $event"
-                @filters="toolbar.filters = $event"
+                @view="toolbar.view = arguments[0]"
+                @filters="toolbar.filters = arguments[0]"
+                @columns="toolbar.pickedColumns = arguments[0]"
                 :filter-fields="[{
                   title: 'Name',
                 }, {
@@ -28,8 +28,15 @@
                   title: 'Birth Month',
                   placeholder: 'Filter by Birth Month...',
                   values: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                }]" :sort-fields="toolbar.sortFields"
-                :result-count="toolbar.resultCount">
+                }]"
+                @sort-by="setSort"
+                :sort-by="toolbar.sortBy"
+                :sort-direction="toolbar.sortDirection"
+                :sort-fields="toolbar.sortFields"
+                :result-count="toolbar.resultCount"
+                :attached="toolbar.attached"
+                :columns="toolbar.columns"
+                :picked-columns="toolbar.pickedColumns">
       <button class="btn btn-default" type="button" title="Title 1" @click="$refs.toolbar.addFilter('Test', 1)">
         Action 1
       </button>
@@ -57,8 +64,13 @@
     <props-table :component-props="toolbarProps">
       <props-row name="view" description="Active view" v-model="toolbar.view"></props-row>
       <props-row name="views" description="List of available views (names separated by comma)" v-model="toolbar.views"></props-row>
+      <props-row name="sortBy" description="Selected sorting field" v-model="toolbar.sortBy"></props-row>
+      <props-row name="sortDirection" description="Selected sorting direction" v-model="toolbar.sortDirection" :options="['ascending', 'descending']"></props-row>
       <props-row name="sortFields" description="List of available fields for sorting" v-model="toolbar.sortFields" code></props-row>
+      <props-row name="columns" description="List of available columns to display" v-model="toolbar.columns" code></props-row>
+      <props-row name="pickedColumns" description="List of available columns to display" v-model="toolbar.pickedColumns" code></props-row>
       <props-row name="resultCount" description="Number of elements matching the filter criteria" v-model="toolbar.resultCount"></props-row>
+      <props-row name="attached" description="Use the layout for the toolbar attached to an adjacient table" v-model="toolbar.attached"></props-row>
     </props-table>
   </section>
 </article>
@@ -77,20 +89,24 @@ export default {
         view: 'table',
         views: 'table,card,list',
         filters: [],
-        sortFields: [{
-          title: 'Name',
-        }, {
-          title: 'Date',
-        }],
+        sortBy: 'date',
+        sortDirection: 'ascending',
+        sortFields: {
+          name: 'Name',
+          date: 'Date',
+        },
+        columns: ['Name', 'Date'],
+        pickedColumns: ['Name'],
         resultCount: 0,
+        attached: false,
       },
     };
   },
 
   methods: {
-    setSort(field, ascending) {
-      this.toolbar.sortField = field;
-      this.toolbar.sortAscending = ascending;
+    setSort(field, direction) {
+      this.toolbar.sortBy = field;
+      this.toolbar.sortDirection = direction;
     },
     addFilter(filter, value) {
       const f = {};
