@@ -18,7 +18,6 @@ import Tooltip from './directives/tooltip';
 
 import VueStrap from './vue-strap';
 
-
 const VuePatternfly = {
   AggregateStatusCard,
   C3Chart,

@@ -1,3 +1,17 @@
+.tooltip {
+  display: none;
+  transition: opacity .15s;
+}
+
+.tooltip.tooltip-open-transitionend {
+  display: block;
+}
+
+.tooltip.tooltip-after-open {
+  opacity: .9;
+}
+
+
 .card-pf-heading-no-bottom {
   margin: 0 -20px 0px;
   padding: 0 20px 0;

@@ -31,7 +31,6 @@ import tab from 'vue-strap/src/Tab.vue';
 import tabGroup from 'vue-strap/src/TabGroup.vue';
 import tabs from 'vue-strap/src/Tabs.vue';
 import toggleButton from 'vue-strap/src/ToggleButton.vue';
-import tooltip from 'vue-strap/src/Tooltip.vue';
 import typeahead from 'vue-strap/src/Typeahead.vue';
 
 const directives = {
@@ -71,7 +70,6 @@ const VueStrap = {
   tabGroup,
   tabs,
   toggleButton,
-  tooltip,
   typeahead,
 };
 

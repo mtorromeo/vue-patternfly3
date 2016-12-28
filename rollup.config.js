@@ -42,4 +42,7 @@ export default {
     }),
     commonjs(),
   ],
+  moduleContext: {
+    'node_modules/tether-tooltip/dist/js/tooltip.js': 'window',
+  },
 };

@@ -35,6 +35,7 @@
   "dependencies": {
     "c3": "^0.4.11",
     "patternfly": "^3.14.0",
+    "tether-tooltip": "^1.2.0",
     "vue": "^2.1.0",
     "vue-strap": "yuche/vue-strap#v2"
   },

@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - Implemented the "nomargin" property on pf-layout.
+- Implemented v-tooltip directive using tether-tooltip.
 
 ### Fixed
 - Display the filter label instead of the filter name in the active filters view.
