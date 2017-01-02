@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.0.6] - 2017-01-02
+### Fixed
+- Rebuild with Vue 2.1.8
+
 ## [0.0.5] - 2016-12-28
 ### Added
 - Implemented the "nomargin" property on pf-layout.
