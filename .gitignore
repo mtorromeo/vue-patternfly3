@@ -4,6 +4,7 @@
 *.map
 Thumbs.db
 .*
+!.ignore
 !.git*
 !.babelrc
 !.eslint*
