@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Fixed
+- Fixed display of column picker in the pf-toolbar when the sort and/or list controls are disabled.
 
 ## [0.0.6] - 2017-01-02
 ### Fixed
@@ -68,7 +70,8 @@ disabled, as per PatternFly design guidelines.
 - pf-toolbar component
 - pf-utilization-bar-chart component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.5...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.6...HEAD
+[0.0.6]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.2...v0.0.3
