@@ -203,7 +203,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 h5.form-group[_v-3RyaW5nJyk] {
   display: inline-block;
   line-height: 26.66666667px;
@@ -251,6 +251,10 @@ h5.form-group[_v-3RyaW5nJyk] {
 .toolbar-pf .column-picker {
   display: inline-block;
   margin-left: 10px;
+}
+
+.toolbar-pf .column-picker:first-child {
+  margin-left: 0;
 }
 
 .dropdown-kebab-pf.invisible {
