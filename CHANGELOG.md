@@ -5,10 +5,10 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Fixed display of column picker in the pf-toolbar when the sort and/or list controls are disabled.
 
-## [0.0.6] - 2017-01-02
 ### Changed
 - pf-column-picker emits picked columns in the same order as they are listed.
 
+## [0.0.6] - 2017-01-02
 ### Fixed
 - Rebuild with Vue 2.1.8.
 
