@@ -5,7 +5,7 @@
   <div class="col-sm-12">
     <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
       <pf-filter-fields @filter="addFilter" :fields="filterFields" v-if="showFilter"></pf-filter-fields>
-      <div class="form-group" v-if="showSorter || showColumnSelector">
+      <div class="form-group" v-if="showSorter || showColumnPicker">
         <pf-sort :fields="sortFields" v-if="showSorter" :sortBy="sortBy" :direction="sortDirection" @change="setSortBy"></pf-sort>
 
         <pf-column-picker ref="colpicker" v-if="showColumnPicker" :columns="columns" :value="pickedColumns" @input="setPickedColumns"></pf-column-picker>
@@ -135,7 +135,7 @@ export default {
       return Object.keys(this.filterFields).length;
     },
     showColumnPicker() {
-      return this.activeView == 'table' && this.columns.length;
+      return (this.activeView == 'table' || !Object.keys(this.viewList).length) && this.columns.length;
     },
     showCount() {
       return !this.showResultFilter && typeof this.resultCount != 'undefined';
