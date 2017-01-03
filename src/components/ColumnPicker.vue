@@ -53,7 +53,14 @@ export default {
       return this.columns instanceof Array ? column : i;
     },
     setValue() {
-      this.$emit('input', this.iValue);
+      const columns = this.columns instanceof Array ? this.columns : Object.keys(this.columns);
+      const sortedValue = [];
+      for (const value of columns) {
+        if (this.iValue.indexOf(value) >= 0) {
+          sortedValue.push(value);
+        }
+      }
+      this.$emit('input', sortedValue);
     },
   },
 
