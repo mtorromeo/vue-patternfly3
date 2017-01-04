@@ -7,6 +7,7 @@ import LayoutPage from './pages/layout.vue';
 import NotificationsPage from './pages/notifications.vue';
 import CardsPage from './pages/cards.vue';
 import ToolbarPage from './pages/toolbar.vue';
+import TablePage from './pages/table.vue';
 import ComponentsPage from './pages/components.vue';
 
 Vue.use(VueRouter);
@@ -30,6 +31,9 @@ const router = new VueRouter({
     }, {
       path: '/toolbar',
       component: ToolbarPage,
+    }, {
+      path: '/table',
+      component: TablePage,
     }, {
       path: '/components',
       component: ComponentsPage,

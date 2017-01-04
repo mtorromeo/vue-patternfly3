@@ -31,6 +31,9 @@
       <router-link tag="li" active-class="active" to="/toolbar" :exact="true">
         <a>Toolbar</a>
       </router-link>
+      <router-link tag="li" active-class="active" to="/table" :exact="true">
+        <a>Table</a>
+      </router-link>
       <router-link tag="li" active-class="active" to="/notifications" :exact="true">
         <a>Cards</a>
       </router-link>
@@ -59,6 +62,12 @@
         <a>
           <span class="fa fa-columns" title="Toolbar"></span>
           <span class="list-group-item-value">Toolbar</span>
+        </a>
+      </router-link>
+      <router-link tag="li" class="list-group-item" active-class="active" to="/table" :exact="true">
+        <a>
+          <span class="fa fa-table" title="Table"></span>
+          <span class="list-group-item-value">Table</span>
         </a>
       </router-link>
       <router-link tag="li" class="list-group-item" active-class="active" to="/cards" :exact="true">

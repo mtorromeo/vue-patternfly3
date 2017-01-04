@@ -14,6 +14,7 @@ import FilterResults from './components/FilterResults.vue';
 import Notifications from './components/Notifications.vue';
 import Notification from './components/Notification.vue';
 import Layout from './components/Layout.vue';
+import Table from './components/Table.vue';
 import Tooltip from './directives/tooltip';
 
 import VueStrap from './vue-strap';
@@ -34,6 +35,7 @@ const VuePatternfly = {
   Notification,
   Tooltip,
   Layout,
+  Table,
 };
 
 VuePatternfly.install = function(Vue) {
