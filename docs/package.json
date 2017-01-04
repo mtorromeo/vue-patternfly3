@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "dev": "webpack-dev-server",
+    "dev": "webpack-dev-server --inline",
     "compile": "webpack -cp"
   },
   "dependencies": {},
