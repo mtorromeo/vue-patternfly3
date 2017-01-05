@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.0.7] - 2017-01-05
 ### Added
 - Implemented the pf-table component.
 - Implemented the flex property on pf-layout.
@@ -77,7 +77,8 @@ disabled, as per PatternFly design guidelines.
 - pf-toolbar component
 - pf-utilization-bar-chart component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.6...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.7...HEAD
+[0.0.7]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.5...v0.0.6
 [0.0.5]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.4...v0.0.5
 [0.0.4]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.3...v0.0.4
