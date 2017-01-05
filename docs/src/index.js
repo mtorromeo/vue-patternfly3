@@ -22,6 +22,7 @@ new Vue({
 
   data() {
     return {
+      layoutFlex: false,
       layoutHorizontal: false,
       layoutNomargin: false,
       layoutDisabled: false,

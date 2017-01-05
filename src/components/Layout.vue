@@ -1,5 +1,7 @@
 <template>
-<div>
+<div :class="{
+  'pf-layout-flex': flex,
+}">
   <nav v-if="!disabled" class="navbar" :class="{
       'navbar-pf': horizontal,
       'navbar-pf-vertical': !horizontal,
@@ -35,6 +37,7 @@
   </div>
 
   <div :class="{
+      'container-flex': !disabled && flex,
       'container-fluid': !disabled && !nomargin,
       'collapsed-nav': !disabled && collapsed,
       'container-pf-nav-pf-vertical': !disabled && !horizontal,
@@ -56,6 +59,11 @@ export default {
     },
 
     horizontal: {
+      type: Boolean,
+      default: false,
+    },
+
+    flex: {
       type: Boolean,
       default: false,
     },
@@ -116,6 +124,27 @@ export default {
 </script>
 
 <style>
+.pf-layout-flex {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pf-layout-flex > .navbar {
+  flex-shrink: 0;
+  position: initial;
+}
+
+.pf-layout-flex > .container-flex {
+  overflow: auto;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 .navbar-brand-txt {
   line-height: 34px;
 }

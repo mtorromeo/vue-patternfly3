@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - Implemented the pf-table component.
+- Implemented the flex property on pf-layout.
 
 ### Fixed
 - Fixed display of column picker in the pf-toolbar when the sort and/or list controls are disabled.
