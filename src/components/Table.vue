@@ -12,7 +12,11 @@
           <input ref="checkSelectAll" type="checkbox" @change="changeSelectAll">
         </label>
       </th>
-      <th v-for="column in columns">{{column}}</th>
+      <th v-for="column in columns" :class="{
+        sorting: sortable && column != sortBy,
+        sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
+        sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
+      }" @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')">{{column}}</th>
     </tr>
   </thead>
   <tfoot v-if="pages > 1">
@@ -87,12 +91,19 @@ export default {
     bordered: Boolean,
     hover: Boolean,
     selectable: Boolean,
+    sortable: Boolean,
+    sortBy: String,
+    sortDirection: String,
   },
 
   methods: {
     setPage(page) {
       page = Math.max(Math.min(page, this.pages), 1);
       this.$emit('change-page', page);
+    },
+
+    setSortBy(field, direction) {
+      this.$emit('sort-by', field, direction);
     },
 
     changeSelectAll() {

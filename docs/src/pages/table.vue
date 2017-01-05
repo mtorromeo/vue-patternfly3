@@ -9,8 +9,12 @@
               :rows="table.rows"
               :striped="table.striped"
               :bordered="table.bordered"
+              :hover="table.hover"
               :selectable="table.selectable"
-              :hover="table.hover">
+              :sortable="table.sortable"
+              :sort-by="table.sortBy"
+              :sort-direction="table.sortDirection"
+              @sort-by="setSort">
       <template scope="data">
         <td style="width:50px">#{{data.row.id}}</td>
         <td>{{data.row.name}}</td>
@@ -31,6 +35,7 @@
       <props-row name="bordered" description="Borders on all sides of the table and cells" v-model="table.bordered"></props-row>
       <props-row name="hover" description="Enable hover state on table rows" v-model="table.hover"></props-row>
       <props-row name="selectable" description="Make every table row selectable" v-model="table.selectable"></props-row>
+      <props-row name="sortable" description="Enable sorting by table columns" v-model="table.sortable"></props-row>
       <props-row name="columns" description="List of columns" v-model="table.columns" code></props-row>
       <props-row name="rows" description="List of rows" v-model="table.rows" code></props-row>
     </props-table>
@@ -96,8 +101,18 @@ export default {
         bordered: true,
         hover: true,
         selectable: true,
+        sortable: true,
+        sortBy: '',
+        sortDirection: '',
       },
     };
   },
+
+  methods: {
+    setSort(field, direction) {
+      this.table.sortBy = field;
+      this.table.sortDirection = direction;
+    },
+  }
 };
 </script>
