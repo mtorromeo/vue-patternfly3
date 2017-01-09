@@ -136,13 +136,14 @@ export default {
 
 .pf-layout-flex > .navbar {
   flex-shrink: 0;
-  position: initial;
+  position: relative;
 }
 
 .pf-layout-flex > .container-flex {
   overflow: auto;
   margin-left: 0;
   margin-right: 0;
+  flex-grow: 1;
 }
 
 .navbar-brand-txt {

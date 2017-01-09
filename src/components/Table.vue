@@ -131,10 +131,15 @@ export default {
 </script>
 
 <style>
+table.dataTable {
+  height: auto;
+}
+
 .table-view-pf-select label {
   display: initial;
   font-weight: initial;
 }
+
 .table-view-pf-select input[type=checkbox] {
   margin: 0;
   position: relative;
