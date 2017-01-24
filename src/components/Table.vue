@@ -1,65 +1,92 @@
 <template>
-<table class="table dataTable" role="grid" :class="{
-  'table-striped': striped,
-  'table-bordered': bordered,
-  'table-hover': hover,
-}">
-  <thead>
-    <tr row="row">
-      <th v-if="selectable" class="table-view-pf-select" aria-label="Select all rows">
-        <label>
-          <span class="sr-only">Select all rows</span>
-          <input ref="checkSelectAll" type="checkbox" @change="changeSelectAll">
-        </label>
-      </th>
-      <th v-for="column in columns" :class="{
-        sorting: sortable && column != sortBy,
-        sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
-        sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
-      }" @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')">{{column}}</th>
-    </tr>
-  </thead>
-  <tfoot v-if="pages > 1">
-    <tr>
-      <td class="table-summary" :colspan="columns.length">
-        <!-- <div class="summary"></div> -->
+<div class="table-wrapper" :style="{'margin-right': wrapperMargin}">
+  <table v-if="scrollable" class="table dataTable table-head-clone" role="grid" :class="{
+    'table-striped': striped,
+    'table-bordered': bordered,
+    'table-hover': hover,
+  }">
+    <thead ref="thead-clone">
+      <tr role="row">
+        <th v-if="selectable" class="table-view-pf-select" aria-label="Select all rows">
+          <label>
+            <span class="sr-only">Select all rows</span>
+            <input type="checkbox" @change="changeSelectAll">
+          </label>
+        </th>
+        <th v-for="(column, i) in columns" :class="{
+          sorting: sortable && column != sortBy,
+          sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
+          sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
+        }" @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')">{{column}}</th>
+      </tr>
+    </thead>
+  </table>
 
-        <span class="dataTables_paginate paginate-control" aria-label="Search results pages">
-          <ul class="pagination">
-            <li class="first" :class="{disabled: page == 1}" title="First" @click="setPage(1)">
-              <span class="i fa fa-angle-double-left" aria-hidden="true"></span>
-            </li>
-            <li class="prev" :class="{disabled: page <= 1}" title="Prev" @click="setPage(page - 1)">
-              <span class="i fa fa-angle-left" aria-hidden="true"></span>
-            </li>
-          </ul>
-          <div class="pagination-input">
-            <input type="text" class="paginate_input" v-model="page" :style="{
-              width: (.7 * (pages.toString().length + 1)) + 'em'
-            }">
-            <span class="paginate_of"> of <b>{{pages}}</b></span>
-          </div>
-          <ul class="pagination">
-            <li class="next" :class="{disabled: page >= pages}" title="Next" @click="setPage(page + 1)">
-              <span class="i fa fa-angle-right" aria-hidden="true"></span>
-            </li>
-            <li class="last" :class="{disabled: page == pages}" title="Last" @click="setPage(pages)">
-              <span class="i fa fa-angle-double-right" aria-hidden="true"></span>
-            </li>
-          </ul>
-        </span>
-      </td>
-    </tr>
-  </tfoot>
-  <tbody>
-    <pf-table-row ref="row" v-for="(row, i) in rows" :num="i" :selectable="selectable">
-      <slot :row="row"></slot>
-    </pf-table-row>
-  </tbody>
-</table>
+  <div class="table-overflow-container" :style="{'margin-right': tableMargin}">
+    <table class="table dataTable" role="grid" :class="{
+      'table-striped': striped,
+      'table-bordered': bordered,
+      'table-hover': hover,
+    }">
+      <thead ref="thead">
+        <tr role="row">
+          <th v-if="selectable" class="table-view-pf-select" aria-label="Select all rows">
+            <label>
+              <span class="sr-only">Select all rows</span>
+              <input type="checkbox" @change="changeSelectAll">
+            </label>
+          </th>
+          <th v-for="column in columns" :class="{
+            sorting: sortable && column != sortBy,
+            sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
+            sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
+          }" @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')">{{column}}</th>
+        </tr>
+      </thead>
+      <tfoot v-if="pages > 1">
+        <tr>
+          <td class="table-summary" :colspan="columns.length">
+            <!-- <div class="summary"></div> -->
+
+            <span class="dataTables_paginate paginate-control" aria-label="Search results pages">
+              <ul class="pagination">
+                <li class="first" :class="{disabled: page == 1}" title="First" @click="setPage(1)">
+                  <span class="i fa fa-angle-double-left" aria-hidden="true"></span>
+                </li>
+                <li class="prev" :class="{disabled: page <= 1}" title="Prev" @click="setPage(page - 1)">
+                  <span class="i fa fa-angle-left" aria-hidden="true"></span>
+                </li>
+              </ul>
+              <div class="pagination-input">
+                <input type="text" class="paginate_input" v-model="page" :style="{
+                  width: (.7 * (pages.toString().length + 1)) + 'em'
+                }">
+                <span class="paginate_of"> of <b>{{pages}}</b></span>
+              </div>
+              <ul class="pagination">
+                <li class="next" :class="{disabled: page >= pages}" title="Next" @click="setPage(page + 1)">
+                  <span class="i fa fa-angle-right" aria-hidden="true"></span>
+                </li>
+                <li class="last" :class="{disabled: page == pages}" title="Last" @click="setPage(pages)">
+                  <span class="i fa fa-angle-double-right" aria-hidden="true"></span>
+                </li>
+              </ul>
+            </span>
+          </td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <pf-table-row ref="row" v-for="(row, i) in rows" :num="i" :selectable="selectable">
+          <slot :row="row"></slot>
+        </pf-table-row>
+      </tbody>
+    </table>
+  </div>
+</div>
 </template>
 
 <script>
+import ResizeObserver from 'resize-observer-polyfill';
 import PfTableRow from './TableRow.vue';
 
 export default {
@@ -91,9 +118,76 @@ export default {
     bordered: Boolean,
     hover: Boolean,
     selectable: Boolean,
+    scrollable: Boolean,
     sortable: Boolean,
     sortBy: String,
     sortDirection: String,
+  },
+
+  data() {
+    return {
+      wrapperOffset: 0,
+    };
+  },
+
+  mounted() {
+    this.resizeObserver = new ResizeObserver((entries) => {
+      if (!this.scrollable) {
+        return;
+      }
+
+      const theadClone = this.$refs['thead-clone'];
+
+      for (const entry of entries) {
+        if (!entry.target.parentElement) {
+          continue;
+        }
+
+        const cr = entry.contentRect;
+
+        if (entry.target.tagName == 'THEAD') {
+          this.wrapperOffset = theadClone.clientWidth - cr.width;
+          continue;
+        }
+
+        let i = Array.prototype.indexOf.call(entry.target.parentElement.children, entry.target);
+        const lastCol = i == entry.target.parentElement.children.length - 1;
+        const thClone = theadClone.firstChild.children[i];
+
+        if (this.selectable) {
+          i -= 1;
+        }
+
+        if (i < 0) {
+          continue;
+        }
+
+        if (lastCol) {
+          thClone.style.width = 'auto';
+        } else {
+          thClone.style.width = `${cr.width + 22}px`;
+        }
+      }
+    });
+
+    this.resizeObserver.observe(this.$refs.thead);
+    this.observeThead();
+  },
+
+  computed: {
+    wrapperMargin() {
+      if (!this.scrollable) {
+        return 0;
+      }
+      return `${this.wrapperOffset}px`;
+    },
+
+    tableMargin() {
+      if (!this.scrollable) {
+        return 0;
+      }
+      return `-${this.wrapperOffset}px`;
+    },
   },
 
   methods: {
@@ -106,8 +200,8 @@ export default {
       this.$emit('sort-by', field, direction);
     },
 
-    changeSelectAll() {
-      this.setAllSelected(this.$refs.checkSelectAll.checked);
+    changeSelectAll(e) {
+      this.setAllSelected(e.target.checked);
     },
 
     setAllSelected(selected = true) {
@@ -126,11 +220,46 @@ export default {
       }
       return selected;
     },
+
+    observeThead() {
+      const row = this.$refs.thead.firstChild;
+      for (let i = 0; i < row.children.length; i++) {
+        if (i == 0 && this.selectable) {
+          continue;
+        }
+        this.resizeObserver.observe(row.children[i]);
+      }
+    },
+  },
+
+  watch: {
+    columns: {
+      handler() {
+        this.$nextTick(this.observeThead);
+      },
+      deep: true,
+    },
   },
 };
 </script>
 
 <style>
+.table-wrapper {
+  position: relative;
+}
+
+.table-head-clone {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.table-overflow-container {
+  overflow: auto;
+  height: 250px;
+}
+
 table.dataTable {
   height: auto;
 }

@@ -12,6 +12,7 @@
               :hover="table.hover"
               :selectable="table.selectable"
               :sortable="table.sortable"
+              :scrollable="table.scrollable"
               :sort-by="table.sortBy"
               :sort-direction="table.sortDirection"
               @sort-by="setSort">
@@ -36,6 +37,7 @@
       <props-row name="hover" description="Enable hover state on table rows" v-model="table.hover"></props-row>
       <props-row name="selectable" description="Make every table row selectable" v-model="table.selectable"></props-row>
       <props-row name="sortable" description="Enable sorting by table columns" v-model="table.sortable"></props-row>
+      <props-row name="scrollable" description="Enable scrolling with fixed headers" v-model="table.scrollable"></props-row>
       <props-row name="columns" description="List of columns" v-model="table.columns" code></props-row>
       <props-row name="rows" description="List of rows" v-model="table.rows" code></props-row>
     </props-table>
@@ -96,12 +98,97 @@ export default {
             city: 'Boston',
             state: 'Massachusetts'
           },
+          {
+            id: 1,
+            name: 'John',
+            surname: 'Smith',
+            city: 'New York',
+            state: 'New York'
+          },
+          {
+            id: 2,
+            name: 'Joe',
+            surname: 'Black',
+            city: 'Miami',
+            state: 'Florida'
+          },
+          {
+            id: 3,
+            name: 'David',
+            surname: 'White',
+            city: 'Boston',
+            state: 'Massachusetts'
+          },
+          {
+            id: 1,
+            name: 'John',
+            surname: 'Smith',
+            city: 'New York',
+            state: 'New York'
+          },
+          {
+            id: 2,
+            name: 'Joe',
+            surname: 'Black',
+            city: 'Miami',
+            state: 'Florida'
+          },
+          {
+            id: 3,
+            name: 'David',
+            surname: 'White',
+            city: 'Boston',
+            state: 'Massachusetts'
+          },
+          {
+            id: 1,
+            name: 'John',
+            surname: 'Smith',
+            city: 'New York',
+            state: 'New York'
+          },
+          {
+            id: 2,
+            name: 'Joe',
+            surname: 'Black',
+            city: 'Miami',
+            state: 'Florida'
+          },
+          {
+            id: 3,
+            name: 'David',
+            surname: 'White',
+            city: 'Boston',
+            state: 'Massachusetts'
+          },
+          {
+            id: 1,
+            name: 'John',
+            surname: 'Smith',
+            city: 'New York',
+            state: 'New York'
+          },
+          {
+            id: 2,
+            name: 'Joe',
+            surname: 'Black',
+            city: 'Miami',
+            state: 'Florida'
+          },
+          {
+            id: 3,
+            name: 'David',
+            surname: 'White',
+            city: 'Boston',
+            state: 'Massachusetts'
+          },
         ],
         striped: true,
         bordered: true,
         hover: true,
         selectable: true,
         sortable: true,
+        scrollable: true,
         sortBy: '',
         sortDirection: '',
       },
