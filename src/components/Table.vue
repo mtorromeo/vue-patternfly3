@@ -45,7 +45,7 @@
       </thead>
       <tfoot v-if="pages > 1">
         <tr>
-          <td class="table-summary" :colspan="columns.length">
+          <td class="table-summary" :colspan="columns.length + (selectable ? 1 : 0)">
             <!-- <div class="summary"></div> -->
 
             <span class="dataTables_paginate paginate-control" aria-label="Search results pages">

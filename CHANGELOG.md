@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Fixed
+- Fixed the pf-table footer colspan when the selectable property is enabled.
+
 ## [0.0.7] - 2017-01-05
 ### Added
 - Implemented the pf-table component.
