@@ -130,6 +130,9 @@ export default {
       }
 
       const theadClone = this.$refs['thead-clone'];
+      if (!theadClone) {
+        return;
+      }
 
       for (const entry of entries) {
         if (!entry.target.parentElement) {
