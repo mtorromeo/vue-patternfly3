@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Fixed the pf-table footer colspan when the selectable property is enabled.
+- Fixed runtime errors in IE.
+
+### Changed
+- Moved build to webpack to fix runtime errors in IE.
 
 ## [0.0.7] - 2017-01-05
 ### Added
