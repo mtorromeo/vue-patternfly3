@@ -43,14 +43,16 @@
           }" @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')">{{column}}</th>
         </tr>
       </thead>
+
       <tfoot v-if="pages > 1">
         <tr>
           <td class="table-summary" :colspan="columns.length + (selectable ? 1 : 0)">
             <!-- <div class="summary"></div> -->
-            <pf-paginate-control :page="page" :pages="pages" @change="$emit('change-page', $arguments[0])"></pf-paginate-control>
+            <pf-paginate-control :page="page" :pages="pages" @change="$emit('change-page', arguments[0])"></pf-paginate-control>
           </td>
         </tr>
       </tfoot>
+
       <tbody>
         <pf-table-row ref="row" v-for="(row, i) in rows" :num="i" :selectable="selectable">
           <slot :row="row"></slot>
@@ -68,7 +70,7 @@
       <tr>
         <td class="table-summary" :colspan="columns.length + (selectable ? 1 : 0)">
           <!-- <div class="summary"></div> -->
-          <pf-paginate-control :page="page" :pages="pages" @change="$emit('change-page', $arguments[0])"></pf-paginate-control>
+          <pf-paginate-control :page="page" :pages="pages" @change="$emit('change-page', arguments[0])"></pf-paginate-control>
         </td>
       </tr>
     </tfoot>

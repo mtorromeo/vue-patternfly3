@@ -17,6 +17,7 @@
               :scrollable="table.scrollable"
               :sort-by="table.sortBy"
               :sort-direction="table.sortDirection"
+              @change-page="table.page = arguments[0]"
               @sort-by="setSort">
       <template scope="data">
         <td style="width:50px">#{{data.row.id}}</td>
