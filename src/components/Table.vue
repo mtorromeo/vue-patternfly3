@@ -13,7 +13,7 @@
             <input type="checkbox" @change="changeSelectAll">
           </label>
         </th>
-        <th v-for="(column, i) in columns" :class="{
+        <th v-for="column in columns" :class="{
           sorting: sortable && column != sortBy,
           sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
           sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
@@ -58,6 +58,21 @@
       </tbody>
     </table>
   </div>
+
+  <table v-if="scrollable" class="table dataTable table-foot-clone" role="grid" :class="{
+    'table-striped': striped,
+    'table-bordered': bordered,
+    'table-hover': hover,
+  }">
+    <tfoot v-if="pages > 1">
+      <tr>
+        <td class="table-summary" :colspan="columns.length + (selectable ? 1 : 0)">
+          <!-- <div class="summary"></div> -->
+          <pf-paginate-control :page="page" :pages="pages" @change="$emit('change-page', $arguments[0])"></pf-paginate-control>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
 </div>
 </template>
 
@@ -219,16 +234,29 @@ export default {
   position: relative;
 }
 
-.table-head-clone {
+.table-head-clone,
+.table-foot-clone {
   position: absolute;
-  top: 0;
   left: 0;
   z-index: 1;
+}
+
+.table-head-clone {
+  top: 0;
+}
+
+.table-foot-clone {
+  bottom: 0;
+  background-color: white;
 }
 
 .table-overflow-container {
   overflow: auto;
   height: 250px;
+}
+
+.table > tfoot > tr > td.table-summary {
+  padding: 0;
 }
 
 table.dataTable {

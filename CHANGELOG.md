@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- Implemented the scrollable property on pf-table which allows for fixed header and footer with scrollable rows.
+
 ### Fixed
 - Fixed the pf-table footer colspan when the selectable property is enabled.
 
