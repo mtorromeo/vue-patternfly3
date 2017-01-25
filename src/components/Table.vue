@@ -170,6 +170,10 @@ export default {
     this.observeThead();
   },
 
+  destroyed() {
+    this.resizeObserver.disconnect();
+  },
+
   computed: {
     wrapperMargin() {
       if (!this.scrollable) {
