@@ -124,14 +124,18 @@ export default {
 </script>
 
 <style>
+.pf-layout-flex,
+.container-flex {
+  display: flex;
+  flex-direction: column;
+}
+
 .pf-layout-flex {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
-  display: flex;
-  flex-direction: column;
 }
 
 .pf-layout-flex > .navbar {

@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Fixed
 - Removed incorrect fixed height in scrollable tables.
+- Enabled flex-layout on container-flex.
 
 ## [0.0.8] - 2017-01-25
 ### Added
