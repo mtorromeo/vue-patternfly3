@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.0.9] - 2017-01-25
 ### Fixed
 - Removed incorrect fixed height in scrollable tables.
 - Enabled flex-layout on container-flex.
@@ -94,7 +94,8 @@ disabled, as per PatternFly design guidelines.
 - pf-toolbar component
 - pf-utilization-bar-chart component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.8...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.9...HEAD
+[0.0.9]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.8...v0.0.9
 [0.0.8]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.7...v0.0.8
 [0.0.7]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.6...v0.0.7
 [0.0.6]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.5...v0.0.6
