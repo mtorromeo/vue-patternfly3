@@ -158,7 +158,7 @@ export default {
         if (lastCol) {
           thClone.style.width = 'auto';
         } else {
-          thClone.style.width = `${cr.width + 22}px`;
+          thClone.style.width = `${entry.target.clientWidth + 1}px`;
         }
       }
     });
