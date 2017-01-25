@@ -1,5 +1,6 @@
 .home .jumbotron {
-  background: -webkit-linear-gradient(#1d1d1d,#040404);
+  background: #1d1d1d;
+  background: linear-gradient(to bottom, #1d1d1d 0%,#040404 100%);
   text-align: center;
   color: #e4e4e4;
 }
