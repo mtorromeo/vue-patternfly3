@@ -15,6 +15,7 @@ import Notifications from './components/Notifications.vue';
 import Notification from './components/Notification.vue';
 import Layout from './components/Layout.vue';
 import Table from './components/Table.vue';
+import PaginateControl from './components/PaginateControl.vue';
 import Tooltip from './directives/tooltip';
 
 import VueStrap from './vue-strap';
@@ -36,6 +37,7 @@ const VuePatternfly = {
   Tooltip,
   Layout,
   Table,
+  PaginateControl,
 };
 
 VuePatternfly.install = function(Vue) {
