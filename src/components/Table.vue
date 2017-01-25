@@ -261,7 +261,7 @@ export default {
 
 .table-overflow-container {
   overflow: auto;
-  height: 250px;
+  height: 100%;
 }
 
 .table > tfoot > tr > td.table-summary {

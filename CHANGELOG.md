@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Fixed
+- Removed incorrect fixed height in scrollable tables.
+
 ## [0.0.8] - 2017-01-25
 ### Added
 - Implemented the scrollable property on pf-table which allows for fixed header and footer with scrollable rows.

@@ -18,7 +18,8 @@
               :sort-by="table.sortBy"
               :sort-direction="table.sortDirection"
               @change-page="table.page = arguments[0]"
-              @sort-by="setSort">
+              @sort-by="setSort"
+              style="height:250px">
       <template scope="data">
         <td style="width:50px">#{{data.row.id}}</td>
         <td>{{data.row.name}}</td>
