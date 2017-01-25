@@ -1,12 +1,15 @@
 <template>
 <div class="table-wrapper" :style="{'margin-right': wrapperMargin}">
-  <table v-if="scrollable" class="table dataTable table-head-clone" role="grid" :class="{
-    'table-striped': striped,
-    'table-bordered': bordered,
-    'table-hover': hover,
-  }">
+  <table v-if="scrollable"
+    class="table dataTable table-head-clone"
+    :style="{opacity: showClones ? 1 : 0}"
+    :class="{
+      'table-striped': striped,
+      'table-bordered': bordered,
+      'table-hover': hover,
+    }">
     <thead ref="thead-clone">
-      <tr role="row">
+      <tr>
         <th v-if="selectable" class="table-view-pf-select" aria-label="Select all rows">
           <label>
             <span class="sr-only">Select all rows</span>
@@ -61,11 +64,14 @@
     </table>
   </div>
 
-  <table v-if="scrollable" class="table dataTable table-foot-clone" role="grid" :class="{
-    'table-striped': striped,
-    'table-bordered': bordered,
-    'table-hover': hover,
-  }">
+  <table v-if="scrollable"
+    class="table dataTable table-foot-clone"
+    :style="{opacity: showClones ? 1 : 0}"
+    :class="{
+      'table-striped': striped,
+      'table-bordered': bordered,
+      'table-hover': hover,
+    }">
     <tfoot v-if="pages > 1">
       <tr>
         <td class="table-summary" :colspan="columns.length + (selectable ? 1 : 0)">
@@ -81,6 +87,7 @@
 <script>
 import ResizeObserver from 'resize-observer-polyfill';
 import PfTableRow from './TableRow.vue';
+import debounce from 'lodash/debounce';
 
 export default {
   name: 'pf-table',
@@ -120,10 +127,13 @@ export default {
   data() {
     return {
       wrapperOffset: 0,
+      showClones: false,
     };
   },
 
   mounted() {
+    this.syncHeaders = debounce(this.syncHeaders, 50);
+
     this.resizeObserver = new ResizeObserver((entries) => {
       if (!this.scrollable) {
         return;
@@ -142,32 +152,24 @@ export default {
         const cr = entry.contentRect;
 
         if (entry.target.tagName == 'THEAD') {
-          this.wrapperOffset = theadClone.clientWidth - cr.width;
-          continue;
-        }
-
-        let i = Array.prototype.indexOf.call(entry.target.parentElement.children, entry.target);
-        const lastCol = i == entry.target.parentElement.children.length - 1;
-        const thClone = theadClone.firstChild.children[i];
-
-        if (this.selectable) {
-          i -= 1;
-        }
-
-        if (i < 0) {
-          continue;
-        }
-
-        if (lastCol) {
-          thClone.style.width = 'auto';
+          this.wrapperOffset = theadClone.clientWidth + this.wrapperOffset - cr.width;
         } else {
-          thClone.style.width = `${entry.target.clientWidth + 1}px`;
+          this.syncHeaders();
         }
       }
     });
 
-    this.resizeObserver.observe(this.$refs.thead);
-    this.observeThead();
+    this.$watch('scrollable', () => {
+      if (this.scrollable) {
+        this.showClones = false;
+        this.resizeObserver.observe(this.$refs.thead);
+        this.observeThead();
+      } else {
+        this.resizeObserver.disconnect();
+      }
+    }, {
+      immediate: true,
+    });
   },
 
   destroyed() {
@@ -224,6 +226,34 @@ export default {
         }
         this.resizeObserver.observe(row.children[i]);
       }
+    },
+
+    syncHeaders() {
+      if (!this.$refs['thead-clone'] || !this.$refs.thead) {
+        return;
+      }
+
+      const ths = this.$refs.thead.firstChild.children;
+      const thsC = this.$refs['thead-clone'].firstChild.children;
+
+      let i = 0;
+      for (const th of ths) {
+        if (i == 0 && this.selectable) {
+          i++;
+          continue;
+        }
+
+        const thC = thsC[i];
+
+        if (i == thsC.length - 1) {
+          thC.style.width = 'auto';
+        } else {
+          thC.style.width = `${th.clientWidth + 1}px`;
+        }
+        i++;
+      }
+
+      this.showClones = true;
     },
   },
 

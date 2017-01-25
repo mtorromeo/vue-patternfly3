@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Removed incorrect fixed height in scrollable tables.
 - Enabled flex-layout on container-flex.
+- Refactored syncronization of pf-table's fixed headers. Should be more consistent.
 
 ## [0.0.8] - 2017-01-25
 ### Added
