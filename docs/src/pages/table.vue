@@ -27,6 +27,18 @@
         <td>{{data.row.city}}</td>
         <td>{{data.row.state}}</td>
       </template>
+      <template slot="action">
+        <a href="#" class="btn btn-default">
+          Action
+        </a>
+      </template>
+      <template slot="dropdown">
+        <li><a href="#">Action</a></li>
+        <li><a href="#">Another action</a></li>
+        <li><a href="#">Something else here</a></li>
+        <li role="separator" class="divider"></li>
+        <li><a href="#">Separated link</a></li>
+      </template>
     </pf-table>
 
     <h4>Related documentation</h4>
@@ -62,6 +74,16 @@
         <tr>
           <td>default</td>
           <td>Template for a single row of the table</td>
+          <td><code>row</code>: the row data</td>
+        </tr>
+        <tr>
+          <td>action</td>
+          <td>The action column. Should typically include a button.</td>
+          <td><code>row</code>: the row data</td>
+        </tr>
+        <tr>
+          <td>dropdown</td>
+          <td>The dropdown items of the Actions column. You should specify a list of <code>li > a</code> items.</td>
           <td><code>row</code>: the row data</td>
         </tr>
       </tbody>

@@ -9,6 +9,16 @@
     </label>
   </td>
   <slot></slot>
+  <td v-if="$slots.action" class="table-view-pf-actions">
+    <div class="table-view-pf-btn">
+      <slot name="action"></slot>
+    </div>
+  </td>
+  <td v-if="$slots.dropdown" class="table-view-pf-actions">
+    <bs-dropdown class="pull-right">
+      <slot name="dropdown"></slot>
+    </bs-dropdown>
+  </td>
 </tr>
 </template>
 

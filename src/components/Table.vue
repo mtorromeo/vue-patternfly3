@@ -21,6 +21,7 @@
           sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
           sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
         }" @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')">{{column}}</th>
+        <th v-if="actionSpan" :colspan="actionSpan">Actions</th>
       </tr>
     </thead>
   </table>
@@ -44,12 +45,13 @@
             sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
             sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
           }" @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')">{{column}}</th>
+          <th v-if="actionSpan" :colspan="actionSpan">Actions</th>
         </tr>
       </thead>
 
       <tfoot v-if="pages > 1">
         <tr>
-          <td class="table-summary" :colspan="columns.length + (selectable ? 1 : 0)">
+          <td class="table-summary" :colspan="columns.length + actionSpan + (selectable ? 1 : 0)">
             <!-- <div class="summary"></div> -->
             <pf-paginate-control :page="page" :pages="pages" @change="$emit('change-page', arguments[0])"></pf-paginate-control>
           </td>
@@ -59,6 +61,12 @@
       <tbody>
         <pf-table-row ref="row" v-for="(row, i) in rows" :num="i" :selectable="selectable">
           <slot :row="row"></slot>
+          <template slot="action" v-if="$slots.action">
+            <slot name="action" :row="row"></slot>
+          </template>
+          <template slot="dropdown" v-if="$slots.dropdown">
+            <slot name="dropdown" :row="row"></slot>
+          </template>
         </pf-table-row>
       </tbody>
     </table>
@@ -74,7 +82,7 @@
     }">
     <tfoot v-if="pages > 1">
       <tr>
-        <td class="table-summary" :colspan="columns.length + (selectable ? 1 : 0)">
+        <td class="table-summary" :colspan="columns.length + actionSpan + (selectable ? 1 : 0)">
           <!-- <div class="summary"></div> -->
           <pf-paginate-control :page="page" :pages="pages" @change="$emit('change-page', arguments[0])"></pf-paginate-control>
         </td>
@@ -189,6 +197,17 @@ export default {
         return 0;
       }
       return `-${this.wrapperOffset}px`;
+    },
+
+    actionSpan() {
+      let colspan = 0;
+      if (this.$slots.action) {
+        colspan++;
+      }
+      if (this.$slots.dropdown) {
+        colspan++;
+      }
+      return colspan;
     },
   },
 
