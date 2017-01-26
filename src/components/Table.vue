@@ -312,4 +312,8 @@ table.dataTable {
   position: relative;
   top: 2px;
 }
+
+.table-view-pf-actions .caret:before {
+  content: "\f142"; /* fa-ellipsis-v */
+}
 </style>

@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Changed
+- Added styling of vue-strap's dropdowns in pf-table's action columns to use the ellipsis icon as per patternfly's design.
+
 ## [0.0.9] - 2017-01-25
 ### Fixed
 - Removed incorrect fixed height in scrollable tables.
