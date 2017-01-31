@@ -61,10 +61,10 @@
       <tbody>
         <pf-table-row ref="row" v-for="(row, i) in rows" :num="i" :selectable="selectable">
           <slot :row="row"></slot>
-          <template slot="action" v-if="$slots.action">
+          <template slot="action" v-if="$slots.action || $scopedSlots.action">
             <slot name="action" :row="row"></slot>
           </template>
-          <template slot="dropdown" v-if="$slots.dropdown">
+          <template slot="dropdown" v-if="$slots.dropdown || $scopedSlots.dropdown">
             <slot name="dropdown" :row="row"></slot>
           </template>
         </pf-table-row>
@@ -201,10 +201,10 @@ export default {
 
     actionSpan() {
       let colspan = 0;
-      if (this.$slots.action) {
+      if (this.$slots.action || this.$scopedSlots.action) {
         colspan++;
       }
-      if (this.$slots.dropdown) {
+      if (this.$slots.dropdown || this.$scopedSlots.dropdown) {
         colspan++;
       }
       return colspan;
