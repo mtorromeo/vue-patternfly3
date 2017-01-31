@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev": "webpack-dev-server --inline",
-    "compile": "webpack -cp"
+    "compile": "webpack -p"
   },
   "dependencies": {},
   "devDependencies": {
@@ -12,7 +12,7 @@
     "vue": "^2.1.6",
     "vue-loader": "^10.0.2",
     "vue-strap": "yuche/vue-strap#v2",
-    "webpack": "^1.14.0",
-    "webpack-dev-server": "^1.16.2"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.2.1"
   }
 }

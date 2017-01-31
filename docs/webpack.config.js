@@ -16,19 +16,21 @@ module.exports = {
   },
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
       loader: 'babel-loader',
       exclude: /\/dist\/|\/node_modules\/|\.sample\.js$/,
     }, {
       test: /\.html?$|\.sample\.js$/,
-      loader: 'html?-minimize',
-    }, {
-      test: /\.json$/,
-      loader: 'json',
+      loader: {
+        loader: 'html-loader',
+        options: {
+          minimize: false,
+        },
+      },
     }, {
       test: /\.vue$/,
-      loader: 'vue',
+      loader: 'vue-loader',
     }]
   },
 
