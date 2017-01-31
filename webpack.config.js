@@ -1,4 +1,4 @@
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -17,7 +17,7 @@ module.exports = {
   },
 
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
       loader: 'babel-loader',
       exclude: /\/node_modules\/(?!vue-strap)/,
@@ -29,7 +29,10 @@ module.exports = {
       loader: 'json-loader',
     }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader'),
+      loader: ExtractTextPlugin.extract({
+        fallbackLoader: 'style-loader',
+        loader: 'css-loader',
+      }),
     }, {
       test: /\.vue$/,
       loader: 'vue-loader',
@@ -38,11 +41,13 @@ module.exports = {
 
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.common.js',
+      vue$: 'vue/dist/vue.common.js',
     }
   },
 
   plugins: [
-    new ExtractTextPlugin('[name].css'),
+    new ExtractTextPlugin({
+      filename: '[name].css',
+    }),
   ],
 };

@@ -8,8 +8,8 @@
   },
   "scripts": {
     "purge": "rm -rf dist/*",
-    "compile": "webpack -c && uglifyjs --screw-ie8 -mco dist/vue-patternfly.min.js dist/vue-patternfly.js",
-    "dev": "webpack -cdw --progress",
+    "compile": "webpack -p && mv dist/vue-patternfly.js dist/vue-patternfly.min.js && webpack",
+    "dev": "webpack -dw --progress",
     "build": "npm run purge && npm run compile",
     "lint": "eslint src/*.js test/*",
     "prepublish": "npm run lint && npm run build"
@@ -50,7 +50,7 @@
     "eslint": "^3.10.2",
     "eslint-plugin-html": "^1.7.0",
     "eslint-plugin-import": "^2.2.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "beta",
     "html-loader": "^0.4.4",
     "json-loader": "^0.5.4",
     "lodash": "^4.17.4",
@@ -59,6 +59,7 @@
     "uglifyjs": "^2.4.10",
     "vue-loader": "^10.0.3",
     "vue-template-compiler": "^2.1.6",
-    "webpack": "^1.14.0"
+    "webpack": "^2.2.1",
+    "webpack-merge": "^2.6.1"
   }
 }
