@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file.
 - Added action slots for pf-table's rows.
 
 ### Changed
-- Vue-strap's dropdowns in pf-table's action columns are styked to use the ellipsis icon as per patternfly's design.
+- Vue-strap's dropdowns in pf-table's action columns are styled to use the ellipsis icon as per patternfly's design.
 
 ## [0.0.9] - 2017-01-25
 ### Fixed
