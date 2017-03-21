@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Added action slots for pf-table's rows.
 
+### Fixed
+- Corrected invalid markup in card-notification.
+
 ### Changed
 - Vue-strap's dropdowns in pf-table's action columns are styled to use the ellipsis icon as per patternfly's design.
 
