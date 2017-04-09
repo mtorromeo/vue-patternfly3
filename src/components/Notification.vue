@@ -129,7 +129,7 @@ export default {
     dismiss() {
       this.$emit('dismiss', this);
       // workaround race conditions in event dispatching and handling in parent component
-      if (this.toast && !this.persistent && this.$parent.notifications) {
+      if (this.toast && !this.persistent && this.$parent.notifications && this.$parent.notifications.length) {
         setTimeout(this.dismiss, 250);
       }
     },
