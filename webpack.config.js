@@ -1,3 +1,4 @@
+const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
@@ -6,7 +7,7 @@ module.exports = {
   },
 
   output: {
-    path: 'dist',
+    path: path.join(__dirname, 'dist'),
     filename: '[name].js',
     library: 'VuePatternfly',
     libraryTarget: 'umd',
@@ -30,8 +31,8 @@ module.exports = {
     }, {
       test: /\.css$/,
       loader: ExtractTextPlugin.extract({
-        fallbackLoader: 'style-loader',
-        loader: 'css-loader',
+        fallback: 'style-loader',
+        use: 'css-loader',
       }),
     }, {
       test: /\.vue$/,
@@ -41,7 +42,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      vue$: 'vue/dist/vue.common.js',
+      vue$: 'vue/dist/vue.esm.js'
     }
   },
 

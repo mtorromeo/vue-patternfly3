@@ -10,7 +10,7 @@
     </bs-dropdown>
     <bs-select ref="select" class="filter-select" v-if="isSelect" @input="set" :placeholder="current.placeholder" :close-on-select="true">
       <slot name="options" :field="current">
-        <bs-option :value="item" v-for="item in current.values">{{item}}</bs-option>
+        <bs-option :value="item" v-for="(item, i) in current.values" :key="i">{{item}}</bs-option>
       </slot>
     </bs-select>
     <div v-else>

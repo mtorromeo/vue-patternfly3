@@ -59,7 +59,7 @@
       </tfoot>
 
       <tbody>
-        <pf-table-row ref="row" v-for="(row, i) in rows" :num="i" :selectable="selectable">
+        <pf-table-row ref="row" v-for="(row, i) in rows" :key="i" :num="i" :selectable="selectable">
           <slot :row="row"></slot>
           <template slot="action" v-if="$slots.action || $scopedSlots.action">
             <slot name="action" :row="row"></slot>

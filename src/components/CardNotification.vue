@@ -3,7 +3,7 @@
     <span :is="href ? 'a' : 'span'" :href="href">
       <span v-if="iconClass" :class="iconClass"></span>
       {{count}}
-    </a>
+    </span>
   </span>
 </template>
 

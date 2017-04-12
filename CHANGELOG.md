@@ -1,9 +1,16 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.0.11] - 2017-04-09
+### Fixed
+- Fixed infinite loop in pf-notification dismiss code.
+
 ## [0.0.10] - 2017-01-31
 ### Added
 - Added action slots for pf-table's rows.
+
+### Fixed
+- Corrected invalid markup in card-notification.
 
 ### Changed
 - Vue-strap's dropdowns in pf-table's action columns are styled to use the ellipsis icon as per patternfly's design.
@@ -101,7 +108,8 @@ disabled, as per PatternFly design guidelines.
 - pf-toolbar component
 - pf-utilization-bar-chart component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.10...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.11...HEAD
+[0.0.11]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.10...v0.0.11
 [0.0.10]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.8...v0.0.9
 [0.0.8]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.7...v0.0.8
