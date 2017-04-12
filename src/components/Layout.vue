@@ -120,6 +120,9 @@ export default {
       this.updateHtmlClasses();
     },
   },
+  created () {
+    this._navbar = true
+  }
 };
 </script>
 
