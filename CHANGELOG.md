@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Added
+- Modified vue-strap's dropdown to allow to manually define a list-item dropdown
+
 ## [0.0.11] - 2017-04-09
 ### Fixed
 - Fixed infinite loop in pf-notification dismiss code.

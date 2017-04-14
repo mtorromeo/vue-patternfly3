@@ -38,6 +38,12 @@ const directives = {
   Scroll,
 };
 
+dropdown.props.li = Boolean;
+
+dropdown.computed.isLi = function() {
+  return this.li || this.$parent._isTabs || this.$parent._navbar || this.$parent.menu;
+};
+
 const VueStrap = {
   directives,
   utils: {
