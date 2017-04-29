@@ -224,17 +224,6 @@ h5.form-group[_v-3RyaW5nJyk] {
   float: right;
 }
 
-.toolbar-pf-actions .dropdown-kebab-pf .caret {
-  height: 1em;
-  vertical-align: inherit;
-}
-
-.toolbar-pf-actions .dropdown-kebab-pf .caret:before {
-  font-family: FontAwesome;
-  content: "\f142";
-  line-height: 1;
-}
-
 .toolbar-pf-include-actions {
   display: inline-block;
   margin: 0 5px;

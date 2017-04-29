@@ -11,6 +11,32 @@
   opacity: .9;
 }
 
+.dropdown-kebab-pf .caret {
+  height: 1em;
+  vertical-align: inherit;
+  left: 5px;
+}
+
+.dropdown-kebab-pf .dropdown-menu {
+  left: -5px;
+}
+
+.dropdown-kebab-pf.pull-right .dropdown-menu {
+  left: auto;
+  right: -15px;
+}
+
+.dropdown-kebab-pf.pull-right .dropdown-menu:after,
+.dropdown-kebab-pf.pull-right .dropdown-menu:before {
+  left: auto;
+  right: 6px;
+}
+
+.dropdown-kebab-pf .caret:before {
+  font-family: FontAwesome;
+  content: "\f142";
+  line-height: 1;
+}
 
 .card-pf-heading-no-bottom {
   margin: 0 -20px 0px;
