@@ -17,12 +17,15 @@
     </div>
 
     <div class="collapse navbar-collapse navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-utility">
-        <slot name="utility-menu"></slot>
-      </ul>
-
       <ul v-if="horizontal" class="nav navbar-nav navbar-primary">
         <slot name="horizontal-menu"></slot>
+      </ul>
+
+      <ul class="nav navbar-nav" :class="{
+        'navbar-utility': horizontal,
+        'navbar-right': !horizontal,
+      }">
+        <slot name="utility-menu"></slot>
       </ul>
     </div>
   </nav>
@@ -124,6 +127,11 @@ export default {
 </script>
 
 <style>
+nav.navbar-pf > .collapse .navbar-right:last-child,
+nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
+  margin-right: 0;
+}
+
 .pf-layout-flex,
 .container-flex {
   display: flex;
