@@ -39,7 +39,7 @@
     </ul>
   </div>
 
-  <div :class="{
+  <div class="pf-layout-container" :class="{
       'container-flex': !disabled && flex,
       'container-fluid': !disabled && !nomargin,
       'collapsed-nav': !disabled && collapsed,
@@ -127,6 +127,10 @@ export default {
 </script>
 
 <style>
+.pf-layout-container {
+  position: relative;
+}
+
 nav.navbar-pf > .collapse .navbar-right:last-child,
 nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
   margin-right: 0;
