@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 - Implemented pf-drawer, pg-drawer-group and pf-drawer-notification which together compose the notification drawer pattern.
 - Modified vue-strap's dropdown to allow to manually define a list-item dropdown
 
+### Changed
+- Switched navbar-utility to navbar-right when using the vertical layout.
+
+### Fixed
+- Fixed position of the caret and the dropdown of style dropdown-kebab-pf.
+
 ## [0.0.11] - 2017-04-09
 ### Fixed
 - Fixed infinite loop in pf-notification dismiss code.
