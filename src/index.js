@@ -13,6 +13,9 @@ import FilterFields from './components/FilterFields.vue';
 import FilterResults from './components/FilterResults.vue';
 import Notifications from './components/Notifications.vue';
 import Notification from './components/Notification.vue';
+import Drawer from './components/Drawer.vue';
+import DrawerGroup from './components/DrawerGroup.vue';
+import DrawerNotification from './components/DrawerNotification.vue';
 import Layout from './components/Layout.vue';
 import Table from './components/Table.vue';
 import PaginateControl from './components/PaginateControl.vue';
@@ -34,6 +37,9 @@ const VuePatternfly = {
   FilterResults,
   Notifications,
   Notification,
+  Drawer,
+  DrawerGroup,
+  DrawerNotification,
   Tooltip,
   Layout,
   Table,

@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+- Implemented pf-drawer, pg-drawer-group and pf-drawer-notification which together compose the notification drawer pattern.
 - Modified vue-strap's dropdown to allow to manually define a list-item dropdown
 
 ## [0.0.11] - 2017-04-09
