@@ -13,7 +13,7 @@
             divider: isSeparator(action),
             disabled: action.disabled === true,
           }">
-        <a v-if="isSeparator(action)"
+        <a v-if="!isSeparator(action)"
            class="secondary-action"
            :title="action.title"
            @click="triggered(action)">
