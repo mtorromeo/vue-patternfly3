@@ -1,7 +1,7 @@
 <template>
 <div class="drawer-pf" :class="{
   'hide': hidden,
-  'drawer-pf-expanded': expanded,
+  'drawer-pf-expanded': allowExpand && expanded,
 }">
 
   <slot name="title">
@@ -40,13 +40,13 @@ export default {
 
 <style>
 .drawer-pf {
-  top: 0;
-  bottom: 0;
-  z-index: 10;
+  position: fixed;
+  height: 100%;
+  overflow-x: hidden;
 }
 
 .drawer-pf .panel-group {
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 .drawer-pf .panel-body {
