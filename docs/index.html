@@ -10,16 +10,22 @@
   <link rel="stylesheet" href="https://unpkg.com/patternfly@3.18.1/dist/css/patternfly-additions.min.css">
   <link rel="stylesheet" href="https://unpkg.com/c3@0.4.11/c3.min.css">
   <link rel="stylesheet" href="https://unpkg.com/prismjs@1.6.0/themes/prism.css">
-  <link rel="stylesheet" href="https://unpkg.com/vue-patternfly@0.0.11/dist/vue-patternfly.css">
+  <link rel="stylesheet" href="https://unpkg.com/vue-patternfly@0.0.12/dist/vue-patternfly.css">
   <link rel="stylesheet" href="docs.css">
 </head>
 <body>
   <pf-layout id="app" :flex="layoutFlex" :icons="layoutIcons" :collapsable="layoutCollapsable" :horizontal="layoutHorizontal" :disabled="layoutDisabled || $route.path == '/'" :nomargin="layoutNomargin">
-    <router-link slot="brand" to="/" :exact="true">
-      <a class="navbar-brand">
-        <span class="navbar-brand-name">Vue PatternFly</span>
-      </a>
+    <router-link slot="brand" to="/" :exact="true" class="navbar-brand">
+      <span class="navbar-brand-name">Vue PatternFly</span>
     </router-link>
+
+    <template slot="utility-menu">
+      <li>
+        <a class="nav-item-iconic" @click="drawer.hidden = !drawer.hidden">
+          <span class="fa fa-bell" title="Notifications"></span>
+        </a>
+      </li>
+    </template>
 
     <template slot="horizontal-menu">
       <router-link tag="li" active-class="active" to="/get-started" :exact="true">
@@ -34,10 +40,10 @@
       <router-link tag="li" active-class="active" to="/table" :exact="true">
         <a>Table</a>
       </router-link>
-      <router-link tag="li" active-class="active" to="/notifications" :exact="true">
+      <router-link tag="li" active-class="active" to="/cards" :exact="true">
         <a>Cards</a>
       </router-link>
-      <router-link tag="li" active-class="active" to="/cards" :exact="true">
+      <router-link tag="li" active-class="active" to="/notifications" :exact="true">
         <a>Notifications</a>
       </router-link>
       <router-link tag="li" active-class="active" to="/components" :exact="true">
@@ -76,12 +82,25 @@
           <span class="list-group-item-value">Cards</span>
         </a>
       </router-link>
-      <router-link tag="li" class="list-group-item" active-class="active" to="/notifications" :exact="true">
+      <li class="list-group-item">
         <a>
           <span class="fa fa-bell" title="Notifications"></span>
           <span class="list-group-item-value">Notifications</span>
         </a>
-      </router-link>
+
+        <ul class="list-group secondary-list-group">
+          <router-link tag="li" class="list-group-item" active-class="active" to="/notifications" :exact="true">
+            <a>
+              <span class="list-group-item-value">Inline / Toast</span>
+            </a>
+          </router-link>
+          <router-link tag="li" class="list-group-item" active-class="active" to="/drawer" :exact="true">
+            <a>
+              <span class="list-group-item-value">Notification Drawer</span>
+            </a>
+          </router-link>
+        </ul>
+      </li>
       <router-link tag="li" class="list-group-item" active-class="active" to="/components" :exact="true">
         <a>
           <span class="fa fa-building" title="Components"></span>
@@ -89,6 +108,40 @@
         </a>
       </router-link>
     </template>
+
+    <pf-drawer :title="drawer.title" :allow-expand="drawer.allowExpand" :hidden="drawer.hidden">
+
+      <pf-drawer-group :title="drawerGroup.title" :counter="drawerGroup.counter" :action="drawerGroup.action" :loading="drawerGroup.loading">
+        <pf-drawer-notification>
+          Notification Info
+
+          <template slot="dropdown">
+            <li role="menuitem">
+              <a title="Menu Title 1">Menu Item 1</a>
+            </li>
+            <li role="menuitem">
+              <a title="Menu Title 2">Menu Item 2</a>
+            </li>
+            <li role="separator" class="divider"></li>
+            <li role="menuitem">
+              <a title="Menu Title 3">Menu Item 3</a>
+            </li>
+          </template>
+        </pf-drawer-notification>
+        <pf-drawer-notification type="success">
+          Notification Success
+        </pf-drawer-notification>
+        <pf-drawer-notification type="warning" unread>
+          Unread Warning
+        </pf-drawer-notification>
+        <pf-drawer-notification :type="drawerNotification.type" :date="drawerNotification.date" :time="drawerNotification.time" :message="drawerNotification.message" :unread="drawerNotification.unread" :action="drawerNotification.action" :actions="drawerNotification.actions">
+        </pf-drawer-notification>
+      </pf-drawer-group>
+
+      <pf-drawer-group title="Group 2" counter="yy events" loading>
+      </pf-drawer-group>
+
+    </pf-drawer>
 
     <router-view></router-view>
   </pf-layout>

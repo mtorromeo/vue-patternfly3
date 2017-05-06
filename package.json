@@ -1,6 +1,6 @@
 {
   "name": "vue-patternfly",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "PatternFly components for Vue.js 2",
   "main": "dist/vue-patternfly.min.js",
   "directories": {

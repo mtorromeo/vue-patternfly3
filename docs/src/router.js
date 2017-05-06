@@ -5,6 +5,7 @@ import HomePage from './pages/home.vue';
 import GetStartedPage from './pages/get-started.vue';
 import LayoutPage from './pages/layout.vue';
 import NotificationsPage from './pages/notifications.vue';
+import DrawerPage from './pages/drawer.vue';
 import CardsPage from './pages/cards.vue';
 import ToolbarPage from './pages/toolbar.vue';
 import TablePage from './pages/table.vue';
@@ -25,6 +26,9 @@ const router = new VueRouter({
     }, {
       path: '/notifications',
       component: NotificationsPage,
+    }, {
+      path: '/drawer',
+      component: DrawerPage,
     }, {
       path: '/cards',
       component: CardsPage,

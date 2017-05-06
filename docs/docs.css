@@ -71,3 +71,15 @@
   margin-top: 0;
   padding-bottom: 0;
 }
+
+.secondary-list-group > .list-group-item {
+  border-width: 0;
+}
+
+.secondary-list-group > .list-group-item > a {
+  padding-left: 59px;
+  padding-top: 0;
+  padding-bottom: 0;
+  height: auto;
+  font-size: .9em;
+}

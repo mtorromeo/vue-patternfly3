@@ -22,6 +22,35 @@ new Vue({
 
   data() {
     return {
+      drawer: {
+        hidden: true,
+        allowExpand: true,
+        title: 'Notification Drawer',
+      },
+      drawerGroup: {
+        title: 'Group 1',
+        counter: '4 events',
+        action: 'Mark All Read',
+        loading: false,
+      },
+      drawerNotification: {
+        type: 'danger',
+        date: '29/04/17',
+        time: '16:25:56',
+        message: 'Notification Danger',
+        unread: false,
+        action: {
+          name: 'Action!',
+          title: 'Action Title',
+          button: true
+        },
+        actions: [
+          {name: 'Sub action 1'},
+          {name: 'Sub action 2'},
+          '-',
+          {name: 'Sub action 3'},
+        ],
+      },
       layoutFlex: false,
       layoutHorizontal: false,
       layoutNomargin: false,

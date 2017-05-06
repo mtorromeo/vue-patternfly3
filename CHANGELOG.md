@@ -1,9 +1,9 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.0.12] - 2017-05-07
 ### Added
-- Implemented pf-drawer, pg-drawer-group and pf-drawer-notification which together compose the notification drawer pattern.
+- Implemented pf-drawer, pf-drawer-group and pf-drawer-notification which together compose the notification drawer pattern.
 - Modified vue-strap's dropdown to allow to manually define a list-item dropdown
 
 ### Changed
@@ -11,6 +11,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Fixed position of the caret and the dropdown of style dropdown-kebab-pf.
+- Fixed display of dropdown actions set on pf-notification.
 
 ## [0.0.11] - 2017-04-09
 ### Fixed
@@ -119,7 +120,8 @@ disabled, as per PatternFly design guidelines.
 - pf-toolbar component
 - pf-utilization-bar-chart component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.11...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.12...HEAD
+[0.0.12]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.11...v0.0.12
 [0.0.11]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.10...v0.0.11
 [0.0.10]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.9...v0.0.10
 [0.0.9]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.8...v0.0.9
