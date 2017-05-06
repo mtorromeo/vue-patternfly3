@@ -43,6 +43,7 @@ export default {
   position: fixed;
   height: 100%;
   overflow-x: hidden;
+  z-index: 10;
 }
 
 .drawer-pf .panel-group {
