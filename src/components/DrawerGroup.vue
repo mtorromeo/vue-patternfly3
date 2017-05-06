@@ -9,14 +9,8 @@
     <span class="panel-counter">{{counter}}</span>
   </div>
 
-  <transition
-    leave-active-class="collapsing"
-    @before-leave="beforeLeave"
-    @leave="leave"
-    @enter="enter"
-    @afterEnter="afterEnter"
-  >
-    <div v-show="expanded" class="panel-collapse collapse" :aria-expanded="expanded ? 'true' : 'false'">
+  <transition name="collapse">
+    <div v-show="expanded" class="panel-collapse" :aria-expanded="expanded ? 'true' : 'false'">
       <div class="panel-body">
         <slot></slot>
 
@@ -68,30 +62,6 @@ export default {
     toggle() {
       this.expanded = !this.expanded;
     },
-
-    beforeLeave(el) {
-      el.style.height = `${el.offsetHeight}px`;
-    },
-
-    leave(el) {
-      this.$nextTick(function() {
-        el.style.height = '';
-      });
-    },
-
-    enter(el) {
-      const targetHeight = el.offsetHeight;
-      el.style.height = '0';
-      this.$nextTick(function() {
-        el.style.height = `${targetHeight}px`;
-        el.classList.add('collapsing');
-      });
-    },
-
-    afterEnter(el) {
-      el.classList.remove('collapsing');
-      el.style.height = '';
-    },
   },
 
   watch: {
@@ -107,12 +77,32 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .panel-title input {
   display: none;
 }
 
-.panel-collapse.collapse {
-  display: block;
+.collapse-enter, .collapse-leave-to,
+.collapse-enter *, .collapse-leave-to * {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  line-height: 0 !important;
+  border-width: 0 !important;
+  transform-origin: top;
+  transform: scaleY(0);
+  overflow: hidden;
+}
+
+.collapse-enter .btn, .collapse-leave-to .btn,
+.collapse-enter .caret, .collapse-leave-to .caret,
+.collapse-enter .drawer-pf-notification-info, .collapse-leave-to .drawer-pf-notification-info {
+  font-size: 0;
+}
+
+.collapse-enter-active, .collapse-leave-active,
+.collapse-enter-active *, .collapse-leave-active * {
+  transition: all .15s linear;
 }
 </style>
