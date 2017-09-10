@@ -1,6 +1,10 @@
 const Tooltip = require('tether-tooltip');
 
 const positions = [
+  'top',
+  'left',
+  'right',
+  'bottom',
   'top-left',
   'left-top',
   'left-middle',
@@ -15,18 +19,42 @@ const positions = [
   'top-center',
 ];
 
-function createTooltip (el, value, modifiers) {
-  let position = 'top-center';
+function getPosition(el, modifiers) {
+  let position = false;
   for (const pos of positions) {
     if (modifiers[pos]) {
       position = pos;
+      break;
     }
   }
 
-  let classes = (/^((?:(?:top|bottom))?(?:^|-)?(?:left|right)?)(?:-|$)/).exec(position);
-  classes = classes ? classes[1] : '';
+  if (!position) {
+    if (el.dataset.placement) {
+      position = el.dataset.placement;
+    } else {
+      position = 'top center';
+    }
+  }
 
   position = position.replace('-', ' ');
+
+  if (position.indexOf(' ') < 0) {
+    if (position === 'top' || position === 'bottom') {
+      position = `${position} center`;
+    } else {
+      position = `${position} middle`;
+    }
+  }
+
+  return position;
+}
+
+function createTooltip (el, value, modifiers) {
+  const position = getPosition(el, modifiers);
+
+  let classes = (/^(top|bottom|left|right)(?:$| )/).exec(position);
+  console.log(position);
+  classes = classes ? classes[1] : '';
 
   el._tooltip = new Tooltip({
     target: el,
@@ -59,9 +87,15 @@ export default {
   },
   update (el, {value, modifiers}) {
     if (!value) {
-      destroyTooltip();
-    } else if (el._tooltip) {
-      el._tooltip.drop.content.innerHTML = value;
+      destroyTooltip(el);
+    } else if (el && el._tooltip) {
+      const position = getPosition(el, modifiers);
+      if (el._tooltip.options.position == position) {
+        el._tooltip.drop.content.innerHTML = value;
+      } else {
+        destroyTooltip(el);
+        createTooltip(el, value, modifiers);
+      }
     } else {
       createTooltip(el, value, modifiers);
     }

@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Added
+- Documented v-tooltip directive
+- Implemented data-placement attribute as an alternative way to specify the tooltip positions.
+
 ## [0.0.12] - 2017-05-07
 ### Added
 - Implemented pf-drawer, pf-drawer-group and pf-drawer-notification which together compose the notification drawer pattern.
