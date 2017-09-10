@@ -25,10 +25,10 @@
         </a>
       </li>
       <pf-application-launcher :open.sync="launcher.open" :label="launcher.label" :disabled="launcher.disabled" :list="launcher.list">
-        <pf-launcher-item icon-class="pficon-storage-domain" href="javascript:void(0)" v-tooltip.left="'Launch the Recteque UI'">Recteque</pf-launcher-item>
-        <pf-launcher-item icon-class="pficon-build" href="javascript:void(0)" v-tooltip.left="'Launch the Suavitate UI'">Suavitate</pf-launcher-item>
-        <pf-launcher-item icon-class="pficon-domain" href="javascript:void(0)" v-tooltip.left="'Launch the Lorem UI'">Lorem</pf-launcher-item>
-        <pf-launcher-item :icon-class="launcher.iconClass" href="javascript:void(0)" v-tooltip.left="'Launch the Home UI'">{{launcher.itemText}}</pf-launcher-item>
+        <pf-launcher-item icon-class="pficon-storage-domain" v-tooltip.left="'Launch the Recteque UI'">Recteque</pf-launcher-item>
+        <pf-launcher-item icon-class="pficon-build" v-tooltip.left="'Launch the Suavitate UI'">Suavitate</pf-launcher-item>
+        <pf-launcher-item icon-class="pficon-domain" v-tooltip.left="'Launch the Lorem UI'">Lorem</pf-launcher-item>
+        <pf-launcher-item :icon-class="launcher.iconClass" v-tooltip.left="'Launch the Home UI'">{{launcher.itemText}}</pf-launcher-item>
       </pf-application-launcher>
     </template>
 
