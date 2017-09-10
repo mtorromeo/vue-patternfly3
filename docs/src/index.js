@@ -29,6 +29,7 @@ new Vue({
         hidden: true,
         allowExpand: true,
         title: 'Notification Drawer',
+        updates: ' ',
       },
       drawerGroup: {
         title: 'Group 1',

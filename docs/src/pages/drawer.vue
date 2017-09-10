@@ -21,6 +21,19 @@
 
 
   <header>
+    <h1>Notification Bell <code>&lt;pf-notification-bell&gt;</code></h1>
+  </header>
+
+  <section>
+    <p>A menu item that can be used as a toggler for the <code>&lt;pf-notification-drawer&gt;</code> component. Its meant to be included in the <code>utility-menu</code> slot of <code>&lt;pf-layout&gt;</code>.</p>
+
+    <props-table :component-props="bellProps">
+      <props-row name="updates" description="Controls the badge indicator on the notification icon. Use &quot;true&quot; to show an empty badge indicator. Any other string value will be displayed inside the badge (it's better to use a badge content with the vertival layout)." v-model="$root.drawer.updates"></props-row>
+    </props-table>
+  </section>
+
+
+  <header>
     <h1>Drawer Group <code>&lt;pf-drawer-group&gt;</code></h1>
   </header>
 
@@ -59,7 +72,7 @@
 <script>
 import VuePatternfly from 'vue-patternfly';
 
-const {Drawer, DrawerGroup, DrawerNotification} = VuePatternfly;
+const {Drawer, DrawerGroup, DrawerNotification, NotificationBell} = VuePatternfly;
 
 export default {
   name: 'drawer-page',
@@ -69,6 +82,7 @@ export default {
       drawerProps: Drawer.props,
       drawerGroupProps: DrawerGroup.props,
       drawerNotificationProps: DrawerNotification.props,
+      bellProps: NotificationBell.props,
     };
   },
 };

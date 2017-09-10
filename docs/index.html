@@ -19,11 +19,7 @@
     </router-link>
 
     <template slot="utility-menu">
-      <li>
-        <a class="nav-item-iconic" @click="drawer.hidden = !drawer.hidden">
-          <span class="fa fa-bell" title="Notifications"></span>
-        </a>
-      </li>
+      <pf-notification-bell :updates="drawer.updates" @click="drawer.hidden = !drawer.hidden"></pf-notification-bell>
       <pf-application-launcher :open.sync="launcher.open" :label="launcher.label" :disabled="launcher.disabled" :list="launcher.list">
         <pf-launcher-item icon-class="pficon-storage-domain" v-tooltip.left="'Launch the Recteque UI'">Recteque</pf-launcher-item>
         <pf-launcher-item icon-class="pficon-build" v-tooltip.left="'Launch the Suavitate UI'">Suavitate</pf-launcher-item>
