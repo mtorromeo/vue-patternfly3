@@ -1,3 +1,6 @@
+require('./index.css');
+require('../../dist/vue-patternfly.css');
+
 import Vue from 'vue';
 import VuePatternfly from 'vue-patternfly';
 

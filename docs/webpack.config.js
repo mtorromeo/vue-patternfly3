@@ -1,4 +1,8 @@
+/* global __dirname */
+
+const webpack = require('webpack');
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -6,7 +10,7 @@ module.exports = {
   },
 
   output: {
-    path: '.',
+    path: __dirname,
     filename: '[name].js',
   },
 
@@ -17,7 +21,7 @@ module.exports = {
 
   module: {
     rules: [{
-      test: /\.jsx?$/,
+      test: /\.js$/,
       loader: 'babel-loader',
       exclude: /\/dist\/|\/node_modules\/|\.sample\.js$/,
     }, {
@@ -28,6 +32,12 @@ module.exports = {
           minimize: false,
         },
       },
+    }, {
+      test: /\.css$/,
+      loader: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: 'css-loader',
+      }),
     }, {
       test: /\.vue$/,
       loader: 'vue-loader',
@@ -40,4 +50,11 @@ module.exports = {
       'vue-patternfly$': path.resolve('../dist/vue-patternfly.js'),
     }
   },
+
+  plugins: [
+    new webpack.optimize.ModuleConcatenationPlugin(),
+    new ExtractTextPlugin({
+      filename: '[name].css',
+    }),
+  ],
 };

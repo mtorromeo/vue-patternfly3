@@ -8,8 +8,8 @@
   },
   "scripts": {
     "purge": "rm -rf dist/*",
-    "compile": "webpack -p && mv dist/vue-patternfly.js dist/vue-patternfly.min.js && webpack",
-    "dev": "webpack -dw --progress",
+    "compile": "webpack -p && mv dist/vue-patternfly.js dist/vue-patternfly.min.js && webpack --display-optimization-bailout",
+    "dev": "webpack -dw --progress --display-optimization-bailout",
     "build": "npm run purge && npm run compile",
     "lint": "eslint src/*.js test/*",
     "prepublish": "npm run lint && npm run build"
@@ -42,24 +42,24 @@
   "devDependencies": {
     "babel-core": "^6.22.0",
     "babel-eslint": "^7.1.1",
-    "babel-loader": "^6.2.10",
+    "babel-loader": "^7.1.2",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-plugin-transform-runtime": "^6.22.0",
     "babel-preset-es2015": "^6.22.0",
     "css-loader": "^0.28.0",
-    "eslint": "^3.10.2",
-    "eslint-plugin-html": "^2.0.1",
+    "eslint": "^4.6.1",
+    "eslint-plugin-html": "^3.2.1",
     "eslint-plugin-import": "^2.2.0",
-    "extract-text-webpack-plugin": "^2.1.0",
-    "html-loader": "^0.4.4",
+    "extract-text-webpack-plugin": "^3.0.0",
+    "html-loader": "^0.5.1",
     "json-loader": "^0.5.4",
     "lodash": "^4.17.4",
     "resize-observer-polyfill": "^1.3.2",
-    "style-loader": "^0.16.0",
+    "style-loader": "^0.18.2",
     "uglifyjs": "^2.4.10",
-    "vue-loader": "^11.1.4",
+    "vue-loader": "^13.0.4",
     "vue-template-compiler": "^2.1.6",
-    "webpack": "^2.2.1",
+    "webpack": "^3.5.6",
     "webpack-merge": "^4.1.0"
   }
 }
