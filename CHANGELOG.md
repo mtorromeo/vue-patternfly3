@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - Implemented pf-application-launcher and pf-launcher-item.
+- Implemented pf-notification-bell as a toggler for the pf-drawer.
+- Added navbar-brand-name CSS class to correctly style text-only brand titles.
 - Documented v-tooltip directive
 - Implemented data-placement attribute as an alternative way to specify the tooltip positions.
 
