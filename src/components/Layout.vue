@@ -24,6 +24,7 @@
       <ul class="nav navbar-nav" :class="{
         'navbar-utility': horizontal,
         'navbar-right': !horizontal,
+        'navbar-iconic': !horizontal,
       }">
         <slot name="utility-menu"></slot>
       </ul>

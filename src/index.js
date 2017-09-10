@@ -1,6 +1,8 @@
 import './index.css';
 
 import AggregateStatusCard from './components/AggregateStatusCard.vue';
+import ApplicationLauncher from './components/ApplicationLauncher.vue';
+import LauncherItem from './components/LauncherItem.vue';
 import C3Chart from './components/C3Chart.vue';
 import Card from './components/Card.vue';
 import CardNotification from './components/CardNotification.vue';
@@ -25,6 +27,8 @@ import VueStrap from './vue-strap';
 
 const VuePatternfly = {
   AggregateStatusCard,
+  ApplicationLauncher,
+  LauncherItem,
   C3Chart,
   Card,
   CardNotification,

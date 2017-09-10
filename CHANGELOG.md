@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+- Implemented pf-application-launcher and pf-launcher-item.
 - Documented v-tooltip directive
 - Implemented data-placement attribute as an alternative way to specify the tooltip positions.
 

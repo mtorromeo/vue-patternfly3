@@ -5,9 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vue PatternFly</title>
-  <link rel="shortcut icon" href="https://unpkg.com/patternfly@3.18.1/dist/img/favicon.ico">
-  <link rel="stylesheet" href="https://unpkg.com/patternfly@3.18.1/dist/css/patternfly.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/patternfly@3.18.1/dist/css/patternfly-additions.min.css">
+  <link rel="shortcut icon" href="https://unpkg.com/patternfly@3.27.2/dist/img/favicon.ico">
+  <link rel="stylesheet" href="https://unpkg.com/patternfly@3.27.2/dist/css/patternfly.css">
+  <link rel="stylesheet" href="https://unpkg.com/patternfly@3.27.2/dist/css/patternfly-additions.min.css">
   <link rel="stylesheet" href="https://unpkg.com/c3@0.4.17/c3.min.css">
   <link rel="stylesheet" href="https://unpkg.com/prismjs@1.6.0/themes/prism.css">
   <link rel="stylesheet" href="docs.css">
@@ -24,6 +24,12 @@
           <span class="fa fa-bell" title="Notifications"></span>
         </a>
       </li>
+      <pf-application-launcher :open.sync="launcher.open" :label="launcher.label" :disabled="launcher.disabled" :list="launcher.list">
+        <pf-launcher-item icon-class="pficon-storage-domain" href="javascript:void(0)" v-tooltip.left="'Launch the Recteque UI'">Recteque</pf-launcher-item>
+        <pf-launcher-item icon-class="pficon-build" href="javascript:void(0)" v-tooltip.left="'Launch the Suavitate UI'">Suavitate</pf-launcher-item>
+        <pf-launcher-item icon-class="pficon-domain" href="javascript:void(0)" v-tooltip.left="'Launch the Lorem UI'">Lorem</pf-launcher-item>
+        <pf-launcher-item :icon-class="launcher.iconClass" href="javascript:void(0)" v-tooltip.left="'Launch the Home UI'">{{launcher.itemText}}</pf-launcher-item>
+      </pf-application-launcher>
     </template>
 
     <template slot="horizontal-menu">
@@ -32,6 +38,9 @@
       </router-link>
       <router-link tag="li" active-class="active" to="/layout" :exact="true">
         <a>Layout</a>
+      </router-link>
+      <router-link tag="li" active-class="active" to="/application-launcher" :exact="true">
+        <a>Application Launcher</a>
       </router-link>
       <router-link tag="li" active-class="active" to="/toolbar" :exact="true">
         <a>Toolbar</a>
@@ -64,6 +73,12 @@
         <a>
           <span class="fa fa-columns" title="Layout"></span>
           <span class="list-group-item-value">Layout</span>
+        </a>
+      </router-link>
+      <router-link tag="li" class="list-group-item" active-class="active" to="/application-launcher" :exact="true">
+        <a>
+          <span class="fa fa-th" title="Application Launcher"></span>
+          <span class="list-group-item-value">Application Launcher</span>
         </a>
       </router-link>
       <router-link tag="li" class="list-group-item" active-class="active" to="/toolbar" :exact="true">

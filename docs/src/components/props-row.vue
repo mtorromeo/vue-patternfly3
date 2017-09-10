@@ -10,11 +10,11 @@
       }" :style="{
         height: code ? '150px' : null,
       }">
-    <input v-if="prop.type == 'Boolean'" type="checkbox" :checked="value" @change="update">
-    <select v-else-if="options.length" class="form-control" @change="update">
+    <input v-if="prop.type == 'Boolean'" type="checkbox" :checked="value" @change="update" @click.stop>
+    <select v-else-if="options.length" class="form-control" @change="update" @click.stop>
       <option v-for="o in options" :value="o" :selected="o == value">{{o}}</option>
     </select>
-    <input v-else-if="!code" type="text" class="form-control" :value="editableValue" @keyup="update">
+    <input v-else-if="!code" type="text" class="form-control" :value="editableValue" @keyup="update" @click.stop>
     <ace-editor v-else class="form-control" :value="editableValue" @input="update" lang="javascript"></ace-editor>
   </td>
 </tr>

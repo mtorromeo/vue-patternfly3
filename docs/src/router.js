@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 import HomePage from './pages/home.vue';
 import GetStartedPage from './pages/get-started.vue';
 import LayoutPage from './pages/layout.vue';
+import ApplicationLauncherPage from './pages/application-launcher.vue';
 import NotificationsPage from './pages/notifications.vue';
 import DrawerPage from './pages/drawer.vue';
 import CardsPage from './pages/cards.vue';
@@ -24,6 +25,9 @@ const router = new VueRouter({
     }, {
       path: '/layout',
       component: LayoutPage,
+    }, {
+      path: '/application-launcher',
+      component: ApplicationLauncherPage,
     }, {
       path: '/notifications',
       component: NotificationsPage,
