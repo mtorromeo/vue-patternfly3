@@ -163,7 +163,18 @@ nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
   flex-grow: 1;
 }
 
-.navbar-brand-txt {
-  line-height: 34px;
+.navbar-pf-vertical .navbar-brand-name {
+  font-size: 18px;
+  line-height: 35px;
+}
+
+.navbar-pf .navbar-brand-name {
+  padding: 7px 0;
+}
+
+@media (min-width: 768px) {
+  .navbar-pf .navbar-brand-name {
+    padding: 3px 0;
+  }
 }
 </style>

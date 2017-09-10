@@ -14,8 +14,8 @@
 </head>
 <body>
   <pf-layout id="app" :flex="layoutFlex" :icons="layoutIcons" :collapsable="layoutCollapsable" :horizontal="layoutHorizontal" :disabled="layoutDisabled || $route.path == '/'" :nomargin="layoutNomargin">
-    <router-link slot="brand" to="/" :exact="true" class="navbar-brand">
-      <span class="navbar-brand-name">Vue PatternFly</span>
+    <router-link slot="brand" to="/" :exact="true" class="navbar-brand navbar-brand-name">
+      Vue PatternFly
     </router-link>
 
     <template slot="utility-menu">

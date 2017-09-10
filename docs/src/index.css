@@ -20,11 +20,6 @@
   margin-top: 50px;
 }
 
-.navbar-pf-vertical .navbar-brand {
-  font-size: 18px;
-  line-height: 35px;
-}
-
 .navbar-brand-name,
 .home .jumbotron h1 {
   background: -webkit-linear-gradient(#93f9b9,#1d976c);
