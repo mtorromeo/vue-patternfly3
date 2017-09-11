@@ -6,7 +6,7 @@
 
   <section>
     <p>This component implements the application launcher icon and menu. The component is best included in the <code>utility-menu</code> slot of the <code>&lt;pf-layout&gt;</code> component.</p>
-    <p>Menu items can be populeted by inserting <code>&lt;pf-launcher-item&gt;</code>s in the default slot.</p>
+    <p>Menu items can be populated by inserting <code>&lt;pf-launcher-item&gt;</code>s in the default slot.</p>
 
     <h4>Related documentation</h4>
     <ol>
