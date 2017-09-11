@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - Implemented `v-model` on the page property `pf-paginate-control` components.
-- Implemented two-way syncing of `sort-by` and `sort-direction` properties in `pf-table`.
+- Implemented two-way syncing of `sort-by` and `sort-direction` properties in `pf-table` and `pf-toolbar`.
 - Implemented `pf-application-launcher` and `pf-launcher-item`.
 - Implemented `pf-notification-bell` as a toggler for the `pf-drawer`.
 - Added `navbar-brand-name` CSS class to correctly style text-only brand titles.
@@ -12,7 +12,8 @@ All notable changes to this project will be documented in this file.
 - Implemented `data-placement` attribute as an alternative way to specify the tooltip positions.
 
 ### Changed
-- **BACKWARD INCOMPATIBLE CHANGE**: The page property of `pf-table` components can now be synced with `:page.sync="mypagenr"`. As a result of this change the `change-page` event has now been renamed to `update:page`.
+- **BACKWARD INCOMPATIBLE CHANGE**: The `page` property of `pf-table` components can now be synced with `:page.sync="mypagenr"`. As a result of this change the `change-page` event has now been renamed to `update:page`.
+- **BACKWARD INCOMPATIBLE CHANGE**: The `view`, `filters` and `picked-columns` properties of `pf-toolbar` components can now be synced with the `.sync` `v-bind` modifier. As a result of this change the `view` event has now been renamed to `update:view`; the `filters` event has been renamed to `update:filters` and the `columns` event to `update:pickedColumns`.
 
 ## [0.0.12] - 2017-05-07
 ### Added

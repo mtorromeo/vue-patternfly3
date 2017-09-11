@@ -13,21 +13,17 @@
     </ol>
 
     <pf-toolbar ref="toolbar"
-                :view="toolbar.view"
+                :view.sync="toolbar.view"
                 :views="toolbar.views"
-                @view="toolbar.view = arguments[0]"
-                @columns="toolbar.pickedColumns = arguments[0]"
-                @filters="toolbar.filters = arguments[0]"
-                :filters="toolbar.filters"
+                :filters.sync="toolbar.filters"
                 :filter-fields="toolbar.filterFields"
-                @sort-by="setSort"
-                :sort-by="toolbar.sortBy"
-                :sort-direction="toolbar.sortDirection"
+                :sort-by.sync="toolbar.sortBy"
+                :sort-direction.sync="toolbar.sortDirection"
                 :sort-fields="toolbar.sortFields"
                 :result-count="toolbar.resultCount"
                 :attached="toolbar.attached"
                 :columns="toolbar.columns"
-                :picked-columns="toolbar.pickedColumns">
+                :picked-columns.sync="toolbar.pickedColumns">
 
       <div v-if="toolbar.slotDefault" v-html="toolbar.slotDefault" style="float:left"></div>
 
@@ -125,10 +121,6 @@ export default {
   },
 
   methods: {
-    setSort(field, direction) {
-      this.toolbar.sortBy = field;
-      this.toolbar.sortDirection = direction;
-    },
     addFilter(filter, value) {
       const f = {};
       f[filter.title] = value;

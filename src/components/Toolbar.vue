@@ -112,6 +112,8 @@ export default {
   methods: {
     setSortBy(field, direction) {
       this.$emit('sort-by', field, direction);
+      this.$emit('update:sortBy', field);
+      this.$emit('update:sortDirection', direction);
     },
     clearFilter(i) {
       this.activeFilters.splice(i, 1);
@@ -123,7 +125,7 @@ export default {
       this.activeFilters.push(filter);
     },
     setPickedColumns(columns) {
-      this.$emit('columns', columns);
+      this.$emit('update:pickedColumns', columns);
     },
   },
 
@@ -194,10 +196,10 @@ export default {
       immediate: true,
     },
     activeView() {
-      this.$emit('view', this.activeView);
+      this.$emit('update:view', this.activeView);
     },
     activeFilters() {
-      this.$emit('filters', this.activeFilters);
+      this.$emit('update:filters', this.activeFilters);
     },
   },
 };
