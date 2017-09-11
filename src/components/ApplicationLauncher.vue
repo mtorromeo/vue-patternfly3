@@ -42,7 +42,9 @@ export default {
     },
 
     hide() {
-      this.$emit('update:open', false);
+      if (this.open) {
+        this.$emit('update:open', false);
+      }
     },
   },
 };
