@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.0.13]
 ### Added
 - Implemented `v-model` on the page property `pf-paginate-control` components.
 - Implemented two-way syncing of `sort-by` and `sort-direction` properties in `pf-table` and `pf-toolbar`.
@@ -134,7 +134,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.12...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.13...HEAD
+[0.0.13]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.12...v0.0.13
 [0.0.12]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.11...v0.0.12
 [0.0.11]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.10...v0.0.11
 [0.0.10]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.9...v0.0.10
