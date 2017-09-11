@@ -10,6 +10,9 @@ All notable changes to this project will be documented in this file.
 - Documented `v-tooltip` directive
 - Implemented `data-placement` attribute as an alternative way to specify the tooltip positions.
 
+### Changed
+- **BACKWARD INCOMPATIBLE CHANGE**: The page property of `pf-table` components can now be synced with `:page.sync="mypagenr"`. As a result of this change the `change-page` event has now been renamed to `update:page`.
+
 ## [0.0.12] - 2017-05-07
 ### Added
 - Implemented `pf-drawer`, `pf-drawer-group` and `pf-drawer-notification` which together compose the notification drawer pattern.

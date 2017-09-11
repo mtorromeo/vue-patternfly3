@@ -53,7 +53,7 @@
         <tr>
           <td class="table-summary" :colspan="columns.length + actionSpan + (selectable ? 1 : 0)">
             <!-- <div class="summary"></div> -->
-            <pf-paginate-control :page="page" :pages="pages" @change="$emit('change-page', arguments[0])"></pf-paginate-control>
+            <pf-paginate-control :page="page" :pages="pages" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
           </td>
         </tr>
       </tfoot>
@@ -84,7 +84,7 @@
       <tr>
         <td class="table-summary" :colspan="columns.length + actionSpan + (selectable ? 1 : 0)">
           <!-- <div class="summary"></div> -->
-          <pf-paginate-control :page="page" :pages="pages" @change="$emit('change-page', arguments[0])"></pf-paginate-control>
+          <pf-paginate-control :page="page" :pages="pages" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
         </td>
       </tr>
     </tfoot>

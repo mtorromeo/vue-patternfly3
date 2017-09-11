@@ -7,7 +7,7 @@
   <section>
     <pf-table :columns="table.columns"
               :rows="table.rows"
-              :page="table.page"
+              :page.sync="table.page"
               :pages="table.pages"
               :striped="table.striped"
               :bordered="table.bordered"
@@ -17,7 +17,6 @@
               :scrollable="table.scrollable"
               :sort-by="table.sortBy"
               :sort-direction="table.sortDirection"
-              @change-page="table.page = arguments[0]"
               @sort-by="setSort"
               style="height:250px">
       <template scope="data">
