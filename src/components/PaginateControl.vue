@@ -29,6 +29,11 @@
 export default {
   name: 'pf-paginate-control',
 
+  model: {
+    prop: 'page',
+    event: 'change',
+  },
+
   props: {
     page: Number,
     pages: {
