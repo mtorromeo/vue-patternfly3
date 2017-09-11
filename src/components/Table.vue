@@ -214,6 +214,8 @@ export default {
   methods: {
     setSortBy(field, direction) {
       this.$emit('sort-by', field, direction);
+      this.$emit('update:sortBy', field);
+      this.$emit('update:sortDirection', direction);
     },
 
     changeSelectAll(e) {

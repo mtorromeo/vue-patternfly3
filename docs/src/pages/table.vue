@@ -15,9 +15,8 @@
               :selectable="table.selectable"
               :sortable="table.sortable"
               :scrollable="table.scrollable"
-              :sort-by="table.sortBy"
-              :sort-direction="table.sortDirection"
-              @sort-by="setSort"
+              :sort-by.sync="table.sortBy"
+              :sort-direction.sync="table.sortDirection"
               style="height:250px">
       <template scope="data">
         <td style="width:50px">#{{data.row.id}}</td>
@@ -223,12 +222,5 @@ export default {
       },
     };
   },
-
-  methods: {
-    setSort(field, direction) {
-      this.table.sortBy = field;
-      this.table.sortDirection = direction;
-    },
-  }
 };
 </script>

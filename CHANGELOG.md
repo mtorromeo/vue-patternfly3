@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - Implemented `v-model` on the page property `pf-paginate-control` components.
+- Implemented two-way syncing of `sort-by` and `sort-direction` properties in `pf-table`.
 - Implemented `pf-application-launcher` and `pf-launcher-item`.
 - Implemented `pf-notification-bell` as a toggler for the `pf-drawer`.
 - Added `navbar-brand-name` CSS class to correctly style text-only brand titles.
