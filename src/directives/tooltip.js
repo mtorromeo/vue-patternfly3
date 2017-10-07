@@ -53,7 +53,6 @@ function createTooltip (el, value, modifiers) {
   const position = getPosition(el, modifiers);
 
   let classes = (/^(top|bottom|left|right)(?:$| )/).exec(position);
-  console.log(position);
   classes = classes ? classes[1] : '';
 
   el._tooltip = new Tooltip({
