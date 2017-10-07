@@ -33,7 +33,15 @@
 
   <div v-if="!disabled && !horizontal" class="nav-pf-vertical nav-pf-vertical-with-sub-menus" :class="{
       collapsed: collapsed,
+      hidden: mobile,
       'hidden-icons-pf': !icons,
+      'show-mobile-nav': mobile && !collapsed,
+      'secondary-visible-pf': secondaryMenus && !tertiaryMenus && !tablet,
+      'show-mobile-secondary': secondaryMenus && !tertiaryMenus && mobile,
+      'hover-secondary-nav-pf': secondaryMenus && !tertiaryMenus,
+      'tertiary-visible-pf': tertiaryMenus && !tablet,
+      'show-mobile-tertiary': tertiaryMenus && mobile,
+      'hover-tertiary-nav-pf': tertiaryMenus,
     }">
     <ul class="list-group">
       <slot name="vertical-menu"></slot>
@@ -41,6 +49,7 @@
   </div>
 
   <div class="pf-layout-container" :class="{
+      'hidden-nav': mobile,
       'container-flex': !disabled && flex,
       'container-fluid': !disabled && !nomargin,
       'collapsed-nav': !disabled && collapsed,
@@ -91,12 +100,43 @@ export default {
   data() {
     return {
       collapsed: false,
+      secondaryMenus: 0,
+      tertiaryMenus: 0,
+      width: 1200,
     };
   },
 
+  mounted() {
+    window.addEventListener('resize', this.resize);
+    this.resize();
+  },
+
+  destroyed() {
+    window.removeEventListener('resize', this.resize);
+  },
+
+  computed: {
+    desktop() {
+      return this.width >= 1200;
+    },
+
+    tablet() {
+      return 1200 > this.width >= 768;
+    },
+
+    mobile() {
+      return this.width < 768;
+    },
+  },
+
   methods: {
+    resize() {
+      const html = document.documentElement;
+      this.width = html.offsetWidth;
+    },
+
     updateHtmlClasses() {
-      const html = window.document.documentElement;
+      const html = document.documentElement;
       html.classList.add('transitions');
       if (this.disabled) {
         html.classList.remove('layout-pf');
@@ -122,6 +162,18 @@ export default {
 
     disabled() {
       this.updateHtmlClasses();
+    },
+
+    desktop() {
+      if (!this.desktop) {
+        this.collapsed = true;
+      }
+    },
+
+    mobile() {
+      if (this.mobile) {
+        this.collapsed = true;
+      }
     },
   },
 };

@@ -22,6 +22,7 @@ import DrawerNotification from './components/DrawerNotification.vue';
 import Layout from './components/Layout.vue';
 import Table from './components/Table.vue';
 import PaginateControl from './components/PaginateControl.vue';
+import VerticalSubmenu from './components/VerticalSubmenu.vue';
 import Tooltip from './directives/tooltip';
 
 import VueStrap from './vue-strap';
@@ -49,6 +50,7 @@ const VuePatternfly = {
   Tooltip,
   Layout,
   Table,
+  VerticalSubmenu,
   PaginateControl,
 };
 
