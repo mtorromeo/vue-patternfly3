@@ -24,6 +24,8 @@ import Table from './components/Table.vue';
 import PaginateControl from './components/PaginateControl.vue';
 import VerticalSubmenu from './components/VerticalSubmenu.vue';
 import Tooltip from './directives/tooltip';
+import Select from './components/Select.vue';
+import Option from './components/Option.vue';
 
 import VueStrap from './vue-strap';
 
@@ -52,6 +54,8 @@ const VuePatternfly = {
   Table,
   VerticalSubmenu,
   PaginateControl,
+  Select,
+  Option,
 };
 
 VuePatternfly.install = function(Vue) {

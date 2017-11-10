@@ -8,11 +8,9 @@
         </a>
       </li>
     </bs-dropdown>
-    <bs-select ref="select" class="filter-select" v-if="isSelect" @input="set" :placeholder="current.placeholder" :close-on-select="true">
-      <slot name="options" :field="current">
-        <bs-option :value="item" v-for="(item, i) in current.values" :key="i">{{item}}</bs-option>
-      </slot>
-    </bs-select>
+    <pf-select close-on-select class="filter-select" v-if="isSelect" :placeholder="current.placeholder" :close-on-select="true">
+      <pf-option :value="item" v-for="(item, i) in current.values" :key="i" @input="set">{{item}}</pf-option>
+    </pf-select>
     <div v-else>
       <input ref="input" class="form-control" type="text" :value="value"
              @keyup.enter.stop="set" :placeholder="current.placeholder">
@@ -22,6 +20,8 @@
 </template>
 
 <script>
+import PfSelect from './Select.vue';
+import PfOption from './Option.vue';
 import VueStrap from '../vue-strap';
 
 export default {
@@ -29,8 +29,8 @@ export default {
 
   components: {
     BsDropdown: VueStrap.dropdown,
-    BsSelect: VueStrap.select,
-    BsOption: VueStrap.option,
+    PfSelect,
+    PfOption,
   },
 
   props: {
@@ -113,9 +113,7 @@ export default {
         filter.value = value;
         this.$emit('filter', filter);
       }
-      if (this.isSelect) {
-        this.$refs.select.clear();
-      } else {
+      if (!this.isSelect) {
         this.$refs.input.value = '';
       }
     },
