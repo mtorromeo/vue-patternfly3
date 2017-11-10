@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Added
+- Implemented secondary and tertiary vertical navigation.
+
+### Fixed
+- Fixed issue with dropdown filters by removing vue-strap's select and option components.
+
 ## [0.0.13]
 ### Added
 - Implemented `v-model` on the page property `pf-paginate-control` components.
