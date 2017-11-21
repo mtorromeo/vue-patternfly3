@@ -182,6 +182,7 @@ export default {
 <style>
 .pf-layout-container {
   position: relative;
+  height: 100%;
 }
 
 nav.navbar-pf > .collapse .navbar-right:last-child,
