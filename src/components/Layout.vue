@@ -241,16 +241,17 @@ nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
   height: auto;
 }
 
-.layout-pf .pf-layout-grid > .container-fluid,
-.layout-pf .pf-layout-flex > .container-flex,
-.layout-pf.layout-pf-fixed .pf-layout-grid > .container-fluid,
-.layout-pf.layout-pf-fixed .pf-layout-flex > .container-flex {
+.layout-pf .pf-layout-grid > .pf-layout-container,
+.layout-pf .pf-layout-flex > .pf-layout-container,
+.layout-pf.layout-pf-fixed .pf-layout-grid > .pf-layout-container,
+.layout-pf.layout-pf-fixed .pf-layout-flex > .pf-layout-container {
   overflow: auto;
   margin-right: 0;
 }
 
-.layout-pf .pf-layout-grid > .container-fluid,
-.layout-pf.layout-pf-fixed .pf-layout-grid > .container-fluid {
+.layout-pf .pf-layout-grid > .pf-layout-container,
+.layout-pf .pf-layout-flex > .pf-layout-container,
+.layout-pf.layout-pf-fixed .pf-layout-grid > .pf-layout-container {
   margin-left: 0;
 }
 
