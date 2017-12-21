@@ -1,6 +1,7 @@
 <template>
 <div :class="{
-  'pf-layout-flex': flex,
+  'pf-layout-flex': display == 'flex',
+  'pf-layout-grid': display == 'grid',
 }">
   <nav v-if="!disabled" class="navbar" :class="{
       'navbar-pf': horizontal,
@@ -50,7 +51,7 @@
 
   <div class="pf-layout-container" :class="{
       'hidden-nav': mobile,
-      'container-flex': !disabled && flex,
+      'container-flex': !disabled && display == 'flex',
       'container-fluid': !disabled && !nomargin,
       'collapsed-nav': !disabled && collapsed,
       'container-pf-nav-pf-vertical': !disabled && !horizontal,
@@ -76,9 +77,9 @@ export default {
       default: false,
     },
 
-    flex: {
-      type: Boolean,
-      default: false,
+    display: {
+      type: String,
+      default: 'block',
     },
 
     collapsable: {
@@ -141,12 +142,19 @@ export default {
       if (this.disabled) {
         html.classList.remove('layout-pf');
         html.classList.remove('layout-pf-fixed');
+        html.classList.remove('layout-pf-fixed-grid');
       } else {
         html.classList.add('layout-pf');
         if (this.horizontal) {
           html.classList.remove('layout-pf-fixed');
+          html.classList.remove('layout-pf-fixed-grid');
         } else {
           html.classList.add('layout-pf-fixed');
+          if (this.display == 'grid') {
+            html.classList.add('layout-pf-fixed-grid');
+          } else {
+            html.classList.remove('layout-pf-fixed-grid');
+          }
         }
       }
     },
@@ -161,6 +169,10 @@ export default {
     },
 
     disabled() {
+      this.updateHtmlClasses();
+    },
+
+    display() {
       this.updateHtmlClasses();
     },
 
@@ -190,6 +202,58 @@ nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
   margin-right: 0;
 }
 
+.layout-pf.layout-pf-fixed.layout-pf-fixed-grid body {
+  padding-top: 0;
+}
+
+.layout-pf.layout-pf-fixed.transitions .nav-pf-vertical {
+  transition: all .2s cubic-bezier(.35,0,.25,1);
+}
+
+.pf-layout-grid {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+}
+
+.layout-pf-fixed .pf-layout-grid {
+  grid-template-columns: auto 1fr;
+}
+
+.pf-layout-grid > .navbar {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.layout-pf-fixed .pf-layout-grid > .navbar {
+  position: inherit;
+  grid-column: 1 / 3;
+}
+
+.pf-layout-grid > .nav-pf-vertical {
+  position: inherit;
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.pf-layout-grid > .pf-layout-container {
+  height: auto;
+}
+
+.layout-pf .pf-layout-grid > .container-fluid,
+.layout-pf .pf-layout-flex > .container-flex,
+.layout-pf.layout-pf-fixed .pf-layout-grid > .container-fluid,
+.layout-pf.layout-pf-fixed .pf-layout-flex > .container-flex {
+  overflow: auto;
+  margin-right: 0;
+}
+
+.layout-pf .pf-layout-grid > .container-fluid,
+.layout-pf.layout-pf-fixed .pf-layout-grid > .container-fluid {
+  margin-left: 0;
+}
+
 .pf-layout-flex,
 .container-flex {
   display: flex;
@@ -210,9 +274,6 @@ nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
 }
 
 .pf-layout-flex > .container-flex {
-  overflow: auto;
-  margin-left: 0;
-  margin-right: 0;
   flex-grow: 1;
 }
 

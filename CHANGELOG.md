@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - Implemented secondary and tertiary vertical navigation.
+- Implemented grid layout on `pf-layout`.
+
+# Changed
+- **BACKWARD INCOMPATIBLE CHANGE**: The `flex` property of `pf-layout` has been removed. The same layout can be applied using the `flex` value on the new `display`.
 
 ### Fixed
 - Fixed issue with dropdown filters by removing vue-strap's select and option components.
