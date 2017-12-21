@@ -11,6 +11,8 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Fixed issue with dropdown filters by removing vue-strap's select and option components.
+- Fixed offset of `pf-application-launcher`.
+- Fixed href property of `pf-launcher-item`s.
 
 ## [0.0.13]
 ### Added
