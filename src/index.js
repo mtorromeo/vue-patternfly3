@@ -63,7 +63,7 @@ new Vue({
         iconClass: 'pficon-home',
         itemText: 'Home',
       },
-      layoutFlex: false,
+      layoutDisplay: 'block',
       layoutHorizontal: false,
       layoutNomargin: false,
       layoutDisabled: false,
