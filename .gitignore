@@ -11,4 +11,4 @@ Thumbs.db
 !.editorconfig
 node_modules
 /dist
-/docs/vue-patternfly.*
+/docs
