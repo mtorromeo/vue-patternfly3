@@ -797,11 +797,19 @@ bootstrap-datepicker@~1.6.4:
   dependencies:
     jquery ">=1.7.1"
 
+bootstrap-sass@^3.3.7:
+  version "3.3.7"
+  resolved "https://registry.yarnpkg.com/bootstrap-sass/-/bootstrap-sass-3.3.7.tgz#6596c7ab40f6637393323ab0bc80d064fc630498"
+
 bootstrap-select@^1.12.2:
   version "1.12.4"
   resolved "https://registry.yarnpkg.com/bootstrap-select/-/bootstrap-select-1.12.4.tgz#7f15d3c0ce978868d9c09c70f96624f55fa02ee1"
   dependencies:
     jquery ">=1.8"
+
+bootstrap-slider@^9.9.0:
+  version "9.10.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-slider/-/bootstrap-slider-9.10.0.tgz#1103d6bc00cfbfa8cfc9a2599ab518c55643da3f"
 
 bootstrap-switch@~3.3.4:
   version "3.3.4"
@@ -913,15 +921,9 @@ builtin-status-codes@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
 
-c3@^0.4.11:
+c3@^0.4.11, c3@~0.4.11:
   version "0.4.18"
   resolved "https://registry.yarnpkg.com/c3/-/c3-0.4.18.tgz#6f1c4409635263b8a3de607edbab4bdc678c62cb"
-  dependencies:
-    d3 "~3.5.0"
-
-c3@~0.4.11:
-  version "0.4.11"
-  resolved "https://registry.yarnpkg.com/c3/-/c3-0.4.11.tgz#3f2b6c7bd33577a3473dd61176735565b4d0f3ce"
   dependencies:
     d3 "~3.5.0"
 
@@ -1381,41 +1383,42 @@ dashdash@^1.12.0:
     assert-plus "^1.0.0"
 
 datatables.net-bs@>=1.10.9:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/datatables.net-bs/-/datatables.net-bs-2.1.1.tgz#704108972891949d094bf44f53d0654d9fee7bce"
+  version "1.10.16"
+  resolved "https://registry.yarnpkg.com/datatables.net-bs/-/datatables.net-bs-1.10.16.tgz#b0854f5b374f713ae3db4156c7cea8a760c3de76"
   dependencies:
-    datatables.net ">=1.10.9"
+    datatables.net "1.10.16"
     jquery ">=1.7"
 
 datatables.net-colreorder-bs@~1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/datatables.net-colreorder-bs/-/datatables.net-colreorder-bs-1.3.2.tgz#02112482e714cb8163670be9d642899886a6de23"
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/datatables.net-colreorder-bs/-/datatables.net-colreorder-bs-1.3.3.tgz#3a9dcb08deebeb5d854079591e06e493ad793a53"
   dependencies:
     datatables.net-bs ">=1.10.9"
     datatables.net-colreorder ">=1.2.0"
     jquery ">=1.7"
 
-datatables.net-colreorder@>=1.2.0, datatables.net-colreorder@~1.3.2:
-  version "1.3.2"
-  resolved "https://registry.yarnpkg.com/datatables.net-colreorder/-/datatables.net-colreorder-1.3.2.tgz#f66a0c27ab1c862e6ba8faad33a92dd002bf798c"
+datatables.net-colreorder@>=1.2.0:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/datatables.net-colreorder/-/datatables.net-colreorder-1.4.1.tgz#389e4b1a274e203979a3718d86c5884d0a0166b6"
+  dependencies:
+    datatables.net "^1.10.15"
+    jquery ">=1.7"
+
+datatables.net-colreorder@~1.3.2:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/datatables.net-colreorder/-/datatables.net-colreorder-1.3.3.tgz#fc762e350f94224cb2cd45c2b962261a0fffef72"
   dependencies:
     datatables.net ">=1.10.9"
     jquery ">=1.7"
 
 datatables.net-select@~1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/datatables.net-select/-/datatables.net-select-1.2.1.tgz#c2d0fe5abbf2babaaeb34af757d4286d3e5c239d"
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/datatables.net-select/-/datatables.net-select-1.2.4.tgz#799eed5d8cfcf21e4502b49c61e84fc4b5f457f7"
   dependencies:
-    datatables.net ">=1.10.9"
+    datatables.net "^1.10.15"
     jquery ">=1.7"
 
-datatables.net@>=1.10.9:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-2.1.1.tgz#6f1103ef08054642aecf85e7e25efd592822ee78"
-  dependencies:
-    jquery ">=1.7"
-
-datatables.net@^1.10.15:
+datatables.net@1.10.16, datatables.net@>=1.10.9, datatables.net@^1.10.15:
   version "1.10.16"
   resolved "https://registry.yarnpkg.com/datatables.net/-/datatables.net-1.10.16.tgz#4b052d1082824261b68eed9d22741b711d3d2469"
   dependencies:
@@ -1976,6 +1979,10 @@ flatten@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/flatten/-/flatten-1.0.2.tgz#dae46a9d78fbe25292258cc1e780a41d95c03782"
 
+font-awesome-sass@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/font-awesome-sass/-/font-awesome-sass-4.7.0.tgz#4eda693e915009ce00b228e0964dc5eca9bc34e1"
+
 font-awesome@^4.7.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
@@ -2535,11 +2542,7 @@ jquery-match-height@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/jquery-match-height/-/jquery-match-height-0.7.2.tgz#f8d9f3ba5314daab109cf07408674be204be5f0e"
 
-"jquery@>= 2.1.x", jquery@>=1.7, jquery@>=1.7.0, jquery@>=1.7.1, jquery@>=1.8:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.1.4.tgz#228bde698a0c61431dc2630a6a154f15890d2317"
-
-"jquery@^1.8.3 || ^2.0 || ^3.0", jquery@~3.2.1:
+"jquery@>= 2.1.x", jquery@>=1.7, jquery@>=1.7.0, jquery@>=1.7.1, jquery@>=1.8, "jquery@^1.8.3 || ^2.0 || ^3.0", jquery@~3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
 
@@ -2852,8 +2855,8 @@ moment-timezone@^0.4.0, moment-timezone@^0.4.1:
     moment ">= 2.6.0"
 
 "moment@>= 2.6.0", moment@^2.10:
-  version "2.18.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
 
 moment@~2.14.1:
   version "2.14.1"
@@ -3150,22 +3153,24 @@ patternfly-bootstrap-combobox@~1.1.7:
   resolved "https://registry.yarnpkg.com/patternfly-bootstrap-combobox/-/patternfly-bootstrap-combobox-1.1.7.tgz#6a5e3ccd1170c21b3c4b4aa168a7413e1ddbb6e1"
 
 patternfly-bootstrap-treeview@~2.1.0:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/patternfly-bootstrap-treeview/-/patternfly-bootstrap-treeview-2.1.1.tgz#bdde0bbeb22a94e99b3069c9a9445564adeb1262"
+  version "2.1.5"
+  resolved "https://registry.yarnpkg.com/patternfly-bootstrap-treeview/-/patternfly-bootstrap-treeview-2.1.5.tgz#4c29f2582fb8a2f28f0a928f2f0d324d21d6990d"
   dependencies:
     bootstrap "3.3.x"
     jquery ">= 2.1.x"
 
 patternfly@^3.14.0:
-  version "3.27.6"
-  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.27.6.tgz#1d1b4bb1d8c8cbe5f77de4ebc3dc2af21cff6457"
+  version "3.32.1"
+  resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.32.1.tgz#33725d652ac9a6b7f4d3f18a4189dbc319ed593a"
   dependencies:
     bootstrap "~3.3.7"
     font-awesome "^4.7.0"
     jquery "~3.2.1"
   optionalDependencies:
     bootstrap-datepicker "~1.6.4"
+    bootstrap-sass "^3.3.7"
     bootstrap-select "^1.12.2"
+    bootstrap-slider "^9.9.0"
     bootstrap-switch "~3.3.4"
     bootstrap-touchspin "~3.1.1"
     c3 "~0.4.11"
@@ -3176,6 +3181,7 @@ patternfly@^3.14.0:
     datatables.net-select "~1.2.0"
     drmonty-datatables-colvis "~1.1.2"
     eonasdan-bootstrap-datetimepicker "^4.17.47"
+    font-awesome-sass "^4.7.0"
     google-code-prettify "~1.0.5"
     jquery-match-height "^0.7.2"
     moment "~2.14.1"
