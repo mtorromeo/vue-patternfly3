@@ -54,4 +54,8 @@ export default {
 .nav-item-iconic.disabled {
   cursor: not-allowed;
 }
+
+.dropdown-kebab-pf .dropdown-menu.dropdown-menu-right {
+  right: 0;
+}
 </style>
