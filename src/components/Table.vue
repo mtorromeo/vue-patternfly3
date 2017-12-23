@@ -69,7 +69,7 @@
     </table>
   </div>
 
-  <pf-paginate-control v-if="itemsPerPage > 0" ref="pagination" class="table-view-pf-pagination" :page="page" :items="items" :items-per-page="itemsPerPage" @update:itemsPerPage="$emit('update:itemsPerPage', $event)" :items-per-page-options="itemsPerPageOptions" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
+  <pf-paginate-control v-if="itemsPerPage > 0" ref="pagination" class="table-view-pf-pagination" :page="page" :total-items="totalItems" :items-per-page="itemsPerPage" @update:itemsPerPage="$emit('update:itemsPerPage', $event)" :items-per-page-options="itemsPerPageOptions" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
 </div>
 </template>
 
@@ -87,7 +87,7 @@ export default {
 
   props: {
     page: Number,
-    items: {
+    totalItems: {
       type: Number,
       default: 0,
     },

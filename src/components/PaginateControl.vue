@@ -8,7 +8,7 @@
   </div>
 
   <div class="form-group">
-    {{firstItem}}-{{lastItem}} of {{items}}
+    {{firstItem}}-{{lastItem}} of {{totalItems}}
     <ul class="pagination pagination-pf-back">
       <li :class="{disabled: page == 1}">
         <a href="javascript:void(0)" title="First Page" @click="setPage(1)">
@@ -63,7 +63,7 @@ export default {
 
   props: {
     page: Number,
-    items: {
+    totalItems: {
       type: Number,
       default: 0,
     },
@@ -81,7 +81,7 @@ export default {
 
   computed: {
     pages() {
-      return Math.ceil(this.items / this.itemsPerPage);
+      return Math.ceil(this.totalItems / this.itemsPerPage);
     },
 
     firstItem() {
@@ -89,7 +89,7 @@ export default {
     },
 
     lastItem() {
-      return Math.min(this.page * this.itemsPerPage, this.items);
+      return Math.min(this.page * this.itemsPerPage, this.totalItems);
     },
   },
 
