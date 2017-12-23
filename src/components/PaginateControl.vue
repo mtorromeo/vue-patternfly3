@@ -3,11 +3,12 @@
   <div class="form-group">
     <div class="btn-group bootstrap-select pagination-pf-pagesize">
       <pf-select close-on-select v-if="itemsPerPageOptions.length">
-        <pf-option :value="itemsPerPage" @input="$emit('update:items-per-page', $event)" :checked-value="item" v-for="(item, i) in itemsPerPageOptions" :key="i">{{item}}</pf-option>
+        <pf-option :value="itemsPerPage" @input="$emit('update:itemsPerPage', $event)" :checked-value="item" v-for="(item, i) in itemsPerPageOptions" :key="i">{{item}}</pf-option>
       </pf-select>
     </div>
     per page
   </div>
+
   <div class="form-group">
     {{firstItem}}-{{lastItem}} of {{items}}
     <ul class="pagination pagination-pf-back">

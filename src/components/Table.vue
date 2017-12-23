@@ -69,7 +69,7 @@
     </table>
   </div>
 
-  <pf-paginate-control ref="pagination" class="table-view-pf-pagination" :page="page" :items="items" :items-per-page="itemsPerPage" @update:items-per-page="$emit('update:items-per-page', $event)" :items-per-page-options="itemsPerPageOptions" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
+  <pf-paginate-control ref="pagination" class="table-view-pf-pagination" :page="page" :items="items" :items-per-page="itemsPerPage" @update:itemsPerPage="$emit('update:itemsPerPage', $event)" :items-per-page-options="itemsPerPageOptions" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
 </div>
 </template>
 
