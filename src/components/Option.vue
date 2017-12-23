@@ -1,5 +1,5 @@
 <template>
-  <li v-if="!filtered">
+  <li v-if="!filtered" :class="{'selected': checked}">
     <a href="javascript:void(0)" @click="check">
       <input ref="input" type="radio" :name="name" :value="value" :checked="checked" style="display:none">
       <slot></slot>

@@ -1,11 +1,9 @@
 <template>
 <form class="content-view-pf-pagination clearfix" aria-label="Search results pages">
   <div class="form-group">
-    <div class="btn-group bootstrap-select pagination-pf-pagesize">
-      <pf-select close-on-select v-if="itemsPerPageOptions.length">
-        <pf-option :value="itemsPerPage" @input="$emit('update:itemsPerPage', $event)" :checked-value="item" v-for="(item, i) in itemsPerPageOptions" :key="i">{{item}}</pf-option>
-      </pf-select>
-    </div>
+    <pf-select button close-on-select v-if="itemsPerPageOptions.length" class="pagination-pf-pagesize">
+      <pf-option :value="itemsPerPage" @input="$emit('update:itemsPerPage', $event)" :checked-value="item" v-for="(item, i) in itemsPerPageOptions" :key="i">{{item}}</pf-option>
+    </pf-select>
     per page
   </div>
 
@@ -24,7 +22,8 @@
       </li>
     </ul>
 
-    <input type="text" class="pagination-pf-page" v-model="page" :style="{
+    <label for="`pf-paginate-control-${_uid}`" class="sr-only">Current Page</label>
+    <input :id="`pf-paginate-control-${_uid}`" type="text" class="pagination-pf-page" v-model="page" :style="{
       width: (pages.toString().length * .8 + 1.5) + 'em'
     }">
     of {{pages}}
@@ -102,3 +101,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.content-view-pf-pagination .form-group {
+  align-items: center;
+}
+</style>

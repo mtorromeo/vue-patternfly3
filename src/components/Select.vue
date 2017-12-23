@@ -1,14 +1,29 @@
 <template>
-  <div ref="select" :class="{open: show, disabled: disabled, dropdown: isLi, 'input-group-btn': inInput, 'btn-group': !isLi && !inInput}">
-    <div ref="btn" class="form-control dropdown-toggle" :tabindex="tabindex" :disabled="disabled" :readonly="readonly"
+  <div ref="select" class="bootstrap-select" :class="{
+    open: show,
+    disabled,
+    dropdown: isLi,
+    'input-group-btn': inInput,
+    'btn-group': !isLi && !inInput,
+  }">
+    <div :is="btnType" :type="button ? 'button' : null" ref="btn" class="dropdown-toggle" :class="{
+      'btn btn-default': button,
+      'form-control': !button,
+    }" :tabindex="tabindex" :disabled="disabled" :readonly="readonly" role="button" :aria-expanded="show.toString()"
       @blur="canSearch ? null : close"
       @click="toggle"
       @keydown.esc.stop.prevent="close"
       @keydown.space.stop.prevent="toggle"
       @keydown.enter.stop.prevent="toggle"
     >
-      <span class="btn-content" v-html="showPlaceholder || selected"></span>
+      <span :class="{
+        'filter-option pull-left': button,
+        'btn-content': !button,
+      }" v-html="showPlaceholder || selected"></span>
       <span v-if="clearButton && values.length" class="close" @click="clear">&times;</span>
+      <span v-if="button" class="bs-caret">
+        <span class="caret"></span>
+      </span>
     </div>
 
     <ul class="dropdown-menu">
@@ -34,6 +49,7 @@ export default {
   name: 'pf-select',
 
   props: {
+    button: Boolean,
     clearButton: Boolean,
     closeOnSelect: Boolean,
     disabled: Boolean,
@@ -89,6 +105,10 @@ export default {
         }
         return values;
       }, []);
+    },
+
+    btnType() {
+      return this.button ? 'button' : 'div';
     },
   },
 
