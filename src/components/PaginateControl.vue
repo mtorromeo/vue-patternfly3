@@ -1,33 +1,60 @@
 <template>
-<span class="dataTables_paginate paginate-control" aria-label="Search results pages">
-  <ul class="pagination">
-    <li class="first" :class="{disabled: page == 1}" title="First" @click="setPage(1)">
-      <span class="i fa fa-angle-double-left" aria-hidden="true"></span>
-    </li>
-    <li class="prev" :class="{disabled: page <= 1}" title="Prev" @click="setPage(page - 1)">
-      <span class="i fa fa-angle-left" aria-hidden="true"></span>
-    </li>
-  </ul>
-  <div class="pagination-input">
-    <input type="text" class="paginate_input" v-model="page" :style="{
-      width: (.7 * (pages.toString().length + 1)) + 'em'
-    }">
-    <span class="paginate_of"> of <b>{{pages}}</b></span>
+<form class="content-view-pf-pagination clearfix" aria-label="Search results pages">
+  <div class="form-group">
+    <div class="btn-group bootstrap-select pagination-pf-pagesize">
+      <pf-select close-on-select v-if="itemsPerPageOptions.length">
+        <pf-option :value="itemsPerPage" @input="$emit('update:items-per-page', $event)" :checked-value="item" v-for="(item, i) in itemsPerPageOptions" :key="i">{{item}}</pf-option>
+      </pf-select>
+    </div>
+    per page
   </div>
-  <ul class="pagination">
-    <li class="next" :class="{disabled: page >= pages}" title="Next" @click="setPage(page + 1)">
-      <span class="i fa fa-angle-right" aria-hidden="true"></span>
-    </li>
-    <li class="last" :class="{disabled: page == pages}" title="Last" @click="setPage(pages)">
-      <span class="i fa fa-angle-double-right" aria-hidden="true"></span>
-    </li>
-  </ul>
-</span>
+  <div class="form-group">
+    {{firstItem}}-{{lastItem}} of {{items}}
+    <ul class="pagination pagination-pf-back">
+      <li :class="{disabled: page == 1}">
+        <a href="javascript:void(0)" title="First Page" @click="setPage(1)">
+          <span class="i fa fa-angle-double-left" aria-hidden="true"></span>
+        </a>
+      </li>
+      <li :class="{disabled: page <= 1}">
+        <a href="javascript:void(0)" title="Previous Page" @click="setPage(page - 1)">
+          <span class="i fa fa-angle-left" aria-hidden="true"></span>
+        </a>
+      </li>
+    </ul>
+
+    <input type="text" class="pagination-pf-page" v-model="page" :style="{
+      width: (pages.toString().length * .8 + 1.5) + 'em'
+    }">
+    of {{pages}}
+
+    <ul class="pagination pagination-pf-forward">
+      <li :class="{disabled: page >= pages}">
+        <a href="javascript:void(0)" title="Next Page" @click="setPage(page + 1)">
+          <span class="i fa fa-angle-right" aria-hidden="true"></span>
+        </a>
+      </li>
+      <li :class="{disabled: page >= pages}">
+        <a href="javascript:void(0)" title="Last Page" @click="setPage(pages)">
+          <span class="i fa fa-angle-double-right" aria-hidden="true"></span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</form>
 </template>
 
 <script>
+import PfSelect from './Select.vue';
+import PfOption from './Option.vue';
+
 export default {
   name: 'pf-paginate-control',
+
+  components: {
+    PfSelect,
+    PfOption,
+  },
 
   model: {
     prop: 'page',
@@ -36,9 +63,33 @@ export default {
 
   props: {
     page: Number,
-    pages: {
+    items: {
       type: Number,
       default: 0,
+    },
+    itemsPerPage: {
+      type: Number,
+      default: 25,
+    },
+    itemsPerPageOptions: {
+      type: Array,
+      default() {
+        return [10, 25, 50, 100, 500];
+      },
+    },
+  },
+
+  computed: {
+    pages() {
+      return Math.ceil(this.items / this.itemsPerPage);
+    },
+
+    firstItem() {
+      return (this.page - 1) * this.itemsPerPage + 1;
+    },
+
+    lastItem() {
+      return Math.min(this.page * this.itemsPerPage, this.items);
     },
   },
 

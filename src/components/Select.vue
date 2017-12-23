@@ -60,7 +60,17 @@ export default {
       show: false,
       isLi: false,
       inInput: false,
+      selected: '',
     };
+  },
+
+  updated() {
+    this.selected = this.$children.reduce(function(labels, c) {
+      if (c.checked) {
+        labels.push(c.$el.innerText);
+      }
+      return labels;
+    }, []).join(', ');
   },
 
   computed: {
@@ -68,20 +78,11 @@ export default {
       return this.minSearch ? this.$children.length >= this.minSearch : this.search;
     },
 
-    selected () {
-      return this.$children.reduce(function(labels, c) {
-        if (c.checked) {
-          labels.push(c.$el.innerText);
-        }
-        return labels;
-      }, []).join(', ');
-    },
-
-    showPlaceholder () {
+    showPlaceholder() {
       return this.values.length ? '' : this.placeholder;
     },
 
-    values () {
+    values() {
       return this.$children.reduce(function(values, c) {
         if (c.checked) {
           values.push(c.value);
@@ -108,23 +109,23 @@ export default {
   },
 
   methods: {
-    close () {
+    close() {
       this.show = false;
     },
 
-    clear () {
+    clear() {
       if (this.disabled || this.readonly) {
         return;
       }
       this.toggle();
     },
 
-    clearSearch () {
+    clearSearch() {
       this.filter = '';
       this.$refs.search.focus();
     },
 
-    toggle () {
+    toggle() {
       this.show = !this.show;
     },
 

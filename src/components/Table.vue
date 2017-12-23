@@ -1,8 +1,12 @@
 <template>
-<div class="table-wrapper" :style="{'margin-right': wrapperMargin}">
+<div class="table-wrapper" :style="{
+  'padding-bottom': `${paginationHeight + (scrollable ? headHeight + 1 : 0)}px`
+}">
   <table v-if="scrollable"
     class="table dataTable table-head-clone"
-    :style="{opacity: showClones ? 1 : 0}"
+    :style="{
+      opacity: showClones ? 1 : 0,
+    }"
     :class="{
       'table-striped': striped,
       'table-bordered': bordered,
@@ -16,7 +20,7 @@
             <input type="checkbox" @change="changeSelectAll">
           </label>
         </th>
-        <th v-for="column in columns" :class="{
+        <th v-for="(column, i) in columns" :key="i" :class="{
           sorting: sortable && column != sortBy,
           sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
           sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
@@ -26,11 +30,13 @@
     </thead>
   </table>
 
-  <div class="table-overflow-container" :style="{'margin-right': tableMargin}">
+  <div class="table-overflow-container">
     <table class="table dataTable" role="grid" :class="{
       'table-striped': striped,
       'table-bordered': bordered,
       'table-hover': hover,
+    }" :style="{
+      'margin-top': scrollable ? `-${headHeight + 1}px` : 0,
     }">
       <thead ref="thead">
         <tr role="row">
@@ -40,7 +46,7 @@
               <input type="checkbox" @change="changeSelectAll">
             </label>
           </th>
-          <th v-for="column in columns" :class="{
+          <th v-for="(column, i) in columns" :key="i" :class="{
             sorting: sortable && column != sortBy,
             sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
             sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
@@ -48,15 +54,6 @@
           <th v-if="actionSpan" :colspan="actionSpan">Actions</th>
         </tr>
       </thead>
-
-      <tfoot v-if="pages > 1">
-        <tr>
-          <td class="table-summary" :colspan="columns.length + actionSpan + (selectable ? 1 : 0)">
-            <!-- <div class="summary"></div> -->
-            <pf-paginate-control :page="page" :pages="pages" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
-          </td>
-        </tr>
-      </tfoot>
 
       <tbody>
         <pf-table-row ref="row" v-for="(row, i) in rows" :key="i" :num="i" :selectable="selectable">
@@ -72,23 +69,7 @@
     </table>
   </div>
 
-  <table v-if="scrollable"
-    class="table dataTable table-foot-clone"
-    :style="{opacity: showClones ? 1 : 0}"
-    :class="{
-      'table-striped': striped,
-      'table-bordered': bordered,
-      'table-hover': hover,
-    }">
-    <tfoot v-if="pages > 1">
-      <tr>
-        <td class="table-summary" :colspan="columns.length + actionSpan + (selectable ? 1 : 0)">
-          <!-- <div class="summary"></div> -->
-          <pf-paginate-control :page="page" :pages="pages" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
-        </td>
-      </tr>
-    </tfoot>
-  </table>
+  <pf-paginate-control ref="pagination" class="table-view-pf-pagination" :page="page" :items="items" :items-per-page="itemsPerPage" @update:items-per-page="$emit('update:items-per-page', $event)" :items-per-page-options="itemsPerPageOptions" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
 </div>
 </template>
 
@@ -106,9 +87,19 @@ export default {
 
   props: {
     page: Number,
-    pages: {
+    items: {
       type: Number,
       default: 0,
+    },
+    itemsPerPage: {
+      type: Number,
+      default: 25,
+    },
+    itemsPerPageOptions: {
+      type: Array,
+      default() {
+        return [10, 25, 50, 100, 500];
+      },
     },
     columns: {
       type: Array,
@@ -134,7 +125,8 @@ export default {
 
   data() {
     return {
-      wrapperOffset: 0,
+      headHeight: 27,
+      paginationHeight: 38,
       showClones: false,
     };
   },
@@ -142,7 +134,7 @@ export default {
   mounted() {
     this.syncHeaders = debounce(this.syncHeaders, 50);
 
-    this.resizeObserver = new ResizeObserver((entries) => {
+    this.headObserver = new ResizeObserver((entries) => {
       if (!this.scrollable) {
         return;
       }
@@ -157,12 +149,23 @@ export default {
           continue;
         }
 
-        const cr = entry.contentRect;
-
         if (entry.target.tagName == 'THEAD') {
-          this.wrapperOffset = theadClone.clientWidth + this.wrapperOffset - cr.width;
+          this.headHeight = theadClone.clientHeight;
         } else {
           this.syncHeaders();
+        }
+      }
+    });
+
+    this.paginationObserver = new ResizeObserver((entries) => {
+      if (!this.scrollable) {
+        return;
+      }
+
+      for (const entry of entries) {
+        if (entry.target == this.$refs.pagination) {
+          this.paginationHeight = this.$refs.pagination.clientHeight;
+          break;
         }
       }
     });
@@ -170,10 +173,12 @@ export default {
     this.$watch('scrollable', () => {
       if (this.scrollable) {
         this.showClones = false;
-        this.resizeObserver.observe(this.$refs.thead);
+        this.headObserver.observe(this.$refs.thead);
+        this.paginationObserver.observe(this.$refs.pagination.$el);
         this.observeThead();
       } else {
-        this.resizeObserver.disconnect();
+        this.headObserver.disconnect();
+        this.paginationObserver.disconnect();
       }
     }, {
       immediate: true,
@@ -181,24 +186,11 @@ export default {
   },
 
   destroyed() {
-    this.resizeObserver.disconnect();
+    this.headObserver.disconnect();
+    this.paginationObserver.disconnect();
   },
 
   computed: {
-    wrapperMargin() {
-      if (!this.scrollable) {
-        return 0;
-      }
-      return `${this.wrapperOffset}px`;
-    },
-
-    tableMargin() {
-      if (!this.scrollable) {
-        return 0;
-      }
-      return `-${this.wrapperOffset}px`;
-    },
-
     actionSpan() {
       let colspan = 0;
       if (this.$slots.action || this.$scopedSlots.action) {
@@ -245,7 +237,7 @@ export default {
         if (i == 0 && this.selectable) {
           continue;
         }
-        this.resizeObserver.observe(row.children[i]);
+        this.headObserver.observe(row.children[i]);
       }
     },
 
@@ -292,22 +284,11 @@ export default {
 <style>
 .table-wrapper {
   position: relative;
+  overflow: visible;
 }
 
-.table-head-clone,
-.table-foot-clone {
+table-head-clone {
   position: absolute;
-  left: 0;
-  z-index: 1;
-}
-
-.table-head-clone {
-  top: 0;
-}
-
-.table-foot-clone {
-  bottom: 0;
-  background-color: white;
 }
 
 .table-overflow-container {
@@ -315,12 +296,9 @@ export default {
   height: 100%;
 }
 
-.table > tfoot > tr > td.table-summary {
-  padding: 0;
-}
-
 table.dataTable {
   height: auto;
+  position: relative;
 }
 
 .table-view-pf-select label {
