@@ -1,6 +1,6 @@
 <template>
 <div class="table-wrapper" :style="{
-  'padding-bottom': `${paginationHeight + (scrollable ? headHeight + 1 : 0)}px`
+  'padding-bottom': bottomPadding,
 }">
   <table v-if="scrollable"
     class="table dataTable table-head-clone"
@@ -69,7 +69,7 @@
     </table>
   </div>
 
-  <pf-paginate-control ref="pagination" class="table-view-pf-pagination" :page="page" :items="items" :items-per-page="itemsPerPage" @update:itemsPerPage="$emit('update:itemsPerPage', $event)" :items-per-page-options="itemsPerPageOptions" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
+  <pf-paginate-control v-if="itemsPerPage > 0" ref="pagination" class="table-view-pf-pagination" :page="page" :items="items" :items-per-page="itemsPerPage" @update:itemsPerPage="$emit('update:itemsPerPage', $event)" :items-per-page-options="itemsPerPageOptions" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
 </div>
 </template>
 
@@ -200,6 +200,12 @@ export default {
         colspan++;
       }
       return colspan;
+    },
+
+    bottomPadding() {
+      const headHeight = this.scrollable ? this.headHeight + 1: 0;
+      const paginationHeight = this.itemsPerPage > 0 ? this.paginationHeight : 0;
+      return `${paginationHeight + headHeight}px`;
     },
   },
 
