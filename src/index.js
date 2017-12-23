@@ -23,6 +23,7 @@ import Layout from './components/Layout.vue';
 import Table from './components/Table.vue';
 import PaginateControl from './components/PaginateControl.vue';
 import VerticalSubmenu from './components/VerticalSubmenu.vue';
+import Spinner from './components/Spinner.vue';
 import Tooltip from './directives/tooltip';
 import Select from './components/Select.vue';
 import Option from './components/Option.vue';
@@ -54,6 +55,7 @@ const VuePatternfly = {
   Table,
   VerticalSubmenu,
   PaginateControl,
+  Spinner,
   Select,
   Option,
 };
