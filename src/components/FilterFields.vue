@@ -8,7 +8,7 @@
         </a>
       </li>
     </bs-dropdown>
-    <pf-select close-on-select class="filter-select" v-if="isSelect" :placeholder="current.placeholder" :close-on-select="true">
+    <pf-select close-on-select class="filter-select" v-if="isSelect" :placeholder="current.placeholder">
       <pf-option :value="item" v-for="(item, i) in current.values" :key="i" @input="set">{{item}}</pf-option>
     </pf-select>
     <div v-else>
