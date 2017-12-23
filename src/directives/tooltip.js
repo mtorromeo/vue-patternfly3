@@ -1,5 +1,7 @@
 const Tooltip = require('tether-tooltip');
 
+const tooltips = new WeakMap();
+
 const positions = [
   'top',
   'left',
@@ -49,48 +51,52 @@ function getPosition(el, modifiers) {
   return position;
 }
 
-function createTooltip (el, value, modifiers) {
+function createTooltip(el, value, modifiers) {
   const position = getPosition(el, modifiers);
 
   let classes = (/^(top|bottom|left|right)(?:$| )/).exec(position);
   classes = classes ? classes[1] : '';
 
-  el._tooltip = new Tooltip({
+  const tooltip = new Tooltip({
     target: el,
     position,
     content: value,
     classes,
   });
+  tooltips.set(el, tooltip);
 
   const arrow = document.createElement('DIV');
   arrow.className = 'tooltip-arrow';
 
-  el._tooltip.drop.drop.insertBefore(arrow, el._tooltip.drop.content);
-  el._tooltip.drop.content.className = 'tooltip-inner';
+  tooltip.drop.drop.insertBefore(arrow, tooltip.drop.content);
+  tooltip.drop.content.className = 'tooltip-inner';
 }
 
-function destroyTooltip (el) {
-  if (el._tooltip) {
-    el._tooltip.destroy();
-    Reflect.deleteProperty(el, '_tooltip');
+function destroyTooltip(el) {
+  if (tooltips.has(el)) {
+    tooltips.get(el).destroy();
+    tooltips.delete(el);
   }
 }
 
 export default {
   name: 'tooltip',
-  bind (el, {value, modifiers}) {
+
+  bind(el, {value, modifiers}) {
     destroyTooltip(el);
     if (value) {
       createTooltip(el, value, modifiers);
     }
   },
-  update (el, {value, modifiers}) {
+
+  update(el, {value, modifiers}) {
     if (!value) {
       destroyTooltip(el);
-    } else if (el && el._tooltip) {
+    } else if (el && tooltips.has(el)) {
+      const tooltip = tooltips.get(el);
       const position = getPosition(el, modifiers);
-      if (el._tooltip.options.position == position) {
-        el._tooltip.drop.content.innerHTML = value;
+      if (tooltip.options.position == position) {
+        tooltip.drop.content.innerHTML = value;
       } else {
         destroyTooltip(el);
         createTooltip(el, value, modifiers);
@@ -99,7 +105,8 @@ export default {
       createTooltip(el, value, modifiers);
     }
   },
-  unbind (el) {
+
+  unbind(el) {
     destroyTooltip(el);
   },
 };
