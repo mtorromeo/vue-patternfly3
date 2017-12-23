@@ -1,10 +1,10 @@
 <template>
 <form class="content-view-pf-pagination clearfix" aria-label="Search results pages">
   <div class="form-group">
-    <pf-select button close-on-select v-if="itemsPerPageOptions.length" class="pagination-pf-pagesize">
+    <pf-select ref="perpage" button close-on-select v-if="itemsPerPageOptions.length" class="pagination-pf-pagesize">
       <pf-option :value="itemsPerPage" @input="$emit('update:itemsPerPage', $event)" :checked-value="item" v-for="(item, i) in itemsPerPageOptions" :key="i">{{item}}</pf-option>
     </pf-select>
-    per page
+    <span @click.stop="openPerPageSelect">per page</span>
   </div>
 
   <div class="form-group">
@@ -22,8 +22,8 @@
       </li>
     </ul>
 
-    <label for="`pf-paginate-control-${_uid}`" class="sr-only">Current Page</label>
-    <input :id="`pf-paginate-control-${_uid}`" type="text" class="pagination-pf-page" v-model="page" :style="{
+    <label for="`pf-paginate-control-input-${_uid}`" class="sr-only">Current Page</label>
+    <input :id="`pf-paginate-control-input-${_uid}`" type="text" class="pagination-pf-page" v-model="page" :style="{
       width: (pages.toString().length * .8 + 1.5) + 'em'
     }">
     of {{pages}}
@@ -97,6 +97,11 @@ export default {
     setPage(page) {
       page = Math.max(Math.min(page, this.pages), 1);
       this.$emit('change', page);
+    },
+
+    openPerPageSelect() {
+      this.$refs.perpage.focus();
+      this.$refs.perpage.open();
     },
   },
 };

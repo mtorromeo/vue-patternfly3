@@ -133,6 +133,10 @@ export default {
       this.show = false;
     },
 
+    open() {
+      this.show = true;
+    },
+
     clear() {
       if (this.disabled || this.readonly) {
         return;
@@ -159,6 +163,10 @@ export default {
       if (this.closeOnSelect) {
         this.close();
       }
+    },
+
+    focus() {
+      this.$refs.btn.focus();
     },
   },
 
