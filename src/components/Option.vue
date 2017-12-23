@@ -19,8 +19,8 @@ export default {
         return this.$parent.name;
       },
     },
-    value: String,
-    checkedValue: String,
+    value: {},
+    checkedValue: {},
   },
 
   data() {
@@ -36,7 +36,7 @@ export default {
 
   methods: {
     check(e) {
-      this.$emit('input', this.value);
+      this.$emit('input', this.checkedValue);
       this.$parent.select(this);
     },
   },
