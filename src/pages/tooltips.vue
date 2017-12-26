@@ -55,6 +55,7 @@ export default {
     return {
       tooltip: 'Test tooltip 1',
       position: 'right-top',
+      loading: true,
       positions: [
         'top',
         'left',

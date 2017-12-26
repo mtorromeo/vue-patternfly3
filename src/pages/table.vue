@@ -8,7 +8,9 @@
     <pf-table :columns="table.columns"
               :rows="table.rows"
               :page.sync="table.page"
-              :pages="table.pages"
+              :total-items="table.totalItems"
+              :items-per-page.sync="table.itemsPerPage"
+              :items-per-page-options="table.itemsPerPageOptions"
               :striped="table.striped"
               :bordered="table.bordered"
               :hover="table.hover"
@@ -55,7 +57,9 @@
       <props-row name="columns" description="List of columns" v-model="table.columns" code></props-row>
       <props-row name="rows" description="List of rows" v-model="table.rows" code></props-row>
       <props-row name="page" description="Current page number" v-model="table.page"></props-row>
-      <props-row name="pages" description="Number of available pages" v-model="table.pages"></props-row>
+      <props-row name="totalItems" description="Total number of items (used to calculate the number of pages)" v-model="table.totalItems"></props-row>
+      <props-row name="itemsPerPage" description="Number of items to display per page (0 = disable paging controls)" v-model="table.itemsPerPage"></props-row>
+      <props-row name="itemsPerPageOptions" description="Available options to change the number of items per page" v-model="table.itemsPerPageOptions"></props-row>
     </props-table>
 
 
@@ -216,7 +220,9 @@ export default {
         sortable: true,
         scrollable: true,
         page: 1,
-        pages: 10,
+        totalItems: 95,
+        itemsPerPage: 25,
+        itemsPerPageOptions: [10, 25, 50, 100, 500],
         sortBy: '',
         sortDirection: '',
       },
