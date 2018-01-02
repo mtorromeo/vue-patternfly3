@@ -71,4 +71,10 @@ new Vue({
       layoutCollapsable: true,
     };
   },
+
+  methods: {
+    toast(message, type) {
+      return this.$refs.notifications.add(message, type);
+    },
+  },
 });

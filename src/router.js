@@ -12,6 +12,7 @@ import ToolbarPage from './pages/toolbar.vue';
 import TablePage from './pages/table.vue';
 import TooltipsPage from './pages/tooltips.vue';
 import ComponentsPage from './pages/components.vue';
+import ChartsPage from './pages/charts.vue';
 
 Vue.use(VueRouter);
 
@@ -46,6 +47,9 @@ const router = new VueRouter({
     }, {
       path: '/tooltips',
       component: TooltipsPage,
+    }, {
+      path: '/charts',
+      component: ChartsPage,
     }, {
       path: '/components',
       component: ComponentsPage,
