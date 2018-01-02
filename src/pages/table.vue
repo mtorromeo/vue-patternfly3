@@ -20,7 +20,7 @@
               :sort-by.sync="table.sortBy"
               :sort-direction.sync="table.sortDirection"
               style="height:250px">
-      <template scope="data">
+      <template slot-scope="data">
         <td style="width:50px">#{{data.row.id}}</td>
         <td>{{data.row.name}}</td>
         <td>{{data.row.surname}}</td>
