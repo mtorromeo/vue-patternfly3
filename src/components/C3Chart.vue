@@ -31,23 +31,71 @@ export default {
   },
 
   mounted() {
-    const chartData = {
-      bindto: this.$el,
-      size: {
-        width: this.width,
-        height: this.height,
-      },
-      data: Object.assign({}, this.data),
-    };
-    chartData[this.type] = {};
+    this.create();
+  },
 
-    chartData.data.type = this.type;
+  methods: {
+    create() {
+      if (this.chart) {
+        this.destroy();
+      }
 
-    if (this.title) {
-      chartData[this.type].title = this.title;
-    }
+      const chartData = {
+        bindto: this.$el,
+        size: this.size,
+        data: Object.assign({}, this.data),
+        axis: Object.assign({}, this.axis),
+      };
+      chartData[this.type] = {};
 
-    this.chart = c3.generate(chartData);
+      chartData.data.type = this.type;
+
+      if (this.title) {
+        chartData[this.type].title = this.title;
+      }
+
+      this.chart = c3.generate(chartData);
+    },
+
+    destroy() {
+      if (this.chart && this.chart.internal.selectChart) {
+        this.chart.destroy();
+      }
+      this.chart = null;
+    },
+  },
+
+  computed: {
+    size() {
+      const size = {};
+      if (this.width) {
+        size.width = this.width;
+      }
+      if (this.height) {
+        size.height = this.height;
+      }
+      return size;
+    },
+  },
+
+  watch: {
+    size() {
+      this.chart.resize(this.size);
+    },
+
+    data() {
+      const loadData = Object.assign({}, this.data);
+      loadData.unload = true;
+      this.chart.load(loadData);
+    },
+
+    axis() {
+      this.create();
+    },
+
+    type() {
+      this.chart.transform(this.type);
+    },
   },
 };
 </script>
