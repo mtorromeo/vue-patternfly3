@@ -16,8 +16,16 @@
     <h2>C3 Chart <code>&lt;pf-c3-chart&gt;</code></h2>
   </header>
 
+  <p>This component is a wrapper to the C3.js library. The patternfly color palette is applied by default to all the charts.</p>
+
   <pf-c3-chart :type="c3.type" :title="c3.title" :data="c3.data" :axis="c3.axis" :width="c3.width" :height="c3.height"
     @click="c3click" />
+
+  <h4>Related documentation</h4>
+  <ol>
+    <li><a href="http://www.patternfly.org/pattern-library/data-visualization/pie-chart" target="_blank">Pattern Library > Data Visualization > Pie Chart</a></li>
+    <li><a href="http://c3js.org" target="_blank">C3.js</a></li>
+  </ol>
 
   <props-table :component-props="c3.props">
     <props-row name="type" description="C3 chart type" v-model="c3.type" :options="['line', 'spline', 'step', 'area', 'area-spline', 'area-step', 'bar', 'scatter', 'pie', 'donut', 'gauge']"></props-row>
@@ -44,11 +52,13 @@ export default {
       c3: {
         props: C3Chart.props,
         type: "donut",
-        title: "Memory",
+        title: "Animals",
         data: {
           columns: [
-            ['Used', 123],
-            ['Available', 74]
+            ['Dogs', 12],
+            ['Cats', 7],
+            ['Fish', 3],
+            ['Hamsters', 6],
           ],
           groups: [
             ['used', 'available']
