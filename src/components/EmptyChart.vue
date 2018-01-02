@@ -1,10 +1,12 @@
 <template>
 <div class="empty-chart-content" :style="{
-    'height': height,
-    'padding-top': padding,
+    'height': `${height}px`,
+    'padding-top': `${padding}px`,
   }">
   <span class="pficon pficon-info"></span>
-  <span>No data available</span>
+  <slot>
+    <span>No data available</span>
+  </slot>
 </div>
 </template>
 
