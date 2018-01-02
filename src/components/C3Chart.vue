@@ -43,7 +43,15 @@ export default {
       const chartData = {
         bindto: this.$el,
         size: this.size,
-        data: Object.assign({}, this.data),
+        data: Object.assign({
+          onclick: (d, i) => this.$emit('click', d, i),
+          onmouseover: (d, i) => this.$emit('mouseover', d, i),
+          onmouseout: (d, i) => this.$emit('mouseout', d, i),
+          onselected: (d, i) => this.$emit('selected', d, i),
+          onunselected: (d, i) => this.$emit('unselected', d, i),
+          ondragstart: (d, i) => this.$emit('dragstart', d, i),
+          ondragend: (d, i) => this.$emit('dragend', d, i),
+        }, this.data),
         axis: Object.assign({}, this.axis),
       };
       chartData[this.type] = {};
