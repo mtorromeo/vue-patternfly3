@@ -32,6 +32,9 @@
     "url": "https://github.com/mtorromeo/vue-patternfly/issues"
   },
   "homepage": "https://github.com/mtorromeo/vue-patternfly#readme",
+  "engines": {
+    "node": ">= 6.0"
+  },
   "dependencies": {
     "c3": "^0.4.11",
     "patternfly": "^3.14.0",
