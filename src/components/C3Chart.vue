@@ -4,6 +4,36 @@
 
 <script>
 import c3 from 'c3';
+const patternfly = require("imports-loader?patternfly=>{}!exports-loader?patternfly!patternfly/dist/js/patternfly-settings-colors.js");
+const palette = [
+  patternfly.pfPaletteColors.red,
+  patternfly.pfPaletteColors.blue,
+  patternfly.pfPaletteColors.green,
+  patternfly.pfPaletteColors.gold,
+  patternfly.pfPaletteColors.cyan,
+  patternfly.pfPaletteColors.orange,
+  patternfly.pfPaletteColors.lightGreen,
+  patternfly.pfPaletteColors.purple,
+  patternfly.pfPaletteColors.lightBlue,
+  patternfly.pfPaletteColors.red700,
+  patternfly.pfPaletteColors.blue700,
+  patternfly.pfPaletteColors.green700,
+  patternfly.pfPaletteColors.gold700,
+  patternfly.pfPaletteColors.cyan700,
+  patternfly.pfPaletteColors.orange700,
+  patternfly.pfPaletteColors.lightGree7500,
+  patternfly.pfPaletteColors.purple700,
+  patternfly.pfPaletteColors.lightBlue700,
+  patternfly.pfPaletteColors.red400,
+  patternfly.pfPaletteColors.blue400,
+  patternfly.pfPaletteColors.green400,
+  patternfly.pfPaletteColors.gold400,
+  patternfly.pfPaletteColors.cyan400,
+  patternfly.pfPaletteColors.orange400,
+  patternfly.pfPaletteColors.lightGree4500,
+  patternfly.pfPaletteColors.purple400,
+  patternfly.pfPaletteColors.lightBlue400,
+];
 
 export default {
   name: 'pf-c3-chart',
@@ -53,6 +83,9 @@ export default {
           ondragend: (d, i) => this.$emit('dragend', d, i),
         }, this.data),
         axis: Object.assign({}, this.axis),
+        color: {
+          pattern: palette,
+        },
       };
       chartData[this.type] = {};
 
