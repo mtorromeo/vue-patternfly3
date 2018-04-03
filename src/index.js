@@ -27,6 +27,9 @@ import Spinner from './components/Spinner.vue';
 import Tooltip from './directives/tooltip';
 import Select from './components/Select.vue';
 import Option from './components/Option.vue';
+import ListView from './components/ListView.vue';
+import Modal from './components/Modal.vue';
+import Confirmation from './components/Confirmation.vue';
 
 import VueStrap from './vue-strap';
 
@@ -58,6 +61,9 @@ const VuePatternfly = {
   Spinner,
   Select,
   Option,
+  ListView,
+  Modal,
+  Confirmation,
 };
 
 VuePatternfly.install = function(Vue) {
