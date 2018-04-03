@@ -10,5 +10,4 @@ Thumbs.db
 !.eslint*
 !.editorconfig
 node_modules
-/dist
 /docs
