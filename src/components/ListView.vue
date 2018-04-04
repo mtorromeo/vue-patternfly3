@@ -1,6 +1,5 @@
 <template>
 <div>
-<div>
     <div class="container-fluid">
     <div class="list-group list-view-pf list-view-pf-view">
         <pf-list-item ref="row" v-for="(row, i) in rows" :key="i" :num="i" :selectable="selectable">
@@ -14,15 +13,7 @@
         </pf-list-item>
     </div>
     </div>
-</div>
-
-<div class="row" v-if="pages > 1">
-    <div class="col-md-12">   
-        <div class="pull-right">
-            <pf-paginate-control :page="page" :pages="pages" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
-        </div>
-    </div>      
-</div>
+    <pf-paginate-control v-if="itemsPerPage > 0" ref="pagination" class="table-view-pf-pagination" :page="page" :total-items="totalItems" :items-per-page="itemsPerPage" @update:itemsPerPage="$emit('update:itemsPerPage', $event)" :items-per-page-options="itemsPerPageOptions" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
 </div>
 </template>
 <script>
@@ -36,9 +27,19 @@ export default {
 
   props: {
     page: Number,
-    pages: {
+    totalItems:{
       type: Number,
       default: 0
+    },
+    itemsPerPage: {
+      type: Number,
+      default: 10
+    },
+    itemsPerPageOptions: {
+      type: Array,
+      default() {
+        return [10, 25, 50, 100, 500];
+      },
     },
     selectable: Boolean,
     rows: {

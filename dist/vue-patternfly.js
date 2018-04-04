@@ -17989,15 +17989,6 @@ if (false) {(function () {
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ var ListView = ({
@@ -18009,9 +18000,19 @@ if (false) {(function () {
 
   props: {
     page: Number,
-    pages: {
+    totalItems: {
       type: Number,
       default: 0
+    },
+    itemsPerPage: {
+      type: Number,
+      default: 10
+    },
+    itemsPerPageOptions: {
+      type: Array,
+      default: function _default() {
+        return [10, 25, 50, 100, 500];
+      }
     },
     selectable: Boolean,
     rows: {
@@ -18089,8 +18090,9 @@ var ListView_render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", [
+  return _c(
+    "div",
+    [
       _c("div", { staticClass: "container-fluid" }, [
         _c(
           "div",
@@ -18129,31 +18131,31 @@ var ListView_render = function() {
             )
           })
         )
-      ])
-    ]),
-    _vm._v(" "),
-    _vm.pages > 1
-      ? _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-12" }, [
-            _c(
-              "div",
-              { staticClass: "pull-right" },
-              [
-                _c("pf-paginate-control", {
-                  attrs: { page: _vm.page, pages: _vm.pages },
-                  on: {
-                    change: function($event) {
-                      _vm.$emit("update:page", arguments[0])
-                    }
-                  }
-                })
-              ],
-              1
-            )
-          ])
-        ])
-      : _vm._e()
-  ])
+      ]),
+      _vm._v(" "),
+      _vm.itemsPerPage > 0
+        ? _c("pf-paginate-control", {
+            ref: "pagination",
+            staticClass: "table-view-pf-pagination",
+            attrs: {
+              page: _vm.page,
+              "total-items": _vm.totalItems,
+              "items-per-page": _vm.itemsPerPage,
+              "items-per-page-options": _vm.itemsPerPageOptions
+            },
+            on: {
+              "update:itemsPerPage": function($event) {
+                _vm.$emit("update:itemsPerPage", $event)
+              },
+              change: function($event) {
+                _vm.$emit("update:page", arguments[0])
+              }
+            }
+          })
+        : _vm._e()
+    ],
+    1
+  )
 }
 var ListView_staticRenderFns = []
 ListView_render._withStripped = true
