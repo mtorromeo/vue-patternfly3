@@ -11,3 +11,4 @@ Thumbs.db
 !.editorconfig
 node_modules
 /docs
+/dist
