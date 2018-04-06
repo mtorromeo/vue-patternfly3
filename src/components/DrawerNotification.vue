@@ -106,7 +106,7 @@ export default {
     isSeparator(action) {
       return action == '-' || action.separator;
     },
-  }
+  },
 };
 </script>
 

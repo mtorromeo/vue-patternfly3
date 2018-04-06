@@ -153,8 +153,8 @@ export default {
         action.handler(action);
       }
       this.$emit(action.emit || 'action', action);
-    }
-  }
+    },
+  },
 };
 </script>
 
