@@ -52,6 +52,14 @@ export default {
     },
   },
 
+  mounted() {
+    document.documentElement.classList.add('modal-open');
+  },
+
+  beforeDestroy() {
+    document.documentElement.classList.remove('modal-open');
+  },
+
   methods: {
     confirm() {
       this.$emit('confirm');

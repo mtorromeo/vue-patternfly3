@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import {PortalTarget} from 'portal-vue';
 import ModalsTarget from './ModalsTarget.vue';
 
 export default {
@@ -72,6 +73,7 @@ export default {
 
   components: {
     ModalsTarget,
+    PortalTarget,
   },
 
   props: {
