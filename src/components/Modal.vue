@@ -1,10 +1,10 @@
 <template>
   <portal to="modals-target">
     <div class="modal" role="dialog" key="modal" @click="clickOutside">
-      <div class="modal-dialog">
+      <div class="modal-dialog" @click.stop>
         <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" @click="$emit('close')">
+          <div class="modal-header" v-if="title">
+            <button type="button" class="close" @click="cancel">
             <span class="pficon pficon-close"></span>
             </button>
             <h4 class="modal-title">{{title}}</h4>
@@ -12,9 +12,11 @@
           <div class="modal-body">
             <slot></slot>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" @click="$emit('close')">Close</button>
-            <slot name="button"></slot>
+          <div class="modal-footer" v-if="$slots.footer || $scopedSlots.footer || cancelButton || confirmButton">
+            <slot name="footer">
+              <button type="button" class="btn btn-default" v-if="cancelButton" @click="cancel">{{cancelButton}}</button>
+              <button type="button" class="btn btn-primary" v-if="confirmButton" @click="cancel">{{confirmButton}}</button>
+            </slot>
           </div>
         </div>
       </div>
@@ -36,16 +38,38 @@ export default {
 
   props: {
     title: String,
+    confirmButton: {
+      type: String,
+      default: 'OK',
+    },
+    cancelButton: {
+      type: String,
+      default: 'Cancel',
+    },
     outsideClose: {
       type: Boolean,
       default: false,
     },
   },
 
-  clickOutside: {
-    clickOuside() {
+  methods: {
+    confirm() {
+      this.$emit('confirm');
+      this.close();
+    },
+
+    cancel() {
+      this.$emit('cancel');
+      this.close();
+    },
+
+    close() {
+      this.$emit('close');
+    },
+
+    clickOutside() {
       if (this.outsideClose) {
-        this.$emit('close');
+        this.cancel();
       }
     },
   },
