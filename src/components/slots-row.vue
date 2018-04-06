@@ -1,6 +1,7 @@
 <template>
 <tr>
   <td>{{name}}</td>
+  <td v-if="$parent.toggle"><input type="checkbox" :checked="enabled" @change="$emit('update:enabled', !enabled)"></td>
   <td v-html="description"></td>
   <td style="height: 150px">
     <ace-editor class="form-control" :value="value.toString()" @input="update" lang="html"></ace-editor>
@@ -16,6 +17,7 @@ export default {
     name: String,
     description: String,
     value: String,
+    enabled: Boolean,
   },
 
   methods: {

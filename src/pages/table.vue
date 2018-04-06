@@ -112,105 +112,105 @@ export default {
             name: 'John',
             surname: 'Smith',
             city: 'New York',
-            state: 'New York'
+            state: 'New York',
           },
           {
             id: 2,
             name: 'Joe',
             surname: 'Black',
             city: 'Miami',
-            state: 'Florida'
+            state: 'Florida',
           },
           {
             id: 3,
             name: 'David',
             surname: 'White',
             city: 'Boston',
-            state: 'Massachusetts'
+            state: 'Massachusetts',
           },
           {
             id: 1,
             name: 'John',
             surname: 'Smith',
             city: 'New York',
-            state: 'New York'
+            state: 'New York',
           },
           {
             id: 2,
             name: 'Joe',
             surname: 'Black',
             city: 'Miami',
-            state: 'Florida'
+            state: 'Florida',
           },
           {
             id: 3,
             name: 'David',
             surname: 'White',
             city: 'Boston',
-            state: 'Massachusetts'
+            state: 'Massachusetts',
           },
           {
             id: 1,
             name: 'John',
             surname: 'Smith',
             city: 'New York',
-            state: 'New York'
+            state: 'New York',
           },
           {
             id: 2,
             name: 'Joe',
             surname: 'Black',
             city: 'Miami',
-            state: 'Florida'
+            state: 'Florida',
           },
           {
             id: 3,
             name: 'David',
             surname: 'White',
             city: 'Boston',
-            state: 'Massachusetts'
+            state: 'Massachusetts',
           },
           {
             id: 1,
             name: 'John',
             surname: 'Smith',
             city: 'New York',
-            state: 'New York'
+            state: 'New York',
           },
           {
             id: 2,
             name: 'Joe',
             surname: 'Black',
             city: 'Miami',
-            state: 'Florida'
+            state: 'Florida',
           },
           {
             id: 3,
             name: 'David',
             surname: 'White',
             city: 'Boston',
-            state: 'Massachusetts'
+            state: 'Massachusetts',
           },
           {
             id: 1,
             name: 'John',
             surname: 'Smith',
             city: 'New York',
-            state: 'New York'
+            state: 'New York',
           },
           {
             id: 2,
             name: 'Joe',
             surname: 'Black',
             city: 'Miami',
-            state: 'Florida'
+            state: 'Florida',
           },
           {
             id: 3,
             name: 'David',
             surname: 'White',
             city: 'Boston',
-            state: 'Massachusetts'
+            state: 'Massachusetts',
           },
         ],
         striped: true,

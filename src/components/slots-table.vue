@@ -5,6 +5,7 @@
     <thead>
       <tr>
         <th style="width: 200px">Name</th>
+        <th style="width: 60px" v-if="toggle">Enable</th>
         <th style="width: 300px">Description</th>
         <th>HTML</th>
       </tr>
@@ -25,6 +26,7 @@ export default {
       type: String,
       default: 'Slots',
     },
+    toggle: Boolean,
   },
 };
 </script>

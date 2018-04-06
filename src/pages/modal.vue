@@ -12,22 +12,31 @@
       <li><a href="http://www.patternfly.org/pattern-library/forms-and-controls/modal-overlay/" target="_blank">Pattern Library > Modal Overlay</a></li>
     </ol>
 
-    <pf-modal v-if="modal.show" @close="modal.show = false" :title="modal.title" :outside-close="modal.outsideClose">
-      <div v-html="modal.slotDefault"></div>
+    <pf-modal
+      v-if="modal.show"
+      @close="modal.show = false"
+      :title="modal.title"
+      :outside-close="modal.outsideClose"
+      :confirm-button="modal.confirmButton"
+      :cancel-button="modal.cancelButton"
+    >
+      <div v-if="modal.slotDefault.enabled" v-html="modal.slotDefault.content"></div>
 
-      <div slot="button" v-html="modal.slotButton"></div>
+      <div slot="footer" v-if="modal.slotFooter.enabled" v-html="modal.slotFooter.content"></div>
     </pf-modal>
 
     <button @click="modal.show = true">Open Modal</button>
 
     <props-table :component-props="modalProps">
-      <props-row name="title" description="Modal title" v-model="modal.title"></props-row>
-      <props-row name="outsideClose" description="Modal title" v-model="modal.outsideClose"></props-row>
+      <props-row name="title" description="Modal title or empty/undefined to disable it" v-model="modal.title"></props-row>
+      <props-row name="outsideClose" description="Allow clicking outside of the modal to close it" v-model="modal.outsideClose"></props-row>
+      <props-row name="confirmButton" description="Text for the confirmation button or empty/undefined to disable it" v-model="modal.confirmButton"></props-row>
+      <props-row name="cancelButton" description="Text for the cancellation button or empty/undefined to disable it" v-model="modal.cancelButton"></props-row>
     </props-table>
 
-    <slots-table>
-      <slots-row name="default" description="Modal content" v-model="modal.slotDefault"></slots-row>
-      <slots-row name="button" description="Action buttons and dropdowns can be placed here" v-model="modal.slotButton"></slots-row>
+    <slots-table toggle>
+      <slots-row name="default" description="Modal content" :enabled.sync="modal.slotDefault.enabled" v-model="modal.slotDefault.content"></slots-row>
+      <slots-row name="footer" description="Custom footer content can be placed here (overrides default buttons)" :enabled.sync="modal.slotFooter.enabled" v-model="modal.slotFooter.content"></slots-row>
     </slots-table>
   </section>
 </article>
@@ -46,7 +55,11 @@ export default {
         show: false,
         title: 'Modal Title',
         outsideClose: true,
-        slotDefault: `<form class="form-horizontal">
+        confirmButton: 'OK',
+        cancelButton: 'Cancel',
+        slotDefault: {
+          enabled: true,
+          content: `<form class="form-horizontal">
   <div class="form-group">
     <label class="col-sm-3 control-label" for="textInput">Field One</label>
     <div class="col-sm-9">
@@ -64,7 +77,10 @@ export default {
     </div>
   </div>
 </form>`,
-        slotButton: `<button class="btn btn-default" type="button" title="Title 1">
+        },
+        slotFooter: {
+          enabled: false,
+          content: `<button class="btn btn-default" type="button" title="Title 1">
   Action 1
 </button>
 <button class="btn btn-default" type="button" title="Title 2">
@@ -73,6 +89,7 @@ export default {
 <button class="btn btn-danger" type="button" title="Title 3">
   Action 3
 </button>`,
+        },
       },
     };
   },

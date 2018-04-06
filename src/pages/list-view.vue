@@ -12,10 +12,32 @@
       :items-per-page.sync="listview.itemsPerPage"
       :items-per-page-options="listview.itemsPerPageOptions"
       :selectable="listview.selectable"
+      :expandable="listview.expandable"
+      :stacked="listview.stacked"
     >
-      <div slot-scope="data">
-        #{{data.row.id}}: {{data.row.name}} {{data.row.surname}} - {{data.row.city}} ({{data.row.state}})
-      </div>
+      <pf-list-item
+        slot-scope="data"
+        icon="plane"
+        icon-size="md"
+        :icon-variant="data.row.city == 'Miami' ? 'danger' : 'info'"
+      >
+        <template slot="heading">{{data.row.name}} {{data.row.surname}}</template>
+        <template slot="description">{{data.row.city}} {{data.row.state}}</template>
+        <template slot="additional-info">
+          <pf-list-item-additional-info>
+            <strong>113,735</strong><span>Service One</span>
+          </pf-list-item-additional-info>
+          <pf-list-item-additional-info>
+            <strong>35%</strong><span>Service Two</span>
+          </pf-list-item-additional-info>
+          <pf-list-item-additional-info expandable>
+            <span class="pficon pficon-flavor"></span><strong>4</strong> hosts
+            <template slot="expansion">Additional info about {{data.row.name}}'s hosts</template>
+          </pf-list-item-additional-info>
+        </template>
+      </pf-list-item>
+
+      <template slot="expansion" slot-scope="data">Showing additional info about {{data.row.name}}</template>
 
       <a slot="action" href="#" @click.prevent class="btn btn-default">
         Action
@@ -37,6 +59,8 @@
 
     <props-table :component-props="listviewProps">
       <props-row name="selectable" description="Make every list item selectable" v-model="listview.selectable"></props-row>
+      <props-row name="expandable" description="Make every list item expandable" v-model="listview.expandable"></props-row>
+      <props-row name="stacked" description="Stacked items" v-model="listview.stacked"></props-row>
       <props-row name="rows" description="List of items" v-model="listview.rows" code></props-row>
       <props-row name="page" description="Current page number" v-model="listview.page"></props-row>
       <props-row name="totalItems" description="Total number of items (used to calculate the number of pages)" v-model="listview.totalItems"></props-row>
@@ -110,9 +134,11 @@ export default {
           },
         ],
         selectable: true,
+        expandable: false,
+        stacked: false,
         page: 1,
         totalItems: 95,
-        itemsPerPage: 25,
+        itemsPerPage: 0,
         itemsPerPageOptions: [10, 25, 50, 100, 500],
       },
     };

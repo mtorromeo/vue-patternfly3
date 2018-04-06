@@ -25,7 +25,7 @@
                 :columns="toolbar.columns"
                 :picked-columns.sync="toolbar.pickedColumns">
 
-      <div v-if="toolbar.slotDefault" v-html="toolbar.slotDefault" style="float:left"></div>
+      <div v-if="toolbar.slotDefault.enabled" v-html="toolbar.slotDefault.content" style="float:left"></div>
 
       <bs-dropdown class="dropdown-kebab-pf" type="link">
         <li role="menuitem">
@@ -55,8 +55,8 @@
       <props-row name="resultCount" description="Number of elements matching the filter criteria" v-model="toolbar.resultCount"></props-row>
     </props-table>
 
-    <slots-table>
-      <slots-row name="default" description="Action buttons and dropdowns can be placed here" v-model="toolbar.slotDefault"></slots-row>
+    <slots-table toggle>
+      <slots-row name="default" description="Action buttons and dropdowns can be placed here" :enabled.sync="toolbar.slotDefault.enabled" v-model="toolbar.slotDefault.content"></slots-row>
     </slots-table>
   </section>
 </article>
@@ -89,7 +89,7 @@ export default {
             label: 'Birth Month',
             placeholder: 'Filter by Birth Month...',
             values: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-          }
+          },
         },
         sortBy: 'date',
         sortDirection: 'ascending',
@@ -105,7 +105,9 @@ export default {
         pickedColumns: ['Name'],
         resultCount: 0,
         attached: false,
-        slotDefault: `<button class="btn btn-default" type="button" title="Title 1">
+        slotDefault: {
+          enabled: true,
+          content: `<button class="btn btn-default" type="button" title="Title 1">
   Action 1
 </button>
 <button class="btn btn-default" type="button" title="Title 2">
@@ -116,6 +118,7 @@ export default {
 </button>
 
 <!-- The "kebab" menu is fixed in this example due to how v-html works -->`,
+        },
       },
     };
   },

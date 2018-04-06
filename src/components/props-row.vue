@@ -14,6 +14,7 @@
     <select v-else-if="options.length" class="form-control" @change="update" @click.stop>
       <option v-for="o in options" :key="o" :value="o" :selected="o == value">{{o}}</option>
     </select>
+    <input v-else-if="!code && prop.object" type="text" class="form-control" :value="editableValue" @change="update" @click.stop>
     <input v-else-if="!code" type="text" class="form-control" :value="editableValue" @keyup="update" @click.stop>
     <ace-editor v-else class="form-control" :value="editableValue" @input="update" lang="javascript"></ace-editor>
   </td>
@@ -67,10 +68,11 @@ export default {
       if (typ == 'function') {
         prop.type = def.name;
       } else if (typ == 'object') {
-        prop.object = def.type.name != 'String';
+        prop.object = true;
         if (def.type instanceof Array) {
           prop.type = def.type.map(t => t.name).join(' | ');
         } else if (def.type) {
+          prop.object = def.type.name != 'String';
           prop.type = def.type.name;
         }
         if (prop.type == 'Boolean') {
