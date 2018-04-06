@@ -12,7 +12,7 @@
       <li><a href="http://www.patternfly.org/pattern-library/forms-and-controls/modal-overlay/" target="_blank">Pattern Library > Modal Overlay</a></li>
     </ol>
 
-    <pf-modal v-if="modal.show" @close="modal.show = false" :title="modal.title">
+    <pf-modal v-if="modal.show" @close="modal.show = false" :title="modal.title" :outside-close="modal.outsideClose">
       <div v-html="modal.slotDefault"></div>
 
       <div slot="button" v-html="modal.slotButton"></div>
@@ -22,6 +22,7 @@
 
     <props-table :component-props="modalProps">
       <props-row name="title" description="Modal title" v-model="modal.title"></props-row>
+      <props-row name="outsideClose" description="Modal title" v-model="modal.outsideClose"></props-row>
     </props-table>
 
     <slots-table>
@@ -44,6 +45,7 @@ export default {
       modal: {
         show: false,
         title: 'Modal Title',
+        outsideClose: true,
         slotDefault: `<form class="form-horizontal">
   <div class="form-group">
     <label class="col-sm-3 control-label" for="textInput">Field One</label>
