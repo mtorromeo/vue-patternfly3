@@ -1,6 +1,6 @@
 <template>
   <portal to="modals-target">
-    <div class="modal" role="dialog" key="modal" @click="clickOuside">
+    <div class="modal" role="dialog" key="modal" @click="clickOutside">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <div class="modal-backdrop in" key="backdrop" @click="clickOuside"></div>
+    <div class="modal-backdrop in" key="backdrop" @click="clickOutside"></div>
   </portal>
 </template>
 
@@ -42,7 +42,7 @@ export default {
     },
   },
 
-  methods: {
+  clickOutside: {
     clickOuside() {
       if (this.outsideClose) {
         this.$emit('close');
