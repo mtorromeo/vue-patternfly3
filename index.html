@@ -44,6 +44,9 @@
       <router-link tag="li" active-class="active" to="/table" :exact="true">
         <a>Table</a>
       </router-link>
+      <router-link tag="li" active-class="active" to="/list-view" :exact="true">
+        <a>ListView</a>
+      </router-link>
       <router-link tag="li" active-class="active" to="/cards" :exact="true">
         <a>Cards</a>
       </router-link>
@@ -90,6 +93,12 @@
         <a>
           <span class="fa fa-table" title="Table"></span>
           <span class="list-group-item-value">Table</span>
+        </a>
+      </router-link>
+      <router-link tag="li" class="list-group-item" active-class="active" to="/list-view" :exact="true">
+        <a>
+          <span class="fa fa-th-list" title="ListView"></span>
+          <span class="list-group-item-value">ListView</span>
         </a>
       </router-link>
       <router-link tag="li" class="list-group-item" active-class="active" to="/cards" :exact="true">

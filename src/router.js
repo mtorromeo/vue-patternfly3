@@ -11,6 +11,7 @@ import DrawerPage from './pages/drawer.vue';
 import CardsPage from './pages/cards.vue';
 import ToolbarPage from './pages/toolbar.vue';
 import TablePage from './pages/table.vue';
+import ListViewPage from './pages/list-view.vue';
 import TooltipsPage from './pages/tooltips.vue';
 import ComponentsPage from './pages/components.vue';
 import ChartsPage from './pages/charts.vue';
@@ -48,6 +49,9 @@ const router = new VueRouter({
     }, {
       path: '/table',
       component: TablePage,
+    }, {
+      path: '/list-view',
+      component: ListViewPage,
     }, {
       path: '/tooltips',
       component: TooltipsPage,
