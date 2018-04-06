@@ -1,10 +1,17 @@
 {
   "presets": [
-    ["es2015", {"modules": false}]
+    ["env", {
+      "modules": false,
+      "targets": {
+        "browsers": ["last 2 major versions", "not ie <= 10"]
+      }
+    }]
   ],
   "plugins": [
     "transform-regenerator",
     "transform-runtime",
-    "syntax-async-functions"
+    "syntax-async-functions",
+    "transform-es2015-destructuring",
+    "transform-object-rest-spread"
   ]
 }

@@ -1,7 +1,10 @@
 <template>
-<div class="table-wrapper" :style="{
-  'padding-bottom': bottomPadding,
-}">
+<div
+  class="table-wrapper"
+  :style="{
+    'padding-bottom': bottomPadding,
+  }"
+>
   <table v-if="scrollable"
     class="table dataTable table-head-clone"
     :style="{
@@ -11,7 +14,8 @@
       'table-striped': striped,
       'table-bordered': bordered,
       'table-hover': hover,
-    }">
+    }"
+  >
     <thead ref="thead-clone">
       <tr>
         <th v-if="selectable" class="table-view-pf-select" aria-label="Select all rows">
@@ -20,11 +24,16 @@
             <input type="checkbox" @change="changeSelectAll">
           </label>
         </th>
-        <th v-for="(column, i) in columns" :key="i" :class="{
-          sorting: sortable && column != sortBy,
-          sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
-          sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
-        }" @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')">{{column}}</th>
+        <th
+          v-for="(column, i) in columns"
+          :key="i"
+          :class="{
+            sorting: sortable && column != sortBy,
+            sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
+            sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
+          }"
+          @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')"
+        >{{column}}</th>
         <th v-if="actionSpan" :colspan="actionSpan">Actions</th>
       </tr>
     </thead>
@@ -46,11 +55,16 @@
               <input type="checkbox" @change="changeSelectAll">
             </label>
           </th>
-          <th v-for="(column, i) in columns" :key="i" :class="{
-            sorting: sortable && column != sortBy,
-            sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
-            sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
-          }" @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')">{{column}}</th>
+          <th
+            v-for="(column, i) in columns"
+            :key="i"
+            :class="{
+              sorting: sortable && column != sortBy,
+              sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
+              sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
+            }"
+            @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')"
+          >{{column}}</th>
           <th v-if="actionSpan" :colspan="actionSpan">Actions</th>
         </tr>
       </thead>
@@ -69,7 +83,17 @@
     </table>
   </div>
 
-  <pf-paginate-control v-if="itemsPerPage > 0" ref="pagination" class="table-view-pf-pagination" :page="page" :total-items="totalItems" :items-per-page="itemsPerPage" @update:itemsPerPage="$emit('update:itemsPerPage', $event)" :items-per-page-options="itemsPerPageOptions" @change="$emit('update:page', arguments[0])"></pf-paginate-control>
+  <pf-paginate-control
+    v-if="itemsPerPage > 0"
+    ref="pagination"
+    class="table-view-pf-pagination"
+    :page="page"
+    :total-items="totalItems"
+    :items-per-page="itemsPerPage"
+    @update:itemsPerPage="$emit('update:itemsPerPage', $event)"
+    :items-per-page-options="itemsPerPageOptions"
+    @change="$emit('update:page', arguments[0])"
+  />
 </div>
 </template>
 
@@ -203,7 +227,7 @@ export default {
     },
 
     bottomPadding() {
-      const headHeight = this.scrollable ? this.headHeight + 1: 0;
+      const headHeight = this.scrollable ? this.headHeight + 1 : 0;
       const paginationHeight = this.itemsPerPage > 0 ? this.paginationHeight : 0;
       return `${paginationHeight + headHeight}px`;
     },

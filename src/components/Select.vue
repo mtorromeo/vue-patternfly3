@@ -114,8 +114,8 @@ export default {
 
   watch: {
     show(val) {
-      if (val) {
-        this.$refs.search ? this.$refs.search.focus() : this.$refs.btn.focus();
+      if (val && this.$refs.search) {
+        this.$refs.search.focus();
       } else {
         this.$refs.btn.focus();
       }
@@ -159,7 +159,7 @@ export default {
       }
     },
 
-    select(option) {
+    select() {
       if (this.closeOnSelect) {
         this.close();
       }
@@ -179,7 +179,7 @@ export default {
   beforeDestroy() {
     document.removeEventListener('click', this.outerClick);
   },
-}
+};
 </script>
 
 <style scoped>

@@ -2,7 +2,7 @@
 <div class="filter-pf filter-fields form-group toolbar-pf-filter">
   <div class="input-group">
     <bs-dropdown :text="current.label" class="input-group-btn">
-      <li v-for="(item, name) in normFields">
+      <li v-for="(item, name) in normFields" :key="name">
         <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = name">
           {{item.label}}
         </a>
@@ -12,8 +12,14 @@
       <pf-option :checked-value="item" v-for="(item, i) in current.values" :key="i" @input="set">{{item}}</pf-option>
     </pf-select>
     <div v-else>
-      <input ref="input" class="form-control" type="text" :value="value"
-             @keyup.enter.stop="set" :placeholder="current.placeholder">
+      <input
+        ref="input"
+        class="form-control"
+        type="text"
+        :value="value"
+        @keyup.enter.stop="set"
+        :placeholder="current.placeholder"
+      >
     </div>
   </div>
 </div>
@@ -74,13 +80,14 @@ export default {
 
   computed: {
     current() {
-      if (!this.normFields[this.selected]) {
+      let selected = this.selected;
+      if (!this.normFields[selected]) {
         if (!this.normFields.length) {
           return {};
         }
-        this.selected = this.normFields[0];
+        selected = this.normFields[0];
       }
-      return this.normFields[this.selected];
+      return this.normFields[selected];
     },
 
     isSelect() {

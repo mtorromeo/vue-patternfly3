@@ -122,7 +122,7 @@ export default {
     },
 
     tablet() {
-      return 1200 > this.width >= 768;
+      return this.width < 1200 && this.width >= 768;
     },
 
     mobile() {

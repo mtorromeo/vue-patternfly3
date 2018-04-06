@@ -4,7 +4,13 @@
       <span class="fa fa-columns"></span>
     </button>
 
-    <div slot="content" v-for="(column, i) in columns" class="checkbox" @click.stop>
+    <div
+      slot="content"
+      v-for="(column, i) in columns"
+      :key="i"
+      class="checkbox"
+      @click.stop
+    >
       <label>
         <input type="checkbox" :value="columnValue(column, i)" v-model="iValue" @change="setValue">
         {{column}}

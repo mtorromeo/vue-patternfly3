@@ -1,29 +1,38 @@
 <template>
-<div class="drawer-pf-notification"
-     :class="{unread, 'expanded-notification': $parent.$parent.expanded}">
+<div
+  class="drawer-pf-notification"
+  :class="{unread, 'expanded-notification': $parent.$parent.expanded}"
+>
   <bs-dropdown v-if="showDropdown" class="pull-right dropdown-kebab-pf" type="link">
     <slot name="dropdown" :actions="actions">
-      <li v-for="action in actions"
-          :role="isSeparator(action) ? 'separator' : 'menuitem'"
-          :class="{
-            divider: isSeparator(action),
-            disabled: action.disabled === true,
-          }">
+      <li
+        v-for="action in actions"
+        :key="action.name"
+        :role="isSeparator(action) ? 'separator' : 'menuitem'"
+        :class="{
+          divider: isSeparator(action),
+          disabled: action.disabled === true,
+        }"
+      >
         <a v-if="!isSeparator(action)"
-           class="secondary-action"
-           :title="action.title"
-           @click="triggered(action)">
+          class="secondary-action"
+          :title="action.title"
+          @click="triggered(action)"
+        >
           {{action.name}}
         </a>
       </li>
     </slot>
   </bs-dropdown>
 
-  <button type="button" v-if="action && action.name"
-          class="pull-right btn"
-          :class="[buttonClass]"
-          :title="action.title"
-          @click="triggered(action)">
+  <button
+    type="button"
+    v-if="action && action.name"
+    class="pull-right btn"
+    :class="[buttonClass]"
+    :title="action.title"
+    @click="triggered(action)"
+  >
     {{action.name}}
   </button>
 

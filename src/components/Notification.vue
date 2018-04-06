@@ -1,38 +1,53 @@
 <template>
-<div class="alert"
-     :class="[alertClass, {
-       'alert-dismissable': !persistent,
-       'toast-pf': toast,
-      }]">
-
+<div
+  class="alert"
+  :class="[alertClass, {
+    'alert-dismissable': !persistent,
+    'toast-pf': toast,
+  }]"
+>
   <bs-dropdown v-if="showDropdown">
     <slot name="dropdown" :actions="actions">
-      <li v-for="action in actions"
-          :role="isSeparator(action) ? 'separator' : 'menuitem'"
-          :class="{
-            divider: isSeparator(action),
-            disabled: action.disabled === true,
-          }">
-        <a v-if="!isSeparator(action)"
-           class="secondary-action"
-           :title="action.title"
-           @click="triggered(action)">
+      <li
+        v-for="action in actions"
+        :key="action.name"
+        :role="isSeparator(action) ? 'separator' : 'menuitem'"
+        :class="{
+          divider: isSeparator(action),
+          disabled: action.disabled === true,
+        }"
+      >
+        <a
+          v-if="!isSeparator(action)"
+          class="secondary-action"
+          :title="action.title"
+          @click="triggered(action)"
+        >
           {{action.name}}
         </a>
       </li>
     </slot>
   </bs-dropdown>
 
-  <button v-show="!persistent && !toast" @click="dismiss"
-          type="button" class="close" data-dismiss="alert" aria-hidden="true">
+  <button
+    v-show="!persistent && !toast"
+    @click="dismiss"
+    type="button"
+    class="close"
+    data-dismiss="alert"
+    aria-hidden="true"
+  >
     <span class="pficon pficon-close"></span>
   </button>
 
-  <button type="button" v-if="action && action.name"
-          class="pull-right btn"
-          :class="[buttonClass]"
-          :title="action.title"
-          @click="triggered(action)">
+  <button
+    type="button"
+    v-if="action && action.name"
+    class="pull-right btn"
+    :class="[buttonClass]"
+    :title="action.title"
+    @click="triggered(action)"
+  >
     {{action.name}}
   </button>
 

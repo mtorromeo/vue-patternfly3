@@ -2,12 +2,12 @@ env:
   browser: true
   commonjs: true
   es6: true
-extends: 'eslint:recommended'
-parser: babel-eslint
+extends:
+  - 'eslint:recommended'
+  - 'plugin:vue/essential'
 parserOptions:
+  parser: babel-eslint
   sourceType: module
-plugins:
-  - html
 rules:
   accessor-pairs: error
   array-bracket-spacing: error

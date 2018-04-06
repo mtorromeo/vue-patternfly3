@@ -1,14 +1,30 @@
 <template>
-<div class="clearfix toolbar-pf" :class="{
+<div
+  class="clearfix toolbar-pf"
+  :class="{
     'table-view-pf-toolbar': attached,
-  }" _v-3RyaW5nJyk>
+  }"
+  _v-3RyaW5nJyk
+>
   <div class="col-sm-12">
     <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
-      <pf-filter-fields @filter="addFilter" :fields="filterFields" v-if="showFilter"></pf-filter-fields>
+      <pf-filter-fields @filter="addFilter" :fields="filterFields" v-if="showFilter"/>
       <div class="form-group" v-if="showSorter || showColumnPicker">
-        <pf-sort :fields="sortFields" v-if="showSorter" :sortBy="sortBy" :direction="sortDirection" @change="setSortBy"></pf-sort>
+        <pf-sort
+          :fields="sortFields"
+          v-if="showSorter"
+          :sortBy="sortBy"
+          :direction="sortDirection"
+          @change="setSortBy"
+        />
 
-        <pf-column-picker ref="colpicker" v-if="showColumnPicker" :columns="columns" :value="pickedColumns" @input="setPickedColumns"></pf-column-picker>
+        <pf-column-picker
+          ref="colpicker"
+          v-if="showColumnPicker"
+          :columns="columns"
+          :value="pickedColumns"
+          @input="setPickedColumns"
+        />
       </div>
 
       <div class="toolbar-actions" :class="{
@@ -31,13 +47,20 @@
         </h5>
 
         <div class="form-group toolbar-pf-view-selector">
-          <button v-for="(viewData, name) in viewList" class="btn btn-link" :class="{'active': view == name, 'disabled': viewData.disabled}" :title="viewData.title" @click="activeView = name">
+          <button
+            v-for="(viewData, name) in viewList"
+            :key="name"
+            class="btn btn-link"
+            :class="{'active': view == name, 'disabled': viewData.disabled}"
+            :title="viewData.title"
+            @click="activeView = name"
+          >
             <i :class="[viewData.iconClass]" class="view-selector"></i>
           </button>
         </div>
       </div>
     </form>
-    <pf-filter-results v-if="showResultFilter" :count="resultCount" :filters="activeFilters"></pf-filter-results>
+    <pf-filter-results v-if="showResultFilter" :count="resultCount" :filters="activeFilters"/>
   </div>
 </div>
 </template>

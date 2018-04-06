@@ -1,8 +1,7 @@
 /* global __dirname */
 
-const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
@@ -22,6 +21,14 @@ module.exports = {
 
   module: {
     rules: [{
+      enforce: 'pre',
+      test: /\.(vue|js)$/,
+      loader: 'eslint-loader',
+      exclude: /node_modules/,
+      options: {
+        formatter: require('eslint-friendly-formatter'),
+      },
+    }, {
       test: /\.jsx?$/,
       loader: 'babel-loader',
       exclude: /\/node_modules\/(?!vue-strap)/,
@@ -29,14 +36,11 @@ module.exports = {
       test: /\.html?$/,
       loader: 'html-loader',
     }, {
-      test: /\.json$/,
-      loader: 'json-loader',
-    }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: 'css-loader',
-      }),
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+      ],
     }, {
       test: /\.vue$/,
       loader: 'vue-loader',
@@ -50,9 +54,9 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
   ],
 };

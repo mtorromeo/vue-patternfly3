@@ -2,7 +2,11 @@
 <div class="card-pf" :class="{'card-pf-accented': accented}">
   <div v-if="showHeader" :class="{'card-pf-heading': showTitlesSeparator, 'card-pf-heading-no-bottom': !showTitlesSeparator}">
     <dropdown v-if="showFilterInHeader" class="card-pf-time-frame-filter pull-right" :text="currentFilter.label">
-      <li v-for="item in filter.filters" :class="{'selected': item === currentFilter}">
+      <li
+        v-for="(item, i) in filter.filters"
+        :key="i"
+        :class="{'selected': item === currentFilter}"
+      >
         <a href="javascript:void(0)" role="menuitem" tabindex="-1" @click="filterClicked(item)">
           {{item.label}}
         </a>
@@ -19,7 +23,11 @@
 
   <div v-if="showFooter || showFilterInFooter" class="card-pf-footer">
     <dropdown v-if="showFilterInFooter" class="card-pf-time-frame-filter pull-right" :text="currentFilter.label">
-      <li v-for="item in filter.filters" :class="{'selected': item === currentFilter}">
+      <li
+        v-for="(item, i) in filter.filters"
+        :key="i"
+        :class="{'selected': item === currentFilter}"
+      >
         <a href="javascript:void(0)" role="menuitem" tabindex="-1" @click="filterClicked(item)">
           {{item.label}}
         </a>

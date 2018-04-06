@@ -1,7 +1,7 @@
 <template>
 <div class="sort-pf">
   <bs-dropdown :text="current.label">
-    <li v-for="(field, i) in normFields" :class="{'selected': active == field.name}">
+    <li v-for="field in normFields" :key="field.name" :class="{'selected': active == field.name}">
       <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="select(field)">
         {{field.label}}
       </a>
@@ -47,7 +47,7 @@ export default {
 
   watch: {
     fields: {
-      handler (fields) {
+      handler(fields) {
         const normFields = [];
         if (fields instanceof Array) {
           for (const f of fields) {
@@ -63,13 +63,13 @@ export default {
       immediate: true,
     },
     sortBy: {
-      handler (sortBy) {
+      handler(sortBy) {
         this.active = sortBy;
       },
       immediate: true,
     },
     direction: {
-      handler () {
+      handler() {
         this.ascending = this.direction == 'ascending';
       },
       immediate: true,

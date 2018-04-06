@@ -5,7 +5,7 @@
       <h5>{{count}} Results</h5>
       <p v-if="filters.length > 0">Active filters:</p>
       <ul class="list-inline">
-        <li v-for="(filter, i) in filters">
+        <li v-for="(filter, i) in filters" :key="i">
           <span class="active-filter label label-info">
             {{filter.label}}: {{filter.value}}
             <a><span class="pficon pficon-close" @click="$parent.clearFilter(i)"></span></a>

@@ -14,7 +14,7 @@ export default {
   props: {
     href: {
       type: String,
-      default: 'javascript:void(0)',
+      default: '#',
     },
     iconClass: String,
   },

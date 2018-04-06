@@ -35,7 +35,7 @@ export default {
   },
 
   methods: {
-    check(e) {
+    check() {
       this.$emit('input', this.checkedValue);
       this.$parent.select(this);
     },
