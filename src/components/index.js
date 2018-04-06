@@ -24,6 +24,7 @@ import VerticalSubmenu from './VerticalSubmenu.vue';
 import Spinner from './Spinner.vue';
 import Select from './Select.vue';
 import Option from './Option.vue';
+import ListView from './ListView.vue';
 import Modal from './Modal.vue';
 
 export {
@@ -53,5 +54,6 @@ export {
   Spinner,
   Select,
   Option,
+  ListView,
   Modal,
 };

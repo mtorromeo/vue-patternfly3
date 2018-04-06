@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Implemented secondary and tertiary vertical navigation.
 - Implemented grid layout on `pf-layout`.
 - Implemented modal overlay pattern with `pf-modal` (Contributed by [@pebri86]).
+- Implemented `pf-list-view` (Contributed by [@pebri86]).
 - Upgraded build to webpack 4.
 
 # Changed

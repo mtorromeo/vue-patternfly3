@@ -14,7 +14,7 @@
 .dropdown-kebab-pf .caret {
   height: 1em;
   vertical-align: inherit;
-  left: 5px;
+  width: 3px;
 }
 
 .dropdown-kebab-pf .dropdown-menu {
