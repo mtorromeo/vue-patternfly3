@@ -3348,6 +3348,10 @@ isurl@^1.0.0-alpha5:
     has-to-string-tag-x "^1.2.0"
     is-object "^1.0.1"
 
+javascript-detect-element-resize@^0.5.3:
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/javascript-detect-element-resize/-/javascript-detect-element-resize-0.5.3.tgz#1a71cd51dfe565907f299012fe73a294104025de"
+
 jquery-match-height@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/jquery-match-height/-/jquery-match-height-0.7.2.tgz#f8d9f3ba5314daab109cf07408674be204be5f0e"
@@ -4440,6 +4444,10 @@ pkg-dir@^2.0.0:
 pluralize@^7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
+
+portal-vue@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/portal-vue/-/portal-vue-1.3.0.tgz#479630547c12bc94200d3485d40f21368955f809"
 
 posix-character-classes@^0.1.0:
   version "0.1.1"
@@ -6030,6 +6038,18 @@ vue-loader@^14.2.2:
     vue-hot-reload-api "^2.2.0"
     vue-style-loader "^4.0.1"
     vue-template-es2015-compiler "^1.6.0"
+
+vue-mixins@^0.2.14:
+  version "0.2.20"
+  resolved "https://registry.yarnpkg.com/vue-mixins/-/vue-mixins-0.2.20.tgz#f58cf2af25dd012cd81afdd3a0daf77005634a78"
+  dependencies:
+    javascript-detect-element-resize "^0.5.3"
+
+vue-portal@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/vue-portal/-/vue-portal-1.0.0.tgz#a25acc25963a84576d3f8f4e78f68c37b9255fed"
+  dependencies:
+    vue-mixins "^0.2.14"
 
 vue-resource@^1.0.3:
   version "1.5.0"
