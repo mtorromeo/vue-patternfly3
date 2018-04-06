@@ -38,7 +38,7 @@
         <td>top-center</td>
         <td>
           <select class="form-control" v-model="position">
-            <option v-for="p in positions" :value="p">{{p}}</option>
+            <option v-for="p in positions" :key="p" :value="p">{{p}}</option>
           </select>
         </td>
       </tr>

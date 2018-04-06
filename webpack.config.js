@@ -1,8 +1,7 @@
 /* global __dirname */
 
-const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   entry: {
@@ -34,10 +33,10 @@ module.exports = {
       },
     }, {
       test: /\.css$/,
-      loader: ExtractTextPlugin.extract({
-        fallback: 'style-loader',
-        use: 'css-loader',
-      }),
+      use: [
+        MiniCssExtractPlugin.loader,
+        'css-loader',
+      ],
     }, {
       test: /\.vue$/,
       loader: 'vue-loader',
@@ -52,9 +51,9 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new ExtractTextPlugin({
+    new MiniCssExtractPlugin({
       filename: '[name].css',
+      chunkFilename: '[id].css',
     }),
   ],
 };

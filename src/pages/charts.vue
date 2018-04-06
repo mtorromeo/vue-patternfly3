@@ -51,8 +51,8 @@ export default {
 
       c3: {
         props: C3Chart.props,
-        type: "donut",
-        title: "Animals",
+        type: 'donut',
+        title: 'Animals',
         data: {
           columns: [
             ['Dogs', 12],
@@ -69,16 +69,16 @@ export default {
             type: 'category',
           },
         },
-        width: undefined,
-        height: undefined,
+        width: null,
+        height: null,
       },
     };
   },
 
   methods: {
-    c3click(d, element) {
+    c3click(d) {
       this.$root.toast(`Clicked chart datapoint "${d.id}"`, 'success');
     },
   },
-}
+};
 </script>
