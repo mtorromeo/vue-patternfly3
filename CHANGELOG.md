@@ -5,14 +5,16 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Implemented secondary and tertiary vertical navigation.
 - Implemented grid layout on `pf-layout`.
+- Upgraded build to webpack 4.
 
 # Changed
-- **BACKWARD INCOMPATIBLE CHANGE**: The `flex` property of `pf-layout` has been removed. The same layout can be applied using the `flex` value on the new `display`.
+- **BACKWARD INCOMPATIBLE CHANGE**: The `flex` property of `pf-layout` has been removed. The same layout can be applied using the `flex` value on the new `display` property.
 
 ### Fixed
 - Fixed issue with dropdown filters by removing vue-strap's select and option components.
 - Fixed offset of `pf-application-launcher`.
 - Fixed href property of `pf-launcher-item`s.
+- Fixed various linting errors/warnings.
 
 ## [0.0.13]
 ### Added
