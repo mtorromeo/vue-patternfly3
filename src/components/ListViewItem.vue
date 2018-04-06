@@ -17,24 +17,10 @@
 </template>
 
 <script>
+import TableRow from './TableRow.vue';
+
 export default {
   name: 'pf-list-item',
-
-  props: {
-    num: Number,
-    selectable: Boolean,
-  },
-
-  data() {
-    return {
-      selected: false,
-    };
-  },
-
-  watch: {
-    selected() {
-      this.$emit('select', this.selected);
-    },
-  },
+  extends: TableRow,
 };
 </script>
