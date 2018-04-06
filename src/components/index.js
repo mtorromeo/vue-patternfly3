@@ -24,6 +24,7 @@ import VerticalSubmenu from './VerticalSubmenu.vue';
 import Spinner from './Spinner.vue';
 import Select from './Select.vue';
 import Option from './Option.vue';
+import Modal from './Modal.vue';
 
 export {
   AggregateStatusCard,
@@ -52,4 +53,5 @@ export {
   Spinner,
   Select,
   Option,
+  Modal,
 };

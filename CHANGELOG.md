@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Implemented secondary and tertiary vertical navigation.
 - Implemented grid layout on `pf-layout`.
+- Implemented modal overlay pattern with `pf-modal` (Contributed by [@pebri86]).
 - Upgraded build to webpack 4.
 
 # Changed
@@ -162,3 +163,5 @@ disabled, as per PatternFly design guidelines.
 [0.0.4]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.3...v0.0.4
 [0.0.3]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.1...v0.0.2
+
+[@pebri86]: https://github.com/pebri86
