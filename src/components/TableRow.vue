@@ -1,7 +1,5 @@
 <template>
-<tr role="row" :class="{
-  selected: selectable && selected,
-}">
+<tr role="row" :class="{selected: selectable && selected}">
   <td v-if="selectable" class="table-view-pf-select">
     <label>
       <span class="sr-only">Select row {{num}}</span>

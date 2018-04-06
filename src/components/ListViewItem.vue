@@ -1,8 +1,10 @@
 <template>
-<div class="list-group-item">
+<div class="list-group-item" :class="{active: selectable && selected}">
   <div v-if="selectable" class="list-view-pf-checkbox">
-    <span class="sr-only">Select row {{num}}</span>
-    <input type="checkbox" v-model="selected">
+    <label>
+      <span class="sr-only">Select row {{num}}</span>
+      <input type="checkbox" v-model="selected">
+    </label>
   </div>
   <div class="list-view-pf-actions">
     <slot name="action"></slot>
