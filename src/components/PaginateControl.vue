@@ -1,5 +1,5 @@
 <template>
-<form class="content-view-pf-pagination clearfix" aria-label="Search results pages">
+<form class="content-view-pf-pagination clearfix" :class="[`${type}-view-pf-pagination`]" aria-label="Search results pages">
   <div class="form-group">
     <pf-select ref="perpage" button close-on-select v-if="itemsPerPageOptions.length" class="pagination-pf-pagesize">
       <pf-option :value="itemsPerPage" @input="$emit('update:itemsPerPage', $event)" :checked-value="item" v-for="(item, i) in itemsPerPageOptions" :key="i">{{item}}</pf-option>
@@ -63,6 +63,11 @@ export default {
 
   props: {
     page: Number,
+    type: {
+      type: String,
+      default: 'list',
+      validator: type => ['list', 'card', 'table'].indexOf(type) >= 0,
+    },
     totalItems: {
       type: Number,
       default: 0,

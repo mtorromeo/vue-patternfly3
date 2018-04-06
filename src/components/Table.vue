@@ -84,9 +84,9 @@
   </div>
 
   <pf-paginate-control
+    type="table"
     v-if="itemsPerPage > 0"
     ref="pagination"
-    class="table-view-pf-pagination"
     :page="page"
     :total-items="totalItems"
     :items-per-page="itemsPerPage"

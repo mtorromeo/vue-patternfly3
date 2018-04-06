@@ -23,7 +23,6 @@
 }
 </style>
 
-
 <script>
 import {PortalTarget} from 'portal-vue';
 

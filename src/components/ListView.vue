@@ -1,21 +1,31 @@
 <template>
 <div>
   <div class="list-group list-view-pf list-view-pf-view">
-    <pf-list-item ref="row" v-for="(row, i) in rows" :key="i" :num="i" :selectable="selectable">
-      <slot :row="row"></slot>
+    <pf-list-group-item
+      ref="row"
+      v-for="(row, i) in rows"
+      :key="i" :num="i"
+      :selectable="selectable"
+      :expandable="expandable"
+      :class="{'list-view-pf-stacked': stacked}"
+    >
+      <slot :row="row"/>
       <template slot="action" v-if="$slots.action || $scopedSlots.action">
-        <slot name="action" :row="row"></slot>
+        <slot name="action" :row="row"/>
       </template>
       <template slot="dropdown" v-if="$slots.dropdown || $scopedSlots.dropdown">
-        <slot name="dropdown" :row="row"></slot>
+        <slot name="dropdown" :row="row"/>
       </template>
-    </pf-list-item>
+      <template slot="expansion" v-if="$slots.expansion || $scopedSlots.expansion">
+        <slot name="expansion" :row="row"/>
+      </template>
+    </pf-list-group-item>
   </div>
 
   <pf-paginate-control
+    type="list"
     v-if="itemsPerPage > 0"
     ref="pagination"
-    class="table-view-pf-pagination"
     :page="page"
     :total-items="totalItems"
     :items-per-page="itemsPerPage"
@@ -27,13 +37,13 @@
 </template>
 
 <script>
-import PfListItem from './ListViewItem.vue';
+import PfListGroupItem from './ListGroupItem.vue';
 
 export default {
   name: 'pf-list-view',
 
   components: {
-    PfListItem,
+    PfListGroupItem,
   },
 
   props: {
@@ -52,7 +62,9 @@ export default {
         return [10, 25, 50, 100, 500];
       },
     },
+    expandable: Boolean,
     selectable: Boolean,
+    stacked: Boolean,
     rows: {
       type: Array,
       default() {
