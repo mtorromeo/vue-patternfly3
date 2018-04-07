@@ -1,5 +1,6 @@
 // https://www.patternfly.org/styles/icons/
 // http://getbootstrap.com/components/#glyphicons
+import {mergeData} from 'vue-functional-data-merge';
 
 export default {
   name: 'pf-icon',
@@ -14,17 +15,14 @@ export default {
     },
   },
 
-  render(h, context) {
-    const match = (/^(fa|pficon|glyphicon)-.*/).exec(context.props.name);
+  render(h, {props, data, children}) {
+    const match = (/^(fa|pficon|glyphicon)-/).exec(props.name);
     const family = match ? match[1] : '';
-    const slots = context.slots();
-    return h(context.props.tag, {
-      ...context.data,
+    return h(props.tag, mergeData(data, {
       attrs: {
-        ...context.data.attrs,
         'aria-hidden': 'true',
       },
-      'class': `${family} ${context.props.name}`,
-    }, [slots.default]);
+      staticClass: `${family} ${props.name}`,
+    }), children);
   },
 };
