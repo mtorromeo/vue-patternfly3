@@ -6,7 +6,7 @@
       'mobile-nav-item-pf': active
     }" @mouseenter="delayOpen" @mouseleave="delayClose">
     <a @click="active = !active">
-      <span v-if="icon" :class="icon" :title="title"></span>
+      <pf-icon v-if="icon" :name="icon" :title="title"/>
       <span class="list-group-item-value" v-html="title"></span>
     </a>
 

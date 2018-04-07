@@ -1,7 +1,7 @@
 <template>
   <span v-if="!disabled" class="card-pf-aggregate-status-notification">
     <span :is="href ? 'a' : 'span'" :href="href">
-      <span v-if="iconClass" :class="iconClass"></span>
+      <pf-icon v-if="icon" :name="icon"/>
       {{count}}
     </span>
   </span>
@@ -14,12 +14,12 @@ export default {
   props: {
     count: [String, Number],
     href: String,
-    iconClass: String,
+    icon: String,
   },
 
   computed: {
     disabled() {
-      return !this.iconClass && (!this.count && this.count !== 0);
+      return !this.icon && (!this.count && this.count !== 0);
     },
   },
 };

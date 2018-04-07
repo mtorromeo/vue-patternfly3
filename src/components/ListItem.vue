@@ -2,14 +2,10 @@
   <div class="list-view-pf-main-info">
     <slot>
       <div class="list-view-pf-left" v-if="props.icon">
-        <span
-          class="fa"
-          :class="[
-            `fa-${props.icon}`,
-            `list-view-pf-icon-${props.iconSize}`,
-            {[`list-view-pf-icon-${props.iconVariant}`]: props.iconVariant},
-          ]"
-        ></span>
+        <pf-icon :name="props.icon" :class="[
+          `list-view-pf-icon-${props.iconSize}`,
+          {[`list-view-pf-icon-${props.iconVariant}`]: props.iconVariant},
+        ]"/>
       </div>
       <div class="list-view-pf-body">
         <div class="list-view-pf-description" v-if="$slots.heading || $slots.description">
@@ -33,8 +29,6 @@ export default {
   name: 'pf-list-item',
 
   props: {
-    heading: String,
-    description: String,
     icon: String,
     iconSize: {
       type: String,
@@ -43,7 +37,7 @@ export default {
     },
     iconVariant: {
       type: String,
-      validator: variant => ['info', 'success', 'warning', 'danger'].indexOf(variant) >= 0,
+      validator: variant => ['', null, 'info', 'success', 'warning', 'danger'].indexOf(variant) >= 0,
     },
   },
 };

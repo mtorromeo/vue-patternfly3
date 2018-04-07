@@ -7,10 +7,12 @@ All notable changes to this project will be documented in this file.
 - Implemented grid layout on `pf-layout`.
 - Implemented modal overlay pattern with `pf-modal` (Contributed by [@pebri86]).
 - Implemented `pf-list-view` (Contributed by [@pebri86]).
+- Implemented `pf-icon` functional component with automatic class configuration for FontAwesome, Glyphicons and Patternfly icons.
 - Upgraded build to webpack 4.
 
 # Changed
 - **BACKWARD INCOMPATIBLE CHANGE**: The `flex` property of `pf-layout` has been removed. The same layout can be applied using the `flex` value on the new `display` property.
+- **BACKWARD INCOMPATIBLE CHANGE**: Renamed all `icon-class` properties to simply `icon`. The icon family classname is not needed anymore (instead of `fa fa-bell` you can just use `fa-bell`).
 
 ### Fixed
 - Fixed issue with dropdown filters by removing vue-strap's select and option components.

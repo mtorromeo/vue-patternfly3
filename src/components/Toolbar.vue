@@ -55,7 +55,7 @@
             :title="viewData.title"
             @click="activeView = name"
           >
-            <i :class="[viewData.iconClass]" class="view-selector"></i>
+            <pf-icon tag="i" :name="viewData.icon" class="view-selector"/>
           </button>
         </div>
       </div>
@@ -177,17 +177,17 @@ export default {
       const presets = this.views.split(',').map(v => v.trim());
       if (presets.indexOf('table') > -1) {
         viewList.table = {
-          iconClass: 'fa fa-table',
+          icon: 'fa-table',
         };
       }
       if (presets.indexOf('card') > -1) {
         viewList.card = {
-          iconClass: 'fa fa-th',
+          icon: 'fa-th',
         };
       }
       if (presets.indexOf('list') > -1) {
         viewList.list = {
-          iconClass: 'fa fa-th-list',
+          icon: 'fa-th-list',
         };
       }
       return viewList;

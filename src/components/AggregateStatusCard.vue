@@ -6,13 +6,13 @@
     }">
     <h2 class="card-pf-title">
       <span :is="href ? 'a' : 'span'" :href="href">
-        <span v-if="iconClass" :class="iconClass"></span>
+        <pf-icon :name="icon"/>
         <span v-if="count" class="card-pf-aggregate-status-count">{{count}}</span>
         <span class="card-pf-aggregate-status-title">{{title}}</span>
       </span>
     </h2>
     <div class="card-pf-body">
-      <p class="card-pf-aggregate-status-notifications" v-show="!isLayoutMini || iconClass || count">
+      <p class="card-pf-aggregate-status-notifications" v-show="!isLayoutMini || icon || count">
         <slot></slot>
       </p>
     </div>
@@ -27,7 +27,7 @@ export default {
     title: String,
     count: [String, Number],
     href: String,
-    iconClass: String,
+    icon: String,
     layout: String,
     accented: {
       type: Boolean,

@@ -36,7 +36,7 @@
     {{action.name}}
   </button>
 
-  <span class="pficon pull-left" :class="[typeIcon]"></span>
+  <pf-icon class="pull-left" :name="typeIcon"/>
   <span class="drawer-pf-notification-message">
     <slot>{{message}}</slot>
   </span>
@@ -69,6 +69,7 @@ export default {
     type: {
       type: String,
       default: 'info',
+      validator: type => ['', null, 'info', 'success', 'warning', 'danger'].indexOf(type) >= 0,
     },
   },
 

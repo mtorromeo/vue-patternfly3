@@ -5,7 +5,7 @@
         <div class="modal-content">
           <div class="modal-header" v-if="title">
             <button type="button" class="close" @click="cancel">
-            <span class="pficon pficon-close"></span>
+            <pf-icon name="pficon-close"/>
             </button>
             <h4 class="modal-title">{{title}}</h4>
           </div>

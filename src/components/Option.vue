@@ -3,7 +3,7 @@
     <a href="javascript:void(0)" @click="check" role="menuitem">
       <input ref="input" type="radio" :name="name" :value="value" :checked="checked" style="display:none">
       <slot></slot>
-      <span class="glyphicon glyphicon-ok check-mark" v-show="checked"></span>
+      <pf-icon name="glyphicon-close" class="check-mark" v-show="checked"/>
     </a>
   </li>
 </template>

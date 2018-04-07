@@ -1,7 +1,7 @@
 <template>
 <div class="list-group-item" :class="[stateClass]" :style="{cursor: expandable ? 'pointer' : 'inherit'}" @click="toggle">
   <div v-if="expandable && $slots.expansion" class="list-view-pf-expand" :class="{active: expanded}">
-    <span aria-hidden="true" class="fa fa-angle-right" :class="{'fa-angle-down': expanded}"></span>
+    <pf-icon name="fa-angle-right" :class="{'fa-angle-down': expanded}"/>
   </div>
   <div v-if="selectable" class="list-view-pf-checkbox">
     <label>
@@ -18,7 +18,7 @@
   <slot/>
   <div class="list-group-item-container container-fluid" v-show="showExpansion" @click.stop style="cursor: initial">
     <div class="close">
-      <span class="pficon pficon-close" @click="collapse"></span>
+      <pf-icon name="pficon-close" @click="collapse"/>
     </div>
     <slot v-if="expanded" name="expansion"/>
     <portal-target v-if="expandedAdditional" :name="portal"/>

@@ -12,12 +12,12 @@
     <ul class="pagination pagination-pf-back">
       <li :class="{disabled: page == 1}">
         <a href="javascript:void(0)" title="First Page" @click="setPage(1)">
-          <span class="i fa fa-angle-double-left" aria-hidden="true"></span>
+          <pf-icon name="fa-angle-double-left" class="i"/>
         </a>
       </li>
       <li :class="{disabled: page <= 1}">
         <a href="javascript:void(0)" title="Previous Page" @click="setPage(page - 1)">
-          <span class="i fa fa-angle-left" aria-hidden="true"></span>
+          <pf-icon name="fa-angle-left" class="i"/>
         </a>
       </li>
     </ul>
@@ -31,12 +31,12 @@
     <ul class="pagination pagination-pf-forward">
       <li :class="{disabled: page >= pages}">
         <a href="javascript:void(0)" title="Next Page" @click="setPage(page + 1)">
-          <span class="i fa fa-angle-right" aria-hidden="true"></span>
+          <pf-icon name="fa-angle-right" class="i"/>
         </a>
       </li>
       <li :class="{disabled: page >= pages}">
         <a href="javascript:void(0)" title="Last Page" @click="setPage(pages)">
-          <span class="i fa fa-angle-double-right" aria-hidden="true"></span>
+          <pf-icon name="fa-angle-double-right" class="i"/>
         </a>
       </li>
     </ul>

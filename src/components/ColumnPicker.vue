@@ -1,7 +1,7 @@
 <template>
   <bs-popover class="column-picker" effect="fade" placement="bottom">
     <button type="button" class="btn btn-link">
-      <span class="fa fa-columns"></span>
+      <pf-icon name="columns"/>
     </button>
 
     <div

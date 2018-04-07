@@ -3,7 +3,7 @@
     'height': `${height}px`,
     'padding-top': `${padding}px`,
   }">
-  <span class="pficon pficon-info"></span>
+  <pf-icon name="pficon-info"/>
   <slot>
     <span>No data available</span>
   </slot>

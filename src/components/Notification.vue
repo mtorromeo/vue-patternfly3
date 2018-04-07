@@ -37,7 +37,7 @@
     data-dismiss="alert"
     aria-hidden="true"
   >
-    <span class="pficon pficon-close"></span>
+    <pf-icon name="pficon-close"/>
   </button>
 
   <button
@@ -51,7 +51,7 @@
     {{action.name}}
   </button>
 
-  <span class="pficon" :class="[typeIcon]"></span>
+  <pf-icon :name="typeIcon"/>
   <slot></slot>
 </div>
 </template>

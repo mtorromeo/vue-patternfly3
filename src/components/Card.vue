@@ -35,11 +35,11 @@
     </dropdown>
     <p v-if="showFooter">
       <a v-if="footHref" :href="footHref" :class="{'card-pf-link-with-icon': footIcon, 'card-pf-link': !footIcon}">
-        <span v-if="footIcon" class="card-pf-footer-text" :class="footIcon"></span>
+        <pf-icon v-if="footIcon" :name="footIcon" class="cart-pf-footer-text"/>
         <span v-if="footNote" class="card-pf-footer-text">{{footNote}}</span>
       </a>
       <template v-else>
-        <span v-if="footIcon" class="card-pf-footer-text" :class="footIcon"></span>
+        <pf-icon v-if="footIcon" :name="footIcon" class="cart-pf-footer-text"/>
         <span v-if="footNote" class="card-pf-footer-text">{{footNote}}</span>
       </template>
     </p>

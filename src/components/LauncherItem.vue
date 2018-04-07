@@ -1,7 +1,7 @@
 <template>
   <li class="applauncher-pf-item" role="menuitem">
     <a class="applauncher-pf-link" :href="href" v-bind="$attrs" v-on="$listeners">
-      <i class="applauncher-pf-link-icon pficon" :class="iconClass" aria-hidden="true"></i>
+      <pf-icon tag="i" aria-hidden="true" :name="icon" class="applauncher-pf-link-icon"/>
       <span class="applauncher-pf-link-title"><slot></slot></span>
     </a>
   </li>
@@ -16,7 +16,7 @@ export default {
       type: String,
       default: '#',
     },
-    iconClass: String,
+    icon: String,
   },
 };
 </script>

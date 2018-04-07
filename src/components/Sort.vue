@@ -8,7 +8,7 @@
     </li>
   </bs-dropdown>
   <button class="btn btn-link" type="button"  @click="invert">
-    <span class="sort-direction" :class="sortIconClass"></span>
+    <pf-icon class="sort-direction" :name="sortIcon"/>
   </button>
 </div>
 </template>
@@ -93,10 +93,10 @@ export default {
       };
     },
 
-    sortIconClass() {
+    sortIcon() {
       const dir = this.ascending ? 'asc' : 'desc';
       const typ = this.current.type == 'numeric' ? 'numeric' : 'alpha';
-      return `fa fa-sort-${typ}-${dir}`;
+      return `fa-sort-${typ}-${dir}`;
     },
   },
 

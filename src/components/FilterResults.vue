@@ -8,7 +8,7 @@
         <li v-for="(filter, i) in filters" :key="i">
           <span class="active-filter label label-info">
             {{filter.label}}: {{filter.value}}
-            <a><span class="pficon pficon-close" @click="$parent.clearFilter(i)"></span></a>
+            <a><pf-icon name="pficon-close" @click="$parent.clearFilter(i)"/></a>
           </span>
         </li>
       </ul>
