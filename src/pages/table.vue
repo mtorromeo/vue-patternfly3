@@ -5,6 +5,12 @@
   </header>
 
   <section>
+    <h4>Related documentation</h4>
+    <ol>
+      <li><a href="http://www.patternfly.org/pattern-library/content-views/table-view/#_" target="_blank">Pattern Library > Content Views > Table View</a></li>
+      <li><a href="http://www.patternfly.org/pattern-library/widgets/#tables" target="_blank">Pattern Library > Widgets > Tables</a></li>
+    </ol>
+
     <pf-table :columns="table.columns"
               :rows="table.rows"
               :page.sync="table.page"
@@ -40,12 +46,6 @@
         <li><a href="#">Separated link</a></li>
       </template>
     </pf-table>
-
-    <h4>Related documentation</h4>
-    <ol>
-      <li><a href="http://www.patternfly.org/pattern-library/content-views/table-view/#_" target="_blank">Pattern Library > Content Views > Table View</a></li>
-      <li><a href="http://www.patternfly.org/pattern-library/widgets/#tables" target="_blank">Pattern Library > Widgets > Tables</a></li>
-    </ol>
 
     <props-table :component-props="tableProps">
       <props-row name="striped" description="Striped table rows" v-model="table.striped"></props-row>

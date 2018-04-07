@@ -33,7 +33,7 @@ module.exports = {
       default: 'chrome',
     },
     height: true,
-    width: true
+    width: true,
   },
 
   data() {
@@ -49,7 +49,7 @@ module.exports = {
         return `${n}px`;
       }
       return n;
-    }
+    },
   },
 
   watch: {

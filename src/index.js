@@ -60,7 +60,7 @@ new Vue({
         list: false,
         disabled: false,
         label: 'Application Launcher',
-        iconClass: 'pficon-home',
+        icon: 'pficon-home',
         itemText: 'Home',
       },
       layoutDisplay: 'block',

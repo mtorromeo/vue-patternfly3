@@ -1,9 +1,9 @@
 <template>
 <tr>
-  <td>{{name}}</td>
-  <td v-if="$parent.toggle"><input type="checkbox" :checked="enabled" @change="$emit('update:enabled', !enabled)"></td>
-  <td v-html="description"></td>
-  <td style="height: 150px">
+  <td :colspan="value !== undefined ? 1 : 2">{{name}}</td>
+  <td v-if="value !== undefined && $parent.toggle"><input type="checkbox" :checked="enabled" @change="$emit('update:enabled', !enabled)"></td>
+  <td v-html="description" :colspan="value !== undefined ? 1 : 2"></td>
+  <td v-if="value !== undefined" :style="{height: height}">
     <ace-editor class="form-control" :value="value.toString()" @input="update" lang="html"></ace-editor>
   </td>
 </tr>
@@ -18,6 +18,10 @@ export default {
     description: String,
     value: String,
     enabled: Boolean,
+    height: {
+      type: String,
+      default: '5em',
+    },
   },
 
   methods: {

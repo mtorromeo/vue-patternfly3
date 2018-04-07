@@ -58,14 +58,14 @@
                  :title="aggcard.title"
                  :count="aggcard.count"
                  :href="aggcard.href"
-                 :icon-class="aggcard.iconClass"
+                 :icon="aggcard.icon"
                  :layout="aggcard.layout"
                  :accented="aggcard.accented">
-          <pf-card-notification :icon-class="notcard.iconClass"
+          <pf-card-notification :icon="notcard.icon"
                                 :href="notcard.href"
                                 :count="notcard.count">
           </pf-card-notification>
-          <pf-card-notification icon-class="pficon pficon-warning-triangle-o" href="#" count="1"></pf-card-notification>
+          <pf-card-notification icon="pficon pficon-warning-triangle-o" href="#" count="1"></pf-card-notification>
         </pf-aggregate-status-card>
       </div>
     </div>
@@ -74,7 +74,7 @@
       <props-row name="title" description="Name of the represented items" v-model="aggcard.title"></props-row>
       <props-row name="count" description="Number of items represented" v-model="aggcard.count"></props-row>
       <props-row name="href" description="Make the title a link to this href" v-model="aggcard.href"></props-row>
-      <props-row name="iconClass" description="Icon represented by icon font CSS classes" v-model="aggcard.iconClass"></props-row>
+      <props-row name="icon" description="Icon represented by icon font CSS classes" v-model="aggcard.icon"></props-row>
       <props-row name="layout" :options="['', 'mini', 'tall']" description="Alternative layout" v-model="aggcard.layout"></props-row>
       <props-row name="accented" description="Display accent on top of card" v-model="aggcard.accented"></props-row>
     </props-table>
@@ -82,7 +82,7 @@
     <props-table title="pf-card-notification props" :component-props="notcardProps">
       <props-row name="count" description="Number of items represented" v-model="notcard.count"></props-row>
       <props-row name="href" description="Link to this href" v-model="notcard.href"></props-row>
-      <props-row name="iconClass" description="Icon represented by icon font CSS classes" v-model="notcard.iconClass"></props-row>
+      <props-row name="icon" description="Icon represented by icon font CSS classes" v-model="notcard.icon"></props-row>
     </props-table>
   </section>
 </article>
@@ -107,7 +107,7 @@ export default {
         subTitle: '',
         footNote: '',
         footHref: '',
-        footIcon: 'fa fa-bell',
+        footIcon: 'fa-bell',
         accented: true,
         showTitlesSeparator: true,
       },
@@ -116,7 +116,7 @@ export default {
         title: 'Issues',
         count: 4,
         href: '#',
-        iconClass: 'fa fa-warning',
+        icon: 'fa-warning',
         layout: '',
         accented: true,
       },
@@ -124,7 +124,7 @@ export default {
       notcard: {
         count: 3,
         href: '#',
-        iconClass: 'pficon pficon-error-circle-o',
+        icon: 'pficon-error-circle-o',
       },
     };
   },

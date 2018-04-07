@@ -21,10 +21,10 @@
     <template slot="utility-menu">
       <pf-notification-bell :updates="drawer.updates" @click="drawer.hidden = !drawer.hidden"></pf-notification-bell>
       <pf-application-launcher :open.sync="launcher.open" :label="launcher.label" :disabled="launcher.disabled" :list="launcher.list">
-        <pf-launcher-item :icon-class="launcher.iconClass" v-tooltip.left="'Launch the Home UI'" href="/">{{launcher.itemText}}</pf-launcher-item>
-        <pf-launcher-item icon-class="fa fa-github" href="https://github.com/mtorromeo/vue-patternfly" target="_blank">GitHub</pf-launcher-item>
-        <pf-launcher-item icon-class="pficon-build" v-tooltip.left="'Launch the Suavitate UI'">Suavitate</pf-launcher-item>
-        <pf-launcher-item icon-class="pficon-domain" v-tooltip.left="'Launch the Lorem UI'">Lorem</pf-launcher-item>
+        <pf-launcher-item :icon="launcher.icon" v-tooltip.left="'Launch the Home UI'" href="/">{{launcher.itemText}}</pf-launcher-item>
+        <pf-launcher-item icon="fa-github" href="https://github.com/mtorromeo/vue-patternfly" target="_blank">GitHub</pf-launcher-item>
+        <pf-launcher-item icon="pficon-build" v-tooltip.left="'Launch the Suavitate UI'">Suavitate</pf-launcher-item>
+        <pf-launcher-item icon="pficon-domain" v-tooltip.left="'Launch the Lorem UI'">Lorem</pf-launcher-item>
       </pf-application-launcher>
     </template>
 
@@ -67,47 +67,47 @@
     <template slot="vertical-menu">
       <router-link tag="li" class="list-group-item" active-class="active" to="/get-started" :exact="true">
         <a>
-          <span class="fa fa-play-circle" title="Get Started"></span>
+          <pf-icon name="fa-play-circle" title="Get Started"></pf-icon>
           <span class="list-group-item-value">Get Started</span>
         </a>
       </router-link>
       <router-link tag="li" class="list-group-item" active-class="active" to="/layout" :exact="true">
         <a>
-          <span class="fa fa-columns" title="Layout"></span>
+          <pf-icon name="fa-columns" title="Layout"></pf-icon>
           <span class="list-group-item-value">Layout</span>
         </a>
       </router-link>
       <router-link tag="li" class="list-group-item" active-class="active" to="/application-launcher" :exact="true">
         <a>
-          <span class="fa fa-th" title="Application Launcher"></span>
+          <pf-icon name="fa-th" title="Application Launcher"></pf-icon>
           <span class="list-group-item-value">Application Launcher</span>
         </a>
       </router-link>
       <router-link tag="li" class="list-group-item" active-class="active" to="/toolbar" :exact="true">
         <a>
-          <span class="fa fa-columns" title="Toolbar"></span>
+          <pf-icon name="fa-columns" title="Toolbar"></pf-icon>
           <span class="list-group-item-value">Toolbar</span>
         </a>
       </router-link>
       <router-link tag="li" class="list-group-item" active-class="active" to="/table" :exact="true">
         <a>
-          <span class="fa fa-table" title="Table"></span>
+          <pf-icon name="fa-table" title="Table"></pf-icon>
           <span class="list-group-item-value">Table</span>
         </a>
       </router-link>
       <router-link tag="li" class="list-group-item" active-class="active" to="/list-view" :exact="true">
         <a>
-          <span class="fa fa-th-list" title="ListView"></span>
+          <pf-icon name="fa-th-list" title="ListView"></pf-icon>
           <span class="list-group-item-value">ListView</span>
         </a>
       </router-link>
       <router-link tag="li" class="list-group-item" active-class="active" to="/cards" :exact="true">
         <a>
-          <span class="fa fa-th" title="Cards"></span>
+          <pf-icon name="fa-th" title="Cards"></pf-icon>
           <span class="list-group-item-value">Cards</span>
         </a>
       </router-link>
-      <pf-vertical-submenu title="Notifications" icon="fa fa-bell">
+      <pf-vertical-submenu title="Notifications" icon="fa-bell">
         <router-link tag="li" class="list-group-item" active-class="active" to="/notifications" :exact="true">
           <a>
             <span class="list-group-item-value">Inline / Toast</span>
@@ -121,25 +121,25 @@
       </pf-vertical-submenu>
       <router-link tag="li" class="list-group-item" active-class="active" to="/modal" :exact="true">
         <a>
-          <span class="fa fa-comment" title="Modal"></span>
+          <pf-icon name="fa-comment" title="Modal"></pf-icon>
           <span class="list-group-item-value">Modal</span>
         </a>
       </router-link>
       <router-link tag="li" class="list-group-item" active-class="active" to="/tooltips" :exact="true">
         <a>
-          <span class="fa fa-comment" title="Tooltips"></span>
+          <pf-icon name="fa-comment" title="Tooltips"></pf-icon>
           <span class="list-group-item-value">Tooltips</span>
         </a>
       </router-link>
       <router-link tag="li" class="list-group-item" active-class="active" to="/charts" :exact="true">
         <a>
-          <span class="fa fa-pie-chart" title="Charts"></span>
+          <pf-icon name="fa-pie-chart" title="Charts"></pf-icon>
           <span class="list-group-item-value">Charts</span>
         </a>
       </router-link>
       <router-link tag="li" class="list-group-item" active-class="active" to="/components" :exact="true">
         <a>
-          <span class="fa fa-building" title="Components"></span>
+          <pf-icon name="fa-building" title="Components"></pf-icon>
           <span class="list-group-item-value">Components</span>
         </a>
       </router-link>

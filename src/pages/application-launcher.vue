@@ -48,7 +48,7 @@
   </section>
 
   <props-table :component-props="itemProps">
-    <props-row name="iconClass" description="Class for the icon to use for the link item" v-model="$root.launcher.iconClass"></props-row>
+    <props-row name="icon" description="Class for the icon to use for the link item" v-model="$root.launcher.icon"></props-row>
   </props-table>
 
   <slots-table>
