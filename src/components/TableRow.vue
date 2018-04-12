@@ -6,15 +6,15 @@
       <input type="checkbox" v-model="selected">
     </label>
   </td>
-  <slot></slot>
+  <slot/>
   <td v-if="$slots.action" class="table-view-pf-actions">
     <div class="table-view-pf-btn">
-      <slot name="action"></slot>
+      <slot name="action"/>
     </div>
   </td>
   <td v-if="$slots.dropdown" class="table-view-pf-actions">
     <bs-dropdown class="pull-right">
-      <slot name="dropdown"></slot>
+      <slot name="dropdown"/>
     </bs-dropdown>
   </td>
 </tr>

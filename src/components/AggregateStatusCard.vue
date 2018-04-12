@@ -13,7 +13,7 @@
     </h2>
     <div class="card-pf-body">
       <p class="card-pf-aggregate-status-notifications" v-show="props.layout !== 'mini' || props.icon || props.count">
-        <slot></slot>
+        <slot/>
       </p>
     </div>
   </div>

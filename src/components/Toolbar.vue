@@ -37,7 +37,7 @@
         </h5>
 
         <div class="form-group">
-          <slot></slot>
+          <slot/>
         </div>
       </div>
 

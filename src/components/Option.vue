@@ -2,7 +2,7 @@
   <li v-if="!filtered" :class="{'selected': checked}">
     <a href="javascript:void(0)" @click="check" role="menuitem">
       <input ref="input" type="radio" :name="name" :value="value" :checked="checked" style="display:none">
-      <slot></slot>
+      <slot/>
       <pf-icon name="glyphicon-close" class="check-mark" v-show="checked"/>
     </a>
   </li>

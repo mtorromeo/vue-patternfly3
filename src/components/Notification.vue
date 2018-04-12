@@ -52,7 +52,7 @@
   </button>
 
   <pf-icon :name="typeIcon"/>
-  <slot></slot>
+  <slot/>
 </div>
 </template>
 

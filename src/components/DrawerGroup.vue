@@ -12,7 +12,7 @@
   <transition name="collapse">
     <div v-show="expanded" class="panel-collapse" :aria-expanded="expanded ? 'true' : 'false'">
       <div class="panel-body">
-        <slot></slot>
+        <slot/>
 
         <div v-if="loading" class="drawer-pf-loading text-center">
           <span class="spinner spinner-xs spinner-inline"></span> Loading

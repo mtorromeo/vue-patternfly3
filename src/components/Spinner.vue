@@ -4,7 +4,7 @@
     'spinner-inverse': props.inverse,
   }]"></div>
   <div :is="props.tag" v-else>
-    <slot></slot>
+    <slot/>
   </div>
 </template>
 

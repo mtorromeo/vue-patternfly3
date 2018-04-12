@@ -5,12 +5,12 @@
         <div class="modal-content">
           <div class="modal-header" v-if="title">
             <button type="button" class="close" @click="cancel">
-            <pf-icon name="pficon-close"/>
+              <pf-icon name="pficon-close"/>
             </button>
             <h4 class="modal-title">{{title}}</h4>
           </div>
           <div class="modal-body">
-            <slot></slot>
+            <slot/>
           </div>
           <div class="modal-footer" v-if="$slots.footer || $scopedSlots.footer || cancelButton || confirmButton">
             <slot name="footer">

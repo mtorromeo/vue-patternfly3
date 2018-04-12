@@ -14,12 +14,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <slot name="brand"></slot>
+      <slot name="brand"/>
     </div>
 
     <div class="collapse navbar-collapse navbar-collapse-1">
       <ul v-if="horizontal" class="nav navbar-nav navbar-primary" :class="{'persistent-secondary': horizontalSecondary}">
-        <slot name="horizontal-menu"></slot>
+        <slot name="horizontal-menu"/>
       </ul>
 
       <ul class="nav navbar-nav" :class="{
@@ -27,7 +27,7 @@
         'navbar-right': !horizontal,
         'navbar-iconic': !horizontal,
       }">
-        <slot name="utility-menu"></slot>
+        <slot name="utility-menu"/>
       </ul>
     </div>
   </nav>
@@ -45,7 +45,7 @@
       'hover-tertiary-nav-pf': tertiaryMenus,
     }">
     <ul class="list-group">
-      <slot name="vertical-menu"></slot>
+      <slot name="vertical-menu"/>
     </ul>
   </div>
 
@@ -57,7 +57,7 @@
       'container-pf-nav-pf-vertical': !disabled && !horizontal,
       'hidden-icons-pf': !disabled && !icons,
     }">
-    <slot></slot>
+    <slot/>
 
     <modals-target/>
   </div>

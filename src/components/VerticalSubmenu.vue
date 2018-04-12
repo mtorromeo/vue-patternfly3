@@ -22,7 +22,7 @@
         <span v-html="title"></span>
       </div>
       <ul class="list-group">
-        <slot></slot>
+        <slot/>
       </ul>
     </div>
   </li>

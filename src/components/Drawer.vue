@@ -13,7 +13,7 @@
 
   <div>
     <div class="panel-group">
-      <slot></slot>
+      <slot/>
     </div>
   </div>
 </div>

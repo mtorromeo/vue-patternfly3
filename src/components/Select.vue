@@ -38,7 +38,7 @@
 
         <li v-if="required && !clearButton"><a @mousedown.prevent="clear() && close()">{{placeholder}}</a></li>
 
-        <slot></slot>
+        <slot/>
       </template>
     </ul>
   </div>

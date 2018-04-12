@@ -18,7 +18,7 @@
   <span v-if="subTitle" class="card-pf-subtitle">{{subTitle}}</span>
 
   <div class="card-pf-body">
-    <slot></slot>
+    <slot/>
   </div>
 
   <div v-if="showFooter || showFilterInFooter" class="card-pf-footer">

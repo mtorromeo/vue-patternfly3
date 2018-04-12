@@ -9,7 +9,7 @@
     </a>
     <ul class="dropdown-menu dropdown-menu-right" role="menu" @click.stop="hide"
         :aria-labelledby="`pf-application-launcher-${_uid}`">
-      <slot></slot>
+      <slot/>
     </ul>
   </li>
 </template>

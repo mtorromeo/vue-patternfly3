@@ -1,6 +1,6 @@
 <template>
 <div :class="{'toast-notifications-list-pf': toast}" v-show="$slots.default || notifications.length">
-  <slot></slot>
+  <slot/>
   <pf-notification ref="notification" v-for="(n, i) in notifications" :key="i" :persistent="n.persistent" :type="n.type" :toast="toast" @dismiss="dismiss(i)">
     <div v-html="n.message"></div>
   </pf-notification>
