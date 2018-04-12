@@ -18,7 +18,7 @@
     </div>
 
     <div class="collapse navbar-collapse navbar-collapse-1">
-      <ul v-if="horizontal" class="nav navbar-nav navbar-primary">
+      <ul v-if="horizontal" class="nav navbar-nav navbar-primary" :class="{'persistent-secondary': horizontalSecondary}">
         <slot name="horizontal-menu"></slot>
       </ul>
 
@@ -77,35 +77,17 @@ export default {
   },
 
   props: {
-    icons: {
-      type: Boolean,
-      default: false,
-    },
-
-    horizontal: {
-      type: Boolean,
-      default: false,
-    },
-
     display: {
       type: String,
       default: 'block',
     },
 
-    collapsable: {
-      type: Boolean,
-      default: true,
-    },
-
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-
-    nomargin: {
-      type: Boolean,
-      default: false,
-    },
+    icons: Boolean,
+    horizontal: Boolean,
+    collapsable: Boolean,
+    disabled: Boolean,
+    nomargin: Boolean,
+    horizontalSecondary: Boolean,
   },
 
   data() {
@@ -295,6 +277,10 @@ nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
 
 .navbar-pf .navbar-brand-name {
   padding: 7px 0;
+}
+
+.navbar-pf .navbar-primary.persistent-secondary {
+  display: flex;
 }
 
 @media (min-width: 768px) {
