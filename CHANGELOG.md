@@ -11,7 +11,7 @@ All notable changes to this project will be documented in this file.
 - Implemented secondary and tertiary navigation.
 - Upgraded build to webpack 4.
 
-# Changed
+### Changed
 - Converted `pf-empty-chart`, `pf-aggregate-status-card`, `pf-card-notification` and `pf-notification-bell` to functional components.
 - **BACKWARD INCOMPATIBLE CHANGE**: The `flex` property of `pf-layout` has been removed. The same layout can be applied using the `flex` value on the new `display` property.
 - **BACKWARD INCOMPATIBLE CHANGE**: Renamed all `icon-class` properties to simply `icon`. The icon family classname is not needed anymore (instead of `fa fa-bell` you can just use `fa-bell`).
