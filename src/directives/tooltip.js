@@ -83,6 +83,7 @@ export default {
   name: 'tooltip',
 
   bind(el, {value, modifiers}) {
+    console.log(el, modifiers);
     destroyTooltip(el);
     if (value) {
       createTooltip(el, value, modifiers);

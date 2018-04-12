@@ -1,18 +1,18 @@
-<template>
+<template functional>
   <div class="card-pf card-pf-aggregate-status" :class="{
-      'card-pf-accented': accented,
-      'card-pf-aggregate-status-alt': isLayoutTall,
-      'card-pf-aggregate-status-mini': isLayoutMini
+      'card-pf-accented': props.accented,
+      'card-pf-aggregate-status-alt': props.layout === 'tall',
+      'card-pf-aggregate-status-mini': props.layout === 'mini',
     }">
     <h2 class="card-pf-title">
-      <span :is="href ? 'a' : 'span'" :href="href">
-        <pf-icon :name="icon"/>
-        <span v-if="count" class="card-pf-aggregate-status-count">{{count}}</span>
-        <span class="card-pf-aggregate-status-title">{{title}}</span>
+      <span :is="props.href ? 'a' : 'span'" :href="props.href">
+        <pf-icon :name="props.icon"/>
+        <span v-if="props.count" class="card-pf-aggregate-status-count">{{props.count}}</span>
+        <span class="card-pf-aggregate-status-title">{{props.title}}</span>
       </span>
     </h2>
     <div class="card-pf-body">
-      <p class="card-pf-aggregate-status-notifications" v-show="!isLayoutMini || icon || count">
+      <p class="card-pf-aggregate-status-notifications" v-show="props.layout !== 'mini' || props.icon || props.count">
         <slot></slot>
       </p>
     </div>
@@ -32,15 +32,6 @@ export default {
     accented: {
       type: Boolean,
       default: true,
-    },
-  },
-
-  computed: {
-    isLayoutTall() {
-      return this.layout === 'tall';
-    },
-    isLayoutMini() {
-      return this.layout === 'mini';
     },
   },
 };
