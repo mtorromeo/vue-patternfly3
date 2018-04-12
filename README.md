@@ -10,11 +10,13 @@
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License" />
   </a>
+  
   <a href="https://npmjs.org/package/vue-patternfly">
-    <img src="https://img.shields.io/npm/v/vue-patternfly.svg?style=flat-square" alt="Packagist" />
+    <img src="https://img.shields.io/npm/v/vue-patternfly.svg?style=flat-square" alt="NPM" />
   </a>
-  <a href="https://github.com/mtorromeo/vue-patternfly/releases">
-    <img src="https://img.shields.io/github/release/mtorromeo/vue-patternfly.svg?style=flat-square" alt="Latest Version" />
+  
+  <a href="https://npmjs.org/package/vue-patternfly">
+    <img src="https://img.shields.io/npm/dw/vue-patternfly.svg?style=flat-square" alt="Downloads" />
   </a>
 
   <a href="https://github.com/mtorromeo/vue-patternfly/issues">
