@@ -17,6 +17,7 @@
 
     <props-table :component-props="layoutProps">
       <props-row name="horizontal" description="Enable horizontal navigation layout" v-model="$root.layoutHorizontal"></props-row>
+      <props-row name="horizontalSecondary" description="Show horizontal secondary menu" v-model="$root.layoutHorizontalSecondary"></props-row>
       <props-row name="display" description="Switch layout type" v-model="$root.layoutDisplay" :options="['block', 'flex', 'grid']"></props-row>
       <props-row name="icons" description="Display icons in the vertical navigation enabling a compact menu when collapsed" v-model="$root.layoutIcons"></props-row>
       <props-row name="collapsable" description="Collapse the vertical navigation menu" v-model="$root.layoutCollapsable"></props-row>

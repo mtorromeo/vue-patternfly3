@@ -32,11 +32,11 @@ const router = new VueRouter({
       path: '/application-launcher',
       component: ApplicationLauncherPage,
     }, {
+      path: '/notifications/drawer',
+      component: DrawerPage,
+    }, {
       path: '/notifications',
       component: NotificationsPage,
-    }, {
-      path: '/drawer',
-      component: DrawerPage,
     }, {
       path: '/cards',
       component: CardsPage,

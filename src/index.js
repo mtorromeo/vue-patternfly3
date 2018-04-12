@@ -46,7 +46,7 @@ new Vue({
         action: {
           name: 'Action!',
           title: 'Action Title',
-          button: true
+          button: true,
         },
         actions: [
           {name: 'Sub action 1'},
@@ -65,6 +65,7 @@ new Vue({
       },
       layoutDisplay: 'block',
       layoutHorizontal: false,
+      layoutHorizontalSecondary: true,
       layoutNomargin: false,
       layoutDisabled: false,
       layoutIcons: true,

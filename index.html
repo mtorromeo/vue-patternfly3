@@ -13,7 +13,16 @@
   <link rel="stylesheet" href="docs.css">
 </head>
 <body>
-  <pf-layout id="app" :display="layoutDisplay" :icons="layoutIcons" :collapsable="layoutCollapsable" :horizontal="layoutHorizontal" :disabled="layoutDisabled || $route.path == '/'" :nomargin="layoutNomargin">
+  <pf-layout
+    id="app"
+    :display="layoutDisplay"
+    :icons="layoutIcons"
+    :collapsable="layoutCollapsable"
+    :horizontal="layoutHorizontal"
+    :horizontal-secondary="layoutHorizontalSecondary"
+    :disabled="layoutDisabled || $route.path == '/'"
+    :nomargin="layoutNomargin"
+  >
     <router-link slot="brand" to="/" :exact="true" class="navbar-brand navbar-brand-name">
       Vue PatternFly
     </router-link>
@@ -50,8 +59,16 @@
       <router-link tag="li" active-class="active" to="/cards" :exact="true">
         <a>Cards</a>
       </router-link>
-      <router-link tag="li" active-class="active" to="/notifications" :exact="true">
+      <router-link tag="li" active-class="active" to="/notifications">
         <a>Notifications</a>
+        <ul class="nav navbar-nav navbar-persistent">
+          <router-link tag="li" active-class="active" to="/notifications" :exact="true">
+            <a>Inline / Toast</a>
+          </router-link>
+          <router-link tag="li" active-class="active" to="/notifications/drawer" :exact="true">
+            <a>Notification Drawer</a>
+          </router-link>
+        </ul>
       </router-link>
       <router-link tag="li" active-class="active" to="/modal" :exact="true">
         <a>Modal</a>
@@ -113,7 +130,7 @@
             <span class="list-group-item-value">Inline / Toast</span>
           </a>
         </router-link>
-        <router-link tag="li" class="list-group-item" active-class="active" to="/drawer" :exact="true">
+        <router-link tag="li" class="list-group-item" active-class="active" to="/notifications/drawer" :exact="true">
           <a>
             <span class="list-group-item-value">Notification Drawer</span>
           </a>
