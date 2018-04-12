@@ -1,7 +1,7 @@
-<template>
+<template functional>
 <div class="empty-chart-content" :style="{
-    'height': `${height}px`,
-    'padding-top': `${padding}px`,
+    'height': `${props.height}px`,
+    'padding-top': `${Math.min(Math.round((props.height - 40) / 2), 20)}px`,
   }">
   <pf-icon name="pficon-info"/>
   <slot>
@@ -18,12 +18,6 @@ export default {
     height: {
       type: Number,
       default: 40,
-    },
-  },
-
-  computed: {
-    padding() {
-      return Math.min(Math.round((this.height - 40) / 2), 20);
     },
   },
 };
