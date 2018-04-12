@@ -1,5 +1,12 @@
 <template>
-  <div></div>
+  <div>
+    <div ref="chart" v-show="!empty"></div>
+    <div v-if="empty">
+      <pf-empty-chart>
+        <slot/>
+      </pf-empty-chart>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -71,7 +78,7 @@ export default {
       }
 
       const chartData = {
-        bindto: this.$el,
+        bindto: this.$refs.chart,
         size: this.size,
         data: Object.assign({
           onclick: (d, i) => this.$emit('click', d, i),
@@ -116,6 +123,10 @@ export default {
         size.height = this.height;
       }
       return size;
+    },
+
+    empty() {
+      return !this.data || Object.keys(this.data).length == 0;
     },
   },
 

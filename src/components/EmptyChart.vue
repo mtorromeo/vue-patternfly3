@@ -1,13 +1,13 @@
 <template functional>
-<div class="empty-chart-content" :style="{
-    'height': `${props.height}px`,
-    'padding-top': `${Math.min(Math.round((props.height - 40) / 2), 20)}px`,
-  }">
-  <pf-icon name="pficon-info"/>
-  <slot>
-    <span>No data available</span>
-  </slot>
-</div>
+  <div class="empty-chart-content" :style="{
+      'height': `${props.height}px`,
+      'padding-top': `${Math.min(Math.round((props.height - 40) / 2), 20)}px`,
+    }">
+    <pf-icon name="pficon-info"/>
+    <slot>
+      <span>No data available</span>
+    </slot>
+  </div>
 </template>
 
 <script>

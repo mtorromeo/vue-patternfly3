@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - Converted `pf-empty-chart`, `pf-aggregate-status-card`, `pf-card-notification` and `pf-notification-bell` to functional components.
+- When a `pf-c3-chart` has empty data a `pf-empty-chart` component is shown instead.
 - **BACKWARD INCOMPATIBLE CHANGE**: The `flex` property of `pf-layout` has been removed. The same layout can be applied using the `flex` value on the new `display` property.
 - **BACKWARD INCOMPATIBLE CHANGE**: Renamed all `icon-class` properties to simply `icon`. The icon family classname is not needed anymore (instead of `fa fa-bell` you can just use `fa-bell`).
 
