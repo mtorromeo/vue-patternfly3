@@ -80,6 +80,7 @@ export default {
     display: {
       type: String,
       default: 'block',
+      validator: display => ['block', 'flex', 'grid'].indexOf(display) >= 0,
     },
 
     icons: Boolean,
