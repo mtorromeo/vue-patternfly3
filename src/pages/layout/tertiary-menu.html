@@ -1,0 +1,39 @@
+<pf-layout id="app" icons>
+  <template slot="vertical-menu">
+    <pf-menu-item
+      href="/"
+      title="Menu Item 1"
+      icon="fa-play-circle"
+    ></pf-menu-item>
+
+    <pf-vertical-submenu title="Submenu 1" icon="fa-play-circle">
+      <pf-menu-item
+        href="/page1"
+        title="Submenu Item 1"
+        icon="fa-play-circle"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        href="/page2"
+        title="Submenu Item 2"
+        icon="fa-play-circle"
+      ></pf-menu-item>
+
+      <pf-vertical-submenu title="Submenu 2" icon="fa-play-circle">
+        <pf-menu-item
+          href="/page3"
+          title="Tertiary Item 1"
+          icon="fa-play-circle"
+        ></pf-menu-item>
+
+        <pf-menu-item
+          href="/page4"
+          title="Tertiary Item 2"
+          icon="fa-play-circle"
+        ></pf-menu-item>
+      </pf-vertical-submenu>
+    </pf-vertical-submenu>
+  </template>
+
+  <!-- page content here -->
+</pf-layout>

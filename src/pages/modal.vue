@@ -28,15 +28,15 @@
     <button class="btn btn-primary" @click="modal.show = true">Open Modal</button>
 
     <props-table :component-props="modalProps">
-      <props-row name="title" description="Modal title or empty/undefined to disable it" v-model="modal.title"></props-row>
-      <props-row name="outsideClose" description="Allow clicking outside of the modal to close it" v-model="modal.outsideClose"></props-row>
-      <props-row name="confirmButton" description="Text for the confirmation button or empty/undefined to disable it" v-model="modal.confirmButton"></props-row>
-      <props-row name="cancelButton" description="Text for the cancellation button or empty/undefined to disable it" v-model="modal.cancelButton"></props-row>
+      <props-row name="title" description="Modal title or empty/undefined to disable it" v-model="modal.title"/>
+      <props-row name="outsideClose" description="Allow clicking outside of the modal to close it" v-model="modal.outsideClose"/>
+      <props-row name="confirmButton" description="Text for the confirmation button or empty/undefined to disable it" v-model="modal.confirmButton"/>
+      <props-row name="cancelButton" description="Text for the cancellation button or empty/undefined to disable it" v-model="modal.cancelButton"/>
     </props-table>
 
     <slots-table toggle>
-      <slots-row name="default" description="Modal content" :enabled.sync="modal.slotDefault.enabled" v-model="modal.slotDefault.content"></slots-row>
-      <slots-row name="footer" description="Custom footer content can be placed here (overrides default buttons)" :enabled.sync="modal.slotFooter.enabled" v-model="modal.slotFooter.content"></slots-row>
+      <slots-row name="default" description="Modal content" :enabled.sync="modal.slotDefault.enabled" v-model="modal.slotDefault.content"/>
+      <slots-row name="footer" description="Custom footer content can be placed here (overrides default buttons)" :enabled.sync="modal.slotFooter.enabled" v-model="modal.slotFooter.content"/>
     </slots-table>
   </section>
 </article>

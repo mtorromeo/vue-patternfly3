@@ -48,18 +48,18 @@
     </pf-table>
 
     <props-table :component-props="tableProps">
-      <props-row name="striped" description="Striped table rows" v-model="table.striped"></props-row>
-      <props-row name="bordered" description="Borders on all sides of the table and cells" v-model="table.bordered"></props-row>
-      <props-row name="hover" description="Enable hover state on table rows" v-model="table.hover"></props-row>
-      <props-row name="selectable" description="Make every table row selectable" v-model="table.selectable"></props-row>
-      <props-row name="sortable" description="Enable sorting by table columns" v-model="table.sortable"></props-row>
-      <props-row name="scrollable" description="Enable scrolling with fixed headers" v-model="table.scrollable"></props-row>
-      <props-row name="columns" description="List of columns" v-model="table.columns" code></props-row>
-      <props-row name="rows" description="List of rows" v-model="table.rows" code></props-row>
-      <props-row name="page" description="Current page number" v-model="table.page"></props-row>
-      <props-row name="totalItems" description="Total number of items (used to calculate the number of pages)" v-model="table.totalItems"></props-row>
-      <props-row name="itemsPerPage" description="Number of items to display per page (0 = disable paging controls)" v-model="table.itemsPerPage"></props-row>
-      <props-row name="itemsPerPageOptions" description="Available options to change the number of items per page" v-model="table.itemsPerPageOptions"></props-row>
+      <props-row name="striped" description="Striped table rows" v-model="table.striped"/>
+      <props-row name="bordered" description="Borders on all sides of the table and cells" v-model="table.bordered"/>
+      <props-row name="hover" description="Enable hover state on table rows" v-model="table.hover"/>
+      <props-row name="selectable" description="Make every table row selectable" v-model="table.selectable"/>
+      <props-row name="sortable" description="Enable sorting by table columns" v-model="table.sortable"/>
+      <props-row name="scrollable" description="Enable scrolling with fixed headers" v-model="table.scrollable"/>
+      <props-row name="columns" description="List of columns" v-model="table.columns" code/>
+      <props-row name="rows" description="List of rows" v-model="table.rows" code/>
+      <props-row name="page" description="Current page number" v-model="table.page"/>
+      <props-row name="totalItems" description="Total number of items (used to calculate the number of pages)" v-model="table.totalItems"/>
+      <props-row name="itemsPerPage" description="Number of items to display per page (0 = disable paging controls)" v-model="table.itemsPerPage"/>
+      <props-row name="itemsPerPageOptions" description="Available options to change the number of items per page" v-model="table.itemsPerPageOptions"/>
     </props-table>
 
 

@@ -42,21 +42,21 @@
     </pf-toolbar>
 
     <props-table :component-props="toolbarProps">
-      <props-row name="attached" description="Use the layout for the toolbar attached to an adjacient table" v-model="toolbar.attached"></props-row>
-      <props-row name="filterFields" description="List of available fields for filtering" v-model="toolbar.filterFields" code></props-row>
-      <props-row name="filters" description="List of active filters" v-model="toolbar.filters" code></props-row>
-      <props-row name="view" description="Active view" v-model="toolbar.view"></props-row>
-      <props-row name="views" description="List of available views (names separated by comma)" v-model="toolbar.views"></props-row>
-      <props-row name="sortBy" description="Selected sorting field" v-model="toolbar.sortBy"></props-row>
-      <props-row name="sortDirection" description="Selected sorting direction" v-model="toolbar.sortDirection" :options="['ascending', 'descending']"></props-row>
-      <props-row name="sortFields" description="List of available fields for sorting" v-model="toolbar.sortFields" code></props-row>
-      <props-row name="columns" description="List of available columns to display" v-model="toolbar.columns" code></props-row>
-      <props-row name="pickedColumns" description="List of available columns to display" v-model="toolbar.pickedColumns" code></props-row>
-      <props-row name="resultCount" description="Number of elements matching the filter criteria" v-model="toolbar.resultCount"></props-row>
+      <props-row name="attached" description="Use the layout for the toolbar attached to an adjacient table" v-model="toolbar.attached"/>
+      <props-row name="filterFields" description="List of available fields for filtering" v-model="toolbar.filterFields" code/>
+      <props-row name="filters" description="List of active filters" v-model="toolbar.filters" code/>
+      <props-row name="view" description="Active view" v-model="toolbar.view"/>
+      <props-row name="views" description="List of available views (names separated by comma)" v-model="toolbar.views"/>
+      <props-row name="sortBy" description="Selected sorting field" v-model="toolbar.sortBy"/>
+      <props-row name="sortDirection" description="Selected sorting direction" v-model="toolbar.sortDirection" :options="['ascending', 'descending']"/>
+      <props-row name="sortFields" description="List of available fields for sorting" v-model="toolbar.sortFields" code/>
+      <props-row name="columns" description="List of available columns to display" v-model="toolbar.columns" code/>
+      <props-row name="pickedColumns" description="List of available columns to display" v-model="toolbar.pickedColumns" code/>
+      <props-row name="resultCount" description="Number of elements matching the filter criteria" v-model="toolbar.resultCount"/>
     </props-table>
 
     <slots-table toggle>
-      <slots-row name="default" description="Action buttons and dropdowns can be placed here" :enabled.sync="toolbar.slotDefault.enabled" v-model="toolbar.slotDefault.content"></slots-row>
+      <slots-row name="default" description="Action buttons and dropdowns can be placed here" :enabled.sync="toolbar.slotDefault.enabled" v-model="toolbar.slotDefault.content"/>
     </slots-table>
   </section>
 </article>

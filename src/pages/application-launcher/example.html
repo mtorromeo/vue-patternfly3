@@ -1,0 +1,15 @@
+<pf-layout id="app">
+    <template slot="utility-menu">
+        <!-- maybe a <pf-notification-bell> -->
+
+        <!-- launcherOpen tracks the open/closed state of the launcher -->
+        <pf-application-launcher :open.sync="launcherOpen">
+            <pf-launcher-item icon="pficon-home" href="/">Home</pf-launcher-item>
+            <pf-launcher-item icon="fa-github" href="https://github.com/mtorromeo/vue-patternfly" target="_blank">GitHub</pf-launcher-item>
+            <pf-launcher-item icon="pficon-build">Suavitate</pf-launcher-item>
+            <pf-launcher-item icon="pficon-domain">Lorem</pf-launcher-item>
+        </pf-application-launcher>
+    </template>
+
+    <!-- snip -->
+</pf-layout>

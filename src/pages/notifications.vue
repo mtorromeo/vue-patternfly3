@@ -14,12 +14,10 @@
       <li><a href="http://www.patternfly.org/pattern-library/communication/inline-notifications/#/api" target="_blank">Pattern Library > Inline Notifications</a></li>
     </ol>
 
-    <pf-notifications ref="notifications"
-                      :toast="notifications.toast">
-    </pf-notifications>
+    <pf-notifications ref="notifications" :toast="notifications.toast"/>
 
     <props-table :component-props="notificationsProps">
-      <props-row name="toast" description="Defines this as a container for toast notifications. The property is propagated to every <code>&amp;lt;pf-notification&amp;gt;</code> added programmatically. You are responsible to keep the property in sync for <code>&amp;lt;pf-notification&amp;gt;</code>s inserted manually." v-model="notifications.toast"></props-row>
+      <props-row name="toast" description="Defines this as a container for toast notifications. The property is propagated to every <code>&amp;lt;pf-notification&amp;gt;</code> added programmatically. You are responsible to keep the property in sync for <code>&amp;lt;pf-notification&amp;gt;</code>s inserted manually." v-model="notifications.toast"/>
     </props-table>
 
     <h3>Methods</h3>
@@ -78,10 +76,10 @@
     </pf-notification>
 
     <props-table :component-props="notificationProps">
-      <props-row name="delay" description="The delay in milliseconds after which the notification is automatically dismissed." v-model="notification.delay"></props-row>
-      <props-row name="type" description="The type of notification. Can be on of: info, success, warning, danger." :options="['info', 'success', 'warning', 'danger']" v-model="notification.type"></props-row>
-      <props-row name="toast" description="Make this a toast notification. These need to be placed inside a container with the <code>toast-notifications-list-pf</code> CSS class or inside a <code>&amp;lt;pf-notifications&amp;gt;</code> component." v-model="notification.toast"></props-row>
-      <props-row name="persistent" description="Disables the controls to dismiss the notification." v-model="notification.persistent"></props-row>
+      <props-row name="delay" description="The delay in milliseconds after which the notification is automatically dismissed." v-model="notification.delay"/>
+      <props-row name="type" description="The type of notification. Can be on of: info, success, warning, danger." :options="['info', 'success', 'warning', 'danger']" v-model="notification.type"/>
+      <props-row name="toast" description="Make this a toast notification. These need to be placed inside a container with the <code>toast-notifications-list-pf</code> CSS class or inside a <code>&amp;lt;pf-notifications&amp;gt;</code> component." v-model="notification.toast"/>
+      <props-row name="persistent" description="Disables the controls to dismiss the notification." v-model="notification.persistent"/>
       <tr>
         <td>action.name</td>
         <td>The text of an action button to add to the notification. This is mandatory to enable the action.</td>
@@ -129,7 +127,7 @@
     </props-table>
 
     <slots-table>
-      <slots-row name="default" description="The notification message" v-model="notification.message"></slots-row>
+      <slots-row name="default" description="The notification message" v-model="notification.message"/>
     </slots-table>
   </section>
 </article>

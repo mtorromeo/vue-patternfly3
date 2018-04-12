@@ -10,7 +10,7 @@
 
   <p>This component is displayed when a chart does not include any data.</p>
 
-  <pf-empty-chart/>
+  <pf-empty-chart :height="80"/>
 
   <header>
     <h2>C3 Chart <code>&lt;pf-c3-chart&gt;</code></h2>
@@ -28,12 +28,12 @@
   </ol>
 
   <props-table :component-props="c3.props">
-    <props-row name="type" description="C3 chart type" v-model="c3.type" :options="['line', 'spline', 'step', 'area', 'area-spline', 'area-step', 'bar', 'scatter', 'pie', 'donut', 'gauge']"></props-row>
-    <props-row name="title" description="Title displayed inside the chart" v-model="c3.title"></props-row>
-    <props-row name="width" description="Defines the chart size" v-model="c3.width"></props-row>
-    <props-row name="height" description="Defines the chart size" v-model="c3.height"></props-row>
-    <props-row name="data" description="Chart data as accepted by the c3 library" v-model="c3.data" code></props-row>
-    <props-row name="axis" description="Chart axis as accepted by the c3 library" v-model="c3.axis" code></props-row>
+    <props-row name="type" description="C3 chart type" v-model="c3.type" :options="['line', 'spline', 'step', 'area', 'area-spline', 'area-step', 'bar', 'scatter', 'pie', 'donut', 'gauge']"/>
+    <props-row name="title" description="Title displayed inside the chart" v-model="c3.title"/>
+    <props-row name="width" description="Defines the chart size" v-model="c3.width"/>
+    <props-row name="height" description="Defines the chart size" v-model="c3.height"/>
+    <props-row name="data" description="Chart data as accepted by the c3 library" v-model="c3.data" code/>
+    <props-row name="axis" description="Chart axis as accepted by the c3 library" v-model="c3.axis" code/>
   </props-table>
 </article>
 </template>

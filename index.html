@@ -38,128 +38,188 @@
     </template>
 
     <template slot="horizontal-menu">
-      <router-link tag="li" active-class="active" to="/get-started" :exact="true">
-        <a>Get Started</a>
-      </router-link>
-      <router-link tag="li" active-class="active" to="/layout" :exact="true">
-        <a>Layout</a>
-      </router-link>
-      <router-link tag="li" active-class="active" to="/application-launcher" :exact="true">
-        <a>Application Launcher</a>
-      </router-link>
-      <router-link tag="li" active-class="active" to="/toolbar" :exact="true">
-        <a>Toolbar</a>
-      </router-link>
-      <router-link tag="li" active-class="active" to="/table" :exact="true">
-        <a>Table</a>
-      </router-link>
-      <router-link tag="li" active-class="active" to="/list-view" :exact="true">
-        <a>ListView</a>
-      </router-link>
-      <router-link tag="li" active-class="active" to="/cards" :exact="true">
-        <a>Cards</a>
-      </router-link>
-      <router-link tag="li" active-class="active" to="/notifications">
-        <a>Notifications</a>
-        <ul class="nav navbar-nav navbar-persistent">
-          <router-link tag="li" active-class="active" to="/notifications" :exact="true">
-            <a>Inline / Toast</a>
-          </router-link>
-          <router-link tag="li" active-class="active" to="/notifications/drawer" :exact="true">
-            <a>Notification Drawer</a>
-          </router-link>
-        </ul>
-      </router-link>
-      <router-link tag="li" active-class="active" to="/modal" :exact="true">
-        <a>Modal</a>
-      </router-link>
-      <router-link tag="li" active-class="active" to="/tooltips" :exact="true">
-        <a>Tooltips</a>
-      </router-link>
-      <router-link tag="li" active-class="active" to="/components" :exact="true">
-        <a>Components</a>
-      </router-link>
+      <pf-menu-item
+        to="/get-started"
+        exact
+        title="Get Started"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/layout"
+        exact
+        title="Layout"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/application-launcher"
+        exact
+        title="Application Launcher"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/toolbar"
+        exact
+        title="Toolbar"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/table"
+        exact
+        title="Table"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/list-view"
+        exact
+        title="ListView"
+        to="/list-th-list"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/cards"
+        exact
+        title="Cards"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/notifications"
+        title="Notifications"
+        badge="123"
+      >
+        <pf-menu-item
+          to="/notifications"
+          exact
+          title="Inline / Toast"
+        ></pf-menu-item>
+
+        <pf-menu-item
+          to="/notifications/drawer"
+          exact
+          title="Notification Drawer"
+        ></pf-menu-item>
+      </pf-menu-item>
+
+      <pf-menu-item
+        to="/modal"
+        exact
+        title="Modal"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/tooltips"
+        exact
+        title="Tooltips"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/charts"
+        exact
+        title="Charts"
+      ></pf-menu-item>
     </template>
 
     <template slot="vertical-menu">
-      <router-link tag="li" class="list-group-item" active-class="active" to="/get-started" :exact="true">
-        <a>
-          <pf-icon name="fa-play-circle" title="Get Started"></pf-icon>
-          <span class="list-group-item-value">Get Started</span>
-        </a>
-      </router-link>
-      <router-link tag="li" class="list-group-item" active-class="active" to="/layout" :exact="true">
-        <a>
-          <pf-icon name="fa-columns" title="Layout"></pf-icon>
-          <span class="list-group-item-value">Layout</span>
-        </a>
-      </router-link>
-      <router-link tag="li" class="list-group-item" active-class="active" to="/application-launcher" :exact="true">
-        <a>
-          <pf-icon name="fa-th" title="Application Launcher"></pf-icon>
-          <span class="list-group-item-value">Application Launcher</span>
-        </a>
-      </router-link>
-      <router-link tag="li" class="list-group-item" active-class="active" to="/toolbar" :exact="true">
-        <a>
-          <pf-icon name="fa-columns" title="Toolbar"></pf-icon>
-          <span class="list-group-item-value">Toolbar</span>
-        </a>
-      </router-link>
-      <router-link tag="li" class="list-group-item" active-class="active" to="/table" :exact="true">
-        <a>
-          <pf-icon name="fa-table" title="Table"></pf-icon>
-          <span class="list-group-item-value">Table</span>
-        </a>
-      </router-link>
-      <router-link tag="li" class="list-group-item" active-class="active" to="/list-view" :exact="true">
-        <a>
-          <pf-icon name="fa-th-list" title="ListView"></pf-icon>
-          <span class="list-group-item-value">ListView</span>
-        </a>
-      </router-link>
-      <router-link tag="li" class="list-group-item" active-class="active" to="/cards" :exact="true">
-        <a>
-          <pf-icon name="fa-th" title="Cards"></pf-icon>
-          <span class="list-group-item-value">Cards</span>
-        </a>
-      </router-link>
+      <pf-menu-item
+        to="/get-started"
+        exact
+        title="Get Started"
+        icon="fa-play-circle"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/layout"
+        exact
+        title="Layout"
+        icon="fa-columns"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/application-launcher"
+        exact
+        title="Application Launcher"
+        icon="fa-th"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/toolbar"
+        exact
+        title="Toolbar"
+        icon="fa-columns"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/table"
+        exact
+        title="Table"
+        icon="fa-columns"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/list-view"
+        exact
+        title="ListView"
+        to="/list-th-list"
+        icon="fa-columns"
+        badge="123"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/cards"
+        exact
+        title="Cards"
+        icon="fa-th"
+      ></pf-menu-item>
+
       <pf-vertical-submenu title="Notifications" icon="fa-bell">
-        <router-link tag="li" class="list-group-item" active-class="active" to="/notifications" :exact="true">
-          <a>
-            <span class="list-group-item-value">Inline / Toast</span>
-          </a>
-        </router-link>
-        <router-link tag="li" class="list-group-item" active-class="active" to="/notifications/drawer" :exact="true">
-          <a>
-            <span class="list-group-item-value">Notification Drawer</span>
-          </a>
-        </router-link>
+        <pf-menu-item
+          to="/notifications"
+          exact
+          title="Inline / Toast"
+          badge="12"
+        ></pf-menu-item>
+
+        <pf-menu-item
+          to="/notifications/drawer"
+          exact
+          title="Notification Drawer"
+          badge="12"
+        ></pf-menu-item>
       </pf-vertical-submenu>
-      <router-link tag="li" class="list-group-item" active-class="active" to="/modal" :exact="true">
-        <a>
-          <pf-icon name="pficon-applications" title="Modal"></pf-icon>
-          <span class="list-group-item-value">Modal</span>
-        </a>
-      </router-link>
-      <router-link tag="li" class="list-group-item" active-class="active" to="/tooltips" :exact="true">
-        <a>
-          <pf-icon name="fa-comment" title="Tooltips"></pf-icon>
-          <span class="list-group-item-value">Tooltips</span>
-        </a>
-      </router-link>
-      <router-link tag="li" class="list-group-item" active-class="active" to="/charts" :exact="true">
-        <a>
-          <pf-icon name="fa-pie-chart" title="Charts"></pf-icon>
-          <span class="list-group-item-value">Charts</span>
-        </a>
-      </router-link>
-      <router-link tag="li" class="list-group-item" active-class="active" to="/components" :exact="true">
-        <a>
-          <pf-icon name="fa-building" title="Components"></pf-icon>
-          <span class="list-group-item-value">Components</span>
-        </a>
-      </router-link>
+
+      <pf-menu-item
+        to="/modal"
+        exact
+        title="Modal"
+        icon="pficon-applications"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/tooltips"
+        exact
+        title="Tooltips"
+        icon="fa-comment"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/charts"
+        exact
+        title="Charts"
+        icon="fa-pie-chart"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/components"
+        exact
+        title="Components"
+        icon="fa-building"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        icon="fa-github"
+        href="https://github.com/mtorromeo/vue-patternfly"
+        target="_blank"
+        title="GitHub"
+      ></pf-menu-item>
     </template>
 
     <pf-drawer :title="drawer.title" :allow-expand="drawer.allowExpand" :hidden="drawer.hidden">

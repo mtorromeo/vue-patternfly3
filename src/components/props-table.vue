@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <slot></slot>
+      <slot/>
     </tbody>
   </table>
 </section>

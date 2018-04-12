@@ -69,14 +69,14 @@
     </pf-list-view>
 
     <props-table :component-props="listviewProps">
-      <props-row name="selectable" description="Make every list item selectable" v-model="listview.selectable"></props-row>
-      <props-row name="expandable" description="Make every list item expandable" v-model="listview.expandable"></props-row>
-      <props-row name="stacked" description="Stacked items" v-model="listview.stacked"></props-row>
-      <props-row name="rows" description="List of items" v-model="listview.rows" code></props-row>
-      <props-row name="page" description="Current page number" v-model="listview.page"></props-row>
-      <props-row name="totalItems" description="Total number of items (used to calculate the number of pages)" v-model="listview.totalItems"></props-row>
-      <props-row name="itemsPerPage" description="Number of items to display per page (0 = disable paging controls)" v-model="listview.itemsPerPage"></props-row>
-      <props-row name="itemsPerPageOptions" description="Available options to change the number of items per page" v-model="listview.itemsPerPageOptions"></props-row>
+      <props-row name="selectable" description="Make every list item selectable" v-model="listview.selectable"/>
+      <props-row name="expandable" description="Make every list item expandable" v-model="listview.expandable"/>
+      <props-row name="stacked" description="Stacked items" v-model="listview.stacked"/>
+      <props-row name="rows" description="List of items" v-model="listview.rows" code/>
+      <props-row name="page" description="Current page number" v-model="listview.page"/>
+      <props-row name="totalItems" description="Total number of items (used to calculate the number of pages)" v-model="listview.totalItems"/>
+      <props-row name="itemsPerPage" description="Number of items to display per page (0 = disable paging controls)" v-model="listview.itemsPerPage"/>
+      <props-row name="itemsPerPageOptions" description="Available options to change the number of items per page" v-model="listview.itemsPerPageOptions"/>
     </props-table>
 
 
@@ -123,16 +123,16 @@
     <p><code>pf-list-item</code>'s are used inside the default slot of <code>pf-list-view</code> and represent a template to be used by each item.</p>
 
     <props-table :component-props="listitemProps">
-      <props-row name="icon" description="Icon name. Empty to disable." v-model="listitem.icon"></props-row>
-      <props-row name="iconSize" description="Icon size" v-model="listitem.iconSize" :options="['sm', 'md', 'lg']"></props-row>
-      <props-row name="iconVariant" description="Icon variant" v-model="listitem.iconVariant" :options="['', 'info', 'success', 'warning', 'danger']"></props-row>
+      <props-row name="icon" description="Icon name. Empty to disable." v-model="listitem.icon"/>
+      <props-row name="iconSize" description="Icon size" v-model="listitem.iconSize" :options="['sm', 'md', 'lg']"/>
+      <props-row name="iconVariant" description="Icon variant" v-model="listitem.iconVariant" :options="['', 'info', 'success', 'warning', 'danger']"/>
     </props-table>
 
     <slots-table toggle>
-      <slots-row name="default" description="The content of the list item. This overrides every other slot." :enabled.sync="listitem.slotDefault.enabled" v-model="listitem.slotDefault.content"></slots-row>
-      <slots-row name="heading" description="Item's title." :enabled.sync="listitem.slotHeading.enabled" v-model="listitem.slotHeading.content"></slots-row>
-      <slots-row name="description" description="Item's description." :enabled.sync="listitem.slotDescription.enabled" v-model="listitem.slotDescription.content"></slots-row>
-      <slots-row name="additional-info" description="Additional fragments of informations. Use <code>pf-list-item-additional-info</code> here."></slots-row>
+      <slots-row name="default" description="The content of the list item. This overrides every other slot." :enabled.sync="listitem.slotDefault.enabled" v-model="listitem.slotDefault.content"/>
+      <slots-row name="heading" description="Item's title." :enabled.sync="listitem.slotHeading.enabled" v-model="listitem.slotHeading.content"/>
+      <slots-row name="description" description="Item's description." :enabled.sync="listitem.slotDescription.enabled" v-model="listitem.slotDescription.content"/>
+      <slots-row name="additional-info" description="Additional fragments of informations. Use <code>pf-list-item-additional-info</code> here."/>
     </slots-table>
   </section>
 </article>
