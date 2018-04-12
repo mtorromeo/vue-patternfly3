@@ -29,6 +29,7 @@ import ListItem from './ListItem.vue';
 import ListItemAdditionalInfo from './ListItemAdditionalInfo.vue';
 import Modal from './Modal.vue';
 import Icon from './Icon';
+import MenuItem from './MenuItem';
 
 export {
   AggregateStatusCard,
@@ -62,4 +63,5 @@ export {
   ListItemAdditionalInfo,
   Modal,
   Icon,
+  MenuItem,
 };

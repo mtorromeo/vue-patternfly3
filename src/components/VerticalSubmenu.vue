@@ -1,15 +1,17 @@
 <template>
-  <li class="list-group-item" :class="{
+  <pf-menu-item vertical
+    :title="title"
+    :icon="icon"
+    :class="{
       'secondary-nav-item-pf': !tertiary,
       'tertiary-nav-item-pf': tertiary,
       'is-hover': active,
-      'mobile-nav-item-pf': active
-    }" @mouseenter="delayOpen" @mouseleave="delayClose">
-    <a @click="active = !active">
-      <pf-icon v-if="icon" :name="icon" :title="title"/>
-      <span class="list-group-item-value" v-html="title"></span>
-    </a>
-
+      'mobile-nav-item-pf': active,
+    }"
+    @click="active = !active"
+    @mouseenter="delayOpen"
+    @mouseleave="delayClose"
+  >
     <div :class="{
         'nav-pf-secondary-nav': !tertiary,
         'nav-pf-tertiary-nav': tertiary,
@@ -25,7 +27,7 @@
         <slot/>
       </ul>
     </div>
-  </li>
+  </pf-menu-item>
 </template>
 
 <script>
@@ -33,7 +35,10 @@ export default {
   name: 'pf-vertical-submenu',
 
   props: {
-    title: String,
+    title: {
+      type: String,
+      required: true,
+    },
     icon: String,
   },
 

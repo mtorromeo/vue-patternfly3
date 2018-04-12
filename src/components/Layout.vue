@@ -284,6 +284,12 @@ nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
   display: flex;
 }
 
+.navbar-pf .navbar-nav > .list-group-item {
+  padding: 0;
+  background-color: initial;
+  border: none;
+}
+
 @media (min-width: 768px) {
   .navbar-pf .navbar-brand-name {
     padding: 3px 0;

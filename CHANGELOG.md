@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+- Implemented `pf-menu-item` as a functional component with vue-router integration.
 - Implemented secondary and tertiary vertical navigation.
 - Implemented grid layout on `pf-layout`.
 - Implemented modal overlay pattern with `pf-modal` (Contributed by [@pebri86]).
