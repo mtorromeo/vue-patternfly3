@@ -39,7 +39,7 @@
       'show-mobile-nav': mobile && !collapsed,
       'secondary-visible-pf': secondaryMenus && !tertiaryMenus && !tablet,
       'show-mobile-secondary': secondaryMenus && !tertiaryMenus && mobile,
-      'hover-secondary-nav-pf': secondaryMenus && !tertiaryMenus,
+      'hover-secondary-nav-pf': secondaryMenus || tertiaryMenus,
       'tertiary-visible-pf': tertiaryMenus && !tablet,
       'show-mobile-tertiary': tertiaryMenus && mobile,
       'hover-tertiary-nav-pf': tertiaryMenus,
