@@ -25,7 +25,7 @@
       <div slot="footer" v-if="modal.slotFooter.enabled" v-html="modal.slotFooter.content"></div>
     </pf-modal>
 
-    <button @click="modal.show = true">Open Modal</button>
+    <button class="btn btn-primary" @click="modal.show = true">Open Modal</button>
 
     <props-table :component-props="modalProps">
       <props-row name="title" description="Modal title or empty/undefined to disable it" v-model="modal.title"></props-row>
