@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.0.16]
+### Fixed
+- Fixed flex layout.
+
 ## [0.0.15]
 ### Fixed
 - Prevent custom layout distruption when not `pf-layout` is disabled.
@@ -162,7 +166,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.15...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.16...HEAD
+[0.0.16]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.15...v0.0.16
 [0.0.15]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.14...v0.0.15
 [0.0.14]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.13...v0.0.14
 [0.0.13]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.12...v0.0.13
