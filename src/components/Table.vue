@@ -1,10 +1,5 @@
 <template>
-<div
-  class="table-wrapper"
-  :style="{
-    'padding-bottom': bottomPadding,
-  }"
->
+<div class="table-wrapper">
   <table v-if="scrollable"
     class="table dataTable table-head-clone"
     :style="{
@@ -224,12 +219,6 @@ export default {
         colspan++;
       }
       return colspan;
-    },
-
-    bottomPadding() {
-      const headHeight = this.scrollable ? this.headHeight + 1 : 0;
-      const paginationHeight = this.itemsPerPage > 0 ? this.paginationHeight : 0;
-      return `${paginationHeight + headHeight}px`;
     },
   },
 
