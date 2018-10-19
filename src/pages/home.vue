@@ -3,7 +3,7 @@
   <header class="jumbotron">
     <h1>Vue PatternFly</h1>
     <p class="description">
-      PatternFly components for Vue.js 2
+      PatternFly components for Vue 2
     </p>
     <p>
       <router-link to="/get-started" :exact="true">
@@ -18,11 +18,11 @@
 
   <section class="container-fluid">
     <h2>About Vue PatternFly</h2>
-    <p>Vue PatternFly implements a set of reusable Vue.js components following the PatternFly design patterns and usage guidelines to facilitate building of enterprise IT applications.</p>
+    <p>Vue PatternFly implements a set of reusable Vue components following the PatternFly design patterns and usage guidelines to facilitate building of enterprise IT applications.</p>
 
     <div class="row row-cards-pf">
       <div class="col-xs-12 col-md-4">
-        <pf-card title="About Vue.js">
+        <pf-card title="About Vue">
           <div>«Vue (pronounced /vjuː/, like view) is a progressive framework for building user interfaces.»</div>
           <div><a href="https://vuejs.org/" target="_blank">WebSite <span class="fa fa-external-link"></span></a></div>
         </pf-card>
@@ -31,15 +31,15 @@
       <div class="col-xs-12 col-md-4">
         <pf-card title="About PatternFly">
           <div>«PatternFly is a community project that promotes design commonality and improved user experience. Its offerings include open source code, patterns, style guides and an active community that helps support it all.»</div>
-          <div><a href="http://www.patternfly.org/" target="_blank">WebSite <span class="fa fa-external-link"></span></a></div>
+          <div><a href="https://www.patternfly.org/" target="_blank">WebSite <span class="fa fa-external-link"></span></a></div>
         </pf-card>
       </div>
 
       <div class="col-xs-12 col-md-4">
-        <pf-card title="About VueStrap">
-          <div>«Bootstrap components built with Vue.js.»</div>
-          <div>Since PatternFly is built on top of the Bootstrap framework, VueStrap is a natural complement library.</div>
-          <div><a href="http://yuche.github.io/vue-strap/" target="_blank">WebSite <span class="fa fa-external-link"></span></a></div>
+        <pf-card title="About uiv">
+          <div>«Bootstrap 3 Components implemented by Vue 2.»</div>
+          <div>Since PatternFly is built on top of the Bootstrap framework, uiv is a natural complement library.</div>
+          <div><a href="https://github.com/wxsms/uiv" target="_blank">WebSite <span class="fa fa-external-link"></span></a></div>
         </pf-card>
       </div>
     </div>

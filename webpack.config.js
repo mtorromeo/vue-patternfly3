@@ -2,6 +2,7 @@
 
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   entry: {
@@ -40,14 +41,14 @@ module.exports = {
     }, {
       test: /\.vue$/,
       loader: 'vue-loader',
-    }]
+    }],
   },
 
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       'vue-patternfly$': path.resolve('../dist/vue-patternfly.js'),
-    }
+    },
   },
 
   plugins: [
@@ -55,5 +56,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
+    new VueLoaderPlugin(),
   ],
 };

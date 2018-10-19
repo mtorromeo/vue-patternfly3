@@ -27,7 +27,7 @@
 
       <div v-if="toolbar.slotDefault.enabled" v-html="toolbar.slotDefault.content" style="float:left"></div>
 
-      <bs-dropdown class="dropdown-kebab-pf" type="link">
+      <pf-dropdown class="dropdown-kebab-pf" type="link">
         <li role="menuitem">
           <a title="Menu Title 1">Menu Item 1</a>
         </li>
@@ -38,7 +38,7 @@
         <li role="menuitem">
           <a title="Menu Title 3">Menu Item 3</a>
         </li>
-      </bs-dropdown>
+      </pf-dropdown>
     </pf-toolbar>
 
     <props-table :component-props="toolbarProps">
