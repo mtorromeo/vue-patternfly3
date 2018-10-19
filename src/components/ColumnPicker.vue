@@ -1,32 +1,28 @@
 <template>
-  <bs-popover class="column-picker" effect="fade" placement="bottom">
-    <button type="button" class="btn btn-link">
+  <popover class="column-picker" placement="bottom">
+    <button ref="popover-trigger" type="button" class="btn btn-link">
       <pf-icon name="fa-columns"/>
     </button>
 
-    <div
-      slot="content"
-      v-for="(column, i) in columns"
-      :key="i"
-      class="checkbox"
-      @click.stop
-    >
-      <label>
-        <input type="checkbox" :value="columnValue(column, i)" v-model="iValue" @change="setValue">
-        {{column}}
-      </label>
-    </div>
-  </bs-popover>
+    <template slot="popover">
+      <div class="column-picker checkbox" v-for="(column, i) in columns" :key="i">
+        <label>
+          <input type="checkbox" :value="columnValue(column, i)" v-model="iValue" @change="setValue">
+          {{column}}
+        </label>
+      </div>
+    </template>
+  </popover>
 </template>
 
 <script>
-import VueStrap from '../vue-strap';
+import {Popover} from 'uiv';
 
 export default {
   name: 'pf-column-picker',
 
   components: {
-    BsPopover: VueStrap.popover,
+    Popover,
   },
 
   props: {
@@ -81,7 +77,7 @@ export default {
 </script>
 
 <style>
-.column-picker .popover-content .checkbox {
+.column-picker.checkbox {
   margin: 0;
 }
 </style>

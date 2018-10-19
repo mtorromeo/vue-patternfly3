@@ -11,7 +11,7 @@
 
 <script>
 import c3 from 'c3';
-const patternfly = require('imports-loader?patternfly=>{}!exports-loader?patternfly!patternfly/dist/js/patternfly-settings-colors.js');
+const patternfly = require('imports-loader?window=>{patternfly:{}}!exports-loader?window.patternfly!patternfly/dist/js/patternfly-settings-colors.js');
 const palette = [
   patternfly.pfPaletteColors.red,
   patternfly.pfPaletteColors.blue,

@@ -1,13 +1,13 @@
 <template>
 <div class="filter-pf filter-fields form-group toolbar-pf-filter">
   <div class="input-group">
-    <bs-dropdown :text="current.label" class="input-group-btn">
+    <pf-dropdown :text="current.label" class="input-group-btn">
       <li v-for="(item, name) in normFields" :key="name">
         <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = name">
           {{item.label}}
         </a>
       </li>
-    </bs-dropdown>
+    </pf-dropdown>
     <pf-select close-on-select class="filter-select" v-if="isSelect" :placeholder="current.placeholder">
       <pf-option :checked-value="item" v-for="(item, i) in current.values" :key="i" @input="set">{{item}}</pf-option>
     </pf-select>
@@ -28,13 +28,13 @@
 <script>
 import PfSelect from './Select.vue';
 import PfOption from './Option.vue';
-import VueStrap from '../vue-strap';
+import PfDropdown from './Dropdown.vue';
 
 export default {
   name: 'pf-filter-fields',
 
   components: {
-    BsDropdown: VueStrap.dropdown,
+    PfDropdown,
     PfSelect,
     PfOption,
   },

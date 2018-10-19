@@ -13,16 +13,22 @@
     </div>
   </td>
   <td v-if="$slots.dropdown" class="table-view-pf-actions">
-    <bs-dropdown class="pull-right">
+    <pf-dropdown class="pull-right">
       <slot name="dropdown"/>
-    </bs-dropdown>
+    </pf-dropdown>
   </td>
 </tr>
 </template>
 
 <script>
+import PfDropdown from './Dropdown.vue';
+
 export default {
   name: 'pf-table-row',
+
+  components: {
+    PfDropdown,
+  },
 
   props: {
     num: Number,

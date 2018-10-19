@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/preset-env", {
       "modules": false,
       "targets": {
         "browsers": ["last 2 major versions", "not ie <= 10"]
@@ -8,10 +8,10 @@
     }]
   ],
   "plugins": [
-    "transform-regenerator",
-    "transform-runtime",
-    "syntax-async-functions",
-    "transform-es2015-destructuring",
-    "transform-object-rest-spread"
+    "@babel/plugin-transform-regenerator",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-async-to-generator",
+    "@babel/plugin-transform-destructuring",
+    "@babel/plugin-proposal-object-rest-spread"
   ]
 }

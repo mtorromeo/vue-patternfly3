@@ -6,28 +6,26 @@
     'toast-pf': toast,
   }]"
 >
-  <bs-dropdown v-if="showDropdown">
-    <slot name="dropdown" :actions="actions">
-      <li
-        v-for="action in actions"
-        :key="action.name"
-        :role="isSeparator(action) ? 'separator' : 'menuitem'"
-        :class="{
-          divider: isSeparator(action),
-          disabled: action.disabled === true,
-        }"
+  <pf-dropdown v-if="showDropdown">
+    <li
+      v-for="action in actions"
+      :key="action.name"
+      :role="isSeparator(action) ? 'separator' : 'menuitem'"
+      :class="{
+        divider: isSeparator(action),
+        disabled: action.disabled === true,
+      }"
+    >
+      <a
+        v-if="!isSeparator(action)"
+        class="secondary-action"
+        :title="action.title"
+        @click="triggered(action)"
       >
-        <a
-          v-if="!isSeparator(action)"
-          class="secondary-action"
-          :title="action.title"
-          @click="triggered(action)"
-        >
-          {{action.name}}
-        </a>
-      </li>
-    </slot>
-  </bs-dropdown>
+        {{action.name}}
+      </a>
+    </li>
+  </pf-dropdown>
 
   <button
     v-show="!persistent && !toast"
@@ -57,13 +55,13 @@
 </template>
 
 <script>
-import VueStrap from '../vue-strap';
+import PfDropdown from './Dropdown.vue';
 
 export default {
   name: 'pf-toast-notification',
 
   components: {
-    BsDropdown: VueStrap.dropdown,
+    PfDropdown,
   },
 
   props: {

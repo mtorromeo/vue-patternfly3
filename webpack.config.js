@@ -2,6 +2,7 @@
 
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
 module.exports = {
   entry: {
@@ -31,7 +32,7 @@ module.exports = {
     }, {
       test: /\.jsx?$/,
       loader: 'babel-loader',
-      exclude: /\/node_modules\/(?!vue-strap)/,
+      exclude: /\/node_modules\//,
     }, {
       test: /\.html?$/,
       loader: 'html-loader',
@@ -44,13 +45,13 @@ module.exports = {
     }, {
       test: /\.vue$/,
       loader: 'vue-loader',
-    }]
+    }],
   },
 
   resolve: {
     alias: {
-      vue$: 'vue/dist/vue.esm.js'
-    }
+      vue$: 'vue/dist/vue.esm.js',
+    },
   },
 
   plugins: [
@@ -58,5 +59,6 @@ module.exports = {
       filename: '[name].css',
       chunkFilename: '[id].css',
     }),
+    new VueLoaderPlugin(),
   ],
 };

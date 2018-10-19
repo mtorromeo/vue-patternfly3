@@ -1,12 +1,12 @@
 <template>
 <div class="sort-pf">
-  <bs-dropdown :text="current.label">
+  <pf-dropdown :text="current.label">
     <li v-for="field in normFields" :key="field.name" :class="{'selected': active == field.name}">
       <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="select(field)">
         {{field.label}}
       </a>
     </li>
-  </bs-dropdown>
+  </pf-dropdown>
   <button class="btn btn-link" type="button"  @click="invert">
     <pf-icon class="sort-direction" :name="sortIcon"/>
   </button>
@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import VueStrap from '../vue-strap';
+import PfDropdown from './Dropdown.vue';
 
 export default {
   name: 'pf-sort',
 
   components: {
-    BsDropdown: VueStrap.dropdown,
+    PfDropdown,
   },
 
   props: {

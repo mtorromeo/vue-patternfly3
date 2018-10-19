@@ -11,9 +11,9 @@
   </div>
   <div class="list-view-pf-actions">
     <slot name="action"/>
-    <bs-dropdown type="link" v-if="$slots.dropdown" class="dropdown pull-right dropdown-kebab-pf">
+    <pf-dropdown type="link" v-if="$slots.dropdown" class="dropdown pull-right dropdown-kebab-pf">
       <slot name="dropdown"/>
-    </bs-dropdown>
+    </pf-dropdown>
   </div>
   <slot/>
   <div class="list-group-item-container container-fluid" v-show="showExpansion" @click.stop style="cursor: initial">
@@ -29,6 +29,7 @@
 <script>
 import {PortalTarget} from 'portal-vue';
 import TableRow from './TableRow.vue';
+import PfDropdown from './Dropdown.vue';
 
 export default {
   name: 'pf-list-group-item',
@@ -36,6 +37,7 @@ export default {
 
   components: {
     PortalTarget,
+    PfDropdown,
   },
 
   props: {

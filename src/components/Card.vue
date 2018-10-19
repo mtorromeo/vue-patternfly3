@@ -1,7 +1,7 @@
 <template>
 <div class="card-pf" :class="{'card-pf-accented': accented}">
   <div v-if="showHeader" :class="{'card-pf-heading': showTitlesSeparator, 'card-pf-heading-no-bottom': !showTitlesSeparator}">
-    <dropdown v-if="showFilterInHeader" class="card-pf-time-frame-filter pull-right" :text="currentFilter.label">
+    <pf-dropdown v-if="showFilterInHeader" class="card-pf-time-frame-filter pull-right" :text="currentFilter.label">
       <li
         v-for="(item, i) in filter.filters"
         :key="i"
@@ -11,7 +11,7 @@
           {{item.label}}
         </a>
       </li>
-    </dropdown>
+    </pf-dropdown>
     <h2 class="card-pf-title">{{title}}</h2>
   </div>
 
@@ -22,7 +22,7 @@
   </div>
 
   <div v-if="showFooter || showFilterInFooter" class="card-pf-footer">
-    <dropdown v-if="showFilterInFooter" class="card-pf-time-frame-filter pull-right" :text="currentFilter.label">
+    <pf-dropdown v-if="showFilterInFooter" class="card-pf-time-frame-filter pull-right" :text="currentFilter.label">
       <li
         v-for="(item, i) in filter.filters"
         :key="i"
@@ -32,7 +32,7 @@
           {{item.label}}
         </a>
       </li>
-    </dropdown>
+    </pf-dropdown>
     <p v-if="showFooter">
       <a v-if="footHref" :href="footHref" :class="{'card-pf-link-with-icon': footIcon, 'card-pf-link': !footIcon}">
         <pf-icon v-if="footIcon" :name="footIcon" class="cart-pf-footer-text"/>
@@ -48,13 +48,13 @@
 </template>
 
 <script>
-import VueStrap from '../vue-strap';
+import PfDropdown from './Dropdown.vue';
 
 export default {
   name: 'pf-card',
 
   components: {
-    dropdown: VueStrap.dropdown,
+    PfDropdown,
   },
 
   props: {

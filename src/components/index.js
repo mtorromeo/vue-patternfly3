@@ -4,6 +4,7 @@ import LauncherItem from './LauncherItem.vue';
 import C3Chart from './C3Chart.vue';
 import Card from './Card.vue';
 import CardNotification from './CardNotification.vue';
+import Dropdown from './Dropdown.vue';
 import EmptyChart from './EmptyChart.vue';
 import Sort from './Sort.vue';
 import ColumnPicker from './ColumnPicker.vue';
@@ -38,6 +39,7 @@ export {
   C3Chart,
   Card,
   CardNotification,
+  Dropdown,
   EmptyChart,
   Sort,
   ColumnPicker,

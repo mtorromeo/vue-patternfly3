@@ -1,16 +1,24 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [0.0.16]
+## [0.0.17] - 2018-10-19
+### Added
+- Added `pf-dropdown` component with is a very small functional wrapper around uiv's dropdown, to provide DRYer dropdown for the most common usage pattern.
+
+### Changed
+- **BACKWARD INCOMPATIBLE CHANGE**: Removed vue-strap, which is unmantained and deprecated and replace it with uiv.
+- **BACKWARD INCOMPATIBLE CHANGE**: Bootstrap components are now registered without the `bs-` prefix to stay consistent with uiv's own documentation.
+
+## [0.0.16] - 2018-04-13
 ### Fixed
 - Fixed flex layout.
 
-## [0.0.15]
+## [0.0.15] - 2018-04-13
 ### Fixed
 - Prevent custom layout distruption when not `pf-layout` is disabled.
 - Removed bottom padding on `pf-table`.
 
-## [0.0.14]
+## [0.0.14] - 2018-04-13
 ### Added
 - Implemented `pf-menu-item` as a functional component with vue-router integration.
 - Implemented secondary and tertiary vertical navigation.
@@ -33,7 +41,7 @@ All notable changes to this project will be documented in this file.
 - Fixed href property of `pf-launcher-item`s.
 - Fixed various linting errors/warnings.
 
-## [0.0.13]
+## [0.0.13] - 2017-09-11
 ### Added
 - Implemented `v-model` on the page property `pf-paginate-control` components.
 - Implemented two-way syncing of `sort-by` and `sort-direction` properties in `pf-table` and `pf-toolbar`.
@@ -166,7 +174,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.16...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.17...HEAD
+[0.0.17]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.16...v0.0.17
 [0.0.16]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.15...v0.0.16
 [0.0.15]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.14...v0.0.15
 [0.0.14]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.13...v0.0.14
