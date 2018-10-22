@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Added
+- Added ecmascript module build in `dist/vue-patternfly.esm.js` using rollup.
+
 ## [0.0.17] - 2018-10-19
 ### Added
 - Added `pf-dropdown` component with is a very small functional wrapper around uiv's dropdown, to provide DRYer dropdown for the most common usage pattern.

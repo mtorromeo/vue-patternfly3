@@ -17,8 +17,11 @@ module.exports = {
   },
 
   externals: {
-    'c3': 'c3',
+    vue: 'vue',
+    c3: 'c3',
   },
+
+  devtool: 'source-map',
 
   module: {
     rules: [{

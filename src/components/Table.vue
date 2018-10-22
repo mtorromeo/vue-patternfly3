@@ -95,7 +95,7 @@
 <script>
 import ResizeObserver from 'resize-observer-polyfill';
 import PfTableRow from './TableRow.vue';
-import debounce from 'lodash/debounce';
+import debounce from 'lodash-es/debounce';
 
 export default {
   name: 'pf-table',
