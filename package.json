@@ -11,8 +11,8 @@
   },
   "scripts": {
     "purge": "rm -rf dist/*",
-    "compile": "rollup -c && webpack --mode production --progress && mv dist/vue-patternfly{,.min}.js && mv dist/vue-patternfly{,.min}.js.map && webpack --mode development --progress",
-    "dev": "webpack --mode development -w --progress",
+    "compile": "rollup -c && webpack --mode production --env production --progress && webpack --mode development --progress",
+    "dev": "rollup -wc",
     "build": "npm run purge && npm run compile",
     "lint": "eslint src/*.js",
     "prepublish": "npm run lint && npm run build"
@@ -69,6 +69,7 @@
     "imports-loader": "^0.8.0",
     "lodash-es": "^4.17.11",
     "mini-css-extract-plugin": "^0.4.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "portal-vue": "^1.3.0",
     "resize-observer-polyfill": "^1.5.0",
     "rollup": "^0.66.6",

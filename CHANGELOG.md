@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - Added ecmascript module build in `dist/vue-patternfly.esm.js` using rollup.
+- Included minimized css in `dist/`.
+
+### Fixed
+- Corrected source map association.
 
 ## [0.0.17] - 2018-10-19
 ### Added
