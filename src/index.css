@@ -1,3 +1,4 @@
+/* Tooltip */
 .tooltip {
   display: none;
   transition: opacity .15s;
@@ -11,6 +12,7 @@
   opacity: .9;
 }
 
+/* Dropdown */
 .dropdown-kebab-pf .caret {
   height: 1em;
   vertical-align: inherit;
@@ -38,6 +40,17 @@
   line-height: 1;
 }
 
+/* Icon-image */
+.pf-icon-img {
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Cards */
 .card-pf-heading-no-bottom {
   margin: 0 -20px 0px;
   padding: 0 20px 0;

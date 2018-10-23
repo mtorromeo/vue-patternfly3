@@ -9,6 +9,7 @@ export default {
 
   props: {
     name: String,
+    src: String,
     tag: {
       type: String,
       default: 'span',
@@ -16,13 +17,25 @@ export default {
   },
 
   render(h, {props, data, children}) {
-    const match = (/^(fa|pficon|glyphicon)-/).exec(props.name);
-    const family = match ? match[1] : '';
+    let staticClass = '';
+    const style = {};
+    if (props.src) {
+      staticClass = 'pficon pf-icon-img';
+      style.backgroundImage = `url("${props.src}")`;
+    } else {
+      const match = (/^(fa|pficon|glyphicon)-/).exec(props.name);
+      staticClass = match ? match[1] : '';
+      if (props.name) {
+        staticClass = `${staticClass} ${props.name}`;
+      }
+    }
+
     return h(props.tag, mergeData(data, {
       attrs: {
         'aria-hidden': 'true',
       },
-      staticClass: `${family} ${props.name}`,
+      staticClass,
+      style,
     }), children);
   },
 };

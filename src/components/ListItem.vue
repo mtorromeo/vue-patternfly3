@@ -1,11 +1,13 @@
 <template functional>
   <div class="list-view-pf-main-info">
     <slot>
-      <div class="list-view-pf-left" v-if="props.icon">
-        <pf-icon :name="props.icon" :class="[
-          `list-view-pf-icon-${props.iconSize}`,
-          {[`list-view-pf-icon-${props.iconVariant}`]: props.iconVariant},
-        ]"/>
+      <div class="list-view-pf-left" v-if="props.icon || props.iconSrc || $slots.left">
+        <slot name="left">
+          <pf-icon :name="props.icon" :src="props.iconSrc" :class="[
+            `list-view-pf-icon-${props.iconSize}`,
+            {[`list-view-pf-icon-${props.iconVariant}`]: props.iconVariant},
+          ]"/>
+        </slot>
       </div>
       <div class="list-view-pf-body">
         <div class="list-view-pf-description" v-if="$slots.heading || $slots.description">
@@ -30,6 +32,7 @@ export default {
 
   props: {
     icon: String,
+    iconSrc: String,
     iconSize: {
       type: String,
       default: 'md',

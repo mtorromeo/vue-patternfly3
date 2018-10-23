@@ -5,6 +5,8 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Added ecmascript module build in `dist/vue-patternfly.esm.js` using rollup.
 - Included minimized css in `dist/`.
+- New `src` property of `pf-icon` that allows to use any image as an icon.
+- New `icon-src` property of `pf-list-item` to specify an image as an icon.
 
 ### Fixed
 - Corrected source map association.
