@@ -11,7 +11,7 @@
   },
   "scripts": {
     "purge": "rm -rf dist/*",
-    "compile": "rollup -c && webpack --mode production --env production --progress && webpack --mode development --progress",
+    "compile": "NODE_ENV=production rollup -c && webpack --mode production --env production --progress && webpack --mode development --progress",
     "dev": "rollup -wc",
     "build": "npm run purge && npm run compile",
     "lint": "eslint src/*.js",
