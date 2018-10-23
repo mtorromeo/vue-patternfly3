@@ -32,7 +32,7 @@ export default {
 
   methods: {
     add(notification, type = 'info', persistent = false) {
-      if (typeof notification == 'string') {
+      if (typeof notification != 'object') {
         notification = {
           message: notification,
           type: type,
