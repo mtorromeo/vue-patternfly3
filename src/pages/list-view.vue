@@ -27,10 +27,13 @@
       <pf-list-item
         slot-scope="data"
         :icon="listitem.icon"
+        :icon-src="listitem.iconSrc"
         :icon-size="listitem.iconSize"
         :icon-variant="listitem.iconVariant"
       >
         <div v-if="listitem.slotDefault.enabled" v-html="listitem.slotDefault.content"></div>
+        <span slot="left" v-if="data.row.id === 1 && listitem.slotLeft.enabled" v-html="listitem.slotLeft.content">
+        </span>
         <template slot="heading">
           <div v-if="data.row.id === 1 && listitem.slotHeading.enabled" v-html="listitem.slotHeading.content"></div>
           <div v-if="data.row.id !== 1">{{data.row.name}} {{data.row.surname}}</div>
@@ -124,12 +127,15 @@
 
     <props-table :component-props="listitemProps">
       <props-row name="icon" description="Icon name. Empty to disable." v-model="listitem.icon"/>
+      <props-row name="iconSrc" description="Url for an image to use as icon (overrides the &quot;icon&quot; prop)" v-model="listitem.iconSrc"/>
+      <props-row name="iconVariant" description="Icon variant" v-model="listitem.iconVariant"
       <props-row name="iconSize" description="Icon size" v-model="listitem.iconSize" :options="['sm', 'md', 'lg']"/>
       <props-row name="iconVariant" description="Icon variant" v-model="listitem.iconVariant" :options="['', 'info', 'success', 'warning', 'danger']"/>
     </props-table>
 
     <slots-table toggle>
       <slots-row name="default" description="The content of the list item. This overrides every other slot." :enabled.sync="listitem.slotDefault.enabled" v-model="listitem.slotDefault.content"/>
+      <slots-row name="left" description="Slot to override the icon" :enabled.sync="listitem.slotLeft.enabled" v-model="listitem.slotLeft.content"/>
       <slots-row name="heading" description="Item's title." :enabled.sync="listitem.slotHeading.enabled" v-model="listitem.slotHeading.content"/>
       <slots-row name="description" description="Item's description." :enabled.sync="listitem.slotDescription.enabled" v-model="listitem.slotDescription.content"/>
       <slots-row name="additional-info" description="Additional fragments of informations. Use <code>pf-list-item-additional-info</code> here."/>
@@ -182,11 +188,16 @@ export default {
       listitemProps: VuePatternfly.ListItem.props,
       listitem: {
         icon: 'fa-plane',
+        iconSrc: 'https://avatars0.githubusercontent.com/u/51503?s=50&v=4',
         iconSize: 'md',
         iconVariant: '',
         slotDefault: {
           enabled: false,
           content: '<strong>Important!</strong> extended information here.',
+        },
+        slotLeft: {
+          enabled: true,
+          content: '<span class="pficon pf-icon-img list-view-pf-icon-md list-pf-icon-bordered" style="background-image: url(https://duckduckgo.com/i/ceec039d.png); background-color: #363636"></span>',
         },
         slotHeading: {
           enabled: true,
