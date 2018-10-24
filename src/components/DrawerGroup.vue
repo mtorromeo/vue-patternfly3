@@ -11,7 +11,14 @@
 
   <transition name="collapse">
     <div v-show="expanded" class="panel-collapse" :aria-expanded="expanded ? 'true' : 'false'">
-      <div class="panel-body">
+      <div v-if="empty && !loading" class="blank-slate-pf">
+        <div class="blank-slate-pf-icon">
+          <pf-icon name="pficon-info"/>
+        </div>
+        <h4 class="h1 blank-slate-pf-title">No Notifications Available</h4>
+      </div>
+
+      <div class="panel-body" v-else>
         <slot/>
 
         <div v-if="loading" class="drawer-pf-loading text-center">
@@ -40,9 +47,12 @@ export default {
     loading: Boolean,
   },
 
-  data: () => ({
-    expanded: false,
-  }),
+  data() {
+    return {
+      expanded: false,
+      empty: true,
+    };
+  },
 
   mounted() {
     this.$parent.$on('groupChanged', group => {
@@ -50,6 +60,10 @@ export default {
         this.close();
       }
     });
+  },
+
+  updated() {
+    this.empty = !this.$slots.default || this.$slots.default.length === 0;
   },
 
   methods: {

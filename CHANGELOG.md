@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 - Included minimized css in `dist/`.
 - New `src` property of `pf-icon` that allows to use any image as an icon.
 - New `icon-src` property of `pf-list-item` to specify an image as an icon.
+- Implemented empty state for `pf-drawer-group`.
 
 ### Fixed
 - Corrected source map association.
