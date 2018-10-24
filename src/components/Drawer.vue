@@ -7,6 +7,9 @@
   <slot name="title">
     <div v-if="title" class="drawer-pf-title">
       <a v-if="allowExpand" class="drawer-pf-toggle-expand" @click="expanded = !expanded"></a>
+      <a class="drawer-pf-close" @click="close">
+        <pf-icon name="fa-close"/>
+      </a>
       <h3 class="text-center">{{title}}</h3>
     </div>
   </slot>
@@ -23,6 +26,11 @@
 export default {
   name: 'pf-drawer',
 
+  model: {
+    prop: 'hidden',
+    event: 'update:hidden',
+  },
+
   props: {
     hidden: {
       type: Boolean,
@@ -32,9 +40,17 @@ export default {
     title: String,
   },
 
-  data: () => ({
-    expanded: false,
-  }),
+  data() {
+    return {
+      expanded: false,
+    };
+  },
+
+  methods: {
+    close() {
+      this.$emit('update:hidden', true);
+    },
+  },
 };
 </script>
 
