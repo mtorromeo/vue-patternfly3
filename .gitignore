@@ -7,6 +7,7 @@ Thumbs.db
 !.ignore
 !.git*
 !.babelrc
+!.browserslistrc
 !.eslint*
 !.editorconfig
 node_modules

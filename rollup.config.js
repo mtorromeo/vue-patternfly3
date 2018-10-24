@@ -30,12 +30,7 @@ module.exports = {
     babel({
       babelrc: false,
       presets: [
-        ['@babel/preset-env', {
-          modules: false,
-          targets: {
-            browsers: ['last 2 major versions', 'not ie <= 10'],
-          },
-        }],
+        ['@babel/preset-env', {modules: false}],
       ],
       plugins: [
         '@babel/plugin-transform-regenerator',
