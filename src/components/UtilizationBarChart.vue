@@ -23,10 +23,10 @@
   <template v-else>
     <div class="progress-container progress-description-left progress-label-right"
          :style="{
-           'padding-left': titleWidth,
-           'padding-right': footerWidth,
+           'padding-left': titleWidthPx,
+           'padding-right': footerWidthPx,
           }">
-      <div v-if="title" class="progress-description"  :style="{'max-width': titleWidth}" v-html="title"></div>
+      <div v-if="title" class="progress-description"  :style="{'max-width': titleWidthPx}" v-html="title"></div>
       <div class="progress" v-if="dataAvailable">
         <div class="progress-bar" :aria-valuenow="percent" aria-valuemin="0"
              aria-valuemax="100" v-tooltip="percent + '% Used'"
@@ -37,7 +37,7 @@
                'progress-bar-warning': isWarning,
               }"
               :style="{width: percent + '%'}">
-           <span v-html="footerHTML" :style="{'max-width': footerWidth}"></span>
+           <span v-html="footerHTML" :style="{'max-width': footerWidthPx}"></span>
         </div>
         <div class="progress-bar progress-bar-remaining"
              :style="{width: (100 - percent) + '%'}"
@@ -117,6 +117,14 @@ export default {
           }
           return `<strong>${this.value} of ${this.total} ${this.units}</strong> used`;
       }
+    },
+
+    titleWidthPx() {
+      return this.titleWidth ? `${this.titleWidth}px` : null;
+    },
+
+    footerWidthPx() {
+      return this.footerWidth ? `${this.footerWidth}px` : null;
     },
   },
 };
