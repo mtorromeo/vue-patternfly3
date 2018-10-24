@@ -10,11 +10,11 @@
   <a href="LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square" alt="Software License" />
   </a>
-  
+
   <a href="https://npmjs.org/package/vue-patternfly">
     <img src="https://img.shields.io/npm/v/vue-patternfly.svg?style=flat-square" alt="NPM" />
   </a>
-  
+
   <a href="https://npmjs.org/package/vue-patternfly">
     <img src="https://img.shields.io/npm/dw/vue-patternfly.svg?style=flat-square" alt="Downloads" />
   </a>
@@ -24,9 +24,7 @@
   </a>
 </p>
 
-PatternFly components for Vue.js 2.
-
-**Be warned:** this library is in alpha state and only a small set of components is implemented.
+PatternFly components for Vue 2.
 
 More informations on the project [homepage][link-homepage].
 
