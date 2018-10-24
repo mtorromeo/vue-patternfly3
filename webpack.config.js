@@ -16,6 +16,7 @@ module.exports = {
 
   externals: {
     'c3': 'c3',
+    'vue': 'Vue',
     'vue-router': 'VueRouter',
   },
 
@@ -46,7 +47,6 @@ module.exports = {
 
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
       'vue-patternfly$': path.resolve('../dist/vue-patternfly.esm.js'),
     },
   },

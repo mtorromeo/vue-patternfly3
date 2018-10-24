@@ -10,6 +10,7 @@ import PropsRow from './components/props-row.vue';
 import SlotsTable from './components/slots-table.vue';
 import SlotsRow from './components/slots-row.vue';
 import AceEditor from './components/ace-editor.vue';
+import App from './app.vue';
 
 Vue.use(VuePatternfly);
 
@@ -20,7 +21,7 @@ Vue.component(SlotsRow.name, SlotsRow);
 Vue.component(AceEditor.name, AceEditor);
 
 new Vue({
-  el: '#app',
+  render: h => h(App),
   router,
 
   data() {
@@ -78,4 +79,4 @@ new Vue({
       return this.$refs.notifications.add(message, type);
     },
   },
-});
+}).$mount('#app');
