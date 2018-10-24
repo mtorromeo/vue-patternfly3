@@ -263,9 +263,14 @@
         </pf-drawer-notification>
       </pf-drawer-group>
 
-      <pf-drawer-group title="Group 2" counter="yy events" loading>
+      <pf-drawer-group title="Group 2" counter="loading state" loading>
       </pf-drawer-group>
 
+      <pf-drawer-group title="Group 3" counter="empty state">
+        <pf-drawer-notification type="success" v-if="testNotification">
+          Notification Success
+        </pf-drawer-notification>
+      </pf-drawer-group>
     </pf-drawer>
 
     <pf-notifications ref="notifications" toast>
