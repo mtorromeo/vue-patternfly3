@@ -13,6 +13,11 @@
       The tooltip's position can be altered using directive modifiers (e.g. <code>&lt;div v-tooltip.right-middle=&quot;'My tooltip'&quot;&gt;Test&lt;/div&gt;</code>) or using the <code>data-placement</code> data attribute (e.g. <code>&lt;div v-tooltip=&quot;'My tooltip'&quot; data-placement=&quot;right-middle&quot;&gt;Test&lt;/div&gt;</code>)
     </p>
 
+    <h4>Related documentation</h4>
+    <ol>
+      <li><a href="https://www.patternfly.org/pattern-library/widgets/#tooltip" target="_blank">Pattern Library > Widgets > Tooltip</a></li>
+    </ol>
+
     <div class="cards-pf container-fluid container-cards-pf">
       <div class="row-cards-pf">
         <pf-card class="col-md-5 col-lg-3" title="Tooltip example" v-tooltip="tooltip" :data-placement="position">

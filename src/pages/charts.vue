@@ -10,7 +10,9 @@
 
   <p>This component is displayed when a chart does not include any data.</p>
 
-  <pf-empty-chart :height="80"/>
+  <div class="demo-container">
+    <pf-empty-chart :height="80"/>
+  </div>
 
   <header>
     <h2>C3 Chart <code>&lt;pf-c3-chart&gt;</code></h2>
@@ -18,8 +20,10 @@
 
   <p>This component is a wrapper to the C3.js library. The patternfly color palette is applied by default to all the charts.</p>
 
-  <pf-c3-chart :type="c3.type" :title="c3.title" :data="c3.data" :axis="c3.axis" :width="c3.width" :height="c3.height"
-    @click="c3click" />
+  <div class="demo-container">
+    <pf-c3-chart :type="c3.type" :title="c3.title" :data="c3.data" :axis="c3.axis" :width="c3.width" :height="c3.height"
+      @click="c3click" />
+  </div>
 
   <h4>Related documentation</h4>
   <ol>
@@ -61,7 +65,7 @@ export default {
             ['Hamsters', 6],
           ],
           groups: [
-            ['used', 'available']
+            ['used', 'available'],
           ],
         },
         axis: {

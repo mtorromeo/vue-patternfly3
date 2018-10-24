@@ -13,7 +13,8 @@ import ToolbarPage from './pages/toolbar.vue';
 import TablePage from './pages/table.vue';
 import ListViewPage from './pages/list-view.vue';
 import TooltipsPage from './pages/tooltips.vue';
-import ComponentsPage from './pages/components.vue';
+import UtilizationBarPage from './pages/utilization-bar.vue';
+import ExpandCollapsePage from './pages/expand-collapse.vue';
 import ChartsPage from './pages/charts.vue';
 
 Vue.use(VueRouter);
@@ -59,8 +60,11 @@ const router = new VueRouter({
       path: '/charts',
       component: ChartsPage,
     }, {
-      path: '/components',
-      component: ComponentsPage,
+      path: '/expand-collapse',
+      component: ExpandCollapsePage,
+    }, {
+      path: '/utilization-bar',
+      component: UtilizationBarPage,
   }],
 });
 

@@ -14,62 +14,64 @@
       <li><a href="http://www.patternfly.org/pattern-library/content-views/list-view/" target="_blank">Pattern Library > Content Views > List View</a></li>
     </ol>
 
-    <pf-list-view
-      :rows="listview.rows"
-      :page.sync="listview.page"
-      :total-items="listview.totalItems"
-      :items-per-page.sync="listview.itemsPerPage"
-      :items-per-page-options="listview.itemsPerPageOptions"
-      :selectable="listview.selectable"
-      :expandable="listview.expandable"
-      :stacked="listview.stacked"
-    >
-      <pf-list-item
-        slot-scope="data"
-        :icon="listitem.icon"
-        :icon-src="listitem.iconSrc"
-        :icon-size="listitem.iconSize"
-        :icon-variant="listitem.iconVariant"
+    <div class="demo-container">
+      <pf-list-view
+        :rows="listview.rows"
+        :page.sync="listview.page"
+        :total-items="listview.totalItems"
+        :items-per-page.sync="listview.itemsPerPage"
+        :items-per-page-options="listview.itemsPerPageOptions"
+        :selectable="listview.selectable"
+        :expandable="listview.expandable"
+        :stacked="listview.stacked"
       >
-        <div v-if="listitem.slotDefault.enabled" v-html="listitem.slotDefault.content"></div>
-        <span slot="left" v-if="data.row.id === 1 && listitem.slotLeft.enabled" v-html="listitem.slotLeft.content">
-        </span>
-        <template slot="heading">
-          <div v-if="data.row.id === 1 && listitem.slotHeading.enabled" v-html="listitem.slotHeading.content"></div>
-          <div v-if="data.row.id !== 1">{{data.row.name}} {{data.row.surname}}</div>
-        </template>
-        <template slot="description">
-          <div v-if="data.row.id === 1 && listitem.slotDescription.enabled" v-html="listitem.slotDescription.content"></div>
-          <div v-if="data.row.id !== 1">{{data.row.city}} {{data.row.state}}</div>
-        </template>
-        <template slot="additional-info">
-          <pf-list-item-additional-info>
-            <strong>113,735</strong><span>Service One</span>
-          </pf-list-item-additional-info>
-          <pf-list-item-additional-info>
-            <strong>35%</strong><span>Service Two</span>
-          </pf-list-item-additional-info>
-          <pf-list-item-additional-info expandable>
-            <pf-icon name="pficon-flavor"></pf-icon> <strong>4</strong> hosts
-            <template slot="expansion">Additional info about {{data.row.name}}'s hosts</template>
-          </pf-list-item-additional-info>
-        </template>
-      </pf-list-item>
+        <pf-list-item
+          slot-scope="data"
+          :icon="listitem.icon"
+          :icon-src="listitem.iconSrc"
+          :icon-size="listitem.iconSize"
+          :icon-variant="listitem.iconVariant"
+        >
+          <div v-if="listitem.slotDefault.enabled" v-html="listitem.slotDefault.content"></div>
+          <span slot="left" v-if="data.row.id === 1 && listitem.slotLeft.enabled" v-html="listitem.slotLeft.content">
+          </span>
+          <template slot="heading">
+            <div v-if="data.row.id === 1 && listitem.slotHeading.enabled" v-html="listitem.slotHeading.content"></div>
+            <div v-if="data.row.id !== 1">{{data.row.name}} {{data.row.surname}}</div>
+          </template>
+          <template slot="description">
+            <div v-if="data.row.id === 1 && listitem.slotDescription.enabled" v-html="listitem.slotDescription.content"></div>
+            <div v-if="data.row.id !== 1">{{data.row.city}} {{data.row.state}}</div>
+          </template>
+          <template slot="additional-info">
+            <pf-list-item-additional-info>
+              <strong>113,735</strong><span>Service One</span>
+            </pf-list-item-additional-info>
+            <pf-list-item-additional-info>
+              <strong>35%</strong><span>Service Two</span>
+            </pf-list-item-additional-info>
+            <pf-list-item-additional-info expandable>
+              <pf-icon name="pficon-flavor"></pf-icon> <strong>4</strong> hosts
+              <template slot="expansion">Additional info about {{data.row.name}}'s hosts</template>
+            </pf-list-item-additional-info>
+          </template>
+        </pf-list-item>
 
-      <a slot="action" href="#" @click.prevent class="btn btn-default">
-        Action
-      </a>
+        <a slot="action" href="#" @click.prevent class="btn btn-default">
+          Action
+        </a>
 
-      <template slot="dropdown">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </template>
+        <template slot="dropdown">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </template>
 
-      <template slot="expansion" slot-scope="data">Showing additional info about {{data.row.name}}</template>
-    </pf-list-view>
+        <template slot="expansion" slot-scope="data">Showing additional info about {{data.row.name}}</template>
+      </pf-list-view>
+    </div>
 
     <props-table :component-props="listviewProps">
       <props-row name="selectable" description="Make every list item selectable" v-model="listview.selectable"/>
@@ -128,7 +130,6 @@
     <props-table :component-props="listitemProps">
       <props-row name="icon" description="Icon name. Empty to disable." v-model="listitem.icon"/>
       <props-row name="iconSrc" description="Url for an image to use as icon (overrides the &quot;icon&quot; prop)" v-model="listitem.iconSrc"/>
-      <props-row name="iconVariant" description="Icon variant" v-model="listitem.iconVariant"
       <props-row name="iconSize" description="Icon size" v-model="listitem.iconSize" :options="['sm', 'md', 'lg']"/>
       <props-row name="iconVariant" description="Icon variant" v-model="listitem.iconVariant" :options="['', 'info', 'success', 'warning', 'danger']"/>
     </props-table>

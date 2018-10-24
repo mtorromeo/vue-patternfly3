@@ -1,3 +1,20 @@
+.demo-container {
+  position: relative;
+  border: 20px solid #f5f5f5;
+  padding: 21px;
+}
+
+.demo-container:before {
+  content: " ";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 1px solid #d1d1d1;
+}
+
 .home .jumbotron {
   background: #1d1d1d;
   background: linear-gradient(to bottom, #1d1d1d 0%,#040404 100%);

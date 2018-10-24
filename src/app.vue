@@ -123,6 +123,8 @@
         icon="fa-play-circle"
       ></pf-menu-item>
 
+      <pf-vertical-nav-divider title="Application Framework"/>
+
       <pf-menu-item
         to="/layout"
         exact
@@ -133,16 +135,11 @@
       <pf-menu-item
         to="/application-launcher"
         exact
-        title="Application Launcher"
+        title="Launcher"
         icon="fa-th"
       ></pf-menu-item>
 
-      <pf-menu-item
-        to="/toolbar"
-        exact
-        title="Toolbar"
-        icon="fa-columns"
-      ></pf-menu-item>
+      <pf-vertical-nav-divider title="Content Views"/>
 
       <pf-menu-item
         to="/table"
@@ -166,6 +163,8 @@
         icon="fa-th"
       ></pf-menu-item>
 
+      <pf-vertical-nav-divider title="Communication"/>
+
       <pf-vertical-submenu title="Notifications" icon="fa-bell">
         <pf-menu-item
           to="/notifications"
@@ -182,12 +181,30 @@
         ></pf-menu-item>
       </pf-vertical-submenu>
 
+      <pf-vertical-nav-divider title="Form and Controls"/>
+
       <pf-menu-item
         to="/modal"
         exact
         title="Modal"
         icon="pficon-applications"
       ></pf-menu-item>
+
+      <pf-menu-item
+        to="/toolbar"
+        exact
+        title="Toolbar"
+        icon="fa-columns"
+      ></pf-menu-item>
+
+      <pf-menu-item
+        to="/expand-collapse"
+        exact
+        title="Expand/Collapse"
+        icon="fa-angle-right"
+      ></pf-menu-item>
+
+      <pf-vertical-nav-divider title="Widgets"/>
 
       <pf-menu-item
         to="/tooltips"
@@ -204,9 +221,9 @@
       ></pf-menu-item>
 
       <pf-menu-item
-        to="/components"
+        to="/utilization-bar"
         exact
-        title="Components"
+        title="Utilization Bar"
         icon="fa-building"
       ></pf-menu-item>
 

@@ -11,41 +11,43 @@
       <li><a href="http://www.patternfly.org/pattern-library/widgets/#tables" target="_blank">Pattern Library > Widgets > Tables</a></li>
     </ol>
 
-    <pf-table :columns="table.columns"
-              :rows="table.rows"
-              :page.sync="table.page"
-              :total-items="table.totalItems"
-              :items-per-page.sync="table.itemsPerPage"
-              :items-per-page-options="table.itemsPerPageOptions"
-              :striped="table.striped"
-              :bordered="table.bordered"
-              :hover="table.hover"
-              :selectable="table.selectable"
-              :sortable="table.sortable"
-              :scrollable="table.scrollable"
-              :sort-by.sync="table.sortBy"
-              :sort-direction.sync="table.sortDirection"
-              style="height:250px">
-      <template slot-scope="data">
-        <td style="width:50px">#{{data.row.id}}</td>
-        <td>{{data.row.name}}</td>
-        <td>{{data.row.surname}}</td>
-        <td>{{data.row.city}}</td>
-        <td>{{data.row.state}}</td>
-      </template>
-      <template slot="action">
-        <a href="#" class="btn btn-default">
-          Action
-        </a>
-      </template>
-      <template slot="dropdown">
-        <li><a href="#">Action</a></li>
-        <li><a href="#">Another action</a></li>
-        <li><a href="#">Something else here</a></li>
-        <li role="separator" class="divider"></li>
-        <li><a href="#">Separated link</a></li>
-      </template>
-    </pf-table>
+    <div class="demo-container">
+      <pf-table :columns="table.columns"
+                :rows="table.rows"
+                :page.sync="table.page"
+                :total-items="table.totalItems"
+                :items-per-page.sync="table.itemsPerPage"
+                :items-per-page-options="table.itemsPerPageOptions"
+                :striped="table.striped"
+                :bordered="table.bordered"
+                :hover="table.hover"
+                :selectable="table.selectable"
+                :sortable="table.sortable"
+                :scrollable="table.scrollable"
+                :sort-by.sync="table.sortBy"
+                :sort-direction.sync="table.sortDirection"
+                style="height:250px">
+        <template slot-scope="data">
+          <td style="width:50px">#{{data.row.id}}</td>
+          <td>{{data.row.name}}</td>
+          <td>{{data.row.surname}}</td>
+          <td>{{data.row.city}}</td>
+          <td>{{data.row.state}}</td>
+        </template>
+        <template slot="action">
+          <a href="#" class="btn btn-default">
+            Action
+          </a>
+        </template>
+        <template slot="dropdown">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Separated link</a></li>
+        </template>
+      </pf-table>
+    </div>
 
     <props-table :component-props="tableProps">
       <props-row name="striped" description="Striped table rows" v-model="table.striped"/>
@@ -218,7 +220,7 @@ export default {
         hover: true,
         selectable: true,
         sortable: true,
-        scrollable: true,
+        scrollable: false,
         page: 1,
         totalItems: 95,
         itemsPerPage: 25,

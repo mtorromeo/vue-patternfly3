@@ -9,7 +9,7 @@
 
     <h4>Related documentation</h4>
     <ol>
-      <li><a href="http://www.patternfly.org/pattern-library/forms-and-controls/modal-overlay/" target="_blank">Pattern Library > Modal Overlay</a></li>
+      <li><a href="http://www.patternfly.org/pattern-library/forms-and-controls/modal-overlay/" target="_blank">Pattern Library > Form and Controls > Modal Overlay</a></li>
     </ol>
 
     <pf-modal

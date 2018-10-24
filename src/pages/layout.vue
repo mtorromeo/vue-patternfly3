@@ -9,6 +9,7 @@
     <p>It works well with <i>vue-router</i> to handle the application routing using <code>&lt;router-link&gt;</code> in the menu slots and <code>&lt;router-view&gt;</code> as the default slot (See the vue-router example below).</p>
     <p><code>&lt;pf-menu-item&gt;</code>s can be used in both vertical-menu and horizontal-menu slots and are integrated with vue-router so that you can simply use the <code>to</code> property to insert a <code>&lt;router-link&gt;</code>.</p>
     <p>To insert a secondary or tertiary submenu into a vertical-menu slot you have to nest a <code>&lt;pf-vertical-submenu&gt;</code> component.</p>
+    <p>A separator component for vertical navigation, which is not part of the original patternfly design, is available as <code>&lt;pf-vertical-nav-divider&gt;</code>.</p>
     <p>Note that there is no corresponding pf-horizontal-submenu as you can simply nest <code>&lt;pf-menu-item&gt;</code>s there.</p>
 
     <h4>Related documentation</h4>

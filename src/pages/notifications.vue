@@ -10,8 +10,8 @@
 
     <h4>Related documentation</h4>
     <ol>
-      <li><a href="http://www.patternfly.org/pattern-library/communication/toast-notifications/#/api" target="_blank">Pattern Library > Toast Notifications</a></li>
-      <li><a href="http://www.patternfly.org/pattern-library/communication/inline-notifications/#/api" target="_blank">Pattern Library > Inline Notifications</a></li>
+      <li><a href="http://www.patternfly.org/pattern-library/communication/toast-notifications/#/api" target="_blank">Pattern Library > Communication > Toast Notifications</a></li>
+      <li><a href="http://www.patternfly.org/pattern-library/communication/inline-notifications/#/api" target="_blank">Pattern Library > Communication > Inline Notifications</a></li>
     </ol>
 
     <pf-notifications ref="notifications" :toast="notifications.toast" :persistent="notifications.persistent"/>

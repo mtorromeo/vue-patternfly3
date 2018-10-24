@@ -9,37 +9,39 @@
 
     <h4>Related documentation</h4>
     <ol>
-      <li><a href="http://www.patternfly.org/pattern-library/forms-and-controls/toolbar/#_" target="_blank">Pattern Library > Toolbar</a></li>
+      <li><a href="http://www.patternfly.org/pattern-library/forms-and-controls/toolbar/#_" target="_blank">Pattern Library > Form and Controls > Toolbar</a></li>
     </ol>
 
-    <pf-toolbar ref="toolbar"
-                :view.sync="toolbar.view"
-                :views="toolbar.views"
-                :filters.sync="toolbar.filters"
-                :filter-fields="toolbar.filterFields"
-                :sort-by.sync="toolbar.sortBy"
-                :sort-direction.sync="toolbar.sortDirection"
-                :sort-fields="toolbar.sortFields"
-                :result-count="toolbar.resultCount"
-                :attached="toolbar.attached"
-                :columns="toolbar.columns"
-                :picked-columns.sync="toolbar.pickedColumns">
+    <div class="demo-container">
+      <pf-toolbar ref="toolbar"
+                  :view.sync="toolbar.view"
+                  :views="toolbar.views"
+                  :filters.sync="toolbar.filters"
+                  :filter-fields="toolbar.filterFields"
+                  :sort-by.sync="toolbar.sortBy"
+                  :sort-direction.sync="toolbar.sortDirection"
+                  :sort-fields="toolbar.sortFields"
+                  :result-count="toolbar.resultCount"
+                  :attached="toolbar.attached"
+                  :columns="toolbar.columns"
+                  :picked-columns.sync="toolbar.pickedColumns">
 
-      <div v-if="toolbar.slotDefault.enabled" v-html="toolbar.slotDefault.content" style="float:left"></div>
+        <div v-if="toolbar.slotDefault.enabled" v-html="toolbar.slotDefault.content" style="float:left"></div>
 
-      <pf-dropdown class="dropdown-kebab-pf" type="link">
-        <li role="menuitem">
-          <a title="Menu Title 1">Menu Item 1</a>
-        </li>
-        <li role="menuitem">
-          <a title="Menu Title 2">Menu Item 2</a>
-        </li>
-        <li role="separator" class="divider"></li>
-        <li role="menuitem">
-          <a title="Menu Title 3">Menu Item 3</a>
-        </li>
-      </pf-dropdown>
-    </pf-toolbar>
+        <pf-dropdown class="dropdown-kebab-pf" type="link">
+          <li role="menuitem">
+            <a title="Menu Title 1">Menu Item 1</a>
+          </li>
+          <li role="menuitem">
+            <a title="Menu Title 2">Menu Item 2</a>
+          </li>
+          <li role="separator" class="divider"></li>
+          <li role="menuitem">
+            <a title="Menu Title 3">Menu Item 3</a>
+          </li>
+        </pf-dropdown>
+      </pf-toolbar>
+    </div>
 
     <props-table :component-props="toolbarProps">
       <props-row name="attached" description="Use the layout for the toolbar attached to an adjacient table" v-model="toolbar.attached"/>
