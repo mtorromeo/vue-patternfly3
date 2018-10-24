@@ -180,6 +180,10 @@ export default {
         this.collapsed = true;
       }
     },
+
+    collapsed() {
+      this.$emit('update:collapsed', this.collapsed);
+    },
   },
 };
 </script>
