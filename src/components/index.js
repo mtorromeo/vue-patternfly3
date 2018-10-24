@@ -22,6 +22,7 @@ import ExpandCollapse from './ExpandCollapse.vue';
 import Layout from './Layout.vue';
 import Table from './Table.vue';
 import PaginateControl from './PaginateControl.vue';
+import VerticalNavDivider from './VerticalNavDivider.vue';
 import VerticalSubmenu from './VerticalSubmenu.vue';
 import Spinner from './Spinner.vue';
 import Select from './Select.vue';
@@ -58,6 +59,7 @@ export {
   Layout,
   Table,
   PaginateControl,
+  VerticalNavDivider,
   VerticalSubmenu,
   Spinner,
   Select,
