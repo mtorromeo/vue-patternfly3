@@ -11,6 +11,9 @@ All notable changes to this project will be documented in this file.
 - Added close button inside `pf-drawer` with ability to bind the `hidden` prop using `v-model` or `hidden.sync`.
 - Allow `v-model` as an alternative to `open.sync` in `pf-application-launcher`.
 
+### Changed
+- Allowed non persistent toast notifications.
+
 ### Fixed
 - Corrected source map association.
 

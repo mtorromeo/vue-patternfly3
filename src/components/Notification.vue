@@ -28,7 +28,7 @@
   </pf-dropdown>
 
   <button
-    v-show="!persistent && !toast"
+    v-show="!persistent"
     @click="dismiss"
     type="button"
     class="close"
