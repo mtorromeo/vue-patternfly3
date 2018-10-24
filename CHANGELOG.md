@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Corrected source map association.
+- Fixed behavior of the `persistent` prop of `pf-notification` which should disable the auto-dismiss timer and show a close button.
 
 ## [0.0.17] - 2018-10-19
 ### Added

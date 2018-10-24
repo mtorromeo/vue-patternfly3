@@ -2,7 +2,7 @@
 <div
   class="alert"
   :class="[alertClass, {
-    'alert-dismissable': !persistent,
+    'alert-dismissable': persistent,
     'toast-pf': toast,
   }]"
 >
@@ -28,7 +28,7 @@
   </pf-dropdown>
 
   <button
-    v-show="!persistent"
+    v-show="persistent"
     @click="dismiss"
     type="button"
     class="close"

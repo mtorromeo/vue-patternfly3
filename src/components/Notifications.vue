@@ -18,8 +18,14 @@ export default {
   },
 
   props: {
-    toast: Boolean,
-    persistent: Boolean,
+    toast: {
+      type: Boolean,
+      default: false,
+    },
+    persistent: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
@@ -33,7 +39,7 @@ export default {
       if (typeof notification != 'object') {
         notification = {
           message: notification,
-          type: type,
+          type,
           persistent: typeof persistent == 'undefined' ? this.persistent : persistent,
         };
       }
