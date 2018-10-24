@@ -8,7 +8,8 @@ All notable changes to this project will be documented in this file.
 - New `src` property of `pf-icon` that allows to use any image as an icon.
 - New `icon-src` property of `pf-list-item` to specify an image as an icon.
 - Implemented empty state for `pf-drawer-group`.
-- Added close button inside `pf-drawer` with ability to bind the `hidden` prop using `v-model`.
+- Added close button inside `pf-drawer` with ability to bind the `hidden` prop using `v-model` or `hidden.sync`.
+- Allow `v-model` as an alternative to `open.sync` in `pf-application-launcher`.
 
 ### Fixed
 - Corrected source map association.

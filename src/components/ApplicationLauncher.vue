@@ -18,6 +18,11 @@
 export default {
   name: 'pf-application-launcher',
 
+  model: {
+    prop: 'open',
+    event: 'update:open',
+  },
+
   props: {
     label: {
       type: String,
