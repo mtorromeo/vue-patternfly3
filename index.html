@@ -234,7 +234,7 @@
       ></pf-menu-item>
     </template>
 
-    <pf-drawer :title="drawer.title" :allow-expand="drawer.allowExpand" :hidden="drawer.hidden">
+    <pf-drawer :title="drawer.title" :allow-expand="drawer.allowExpand" v-model="drawer.hidden">
 
       <pf-drawer-group :title="drawerGroup.title" :counter="drawerGroup.counter" :action="drawerGroup.action" :loading="drawerGroup.loading">
         <pf-drawer-notification>
@@ -267,9 +267,6 @@
       </pf-drawer-group>
 
       <pf-drawer-group title="Group 3" counter="empty state">
-        <pf-drawer-notification type="success" v-if="testNotification">
-          Notification Success
-        </pf-drawer-notification>
       </pf-drawer-group>
     </pf-drawer>
 
