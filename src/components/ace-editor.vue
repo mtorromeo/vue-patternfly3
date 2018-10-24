@@ -6,15 +6,6 @@
 </template>
 
 <script>
-var ace = require('brace');
-
-require('brace/mode/html');
-require('brace/mode/javascript');
-require('brace/theme/chrome');
-
-// require(['emmet/emmet'],function (data) {
-//     window.emmet = data.emmet;
-// });
 
 module.exports = {
   name: 'ace-editor',
@@ -45,7 +36,7 @@ module.exports = {
 
   methods: {
     px(n) {
-      if (/^\d*$/.test(n)) {
+      if ((/^\d*$/).test(n)) {
         return `${n}px`;
       }
       return n;
@@ -61,23 +52,34 @@ module.exports = {
   },
 
   mounted() {
-    // require('brace/ext/emmet');
+    require.ensure([], require => {
+      const ace = require('brace');
 
-    const editor = this.editor = ace.edit(this.$el);
+      // require('brace/ext/emmet');
+      require('brace/mode/html');
+      require('brace/mode/javascript');
+      require('brace/theme/chrome');
 
-    this.$emit('init', editor);
+      // require(['emmet/emmet'],function (data) {
+      //     window.emmet = data.emmet;
+      // });
 
-    editor.$blockScrolling = Infinity;
-    // editor.setOption('enableEmmet', true);
-    editor.getSession().setMode(`ace/mode/${this.lang}`);
-    editor.setTheme(`ace/theme/${this.theme}`);
-    editor.setValue(this.value, 1);
+      const editor = this.editor = ace.edit(this.$el);
 
-    editor.on('change', () => {
-      var content = editor.getValue();
-      this.$emit('input', content);
-      this.contentBackup = content;
-    });
+      this.$emit('init', editor);
+
+      editor.$blockScrolling = Infinity;
+      // editor.setOption('enableEmmet', true);
+      editor.getSession().setMode(`ace/mode/${this.lang}`);
+      editor.setTheme(`ace/theme/${this.theme}`);
+      editor.setValue(this.value, 1);
+
+      editor.on('change', () => {
+        var content = editor.getValue();
+        this.$emit('input', content);
+        this.contentBackup = content;
+      });
+    }, 'brace');
   },
 };
 </script>
