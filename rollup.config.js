@@ -5,7 +5,7 @@ import vue from 'rollup-plugin-vue';
 import babel from 'rollup-plugin-babel';
 import resolve from 'rollup-plugin-node-resolve';
 import json from 'rollup-plugin-json';
-import postcss from 'rollup-plugin-postcss';
+import css from 'rollup-plugin-css-only';
 import commonjs from 'rollup-plugin-commonjs';
 
 const src = path.resolve(__dirname, 'src');
@@ -18,9 +18,10 @@ module.exports = {
   input: path.resolve(src, 'index.js'),
   external,
   plugins: [
-    vue(),
+    // we just want to remove css, webpack already builds a correct stylesheet
+    css({output: false}),
+    vue({css: false}),
     json(),
-    postcss(),
     resolve({external}),
     commonjs({
       namedExports: {

@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
+- `pf-expand-collapse` component.
 - Added ecmascript module build in `dist/vue-patternfly.esm.js` using rollup.
 - Included minimized css in `dist/`.
 - New `src` property of `pf-icon` that allows to use any image as an icon.

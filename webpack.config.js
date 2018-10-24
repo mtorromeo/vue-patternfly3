@@ -44,10 +44,12 @@ module.exports = env => {
         test: /\.html?$/,
         loader: 'html-loader',
       }, {
-        test: /\.css$/,
+        test: /\.(?:s[ac]|c)ss$/,
         use: [
           MiniCssExtractPlugin.loader,
           'css-loader',
+          'postcss-loader',
+          'sass-loader',
         ],
       }, {
         test: /\.vue$/,

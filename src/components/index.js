@@ -18,6 +18,7 @@ import NotificationBell from './NotificationBell.vue';
 import Drawer from './Drawer.vue';
 import DrawerGroup from './DrawerGroup.vue';
 import DrawerNotification from './DrawerNotification.vue';
+import ExpandCollapse from './ExpandCollapse.vue';
 import Layout from './Layout.vue';
 import Table from './Table.vue';
 import PaginateControl from './PaginateControl.vue';
@@ -53,6 +54,7 @@ export {
   Drawer,
   DrawerGroup,
   DrawerNotification,
+  ExpandCollapse,
   Layout,
   Table,
   PaginateControl,
