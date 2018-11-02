@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Fixed
+- Fixed multiple `pf-list-item-additional-info` in the same `pf-list-item` that when expanded would always show the content of the last `pf-list-item-additional-info` slot.
+
 ## [0.0.18] - 2018-10-24
 ### Added
 - `pf-expand-collapse` component.

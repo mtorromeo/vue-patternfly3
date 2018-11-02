@@ -38,7 +38,7 @@ export default {
     },
 
     portal() {
-      return this.groupItem ? this.groupItem.portal : '';
+      return this.expanded ? this.groupItem.portal : '';
     },
 
     expanded() {
