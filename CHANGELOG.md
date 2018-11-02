@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- The key for the iteration performed by `pf-list-view` on its items is now passed to the `pf-list-item`'s slot scope in the `index` property.
+
 ### Fixed
 - Fixed multiple `pf-list-item-additional-info` in the same `pf-list-item` that when expanded would always show the content of the last `pf-list-item-additional-info` slot.
 

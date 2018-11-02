@@ -9,15 +9,15 @@
       :expandable="expandable"
       :class="{'list-view-pf-stacked': stacked}"
     >
-      <slot :row="row"/>
+      <slot :row="row" :index="i"/>
       <template slot="action" v-if="$slots.action || $scopedSlots.action">
-        <slot name="action" :row="row"/>
+        <slot name="action" :row="row" :index="i"/>
       </template>
       <template slot="dropdown" v-if="$slots.dropdown || $scopedSlots.dropdown">
-        <slot name="dropdown" :row="row"/>
+        <slot name="dropdown" :row="row" :index="i"/>
       </template>
       <template slot="expansion" v-if="$slots.expansion || $scopedSlots.expansion">
-        <slot name="expansion" :row="row"/>
+        <slot name="expansion" :row="row" :index="i"/>
       </template>
     </pf-list-group-item>
   </div>

@@ -42,6 +42,9 @@ export default {
 
   props: {
     expandable: Boolean,
+    index: {
+      type: [String, Number],
+    },
   },
 
   data() {
