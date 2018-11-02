@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.0.19] - 2018-11-02
 ### Added
 - The key for the iteration performed by `pf-list-view` on its items is now passed to the `pf-list-item`'s slot scope in the `index` property.
 
@@ -202,7 +202,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.18...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.19...HEAD
+[0.0.19]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.18...v0.0.19
 [0.0.18]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.17...v0.0.18
 [0.0.17]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.16...v0.0.17
 [0.0.16]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.15...v0.0.16
