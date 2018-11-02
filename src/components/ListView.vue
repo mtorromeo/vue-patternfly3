@@ -4,7 +4,8 @@
     <pf-list-group-item
       ref="row"
       v-for="(row, i) in rows"
-      :key="i" :num="i"
+      :key="i"
+      :index="i"
       :selectable="selectable"
       :expandable="expandable"
       :class="{'list-view-pf-stacked': stacked}"

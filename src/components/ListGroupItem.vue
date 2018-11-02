@@ -5,7 +5,7 @@
   </div>
   <div v-if="selectable" class="list-view-pf-checkbox">
     <label>
-      <span class="sr-only">Select row {{num}}</span>
+      <span class="sr-only">Select row {{index}}</span>
       <input type="checkbox" v-model="selected">
     </label>
   </div>

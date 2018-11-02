@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Fixed multiple `pf-list-item-additional-info` in the same `pf-list-item` that when expanded would always show the content of the last `pf-list-item-additional-info` slot.
+- Fixed screen-reader label of the selection checkbox of `pf-list-group-item`.
 
 ## [0.0.18] - 2018-10-24
 ### Added
