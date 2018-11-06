@@ -1,9 +1,14 @@
 <template functional>
-  <div class="card-pf card-pf-aggregate-status" :class="{
+  <div
+    v-bind="data.attrs"
+    v-on="listeners"
+    :class="[data.class, data.staticClass, {
       'card-pf-accented': props.accented,
       'card-pf-aggregate-status-alt': props.layout === 'tall',
       'card-pf-aggregate-status-mini': props.layout === 'mini',
-    }">
+    }]"
+    :style="[data.style, data.staticStyle]"
+    class="card-pf card-pf-aggregate-status">
     <h2 class="card-pf-title">
       <span :is="props.href ? 'a' : 'span'" :href="props.href">
         <pf-icon :name="props.icon"/>

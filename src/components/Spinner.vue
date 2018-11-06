@@ -1,8 +1,15 @@
 <template functional>
-  <div v-if="props.loading" class="spinner" :class="[`spinner-${props.size}`, {
-    'spinner-inline': props.inline,
-    'spinner-inverse': props.inverse,
-  }]"></div>
+  <div
+    v-bind="data.attrs"
+    v-on="listeners"
+    :class="[data.class, data.staticClass, `spinner-${props.size}`, {
+      'spinner-inline': props.inline,
+      'spinner-inverse': props.inverse,
+    }]"
+    :style="[data.style, data.staticStyle]"
+    v-if="props.loading"
+    class="spinner"
+  ></div>
   <div :is="props.tag" v-else>
     <slot/>
   </div>

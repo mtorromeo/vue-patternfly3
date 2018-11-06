@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Added
+- Pass all attributes, listeners, classes and styles to the dom elements defined in all functional components.
+
 ## [0.0.19] - 2018-11-02
 ### Added
 - The key for the iteration performed by `pf-list-view` on its items is now passed to the `pf-list-item`'s slot scope in the `index` property.

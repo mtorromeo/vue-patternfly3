@@ -1,5 +1,11 @@
 <template functional>
-  <div class="list-view-pf-main-info">
+  <div
+    v-bind="data.attrs"
+    v-on="listeners"
+    :class="[data.class, data.staticClass]"
+    :style="[data.style, data.staticStyle]"
+    class="list-view-pf-main-info"
+  >
     <slot>
       <div class="list-view-pf-left" v-if="props.icon || props.iconSrc || $slots.left">
         <slot name="left">

@@ -1,8 +1,14 @@
 <template functional>
-  <div class="empty-chart-content" :style="{
+  <div
+    v-bind="data.attrs"
+    v-on="listeners"
+    :class="[data.class, data.staticClass]"
+    class="empty-chart-content"
+    :style="[data.style, data.staticStyle, {
       'height': `${props.height}px`,
       'padding-top': `${Math.min(Math.round((props.height - 40) / 2), 20)}px`,
-    }">
+    }]"
+  >
     <pf-icon name="pficon-info"/>
     <slot>
       <span>No data available</span>
