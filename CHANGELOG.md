@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Pass all attributes, listeners, classes and styles to the dom elements defined in all functional components.
 
+### Changed
+- **BACKWARD INCOMPATIBLE CHANGE**: Removed `v-tooltip` directive since a similar directive and wrapper component is [already present in uiv](https://uiv.wxsm.space/tooltip/).
+
 ## [0.0.19] - 2018-11-02
 ### Added
 - The key for the iteration performed by `pf-list-view` on its items is now passed to the `pf-list-item`'s slot scope in the `index` property.

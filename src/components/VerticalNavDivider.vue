@@ -1,5 +1,5 @@
 <template>
-  <li class="list-group-item vertical-header-pf" v-tooltip.right-middle="tooltip">
+  <li class="list-group-item vertical-header-pf" v-tooltip.right="tooltip">
     <span class="list-group-item-value">
       <slot>{{title}}</slot>
     </span>
@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Tooltip from '../directives/tooltip';
+import Tooltip from 'uiv/src/directives/tooltip/tooltip';
 
 export default {
   name: 'pf-vertical-nav-divider',
