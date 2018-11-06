@@ -103,12 +103,6 @@
       ></pf-menu-item>
 
       <pf-menu-item
-        to="/tooltips"
-        exact
-        title="Tooltips"
-      ></pf-menu-item>
-
-      <pf-menu-item
         to="/charts"
         exact
         title="Charts"
@@ -207,13 +201,6 @@
       <pf-vertical-nav-divider title="Widgets"/>
 
       <pf-menu-item
-        to="/tooltips"
-        exact
-        title="Tooltips"
-        icon="fa-comment"
-      ></pf-menu-item>
-
-      <pf-menu-item
         to="/charts"
         exact
         title="Charts"
@@ -277,3 +264,67 @@
     <router-view></router-view>
   </pf-layout>
 </template>
+
+<script>
+import router from './router';
+
+export default {
+  router,
+
+  data() {
+    return {
+      drawer: {
+        hidden: true,
+        allowExpand: true,
+        title: 'Notification Drawer',
+        updates: ' ',
+      },
+      drawerGroup: {
+        title: 'Group 1',
+        counter: '4 events',
+        action: 'Mark All Read',
+        loading: false,
+      },
+      drawerNotification: {
+        type: 'danger',
+        date: '29/04/17',
+        time: '16:25:56',
+        message: 'Notification Danger',
+        unread: false,
+        action: {
+          name: 'Action!',
+          title: 'Action Title',
+          button: true,
+        },
+        actions: [
+          {name: 'Sub action 1'},
+          {name: 'Sub action 2'},
+          '-',
+          {name: 'Sub action 3'},
+        ],
+      },
+      launcher: {
+        open: false,
+        list: false,
+        disabled: false,
+        label: 'Application Launcher',
+        icon: 'pficon-home',
+        itemText: 'Home',
+      },
+      layoutDisplay: 'block',
+      layoutHorizontal: false,
+      layoutHorizontalSecondary: true,
+      layoutNomargin: false,
+      layoutDisabled: false,
+      layoutIcons: true,
+      layoutCollapsable: true,
+    };
+  },
+
+  methods: {
+    toast(message, type) {
+      return this.$refs.notifications.add(message, type);
+    },
+  },
+};
+</script>

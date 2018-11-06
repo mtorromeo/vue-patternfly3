@@ -4,15 +4,14 @@ require('../../dist/vue-patternfly.css');
 import Vue from 'vue';
 import VuePatternfly from 'vue-patternfly';
 
-import router from './router';
+Vue.use(VuePatternfly);
+
 import PropsTable from './components/props-table.vue';
 import PropsRow from './components/props-row.vue';
 import SlotsTable from './components/slots-table.vue';
 import SlotsRow from './components/slots-row.vue';
 import AceEditor from './components/ace-editor.vue';
 import App from './app.vue';
-
-Vue.use(VuePatternfly);
 
 Vue.component(PropsTable.name, PropsTable);
 Vue.component(PropsRow.name, PropsRow);
@@ -21,62 +20,5 @@ Vue.component(SlotsRow.name, SlotsRow);
 Vue.component(AceEditor.name, AceEditor);
 
 new Vue({
-  render: h => h(App),
-  router,
-
-  data() {
-    return {
-      drawer: {
-        hidden: true,
-        allowExpand: true,
-        title: 'Notification Drawer',
-        updates: ' ',
-      },
-      drawerGroup: {
-        title: 'Group 1',
-        counter: '4 events',
-        action: 'Mark All Read',
-        loading: false,
-      },
-      drawerNotification: {
-        type: 'danger',
-        date: '29/04/17',
-        time: '16:25:56',
-        message: 'Notification Danger',
-        unread: false,
-        action: {
-          name: 'Action!',
-          title: 'Action Title',
-          button: true,
-        },
-        actions: [
-          {name: 'Sub action 1'},
-          {name: 'Sub action 2'},
-          '-',
-          {name: 'Sub action 3'},
-        ],
-      },
-      launcher: {
-        open: false,
-        list: false,
-        disabled: false,
-        label: 'Application Launcher',
-        icon: 'pficon-home',
-        itemText: 'Home',
-      },
-      layoutDisplay: 'block',
-      layoutHorizontal: false,
-      layoutHorizontalSecondary: true,
-      layoutNomargin: false,
-      layoutDisabled: false,
-      layoutIcons: true,
-      layoutCollapsable: true,
-    };
-  },
-
-  methods: {
-    toast(message, type) {
-      return this.$refs.notifications.add(message, type);
-    },
-  },
+  extends: App,
 }).$mount('#app');
