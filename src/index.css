@@ -1,3 +1,35 @@
+/* Scrollbars */
+::-webkit-scrollbar {
+  transition: width .2s linear;
+  width: 6px;
+}
+
+:hover::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  transition: background-color .2s linear;
+  background-color: #aaa;
+  background-color: rgba(170,170,170,.5);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #999;
+  background-color: rgba(153,153,153,.7);
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+html {
+  /* https://drafts.csswg.org/css-scrollbars-1/ */
+  scrollbar-width: thin;
+  scrollbar-color: rgba(170,170,170,.5) transparent;
+}
+
 /* Dropdown */
 .dropdown-kebab-pf .caret {
   height: 1em;

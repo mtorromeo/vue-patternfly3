@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Pass all attributes, listeners, classes and styles to the dom elements defined in all functional components.
 
 ### Changed
+- Styled thin scrollbars.
 - **BACKWARD INCOMPATIBLE CHANGE**: Removed `v-tooltip` directive since a similar directive and wrapper component is [already present in uiv](https://uiv.wxsm.space/tooltip/).
 
 ## [0.0.19] - 2018-11-02
