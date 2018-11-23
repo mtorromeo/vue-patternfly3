@@ -39,7 +39,7 @@
     "node": ">= 6.0"
   },
   "dependencies": {
-    "c3": "^0.4.11",
+    "c3": "^0.6.8",
     "es6-promise": "^4.2.5",
     "node-sass": "^4.9.4",
     "patternfly": "^3.14.0",

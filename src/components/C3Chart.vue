@@ -1,11 +1,11 @@
 <template>
   <div>
     <div ref="chart" v-show="!empty"></div>
-    <div v-if="empty">
+    <template v-if="empty">
       <pf-empty-chart>
         <slot/>
       </pf-empty-chart>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -49,22 +49,38 @@ export default {
     type: {
       type: String,
       default: 'bar',
+      validator: type => ['line', 'spline', 'step', 'area', 'area-spline', 'area-step', 'bar', 'scatter', 'pie', 'donut', 'gauge'].indexOf(type) >= 0,
     },
     title: String,
     width: Number,
     height: Number,
-    data: {
-      type: Object,
-      default() {
-        return {};
-      },
+    paddingTop: Number,
+    paddingBottom: Number,
+    paddingLeft: Number,
+    paddingRight: Number,
+    interaction: {
+      type: Boolean,
+      default: true,
     },
-    axis: {
-      type: Object,
-      default() {
-        return {};
-      },
+    transition: {
+      type: Number,
+      default: 350,
     },
+    data: Object,
+    axis: Object,
+    grid: Object,
+    regions: Object,
+    legend: [Boolean, Object],
+    tooltip: Object,
+    subchart: Object,
+    zoom: Object,
+    point: Object,
+    line: Object,
+    area: Object,
+    bar: Object,
+    pie: Object,
+    donut: Object,
+    gauge: Object,
   },
 
   mounted() {
@@ -77,9 +93,25 @@ export default {
         this.destroy();
       }
 
+      let legend = this.legend;
+      if (typeof legend == 'boolean') {
+        legend = {
+          hide: !legend,
+        };
+      } else {
+        legend = Object.assign({}, legend);
+      }
+
       const chartData = {
         bindto: this.$refs.chart,
         size: this.size,
+        padding: this.padding,
+        interaction: {
+          enabled: this.interaction,
+        },
+        transition: {
+          duration: this.transition,
+        },
         data: Object.assign({
           onclick: (d, i) => this.$emit('click', d, i),
           onmouseover: (d, i) => this.$emit('mouseover', d, i),
@@ -90,15 +122,33 @@ export default {
           ondragend: (d, i) => this.$emit('dragend', d, i),
         }, this.data),
         axis: Object.assign({}, this.axis),
+        grid: Object.assign({}, this.grid),
+        regions: Object.assign({}, this.regions),
+        legend,
+        tooltip: Object.assign({}, this.tooltip),
+        subchart: Object.assign({}, this.subchart),
+        zoom: Object.assign({}, this.zoom),
+        point: Object.assign({}, this.point),
+        line: Object.assign({}, this.line),
+        area: Object.assign({}, this.area),
+        bar: Object.assign({}, this.bar),
+        pie: Object.assign({}, this.pie),
+        donut: Object.assign({}, this.donut),
+        gauge: Object.assign({}, this.gauge),
         color: {
           pattern: palette,
         },
+        oninit: () => this.$emit('init'),
+        onrendered: () => this.$emit('rendered'),
+        onmouseover: () => this.$emit('mouseover'),
+        onmouseout: () => this.$emit('mouseout'),
+        onresize: () => this.$emit('resize'),
+        onresized: () => this.$emit('resized'),
       };
-      chartData[this.type] = {};
 
       chartData.data.type = this.type;
 
-      if (this.title) {
+      if (typeof this.title != 'undefined') {
         chartData[this.type].title = this.title;
       }
 
@@ -123,6 +173,23 @@ export default {
         size.height = this.height;
       }
       return size;
+    },
+
+    padding() {
+      const padding = {};
+      if (this.paddingTop) {
+        padding.top = this.paddingTop;
+      }
+      if (this.paddingBottom) {
+        padding.bottom = this.paddingBottom;
+      }
+      if (this.paddingLeft) {
+        padding.left = this.paddingLeft;
+      }
+      if (this.paddingRight) {
+        padding.right = this.paddingRight;
+      }
+      return padding;
     },
 
     empty() {

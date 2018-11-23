@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 ### Changed
 - Styled thin scrollbars.
 - **BACKWARD INCOMPATIBLE CHANGE**: Removed `v-tooltip` directive since a similar directive and wrapper component is [already present in uiv](https://uiv.wxsm.space/tooltip/).
+- Updated c3 library with support for more chart options.
 
 ### Fixed
 - Disabled extra container in `pf-list-item-additional-info` that broke the stacked layout.
