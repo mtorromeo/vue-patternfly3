@@ -58,6 +58,13 @@ html {
   line-height: 1;
 }
 
+/* Labels */
+.label a.pf-remove-button {
+  color: #fff;
+  display: inline-block;
+  margin-left: 5px;
+}
+
 /* Icon-image */
 .pf-icon-img {
   background-repeat: no-repeat;

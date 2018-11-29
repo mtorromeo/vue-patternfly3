@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - Pass all attributes, listeners, classes and styles to the dom elements defined in all functional components.
+- Added style for labels with remove button.
 
 ### Changed
 - Styled thin scrollbars.
