@@ -1,5 +1,5 @@
 <template>
-<div class="list-group-item" :class="[stateClass]" :style="{cursor: expandable ? 'pointer' : 'inherit'}" @click="toggle">
+<div class="list-group-item" :class="[stateClass, {'list-view-pf-stacked': stacked}]" :style="{cursor: expandable ? 'pointer' : 'inherit'}" @click="toggle">
   <div v-if="expandable && $slots.expansion" class="list-view-pf-expand" :class="{active: expanded}">
     <pf-icon name="fa-angle-right" :class="{'fa-angle-down': expanded}"/>
   </div>
@@ -42,6 +42,7 @@ export default {
 
   props: {
     expandable: Boolean,
+    stacked: Boolean,
     index: {
       type: [String, Number],
     },

@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Pass all attributes, listeners, classes and styles to the dom elements defined in all functional components.
 - Added style for labels with remove button.
+- Exposed `pf-list-group-item`.
 
 ### Changed
 - Styled thin scrollbars.

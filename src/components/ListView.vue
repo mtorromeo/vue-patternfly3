@@ -8,7 +8,7 @@
       :index="i"
       :selectable="selectable"
       :expandable="expandable"
-      :class="{'list-view-pf-stacked': stacked}"
+      :stacked="stacked"
     >
       <slot :row="row" :index="i"/>
       <template slot="action" v-if="$slots.action || $scopedSlots.action">

@@ -29,6 +29,7 @@ import Select from './Select.vue';
 import Option from './Option.vue';
 import ListView from './ListView.vue';
 import ListItem from './ListItem.vue';
+import ListGroupItem from './ListGroupItem.vue';
 import ListItemAdditionalInfo from './ListItemAdditionalInfo.vue';
 import Modal from './Modal.vue';
 import Icon from './Icon';
@@ -66,6 +67,7 @@ export {
   Option,
   ListView,
   ListItem,
+  ListGroupItem,
   ListItemAdditionalInfo,
   Modal,
   Icon,
