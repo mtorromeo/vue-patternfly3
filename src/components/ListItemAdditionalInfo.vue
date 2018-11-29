@@ -1,9 +1,10 @@
 <template>
   <div class="list-view-pf-additional-info-item" :class="{'list-view-pf-additional-info-item-stacked': stacked}" @click="toggle">
-    <component :is="expandable && hasExpansionSlot ? 'div' : null" :class="{'list-view-pf-expand': expandable && hasExpansionSlot, 'active': expandable && expanded}">
-      <pf-icon name="fa-angle-right" :class="{'fa-angle-down': expanded}" v-if="expandable && hasExpansionSlot"/>
+    <div v-if="expandable && hasExpansionSlot" class="list-view-pf-expand" :class="{'active': expanded}">
+      <pf-icon name="fa-angle-right" :class="{'fa-angle-down': expanded}"/>
       <slot/>
-    </component>
+    </div>
+    <slot v-else/>
     <portal :to="portal" v-if="expandable">
       <slot name="expansion"></slot>
     </portal>
