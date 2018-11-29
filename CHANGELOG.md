@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Disabled extra container in `pf-list-item-additional-info` that broke the stacked layout.
+- Fixed expandable `pf-list-item-additional-info` items not appearing as links.
 
 ## [0.0.19] - 2018-11-02
 ### Added

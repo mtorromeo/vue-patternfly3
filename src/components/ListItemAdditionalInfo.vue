@@ -1,9 +1,9 @@
 <template>
   <div class="list-view-pf-additional-info-item" :class="{'list-view-pf-additional-info-item-stacked': stacked}" @click="toggle">
-    <template :is="expandable && $slots.expansion ? 'div' : null" :class="{'list-view-pf-expand': expandable && $slots.expansion, 'active': expandable && expanded}">
-      <pf-icon name="fa-angle-right" :class="{'fa-angle-down': expanded}" v-if="expandable && $slots.expansion"/>
+    <component :is="expandable && hasExpansionSlot ? 'div' : null" :class="{'list-view-pf-expand': expandable && hasExpansionSlot, 'active': expandable && expanded}">
+      <pf-icon name="fa-angle-right" :class="{'fa-angle-down': expanded}" v-if="expandable && hasExpansionSlot"/>
       <slot/>
-    </template>
+    </component>
     <portal :to="portal" v-if="expandable">
       <slot name="expansion"></slot>
     </portal>
@@ -23,6 +23,16 @@ export default {
   props: {
     stacked: Boolean,
     expandable: Boolean,
+  },
+
+  data() {
+    return {
+      hasExpansionSlot: Boolean(this.$slots.expansion),
+    };
+  },
+
+  updated() {
+    this.hasExpansionSlot = Boolean(this.$slots.expansion);
   },
 
   computed: {
