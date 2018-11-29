@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.0.20] - 2018-11-29
 ### Added
 - Pass all attributes, listeners, classes and styles to the dom elements defined in all functional components.
 - Added style for labels with remove button.
@@ -217,7 +217,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.19...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.20...HEAD
+[0.0.20]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.19...v0.0.20
 [0.0.19]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.18...v0.0.19
 [0.0.18]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.17...v0.0.18
 [0.0.17]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.16...v0.0.17
