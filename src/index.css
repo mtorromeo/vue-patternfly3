@@ -2,10 +2,7 @@
 ::-webkit-scrollbar {
   transition: width .2s linear;
   width: 6px;
-}
-
-:hover::-webkit-scrollbar {
-  width: 8px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
