@@ -71,7 +71,7 @@ export default {
 };
 </script>
 
-<style lang="sass">
+<style lang="scss">
 /* https://raw.githubusercontent.com/patternfly/patternfly-react/master/packages/patternfly-3/patternfly-react/sass/patternfly-react/_expand-collapse.scss */
 @import "~patternfly/dist/sass/patternfly/color-variables";
 

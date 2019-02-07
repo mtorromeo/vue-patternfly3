@@ -57,7 +57,7 @@ export default {
 };
 </script>
 
-<style lang="sass">
+<style lang="scss">
 @import "~patternfly/dist/sass/patternfly/variables";
 
 .nav-pf-vertical.collapsed > .list-group > .list-group-item.vertical-header-pf {
