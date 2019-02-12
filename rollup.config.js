@@ -20,7 +20,19 @@ module.exports = {
   plugins: [
     // we just want to remove css, webpack already builds a correct stylesheet
     css({output: false}),
-    vue({css: false}),
+    vue({
+      css: false,
+      style: {
+        preprocessOptions: {
+          scss: {
+            // node-sass custom importer to resolve tilde prefix to local node_modules dir
+            importer: url => ({
+              file: url.replace(/^~/, 'node_modules/'),
+            }),
+          },
+        },
+      },
+    }),
     json(),
     resolve({external}),
     commonjs({
