@@ -26,24 +26,25 @@
         :stacked="listview.stacked"
       >
         <pf-list-item
-          slot-scope="data"
+          slot-scope="{row}"
           :icon="listitem.icon"
           :icon-src="listitem.iconSrc"
           :icon-size="listitem.iconSize"
           :icon-variant="listitem.iconVariant"
         >
           <div v-if="listitem.slotDefault.enabled" v-html="listitem.slotDefault.content"></div>
-          <span slot="left" v-if="data.row.id === 1 && listitem.slotLeft.enabled" v-html="listitem.slotLeft.content">
-          </span>
-          <template slot="heading">
-            <div v-if="data.row.id === 1 && listitem.slotHeading.enabled" v-html="listitem.slotHeading.content"></div>
-            <div v-if="data.row.id !== 1">{{data.row.name}} {{data.row.surname}}</div>
+          <template #left v-if="row.id === 1 && listitem.slotLeft.enabled">
+            <span v-html="listitem.slotLeft.content"></span>
           </template>
-          <template slot="description">
-            <div v-if="data.row.id === 1 && listitem.slotDescription.enabled" v-html="listitem.slotDescription.content"></div>
-            <div v-if="data.row.id !== 1">{{data.row.city}} {{data.row.state}}</div>
+          <template #heading>
+            <div v-if="row.id === 1 && listitem.slotHeading.enabled" v-html="listitem.slotHeading.content"></div>
+            <div v-if="row.id !== 1">{{row.name}} {{row.surname}}</div>
           </template>
-          <template slot="additional-info">
+          <template #description>
+            <div v-if="row.id === 1 && listitem.slotDescription.enabled" v-html="listitem.slotDescription.content"></div>
+            <div v-if="row.id !== 1">{{row.city}} {{row.state}}</div>
+          </template>
+          <template #additional-info>
             <pf-list-item-additional-info>
               <strong>113,735</strong><span>Service One</span>
             </pf-list-item-additional-info>
@@ -52,16 +53,18 @@
             </pf-list-item-additional-info>
             <pf-list-item-additional-info expandable>
               <pf-icon name="pficon-flavor"></pf-icon> <strong>4</strong> hosts
-              <template slot="expansion">Additional info about {{data.row.name}}'s hosts</template>
+              <template #expansion>Additional info about {{row.name}}'s hosts</template>
             </pf-list-item-additional-info>
           </template>
         </pf-list-item>
 
-        <a slot="action" href="#" @click.prevent class="btn btn-default">
-          Action
-        </a>
+        <template #action>
+          <a href="#" @click.prevent class="btn btn-default">
+            Action
+          </a>
+        </template>
 
-        <template slot="dropdown">
+        <template #dropdown>
           <li><a href="#">Action</a></li>
           <li><a href="#">Another action</a></li>
           <li><a href="#">Something else here</a></li>
@@ -69,7 +72,7 @@
           <li><a href="#">Separated link</a></li>
         </template>
 
-        <template slot="expansion" slot-scope="data">Showing additional info about {{data.row.name}}</template>
+        <template #expansion="{row}">Showing additional info about {{row.name}}</template>
       </pf-list-view>
     </div>
 

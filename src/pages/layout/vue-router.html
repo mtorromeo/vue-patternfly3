@@ -1,9 +1,11 @@
 <pf-layout id="app" icons>
-  <router-link slot="brand" to="/" :exact="true" class="navbar-brand navbar-brand-name">
-    Vue PatternFly
-  </router-link>
+  <template #brand>
+    <router-link to="/" :exact="true" class="navbar-brand navbar-brand-name">
+      Vue PatternFly
+    </router-link>
+  </template>
 
-  <template slot="vertical-menu">
+  <template vertical-menu>
     <!-- when the "to" property is present a <router-link> will be used -->
     <pf-menu-item
       to="/get-started"

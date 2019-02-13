@@ -22,7 +22,9 @@
     >
       <div v-if="modal.slotDefault.enabled" v-html="modal.slotDefault.content"></div>
 
-      <div slot="footer" v-if="modal.slotFooter.enabled" v-html="modal.slotFooter.content"></div>
+      <template #footer v-if="modal.slotFooter.enabled">
+        <div v-html="modal.slotFooter.content"></div>
+      </template>
     </pf-modal>
 
     <button class="btn btn-primary" @click="modal.show = true">Open Modal</button>

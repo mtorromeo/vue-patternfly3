@@ -27,19 +27,19 @@
                 :sort-by.sync="table.sortBy"
                 :sort-direction.sync="table.sortDirection"
                 style="height:250px">
-        <template slot-scope="data">
-          <td style="width:50px">#{{data.row.id}}</td>
-          <td>{{data.row.name}}</td>
-          <td>{{data.row.surname}}</td>
-          <td>{{data.row.city}}</td>
-          <td>{{data.row.state}}</td>
+        <template #default="{row}">
+          <td style="width:50px">#{{row.id}}</td>
+          <td>{{row.name}}</td>
+          <td>{{row.surname}}</td>
+          <td>{{row.city}}</td>
+          <td>{{row.state}}</td>
         </template>
-        <template slot="action">
+        <template #action>
           <a href="#" class="btn btn-default">
             Action
           </a>
         </template>
-        <template slot="dropdown">
+        <template #dropdown>
           <li><a href="#">Action</a></li>
           <li><a href="#">Another action</a></li>
           <li><a href="#">Something else here</a></li>

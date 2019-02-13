@@ -8,15 +8,17 @@
     :disabled="$root.layoutDisabled || $route.path == '/'"
     :nomargin="$root.layoutNomargin"
   >
-    <router-link slot="brand" to="/" :exact="true" class="navbar-brand navbar-brand-name">
-      Vue PatternFly
-    </router-link>
+    <template #brand>
+      <router-link to="/" :exact="true" class="navbar-brand navbar-brand-name">
+        Vue PatternFly
+      </router-link>
+    </template>
 
-    <template slot="utility-menu">
+    <template #utility-menu>
       <pf-notification-bell :updates="$root.drawer.updates" @click="$root.drawer.hidden = !$root.drawer.hidden"></pf-notification-bell>
 
       <pf-dropdown tag="li" btn-class="nav-item-iconic" type="link">
-        <template slot="text">
+        <template #text>
           <pf-icon name="pficon-user"></pf-icon>
           John Doe
         </template>
@@ -34,7 +36,7 @@
       </pf-application-launcher>
     </template>
 
-    <template slot="horizontal-menu">
+    <template #horizontal-menu>
       <pf-menu-item
         to="/get-started"
         exact
@@ -109,7 +111,7 @@
       ></pf-menu-item>
     </template>
 
-    <template slot="vertical-menu">
+    <template #vertical-menu>
       <pf-menu-item
         to="/get-started"
         exact
@@ -223,12 +225,11 @@
     </template>
 
     <pf-drawer :title="$root.drawer.title" :allow-expand="$root.drawer.allowExpand" v-model="$root.drawer.hidden">
-
       <pf-drawer-group :title="$root.drawerGroup.title" :counter="$root.drawerGroup.counter" :action="$root.drawerGroup.action" :loading="$root.drawerGroup.loading">
         <pf-drawer-notification>
           Notification Info
 
-          <template slot="dropdown">
+          <template #dropdown>
             <li role="menuitem">
               <a title="Menu Title 1">Menu Item 1</a>
             </li>
