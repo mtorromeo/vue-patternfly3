@@ -205,6 +205,10 @@ nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
   transition: all .2s cubic-bezier(.35,0,.25,1);
 }
 
+.layout-pf.layout-pf-fixed .container-pf-nav-pf-vertical {
+  margin-left: 200px;
+}
+
 .pf-layout-grid {
   display: grid;
   grid-template-columns: auto;
@@ -276,6 +280,12 @@ nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
 .navbar-pf .navbar-brand {
   display: flex;
   align-items: center;
+}
+
+.navbar-pf .navbar-brand img,
+.navbar-pf .navbar-brand svg {
+  display: inline-block;
+  margin-right: 1em;
 }
 
 .navbar-pf-vertical .navbar-brand-name {
