@@ -240,12 +240,18 @@ h5.form-group[_v-3RyaW5nJyk] {
   font-weight: 700;
 }
 
+.toolbar-pf .form-group .btn-group .btn {
+  margin-left: -1px;
+}
+
 .toolbar-pf-actions .toolbar-pf-view-selector a {
   cursor: pointer;
 }
 
 .toolbar-pf-actions .dropdown-menu a {
   cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .toolbar-pf-actions .dropdown-kebab-pf {

@@ -273,6 +273,11 @@ nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
   flex-grow: 1;
 }
 
+.navbar-pf .navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
 .navbar-pf-vertical .navbar-brand-name {
   font-size: 18px;
   line-height: 35px;

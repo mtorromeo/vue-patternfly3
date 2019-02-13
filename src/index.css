@@ -419,3 +419,11 @@ accordion > .panel-group .panel-open .panel-title > a:before {
 .pf-expand-placeholder {
   margin-right: 10px;
 }
+
+.login-pf-page .login-pf-brand {
+  width: auto !important;
+}
+
+.btn.btn-flat {
+  box-shadow: none;
+}
