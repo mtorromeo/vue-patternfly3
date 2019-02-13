@@ -4,10 +4,10 @@ function checkMountedSlots(vm) {
     slots[k] = false;
   }
   for (const [k, v] of Object.entries(vm.$scopedSlots)) {
-    slots[k] = slots[k] || Array.isArray(v) ? v.length : v;
+    slots[k] = slots[k] || typeof v !== 'undefined';
   }
   for (const [k, v] of Object.entries(vm.$slots)) {
-    slots[k] = slots[k] || Array.isArray(v) ? v.length : v;
+    slots[k] = slots[k] || Boolean(Array.isArray(v) ? v.length : v);
   }
   for (const [k, v] of Object.entries(slots)) {
     if (v) {
