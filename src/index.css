@@ -42,6 +42,7 @@
   background: -webkit-linear-gradient(#93f9b9,#1d976c);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
   color: #58c893;
 }
 
@@ -51,7 +52,7 @@
 
 .home .jumbotron .description {
   font-size: 18px;
-  font-weigth: 300;
+  font-weight: 300;
   margin: 50px auto;
   position: relative;
 }
