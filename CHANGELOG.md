@@ -1,6 +1,18 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.0.21] - 2019-02-13
+### Added
+- Implemented interpratation of `pf-toolbar` and `pf-column-picker` columns as array of objects or object with nested objects/strings.
+
+### Changed
+- Updated dependencies. Changed the slots to use the new syntax introduced in Vue 2.6.
+- Refactored all the checks for the presence of slots to use a new mixin that makes it reactive.
+
+### Fixed
+- Fixed incorrect lang on the style tags of some components.
+- Some smaller style fixes and additions.
+
 ## [0.0.20] - 2018-11-29
 ### Added
 - Pass all attributes, listeners, classes and styles to the dom elements defined in all functional components.
