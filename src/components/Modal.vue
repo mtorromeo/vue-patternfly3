@@ -12,7 +12,7 @@
           <div class="modal-body">
             <slot/>
           </div>
-          <div class="modal-footer" v-if="$slots.footer || $scopedSlots.footer || cancelButton || confirmButton">
+          <div class="modal-footer" v-if="withSlot.footer || cancelButton || confirmButton">
             <slot name="footer">
               <button type="button" class="btn btn-default" v-if="cancelButton" @click="cancel">{{cancelButton}}</button>
               <button type="button" class="btn btn-primary" v-if="confirmButton" @click="confirm">{{confirmButton}}</button>
@@ -28,9 +28,12 @@
 
 <script>
 import {Portal} from 'portal-vue';
+import SlotMonitor from '../mixins/SlotMonitor';
 
 export default {
   name: 'pf-modal',
+
+  mixins: [SlotMonitor],
 
   components: {
     Portal,

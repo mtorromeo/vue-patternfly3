@@ -37,8 +37,12 @@
 </template>
 
 <script>
+import SlotMonitor from '../mixins/SlotMonitor';
+
 export default {
   name: 'pf-drawer-group',
+
+  mixins: [SlotMonitor],
 
   props: {
     title: String,
@@ -63,8 +67,7 @@ export default {
   },
 
   updated() {
-    this.empty = (!this.$slots.default || this.$slots.default.length === 0) &&
-      (!this.$scopedSlots.default || this.$scopedSlots.default.length === 0);
+    this.empty = !this.withSlot.default;
   },
 
   methods: {

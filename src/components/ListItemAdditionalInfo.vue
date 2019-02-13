@@ -1,6 +1,6 @@
 <template>
   <div class="list-view-pf-additional-info-item" :class="{'list-view-pf-additional-info-item-stacked': stacked}" @click="toggle">
-    <div v-if="expandable && hasExpansionSlot" class="list-view-pf-expand" :class="{'active': expanded}">
+    <div v-if="expandable && withSlot.expansion" class="list-view-pf-expand" :class="{'active': expanded}">
       <pf-icon name="fa-angle-right" :class="{'fa-angle-down': expanded}"/>
       <slot/>
     </div>
@@ -13,9 +13,12 @@
 
 <script>
 import {Portal} from 'portal-vue';
+import SlotMonitor from '../mixins/SlotMonitor';
 
 export default {
   name: 'pf-list-item-additional-info',
+
+  mixins: [SlotMonitor],
 
   components: {
     Portal,
@@ -24,16 +27,6 @@ export default {
   props: {
     stacked: Boolean,
     expandable: Boolean,
-  },
-
-  data() {
-    return {
-      hasExpansionSlot: Boolean(this.$slots.expansion) || Boolean(this.$scopedSlots.expansion),
-    };
-  },
-
-  updated() {
-    this.hasExpansionSlot = Boolean(this.$slots.expansion) || Boolean(this.$scopedSlots.expansion);
   },
 
   computed: {

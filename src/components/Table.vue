@@ -67,10 +67,10 @@
       <tbody>
         <pf-table-row ref="row" v-for="(row, i) in rows" :key="i" :num="i" :selectable="selectable">
           <slot :row="row"></slot>
-          <template #action v-if="$slots.action || $scopedSlots.action">
+          <template #action v-if="withSlot.action">
             <slot name="action" :row="row"></slot>
           </template>
-          <template #dropdown v-if="$slots.dropdown || $scopedSlots.dropdown">
+          <template #dropdown v-if="withSlot.dropdown">
             <slot name="dropdown" :row="row"></slot>
           </template>
         </pf-table-row>
@@ -96,9 +96,12 @@
 import ResizeObserver from 'resize-observer-polyfill';
 import PfTableRow from './TableRow.vue';
 import debounce from 'lodash-es/debounce';
+import SlotMonitor from '../mixins/SlotMonitor';
 
 export default {
   name: 'pf-table',
+
+  mixins: [SlotMonitor],
 
   components: {
     PfTableRow,
@@ -212,10 +215,10 @@ export default {
   computed: {
     actionSpan() {
       let colspan = 0;
-      if (this.$slots.action || this.$scopedSlots.action) {
+      if (this.withSlot.action) {
         colspan++;
       }
-      if (this.$slots.dropdown || this.$scopedSlots.dropdown) {
+      if (this.withSlot.dropdown) {
         colspan++;
       }
       return colspan;

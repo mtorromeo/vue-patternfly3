@@ -1,6 +1,6 @@
 <template>
 <div class="list-group-item" :class="[stateClass, {'list-view-pf-stacked': stacked}]" :style="{cursor: expandable ? 'pointer' : 'inherit'}" @click="toggle">
-  <div v-if="expandable && ($slots.expansion || $scopedSlots.expansion)" class="list-view-pf-expand" :class="{active: expanded}">
+  <div v-if="expandable && withSlot.expansion" class="list-view-pf-expand" :class="{active: expanded}">
     <pf-icon name="fa-angle-right" :class="{'fa-angle-down': expanded}"/>
   </div>
   <div v-if="selectable" class="list-view-pf-checkbox">
@@ -11,7 +11,7 @@
   </div>
   <div class="list-view-pf-actions">
     <slot name="action"/>
-    <pf-dropdown type="link" v-if="$slots.dropdown || $scopedSlots.dropdown" class="dropdown pull-right dropdown-kebab-pf">
+    <pf-dropdown type="link" v-if="withSlot.dropdown" class="dropdown pull-right dropdown-kebab-pf">
       <slot name="dropdown"/>
     </pf-dropdown>
   </div>
@@ -30,10 +30,13 @@
 import {PortalTarget} from 'portal-vue';
 import TableRow from './TableRow.vue';
 import PfDropdown from './Dropdown.vue';
+import SlotMonitor from '../mixins/SlotMonitor';
 
 export default {
   name: 'pf-list-group-item',
   extends: TableRow,
+
+  mixins: [SlotMonitor],
 
   components: {
     PortalTarget,

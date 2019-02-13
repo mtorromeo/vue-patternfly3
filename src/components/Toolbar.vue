@@ -31,7 +31,7 @@
         'form-group': !hasFindView,
         'pull-right': !hasFindView,
         'toolbar-pf-action-right': !hasFindView,
-      }" v-if="$slots.default || $scopedSlots.default">
+      }" v-if="withSlot.default">
         <h5 class="form-group" v-if="showCount && !hasFindView">
           {{resultCount}} Results
         </h5>
@@ -68,9 +68,12 @@
 <script>
 import PfSort from './Sort.vue';
 import PfColumnPicker from './ColumnPicker.vue';
+import SlotMonitor from '../mixins/SlotMonitor';
 
 export default {
   name: 'pf-toolbar',
+
+  mixins: [SlotMonitor],
 
   components: {
     PfSort,

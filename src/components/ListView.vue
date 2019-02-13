@@ -11,13 +11,13 @@
       :stacked="stacked"
     >
       <slot :row="row" :index="i"/>
-      <template #action v-if="$slots.action || $scopedSlots.action">
+      <template #action v-if="withSlot.action">
         <slot name="action" :row="row" :index="i"/>
       </template>
-      <template #dropdown v-if="$slots.dropdown || $scopedSlots.dropdown">
+      <template #dropdown v-if="withSlot.dropdown">
         <slot name="dropdown" :row="row" :index="i"/>
       </template>
-      <template #expansion v-if="$slots.expansion || $scopedSlots.expansion">
+      <template #expansion v-if="withSlot.expansion">
         <slot name="expansion" :row="row" :index="i"/>
       </template>
     </pf-list-group-item>
@@ -39,9 +39,12 @@
 
 <script>
 import PfListGroupItem from './ListGroupItem.vue';
+import SlotMonitor from '../mixins/SlotMonitor';
 
 export default {
   name: 'pf-list-view',
+
+  mixins: [SlotMonitor],
 
   components: {
     PfListGroupItem,
