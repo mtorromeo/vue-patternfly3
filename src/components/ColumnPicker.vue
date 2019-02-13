@@ -8,7 +8,7 @@
       <div class="column-picker checkbox" v-for="(column, i) in columns" :key="i">
         <label>
           <input type="checkbox" :value="columnValue(column, i)" v-model="iValue" @change="setValue">
-          {{column}}
+          {{columnLabel(column)}}
         </label>
       </div>
     </template>
@@ -52,12 +52,20 @@ export default {
 
   methods: {
     columnValue(column, i) {
-      return Array.isArray(this.columns) ? column : i;
+      let value = Array.isArray(this.columns) ? column : i;
+      if (typeof value === 'object') {
+        value = typeof value.name === 'undefined' ? value.label : value.name;
+      }
+      return value;
+    },
+    columnLabel(column) {
+      return typeof column === 'object' ? column.label : column;
     },
     setValue() {
-      const columns = Array.isArray(this.columns) ? this.columns : Object.keys(this.columns);
       const sortedValue = [];
-      for (const value of columns) {
+      const iter = Array.isArray(this.columns) ? this.columns.entries() : Object.entries(this.columns);
+      for (const [i, column] of iter) {
+        const value = this.columnValue(column, i);
         if (this.iValue.indexOf(value) >= 0) {
           sortedValue.push(value);
         }
