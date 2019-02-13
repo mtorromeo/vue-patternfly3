@@ -163,7 +163,8 @@ export default {
       return Object.keys(this.filterFields).length;
     },
     showColumnPicker() {
-      return (this.activeView == 'table' || !Object.keys(this.viewList).length) && this.columns.length;
+      return (this.activeView == 'table' || !Object.keys(this.viewList).length) &&
+        (Array.isArray(this.columns) ? this.columns : Object.keys(this.columns)).length;
     },
     showCount() {
       return !this.showResultFilter && typeof this.resultCount != 'undefined';
