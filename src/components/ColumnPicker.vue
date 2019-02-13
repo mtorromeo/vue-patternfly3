@@ -52,10 +52,10 @@ export default {
 
   methods: {
     columnValue(column, i) {
-      return this.columns instanceof Array ? column : i;
+      return Array.isArray(this.columns) ? column : i;
     },
     setValue() {
-      const columns = this.columns instanceof Array ? this.columns : Object.keys(this.columns);
+      const columns = Array.isArray(this.columns) ? this.columns : Object.keys(this.columns);
       const sortedValue = [];
       for (const value of columns) {
         if (this.iValue.indexOf(value) >= 0) {

@@ -63,7 +63,7 @@ export default {
     fields: {
       handler (fields) {
         const normFields = [];
-        if (fields instanceof Array) {
+        if (Array.isArray(fields)) {
           for (const f of fields) {
             normFields.push(this.fieldDefinition(f));
           }

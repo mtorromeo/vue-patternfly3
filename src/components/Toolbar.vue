@@ -157,7 +157,7 @@ export default {
 
   computed: {
     showSorter() {
-      return this.sortFields instanceof Array ? this.sortFields.length : Object.keys(this.sortFields).length;
+      return Array.isArray(this.sortFields) ? this.sortFields.length : Object.keys(this.sortFields).length;
     },
     showFilter() {
       return Object.keys(this.filterFields).length;
