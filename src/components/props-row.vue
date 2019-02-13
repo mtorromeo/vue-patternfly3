@@ -69,7 +69,7 @@ export default {
         prop.type = def.name;
       } else if (typ == 'object') {
         prop.object = true;
-        if (def.type instanceof Array) {
+        if (Array.isArray(def.type)) {
           prop.type = def.type.map(t => t.name).join(' | ');
         } else if (def.type) {
           prop.object = def.type.name != 'String';
