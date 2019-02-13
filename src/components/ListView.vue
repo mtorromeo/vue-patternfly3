@@ -11,13 +11,13 @@
       :stacked="stacked"
     >
       <slot :row="row" :index="i"/>
-      <template slot="action" v-if="$slots.action || $scopedSlots.action">
+      <template #action v-if="$slots.action || $scopedSlots.action">
         <slot name="action" :row="row" :index="i"/>
       </template>
-      <template slot="dropdown" v-if="$slots.dropdown || $scopedSlots.dropdown">
+      <template #dropdown v-if="$slots.dropdown || $scopedSlots.dropdown">
         <slot name="dropdown" :row="row" :index="i"/>
       </template>
-      <template slot="expansion" v-if="$slots.expansion || $scopedSlots.expansion">
+      <template #expansion v-if="$slots.expansion || $scopedSlots.expansion">
         <slot name="expansion" :row="row" :index="i"/>
       </template>
     </pf-list-group-item>

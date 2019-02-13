@@ -7,7 +7,7 @@
     class="list-view-pf-main-info"
   >
     <slot>
-      <div class="list-view-pf-left" v-if="props.icon || props.iconSrc || $slots.left">
+      <div class="list-view-pf-left" v-if="props.icon || props.iconSrc || $slots.left || $scopedSlots.left">
         <slot name="left">
           <pf-icon :name="props.icon" :src="props.iconSrc" :class="[
             `list-view-pf-icon-${props.iconSize}`,
@@ -16,15 +16,15 @@
         </slot>
       </div>
       <div class="list-view-pf-body">
-        <div class="list-view-pf-description" v-if="$slots.heading || $slots.description">
-          <div class="list-group-item-heading" v-if="$slots.heading">
+        <div class="list-view-pf-description" v-if="$slots.heading || $scopedSlots.heading || $slots.description || $scopedSlots.description">
+          <div class="list-group-item-heading" v-if="$slots.heading || $scopedSlots.heading">
             <slot name="heading"/>
           </div>
-          <div class="list-group-item-text" v-if="$slots.description">
+          <div class="list-group-item-text" v-if="$slots.description || $scopedSlots.description">
             <slot name="description"/>
           </div>
         </div>
-        <div class="list-view-pf-additional-info" v-if="$slots['additional-info']">
+        <div class="list-view-pf-additional-info" v-if="$slots['additional-info'] || $scopedSlots['additional-info']">
           <slot name="additional-info"/>
         </div>
       </div>

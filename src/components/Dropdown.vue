@@ -10,7 +10,8 @@
         <span class="dropdown-title">{{props.text}}</span>
       </slot> <span class="caret"></span>
     </button>
-    <template slot="dropdown">
+
+    <template #dropdown>
       <slot/>
     </template>
   </dropdown>

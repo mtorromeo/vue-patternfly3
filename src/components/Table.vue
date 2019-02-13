@@ -67,10 +67,10 @@
       <tbody>
         <pf-table-row ref="row" v-for="(row, i) in rows" :key="i" :num="i" :selectable="selectable">
           <slot :row="row"></slot>
-          <template slot="action" v-if="$slots.action || $scopedSlots.action">
+          <template #action v-if="$slots.action || $scopedSlots.action">
             <slot name="action" :row="row"></slot>
           </template>
-          <template slot="dropdown" v-if="$slots.dropdown || $scopedSlots.dropdown">
+          <template #dropdown v-if="$slots.dropdown || $scopedSlots.dropdown">
             <slot name="dropdown" :row="row"></slot>
           </template>
         </pf-table-row>

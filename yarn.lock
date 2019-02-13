@@ -5356,7 +5356,7 @@ patternfly-bootstrap-treeview@~2.1.0:
     bootstrap "3.4.x"
     jquery ">= 2.1.x"
 
-patternfly@^3.14.0:
+patternfly@^3.59.1:
   version "3.59.1"
   resolved "https://registry.yarnpkg.com/patternfly/-/patternfly-3.59.1.tgz#4adea89223e7386551bc9560ad5bed99e37df904"
   integrity sha512-0Q/P58yaxcQXwnXo/OssiXaZmuX0g9QvWdpsYHyml4ihqnN2lL/yGdadFarA6UAQb//15XtNjKHZocoJXCkWYg==

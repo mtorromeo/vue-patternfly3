@@ -7,12 +7,12 @@
     </label>
   </td>
   <slot/>
-  <td v-if="$slots.action" class="table-view-pf-actions">
+  <td v-if="$slots.action || $scopedSlots.action" class="table-view-pf-actions">
     <div class="table-view-pf-btn">
       <slot name="action"/>
     </div>
   </td>
-  <td v-if="$slots.dropdown" class="table-view-pf-actions">
+  <td v-if="$slots.dropdown || $scopedSlots.dropdown" class="table-view-pf-actions">
     <pf-dropdown class="pull-right">
       <slot name="dropdown"/>
     </pf-dropdown>

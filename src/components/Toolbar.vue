@@ -31,7 +31,7 @@
         'form-group': !hasFindView,
         'pull-right': !hasFindView,
         'toolbar-pf-action-right': !hasFindView,
-      }" v-if="$slots.default">
+      }" v-if="$slots.default || $scopedSlots.default">
         <h5 class="form-group" v-if="showCount && !hasFindView">
           {{resultCount}} Results
         </h5>

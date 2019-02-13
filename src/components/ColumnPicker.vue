@@ -4,7 +4,7 @@
       <pf-icon name="fa-columns"/>
     </button>
 
-    <template slot="popover">
+    <template #popover>
       <div class="column-picker checkbox" v-for="(column, i) in columns" :key="i">
         <label>
           <input type="checkbox" :value="columnValue(column, i)" v-model="iValue" @change="setValue">

@@ -28,12 +28,12 @@ export default {
 
   data() {
     return {
-      hasExpansionSlot: Boolean(this.$slots.expansion),
+      hasExpansionSlot: Boolean(this.$slots.expansion) || Boolean(this.$scopedSlots.expansion),
     };
   },
 
   updated() {
-    this.hasExpansionSlot = Boolean(this.$slots.expansion);
+    this.hasExpansionSlot = Boolean(this.$slots.expansion) || Boolean(this.$scopedSlots.expansion);
   },
 
   computed: {

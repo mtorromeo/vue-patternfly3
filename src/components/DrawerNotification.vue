@@ -38,7 +38,7 @@
   <span class="drawer-pf-notification-message">
     <slot>{{message}}</slot>
   </span>
-  <span v-if="date || time || $slots.info" class="drawer-pf-notification-info">
+  <span v-if="date || time || $slots.info || $scopedSlots.info" class="drawer-pf-notification-info">
     <slot name="info">
       <span v-if="date" class="date">{{date}}</span>
       <span v-if="time" class="time">{{time}}</span>
@@ -73,7 +73,7 @@ export default {
 
   computed: {
     showDropdown() {
-      return this.$slots.dropdown || (this.actions && this.actions.length);
+      return this.$slots.dropdown || this.$scopedSlots.dropdown || (this.actions && this.actions.length);
     },
     buttonClass() {
       if (!this.action || !this.action.button) {
