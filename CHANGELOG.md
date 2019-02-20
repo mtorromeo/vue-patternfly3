@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.0.22] - 2019-02-20
 ### Fixed
 - Hide items—per-page select from pagination controls if the `itemsPerPage` prop is empty.
 - Reverted removal of portal-target import as it was mis-reported as unused by the linter.
@@ -236,7 +236,9 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.20...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.22...HEAD
+[0.0.22]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.21...v0.0.22
+[0.0.21]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.20...v0.0.21
 [0.0.20]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.19...v0.0.20
 [0.0.19]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.18...v0.0.19
 [0.0.18]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.17...v0.0.18
