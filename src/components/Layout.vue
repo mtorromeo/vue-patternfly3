@@ -252,7 +252,6 @@ nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
 }
 
 .layout-pf .pf-layout-grid > .pf-layout-container,
-.layout-pf .pf-layout-flex > .pf-layout-container,
 .layout-pf.layout-pf-fixed .pf-layout-grid > .pf-layout-container {
   margin-left: 0;
 }

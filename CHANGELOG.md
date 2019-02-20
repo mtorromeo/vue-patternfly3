@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 - Hide items—per-page select from pagination controls if the `itemsPerPage` prop is empty.
 - Reverted removal of portal-target import as it was mis-reported as unused by the linter.
 - Fixed navbar-brand alignment.
+- Fixed left margin with flex layout when the vertical sidebar is expanded.
 
 ## [0.0.21] - 2019-02-13
 ### Added
