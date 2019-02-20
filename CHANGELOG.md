@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Fixed
+- Hide items—per-page select from pagination controls if the `itemsPerPage` prop is empty.
+
 ## [0.0.21] - 2019-02-13
 ### Added
 - Implemented interpratation of `pf-toolbar` and `pf-column-picker` columns as array of objects or object with nested objects/strings.
