@@ -65,6 +65,7 @@
 </template>
 
 <script>
+import {PortalTarget} from 'portal-vue';
 import ModalsTarget from './ModalsTarget.vue';
 
 export default {
@@ -72,6 +73,8 @@ export default {
 
   components: {
     ModalsTarget,
+    /* eslint-disable-next-line vue/no-unused-components */
+    PortalTarget,
   },
 
   props: {
