@@ -280,13 +280,13 @@ nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
   flex-grow: 1;
 }
 
-.navbar-pf .navbar-brand {
+.navbar-header .navbar-brand {
   display: flex;
   align-items: center;
 }
 
-.navbar-pf .navbar-brand img,
-.navbar-pf .navbar-brand svg {
+.navbar-header .navbar-brand img,
+.navbar-header .navbar-brand svg {
   display: inline-block;
   margin-right: 1em;
 }

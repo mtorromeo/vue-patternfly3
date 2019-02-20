@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Hide items—per-page select from pagination controls if the `itemsPerPage` prop is empty.
 - Reverted removal of portal-target import as it was mis-reported as unused by the linter.
+- Fixed navbar-brand alignment.
 
 ## [0.0.21] - 2019-02-13
 ### Added
