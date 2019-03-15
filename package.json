@@ -42,7 +42,7 @@
     "c3": "^0.6.8",
     "es6-promise": "^4.2.5",
     "patternfly": "^3.59.1",
-    "uiv": "^0.30.0",
+    "uiv": "^0.31.3",
     "vue": "^2.6.6"
   },
   "devDependencies": {
