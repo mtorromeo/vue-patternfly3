@@ -11,7 +11,7 @@
       </slot> <span class="caret"></span>
     </button>
 
-    <template #dropdown>
+    <template slot="dropdown">
       <slot/>
     </template>
   </dropdown>

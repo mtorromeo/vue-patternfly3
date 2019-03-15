@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.0.23] - 2019-03-15
+### Fixed
+- Reverted slot syntax for uiv's dropdown which is incompatible with the latest Vue release.
+
 ## [0.0.22] - 2019-02-20
 ### Fixed
 - Hide items—per-page select from pagination controls if the `itemsPerPage` prop is empty.
@@ -236,7 +240,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.22...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.23...HEAD
+[0.0.23]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.22...v0.0.23
 [0.0.22]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.21...v0.0.22
 [0.0.21]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.20...v0.0.21
 [0.0.20]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.19...v0.0.20
