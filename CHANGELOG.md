@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Added
+- The `pf-filter-fields` inside `pf-toolbar` is now slotted so that it can be replaced with a custom input.
+
+### Changed
+- The dropdown on `pf-filter-fields` is now hidden when there's only one field available.
+- Updated dependencies.
+
 ## [0.0.23] - 2019-03-15
 ### Fixed
 - Reverted slot syntax for uiv's dropdown which is incompatible with the latest Vue release.
