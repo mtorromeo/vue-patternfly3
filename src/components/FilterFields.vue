@@ -1,7 +1,7 @@
 <template>
 <div class="filter-pf filter-fields form-group toolbar-pf-filter">
   <div class="input-group">
-    <pf-dropdown :text="current.label" class="input-group-btn">
+    <pf-dropdown :text="current.label" class="input-group-btn" v-if="showDropdown">
       <li v-for="(item, name) in normFields" :key="name">
         <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = name">
           {{item.label}}
@@ -18,7 +18,7 @@
         type="text"
         :value="value"
         @keyup.enter.stop="set"
-        :placeholder="current.placeholder"
+        :placeholder="showDropdown || current.placeholder ? current.placeholder : current.label"
       >
     </div>
   </div>
@@ -92,6 +92,10 @@ export default {
 
     isSelect() {
       return typeof this.current.values !== 'undefined';
+    },
+
+    showDropdown() {
+      return Object.keys(this.normFields).length > 1;
     },
   },
 
