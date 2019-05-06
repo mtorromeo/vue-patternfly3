@@ -28,6 +28,10 @@
 
         <div v-if="toolbar.slotDefault.enabled" v-html="toolbar.slotDefault.content" style="float:left"></div>
 
+        <template #filter v-if="toolbar.slotFilter.enabled">
+          <div v-html="toolbar.slotFilter.content"></div>
+        </template>
+
         <pf-dropdown class="dropdown-kebab-pf" type="link">
           <li role="menuitem">
             <a title="Menu Title 1">Menu Item 1</a>
@@ -59,6 +63,7 @@
 
     <slots-table toggle>
       <slots-row name="default" description="Action buttons and dropdowns can be placed here" :enabled.sync="toolbar.slotDefault.enabled" v-model="toolbar.slotDefault.content"/>
+      <slots-row name="filter" description="Filter input" :enabled.sync="toolbar.slotFilter.enabled" v-model="toolbar.slotFilter.content"/>
     </slots-table>
   </section>
 </article>
@@ -120,6 +125,10 @@ export default {
 </button>
 
 <!-- The "kebab" menu is fixed in this example due to how v-html works -->`,
+        },
+        slotFilter: {
+          enabled: false,
+          content: '<label><input type="checkbox"> My custom filter</label>',
         },
       },
     };
