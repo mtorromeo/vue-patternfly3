@@ -192,7 +192,7 @@ export default {
       }
     });
 
-    this.$watch('scrollable', () => {
+    this.scrollableUnwatch = this.$watch('scrollable', () => {
       if (this.scrollable) {
         this.showClones = false;
         this.headObserver.observe(this.$refs.thead);
@@ -210,6 +210,7 @@ export default {
   destroyed() {
     this.headObserver.disconnect();
     this.paginationObserver.disconnect();
+    this.scrollableUnwatch();
   },
 
   computed: {
