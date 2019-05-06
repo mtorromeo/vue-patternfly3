@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.0.24] - 2019-05-06
 ### Added
 - The `pf-filter-fields` inside `pf-toolbar` is now slotted so that it can be replaced with a custom input.
 
@@ -253,7 +253,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.23...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.24...HEAD
+[0.0.24]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.23...v0.0.24
 [0.0.23]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.22...v0.0.23
 [0.0.22]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.21...v0.0.22
 [0.0.21]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.20...v0.0.21
