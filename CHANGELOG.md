@@ -7,6 +7,7 @@ All notable changes to this project will be documented in this file.
 
 ### Changed
 - The dropdown on `pf-filter-fields` is now hidden when there's only one field available.
+- Removed dropdown arrow from `pf-application-launcher` per patternfly design.
 - Updated dependencies.
 
 ### Fixed

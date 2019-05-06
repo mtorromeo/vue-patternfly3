@@ -1,5 +1,5 @@
 <template>
-  <li class="applauncher-pf dropdown dropdown-kebab-pf" :class="{'applauncher-pf-block-list': !list, open: open && !disabled}">
+  <li class="applauncher-pf dropdown" :class="{'applauncher-pf-block-list': !list, open: open && !disabled}">
     <a :id="`pf-application-launcher-${_uid}`" class="dropdown-toggle drawer-pf-trigger-icon nav-item-iconic" :class="{disabled: disabled || !withSlot.default}" href="javascript:void(0)" @click.stop="toggle">
       <pf-icon name="fa-th" class="applauncher-pf-icon" aria-hidden="true" tag="i"/>
       <span class="applauncher-pf-title">
