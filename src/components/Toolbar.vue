@@ -8,7 +8,11 @@
 >
   <div class="col-sm-12">
     <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
-      <pf-filter-fields @filter="addFilter" :fields="filterFields" v-if="showFilter"/>
+      <div class="filter-pf filter-fields form-group toolbar-pf-filter">
+        <slot name="filter">
+          <pf-filter-fields @filter="addFilter" :fields="filterFields" v-if="showFilter"/>
+        </slot>
+      </div>
       <div class="form-group" v-if="showSorter || showColumnPicker">
         <pf-sort
           :fields="sortFields"

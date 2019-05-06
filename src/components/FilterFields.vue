@@ -1,26 +1,24 @@
 <template>
-<div class="filter-pf filter-fields form-group toolbar-pf-filter">
-  <div class="input-group">
-    <pf-dropdown :text="current.label" class="input-group-btn" v-if="showDropdown">
-      <li v-for="(item, name) in normFields" :key="name">
-        <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = name">
-          {{item.label}}
-        </a>
-      </li>
-    </pf-dropdown>
-    <pf-select close-on-select class="filter-select" v-if="isSelect" :placeholder="current.placeholder">
-      <pf-option :checked-value="item" v-for="(item, i) in current.values" :key="i" @input="set">{{item}}</pf-option>
-    </pf-select>
-    <div v-else>
-      <input
-        ref="input"
-        class="form-control"
-        type="text"
-        :value="value"
-        @keyup.enter.stop="set"
-        :placeholder="showDropdown || current.placeholder ? current.placeholder : current.label"
-      >
-    </div>
+<div class="input-group">
+  <pf-dropdown :text="current.label" class="input-group-btn" v-if="showDropdown">
+    <li v-for="(item, name) in normFields" :key="name">
+      <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = name">
+        {{item.label}}
+      </a>
+    </li>
+  </pf-dropdown>
+  <pf-select close-on-select class="filter-select" v-if="isSelect" :placeholder="current.placeholder">
+    <pf-option :checked-value="item" v-for="(item, i) in current.values" :key="i" @input="set">{{item}}</pf-option>
+  </pf-select>
+  <div v-else>
+    <input
+      ref="input"
+      class="form-control"
+      type="text"
+      :value="value"
+      @keyup.enter.stop="set"
+      :placeholder="showDropdown || current.placeholder ? current.placeholder : current.label"
+    >
   </div>
 </div>
 </template>
