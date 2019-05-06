@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file.
 
 ### Fixed
 - Unwatched scrollable property on `pf-table` destruction.
+- The `pf-paginate-control` component correctly fires change of page event every time the input value changes.
 
 ## [0.0.23] - 2019-03-15
 ### Fixed

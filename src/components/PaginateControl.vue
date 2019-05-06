@@ -4,38 +4,45 @@
     <pf-select ref="perpage" button close-on-select class="pagination-pf-pagesize">
       <pf-option :value="itemsPerPage" @input="$emit('update:itemsPerPage', $event)" :checked-value="item" v-for="(item, i) in itemsPerPageOptions" :key="i">{{item}}</pf-option>
     </pf-select>
-    <span @click.stop="openPerPageSelect">per page</span>
+    <span @click.stop="openPerPageSelect">{{labelPerPage}}</span>
   </div>
 
   <div class="form-group">
-    {{firstItem}}-{{lastItem}} of {{totalItems}}
+    {{firstItem}}-{{lastItem}} {{labelOf}} {{totalItems}}
     <ul class="pagination pagination-pf-back">
       <li :class="{disabled: page == 1}">
-        <a href="javascript:void(0)" title="First Page" @click="setPage(1)">
+        <a href="javascript:void(0)" :title="labelFirstPage" @click="setPage(1)">
           <pf-icon name="fa-angle-double-left" class="i"/>
         </a>
       </li>
       <li :class="{disabled: page <= 1}">
-        <a href="javascript:void(0)" title="Previous Page" @click="setPage(page - 1)">
+        <a href="javascript:void(0)" :title="labelPreviousPage" @click="setPage(page - 1)">
           <pf-icon name="fa-angle-left" class="i"/>
         </a>
       </li>
     </ul>
 
-    <label for="`pf-paginate-control-input-${_uid}`" class="sr-only">Current Page</label>
-    <input :id="`pf-paginate-control-input-${_uid}`" type="text" class="pagination-pf-page" v-model="page" :style="{
-      width: (pages.toString().length * .8 + 1.5) + 'em'
-    }">
-    of {{pages}}
+    <label for="`pf-paginate-control-input-${_uid}`" class="sr-only">{{labelCurrentPage}}</label>
+    <input
+      :id="`pf-paginate-control-input-${_uid}`"
+      type="text"
+      class="pagination-pf-page"
+      :style="{
+        width: (pages.toString().length * .8 + 1.5) + 'em'
+      }"
+      :value="page"
+      @change="setPage($event.target.value)"
+    >
+    {{labelOf}} {{pages}}
 
     <ul class="pagination pagination-pf-forward">
       <li :class="{disabled: page >= pages}">
-        <a href="javascript:void(0)" title="Next Page" @click="setPage(page + 1)">
+        <a href="javascript:void(0)" :title="labelNextPage" @click="setPage(page + 1)">
           <pf-icon name="fa-angle-right" class="i"/>
         </a>
       </li>
       <li :class="{disabled: page >= pages}">
-        <a href="javascript:void(0)" title="Last Page" @click="setPage(pages)">
+        <a href="javascript:void(0)" :title="labelLastPage" @click="setPage(pages)">
           <pf-icon name="fa-angle-double-right" class="i"/>
         </a>
       </li>
@@ -82,6 +89,34 @@ export default {
         return [10, 25, 50, 100, 500];
       },
     },
+    labelFirstPage: {
+      type: String,
+      default: 'First Page',
+    },
+    labelLastPage: {
+      type: String,
+      default: 'Last Page',
+    },
+    labelPreviousPage: {
+      type: String,
+      default: 'Previous Page',
+    },
+    labelNextPage: {
+      type: String,
+      default: 'Next Page',
+    },
+    labelCurrentPage: {
+      type: String,
+      default: 'Current Page',
+    },
+    labelOf: {
+      type: String,
+      default: 'of',
+    },
+    labelPerPage: {
+      type: String,
+      default: 'per page',
+    },
   },
 
   computed: {
@@ -101,7 +136,9 @@ export default {
   methods: {
     setPage(page) {
       page = Math.max(Math.min(page, this.pages), 1);
-      this.$emit('change', page);
+      if (!isNaN(page) && page !== this.page) {
+        this.$emit('change', page);
+      }
     },
 
     openPerPageSelect() {
