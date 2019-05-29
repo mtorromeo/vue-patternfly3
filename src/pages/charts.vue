@@ -6,6 +6,7 @@
 
   <header>
     <h2>Empty Chart <code>&lt;pf-empty-chart&gt;</code></h2>
+    <span class="label label-default">functional</span>
   </header>
 
   <p>This component is displayed when a chart does not include any data.</p>

@@ -7,7 +7,7 @@
         <th style="width: 200px">Name</th>
         <th style="width: 60px" v-if="toggle">Enable</th>
         <th style="width: 300px">Description</th>
-        <th>HTML</th>
+        <th v-if="!readonly">HTML</th>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +26,7 @@ export default {
       type: String,
       default: 'Slots',
     },
+    readonly: Boolean,
     toggle: Boolean,
   },
 };

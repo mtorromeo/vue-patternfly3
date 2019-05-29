@@ -225,7 +225,7 @@
     </template>
 
     <pf-drawer :title="$root.drawer.title" :allow-expand="$root.drawer.allowExpand" v-model="$root.drawer.hidden">
-      <pf-drawer-group :title="$root.drawerGroup.title" :counter="$root.drawerGroup.counter" :action="$root.drawerGroup.action" :loading="$root.drawerGroup.loading">
+      <pf-drawer-group :title="$root.drawerGroup.title" :counter="$root.drawerGroup.counter" :loading="$root.drawerGroup.loading">
         <pf-drawer-notification>
           Notification Info
 
@@ -250,6 +250,11 @@
         </pf-drawer-notification>
         <pf-drawer-notification :type="$root.drawerNotification.type" :date="$root.drawerNotification.date" :time="$root.drawerNotification.time" :message="$root.drawerNotification.message" :unread="$root.drawerNotification.unread" :action="$root.drawerNotification.action" :actions="$root.drawerNotification.actions">
         </pf-drawer-notification>
+
+        <template #actions>
+          <pf-drawer-group-action>Mark All Read</pf-drawer-group-action>
+          <pf-drawer-group-action><pf-icon name="pficon-close" /> Clear All</pf-drawer-group-action>
+        </template>
       </pf-drawer-group>
 
       <pf-drawer-group title="Group 2" counter="loading state" loading>
@@ -283,7 +288,6 @@ export default {
       drawerGroup: {
         title: 'Group 1',
         counter: '4 events',
-        action: 'Mark All Read',
         loading: false,
       },
       drawerNotification: {

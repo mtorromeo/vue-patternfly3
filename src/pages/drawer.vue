@@ -43,9 +43,23 @@
     <props-table :component-props="drawerGroupProps">
       <props-row name="title" description="Group header title." v-model="$root.drawerGroup.title"/>
       <props-row name="counter" description="Display a counter in the group header." v-model="$root.drawerGroup.counter"/>
-      <props-row name="action" description="Title for an action link at the bottom of the group." v-model="$root.drawerGroup.action"/>
       <props-row name="loading" description="Show a loading indicator." v-model="$root.drawerGroup.loading"/>
     </props-table>
+
+    <slots-table readonly>
+      <slots-row name="default" description="Used to contain <code>&amp;lt;pf-drawer-notification&amp;gt;</code>s" />
+      <slots-row name="actions" description="Used to contain <code>&amp;lt;pf-drawer-group-action&amp;gt;</code>s" />
+    </slots-table>
+  </section>
+
+
+  <header>
+    <h1>Drawer Group Action <code>&lt;pf-drawer-group-action&gt;</code></h1>
+    <span class="label label-default">functional</span>
+  </header>
+
+  <section>
+    <p>Styled button for the <code>#actions</code> slot of <code>&lt;pf-drawer-group&gt;</code>.</p>
   </section>
 
 

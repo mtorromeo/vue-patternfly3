@@ -41,7 +41,11 @@
 
 
   <header>
-    <h1>Aggregate Status Card <code>&lt;pf-aggregate-status-card&gt;</code> + Card Notification <code>&lt;pf-card-notification&gt;</code></h1>
+    <h1>Aggregate Status Card <code>&lt;pf-aggregate-status-card&gt;</code></h1>
+    <span class="label label-default">functional</span>
+    <br>
+    <h1>Card Notification <code>&lt;pf-card-notification&gt;</code></h1>
+    <span class="label label-default">functional</span>
   </header>
 
   <section>

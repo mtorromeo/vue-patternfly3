@@ -78,11 +78,18 @@
   margin-bottom: 45px;
 }
 
-.page h1 {
+.page header {
   border-bottom: 1px solid #D5D5D5;
-  line-height: 60px;
-  margin-top: 0;
+}
+
+.page h1 {
   padding-bottom: 0;
+}
+
+.page header h1,
+.page header h2,
+.page header .label {
+  display: inline-block;
 }
 
 .secondary-list-group > .list-group-item {
