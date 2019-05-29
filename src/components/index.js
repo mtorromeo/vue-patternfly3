@@ -17,6 +17,7 @@ import Notification from './Notification.vue';
 import NotificationBell from './NotificationBell.vue';
 import Drawer from './Drawer.vue';
 import DrawerGroup from './DrawerGroup.vue';
+import DrawerGroupAction from './DrawerGroupAction.vue';
 import DrawerNotification from './DrawerNotification.vue';
 import ExpandCollapse from './ExpandCollapse.vue';
 import Layout from './Layout.vue';
@@ -55,6 +56,7 @@ export {
   NotificationBell,
   Drawer,
   DrawerGroup,
+  DrawerGroupAction,
   DrawerNotification,
   ExpandCollapse,
   Layout,

@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - `pf-dropdown` components can now inject the dropdown menu inside any element, with the `append-to` prop, to circumvent issues with clipped containers (e.g. `overflow:hidden`).
+- Addeed `pf-drawer-group-action` functional component to use inside the new `pf-drawer-group` `#actions` slot.
+
+### Changed
+- **BACKWARD INCOMPATIBLE CHANGE**: Removed the `action` prop of `pf-drawer-group` and added an `#actions` slot so that any number of actions can be applied.
 
 ### Fixed
 - Added missing `type="button"` attribute to the buttons in `pf-toolbar` and `pf-sort` so that they won't trigger a submit event when inside a form.

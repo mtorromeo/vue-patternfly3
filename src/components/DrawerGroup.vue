@@ -26,12 +26,8 @@
         </div>
       </div>
 
-      <div v-if="action" class="drawer-pf-action">
-        <div class="drawer-pf-action-link">
-          <button type="button" class="btn btn-link" @click="$emit('action')">
-            {{action}}
-          </button>
-        </div>
+      <div v-if="withSlot.actions" class="drawer-pf-action">
+        <slot name="actions" />
       </div>
     </div>
   </transition>
@@ -49,7 +45,6 @@ export default {
   props: {
     title: String,
     counter: String,
-    action: String,
     loading: Boolean,
   },
 
