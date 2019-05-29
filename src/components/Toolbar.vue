@@ -52,6 +52,7 @@
 
         <div class="form-group toolbar-pf-view-selector">
           <button
+            type="button"
             v-for="(viewData, name) in viewList"
             :key="name"
             class="btn btn-link"

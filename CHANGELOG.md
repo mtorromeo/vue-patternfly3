@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Fixed
+- Added missing `type="button"` attribute to the buttons in `pf-toolbar` and `pf-sort` so that they won't trigger a submit event when inside a form.
+
 ## [0.0.24] - 2019-05-06
 ### Added
 - The `pf-filter-fields` inside `pf-toolbar` is now slotted so that it can be replaced with a custom input.

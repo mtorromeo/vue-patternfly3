@@ -7,7 +7,7 @@
       </a>
     </li>
   </pf-dropdown>
-  <button class="btn btn-link" type="button"  @click="invert">
+  <button type="button" class="btn btn-link"  @click="invert">
     <pf-icon class="sort-direction" :name="sortIcon"/>
   </button>
 </div>
