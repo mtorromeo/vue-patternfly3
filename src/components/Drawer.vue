@@ -19,6 +19,8 @@
       <slot/>
     </div>
   </div>
+
+  <div ref="dropdowns" class="dropdown-kebab-pf"></div>
 </div>
 </template>
 

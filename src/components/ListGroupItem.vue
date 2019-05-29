@@ -11,7 +11,7 @@
   </div>
   <div class="list-view-pf-actions">
     <slot name="action"/>
-    <pf-dropdown type="link" v-if="withSlot.dropdown" class="dropdown pull-right dropdown-kebab-pf">
+    <pf-dropdown type="link" v-if="withSlot.dropdown" class="dropdown dropdown-kebab-pf" menu-right>
       <slot name="dropdown"/>
     </pf-dropdown>
   </div>

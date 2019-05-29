@@ -27,9 +27,11 @@
       </div>
 
       <div v-if="action" class="drawer-pf-action">
-        <button type="button" class="btn btn-link btn-block" @click="$emit('action')">
-          {{action}}
-        </button>
+        <div class="drawer-pf-action-link">
+          <button type="button" class="btn btn-link" @click="$emit('action')">
+            {{action}}
+          </button>
+        </div>
       </div>
     </div>
   </transition>

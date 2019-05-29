@@ -13,7 +13,7 @@
     </div>
   </td>
   <td v-if="withSlot.dropdown" class="table-view-pf-actions">
-    <pf-dropdown class="pull-right">
+    <pf-dropdown menu-right>
       <slot name="dropdown"/>
     </pf-dropdown>
   </td>

@@ -2,8 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- `pf-dropdown` components can now inject the dropdown menu inside any element, with the `append-to` prop, to circumvent issues with clipped containers (e.g. `overflow:hidden`).
+
 ### Fixed
 - Added missing `type="button"` attribute to the buttons in `pf-toolbar` and `pf-sort` so that they won't trigger a submit event when inside a form.
+- Fixed clipped dropdowns in `pf-notification-drawer`.
 
 ## [0.0.24] - 2019-05-06
 ### Added

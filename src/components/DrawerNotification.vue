@@ -3,7 +3,7 @@
   class="drawer-pf-notification"
   :class="{unread, 'expanded-notification': $parent.$parent.expanded}"
 >
-  <pf-dropdown v-if="showDropdown" class="pull-right dropdown-kebab-pf" type="link">
+  <pf-dropdown v-if="showDropdown" class="pull-right dropdown-kebab-pf" type="link" :append-to="$parent.$parent.$refs.dropdowns" menu-right>
     <li
       v-for="action in actions"
       :key="action.name"

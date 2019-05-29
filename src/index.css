@@ -38,15 +38,8 @@ html {
   left: -5px;
 }
 
-.dropdown-kebab-pf.pull-right .dropdown-menu {
-  left: auto;
-  right: -15px;
-}
-
-.dropdown-kebab-pf.pull-right .dropdown-menu:after,
-.dropdown-kebab-pf.pull-right .dropdown-menu:before {
-  left: auto;
-  right: 6px;
+.dropdown-kebab-pf .dropdown-menu.dropdown-menu-right {
+  margin-left: 11px;
 }
 
 .dropdown-kebab-pf .caret:before {
