@@ -17,6 +17,7 @@
     <div class="demo-container">
       <pf-list-view
         :rows="listview.rows"
+        :key-name="listview.keyName"
         :page.sync="listview.page"
         :total-items="listview.totalItems"
         :items-per-page.sync="listview.itemsPerPage"
@@ -81,6 +82,7 @@
       <props-row name="expandable" description="Make every list item expandable" v-model="listview.expandable"/>
       <props-row name="stacked" description="Stacked items" v-model="listview.stacked"/>
       <props-row name="rows" description="List of items" v-model="listview.rows" code/>
+      <props-row name="keyName" description="Name of the property of each row to use as unique key (v-for)" v-model="listview.keyName"/>
       <props-row name="page" description="Current page number" v-model="listview.page"/>
       <props-row name="totalItems" description="Total number of items (used to calculate the number of pages)" v-model="listview.totalItems"/>
       <props-row name="itemsPerPage" description="Number of items to display per page (0 = disable paging controls)" v-model="listview.itemsPerPage"/>
@@ -181,6 +183,7 @@ export default {
             state: 'Massachusetts',
           },
         ],
+        keyName: 'id',
         selectable: true,
         expandable: false,
         stacked: false,

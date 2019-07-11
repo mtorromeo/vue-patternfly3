@@ -14,6 +14,7 @@
     <div class="demo-container">
       <pf-table :columns="table.columns"
                 :rows="table.rows"
+                :key-name="table.keyName"
                 :page.sync="table.page"
                 :total-items="table.totalItems"
                 :items-per-page.sync="table.itemsPerPage"
@@ -58,6 +59,7 @@
       <props-row name="scrollable" description="Enable scrolling with fixed headers" v-model="table.scrollable"/>
       <props-row name="columns" description="List of columns" v-model="table.columns" code/>
       <props-row name="rows" description="List of rows" v-model="table.rows" code/>
+      <props-row name="keyName" description="Name of the property of each row to use as unique key (v-for)" v-model="table.keyName"/>
       <props-row name="page" description="Current page number" v-model="table.page"/>
       <props-row name="totalItems" description="Total number of items (used to calculate the number of pages)" v-model="table.totalItems"/>
       <props-row name="itemsPerPage" description="Number of items to display per page (0 = disable paging controls)" v-model="table.itemsPerPage"/>
@@ -215,6 +217,7 @@ export default {
             state: 'Massachusetts',
           },
         ],
+        keyName: 'id',
         striped: true,
         bordered: true,
         hover: true,
