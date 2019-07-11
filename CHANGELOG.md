@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.0.26] - 2019-07-11
+### Added
+- `pf-table` and `pf-list-view` components now have a new `key-name` prop to specify the name of a property of each row to use as index for the `v-for` directive.
+
 ## [0.0.25] - 2019-05-29
 ### Added
 - `pf-dropdown` components can now inject the dropdown menu inside any element, with the `append-to` prop, to circumvent issues with clipped containers (e.g. `overflow:hidden`).
@@ -265,7 +269,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.25...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.26...HEAD
+[0.0.26]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.25...v0.0.26
 [0.0.25]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.24...v0.0.25
 [0.0.24]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.23...v0.0.24
 [0.0.23]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.22...v0.0.23

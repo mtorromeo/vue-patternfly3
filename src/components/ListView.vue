@@ -4,7 +4,7 @@
     <pf-list-group-item
       ref="row"
       v-for="(row, i) in rows"
-      :key="i"
+      :key="keyName ? row[keyName] : i"
       :index="i"
       :selectable="selectable"
       :expandable="expandable"
@@ -75,6 +75,7 @@ export default {
         return [];
       },
     },
+    keyName: String,
   },
 
   methods: {

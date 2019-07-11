@@ -65,7 +65,7 @@
       </thead>
 
       <tbody>
-        <pf-table-row ref="row" v-for="(row, i) in rows" :key="i" :num="i" :selectable="selectable">
+        <pf-table-row ref="row" v-for="(row, i) in rows" :key="keyName ? row[keyName] : i" :num="i" :selectable="selectable">
           <slot :row="row"></slot>
           <template #action v-if="withSlot.action">
             <slot name="action" :row="row"></slot>
@@ -135,6 +135,7 @@ export default {
         return [];
       },
     },
+    keyName: String,
     striped: Boolean,
     bordered: Boolean,
     hover: Boolean,

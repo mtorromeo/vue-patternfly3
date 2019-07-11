@@ -1,6 +1,6 @@
 {
   "name": "vue-patternfly",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "PatternFly components for Vue 2",
   "main": "dist/vue-patternfly.js",
   "module": "dist/vue-patternfly.esm.js",
