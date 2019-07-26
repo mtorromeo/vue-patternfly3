@@ -4,7 +4,7 @@
   <table class="table table-striped table-hover">
     <thead>
       <tr>
-        <th>Name</th>
+        <th class="name-column">Name</th>
         <th>Description</th>
         <th>Type</th>
         <th>Default</th>
@@ -17,6 +17,12 @@
   </table>
 </section>
 </template>
+
+<style scoped>
+.name-column {
+  min-width: 80px;
+}
+</style>
 
 <script>
 export default {

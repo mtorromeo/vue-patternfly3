@@ -125,4 +125,10 @@ h5.form-group[_v-3RyaW5nJyk]{display:inline-block;line-height:26.66666667px;marg
 .table-wrapper{position:relative;overflow:visible}table-head-clone{position:absolute}.table-overflow-container{overflow:auto;height:100%}table.dataTable{height:auto;position:relative}.table-view-pf-select label{display:initial;font-weight:400}.table-view-pf-select input[type=checkbox]{margin:0;position:relative;top:2px}.table-view-pf-actions .caret:before{content:"\f142"}
 .content-view-pf-pagination .form-group{-ms-flex-align:center;align-items:center}
 .nav-pf-vertical.collapsed>.list-group>.list-group-item.vertical-header-pf{height:15.75px;width:75px;padding:0}.nav-pf-vertical.collapsed>.list-group>.list-group-item.vertical-header-pf>.list-group-item-value{display:none}.nav-pf-vertical>.list-group>.list-group-item.vertical-header-pf{background-color:#1d1d1d;color:#fff;display:block;font-size:12px;font-weight:600;height:63px;line-height:26px;padding:29px 20px 5px 25px;position:relative;white-space:nowrap;width:200px}@supports (display:flex){.nav-pf-vertical>.list-group>.list-group-item.vertical-header-pf{display:-ms-flexbox;display:flex;padding-right:0}}.nav-pf-vertical>.list-group>.list-group-item.vertical-header-pf .fa,.nav-pf-vertical>.list-group>.list-group-item.vertical-header-pf .glyphicon,.nav-pf-vertical>.list-group>.list-group-item.vertical-header-pf .pficon{float:left;font-size:20px;line-height:26px;margin-right:10px;text-align:center;width:24px}.list-group-item .list-group-item.vertical-header-pf{line-height:25px;font-size:12px;margin-left:20px;padding:20px 0 2px 5px;font-weight:700;color:#fff;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;width:180px}.list-group-item .list-group-item.vertical-header-pf>.list-group-item-value{padding:0}
+.btn-group.disabled{color:#777}.btn-group>.spinner.spinner-inline{position:relative;top:2px;left:5px}
 .modal{display:block!important;-webkit-transform:translateY(0);transform:translateY(0);bottom:auto}
+
+.name-column[data-v-3815cad1] {
+  min-width: 80px;
+}
+

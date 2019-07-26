@@ -12,6 +12,7 @@ import CardsPage from './pages/cards.vue';
 import ToolbarPage from './pages/toolbar.vue';
 import TablePage from './pages/table.vue';
 import ListViewPage from './pages/list-view.vue';
+import FormControlsPage from './pages/form-controls.vue';
 import UtilizationBarPage from './pages/utilization-bar.vue';
 import ExpandCollapsePage from './pages/expand-collapse.vue';
 import ChartsPage from './pages/charts.vue';
@@ -58,6 +59,9 @@ const router = new VueRouter({
     }, {
       path: '/expand-collapse',
       component: ExpandCollapsePage,
+    }, {
+      path: '/form-controls',
+      component: FormControlsPage,
     }, {
       path: '/utilization-bar',
       component: UtilizationBarPage,

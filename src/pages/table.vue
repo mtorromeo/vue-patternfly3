@@ -47,6 +47,9 @@
           <li role="separator" class="divider"></li>
           <li><a href="#">Separated link</a></li>
         </template>
+        <template #footer>
+          Footer slot
+        </template>
       </pf-table>
     </div>
 
@@ -91,6 +94,11 @@
           <td>dropdown</td>
           <td>The dropdown items of the Actions column. You should specify a list of <code>li > a</code> items.</td>
           <td><code>row</code>: the row data</td>
+        </tr>
+        <tr>
+          <td>footer</td>
+          <td>Content placed beside the pagination controls.</td>
+          <td />
         </tr>
       </tbody>
     </table>

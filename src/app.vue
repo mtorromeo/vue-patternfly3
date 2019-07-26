@@ -203,6 +203,13 @@
       <pf-vertical-nav-divider title="Widgets"/>
 
       <pf-menu-item
+        to="/form-controls"
+        exact
+        title="Form Controls"
+        icon="fa-edit"
+      ></pf-menu-item>
+
+      <pf-menu-item
         to="/charts"
         exact
         title="Charts"
