@@ -66,12 +66,12 @@
 
       <tbody>
         <pf-table-row ref="row" v-for="(row, i) in rows" :key="keyName ? row[keyName] : i" :num="i" :selectable="selectable">
-          <slot :row="row"></slot>
+          <slot :row="row" />
           <template #action v-if="withSlot.action">
-            <slot name="action" :row="row"></slot>
+            <slot name="action" :row="row" />
           </template>
           <template #dropdown v-if="withSlot.dropdown">
-            <slot name="dropdown" :row="row"></slot>
+            <slot name="dropdown" :row="row" />
           </template>
         </pf-table-row>
       </tbody>
@@ -88,7 +88,9 @@
     @update:itemsPerPage="$emit('update:itemsPerPage', $event)"
     :items-per-page-options="itemsPerPageOptions"
     @change="$emit('update:page', arguments[0])"
-  />
+  >
+    <slot name="footer" />
+  </pf-paginate-control>
 </div>
 </template>
 

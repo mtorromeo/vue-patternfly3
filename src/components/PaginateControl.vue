@@ -7,6 +7,10 @@
     <span @click.stop="openPerPageSelect">{{labelPerPage}}</span>
   </div>
 
+  <div v-if="withSlot.default" class="form-group">
+    <slot />
+  </div>
+
   <div class="form-group">
     {{firstItem}}-{{lastItem}} {{labelOf}} {{totalItems}}
     <ul class="pagination pagination-pf-back">
@@ -52,11 +56,14 @@
 </template>
 
 <script>
+import SlotMonitor from '../mixins/SlotMonitor';
 import PfSelect from './Select.vue';
 import PfOption from './Option.vue';
 
 export default {
   name: 'pf-paginate-control',
+
+  mixins: [SlotMonitor],
 
   components: {
     PfSelect,

@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+### Added
+- New `#footer` slot of `pf-table` which directly maps to the `#default` slot of `pf-paginate-control`.
+
 ## [0.1.0] - 2019-07-11
 ### Added
 - `pf-table` and `pf-list-view` components now have a new `key-name` prop to specify the name of a property of each row to use as index for the `v-for` directive.
