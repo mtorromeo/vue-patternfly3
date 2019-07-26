@@ -77,7 +77,7 @@ export default {
         }
         if (prop.type == 'Boolean') {
           prop.default = Boolean(def.default).toString();
-        } else if (def.default) {
+        } else if (typeof def.default !== 'undefined') {
           if (typeof def.default == 'function') {
             prop.default = def.default();
           } else {

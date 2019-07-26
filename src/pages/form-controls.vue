@@ -16,6 +16,7 @@
         :inactive-class="btn.inactiveClass"
         :input="btn.input"
         :disabled="btn.disabled"
+        :loose="btn.loose"
       >
         Click me for {{ btn.checkedValue }}!
       </pf-radio-button>
@@ -28,6 +29,7 @@
         :inactive-class="btn.inactiveClass"
         :input="btn.input"
         :disabled="btn.disabled"
+        :loose="btn.loose"
       >
         Click me for baz!
       </pf-radio-button>
@@ -40,6 +42,7 @@
         :inactive-class="btn.inactiveClass"
         :input="btn.input"
         :disabled="btn.disabled"
+        :loose="btn.loose"
       >
         Click me for bar!
       </pf-radio-button>
@@ -53,6 +56,7 @@
       <props-row name="activeClass" description="Button class for active state." v-model="btn.activeClass" />
       <props-row name="inactiveClass" description="Button class for inactive state." v-model="btn.inactiveClass" />
       <props-row name="disabled" description="Disabled state." v-model="btn.disabled" />
+      <props-row name="loose" description="Use loose value matching." v-model="btn.loose" />
     </props-table>
 
 
@@ -94,12 +98,14 @@
           :off-class="toggle.offClass"
           :disabled="toggle.disabled"
           :loading="toggle.loading"
+          :loose="toggle.loose"
+          :no-off="toggle.noOff"
         >
           Toggle me!
         </pf-toggle>
       </p>
 
-      <p v-if="toggle.offValue === false">
+      <p v-if="toggle.noOff">
         <pf-toggle
           :name="toggle.name"
           v-model="toggle.value"
@@ -111,12 +117,14 @@
           :off-class="toggle.offClass"
           :disabled="toggle.disabled"
           :loading="toggle.loading"
+          :loose="toggle.loose"
+          :no-off="toggle.noOff"
         >
           Toggle me!
         </pf-toggle>
       </p>
 
-      <p v-if="toggle.offValue === false">
+      <p v-if="toggle.noOff">
         <pf-toggle
           :name="toggle.name"
           v-model="toggle.value"
@@ -128,6 +136,8 @@
           :off-class="toggle.offClass"
           :disabled="toggle.disabled"
           :loading="toggle.loading"
+          :loose="toggle.loose"
+          :no-off="toggle.noOff"
         >
           Toggle me!
         </pf-toggle>
@@ -141,10 +151,12 @@
       <props-row name="onValue" description="Value to use when the toggle is turned to ON." v-model="toggle.onValue" />
       <props-row name="onClass" description="Class for the ON button." v-model="toggle.onClass" />
       <props-row name="offText" description="Label for the OFF button." v-model="toggle.offText" />
-      <props-row name="offValue" description="Value to use when the toggle is turned to OFF. Use <code>false</code> to synchronize multiple <code>pf-toggle</code>s with an array of values." v-model="toggle.offValue" />
+      <props-row name="offValue" description="Value to use when the toggle is turned to OFF." v-model="toggle.offValue" />
       <props-row name="offClass" description="Class for the OFF button." v-model="toggle.offClass" />
       <props-row name="disabled" description="Disabled state." v-model="toggle.disabled" />
       <props-row name="loading" description="Loading state. Useful to apply while asynchronously submitting the change of state." v-model="toggle.loading" />
+      <props-row name="loose" description="Use loose value matching." v-model="toggle.loose" />
+      <props-row name="noOff" description="Do not assign any value when the toggle is OFF. By using multiple <code>pf-toggle</code>s the binded value is an Array of all the toggles set to ON." v-model="toggle.noOff" />
     </props-table>
 
 
@@ -186,6 +198,7 @@ export default {
         activeClass: 'active',
         inactiveClass: '',
         disabled: false,
+        loose: false,
       },
       toggleProps: Toggle.props,
       toggle: {
@@ -199,6 +212,8 @@ export default {
         offClass: 'btn-danger',
         disabled: false,
         loading: false,
+        loose: false,
+        noOff: false,
       },
     };
   },
