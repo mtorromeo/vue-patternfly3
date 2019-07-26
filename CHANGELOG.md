@@ -1,6 +1,14 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2019-07-26
+### Added
+- `pf-radio-button` and `pf-toggle` can choose if a loose value match should count as checked/on using the `loose` prop.
+
+### Changed
+- `pf-toggle`'s default `on-value` is now `true` and `off-value` is now `false`.
+- `pf-toggle` without an `off-value` are now required to use the `no-off` prop instead of `off-value=false`.
+
 ## [0.1.1] - 2019-07-26
 ### Added
 - New `#footer` slot of `pf-table` which directly maps to the `#default` slot of `pf-paginate-control`.
@@ -274,7 +282,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.1...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.2...HEAD
+[0.1.2]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.25...v0.1.0
 [0.0.25]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.24...v0.0.25

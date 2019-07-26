@@ -156,7 +156,7 @@ rules:
   no-useless-escape: error
   no-useless-rename: 'off'
   no-var: 'off'
-  no-void: error
+  no-void: 'off'
   no-warning-comments: error
   no-whitespace-before-property: error
   no-with: error

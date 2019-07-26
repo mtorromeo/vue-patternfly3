@@ -5,25 +5,27 @@
     :class="{disabled}"
     @keyup.space="toggle"
     @keyup.enter="toggle"
-    @keyup.left="toggle(onValue)"
-    @keyup.right="toggle(offValue)"
+    @keyup.left="set(onValue)"
+    @keyup.right="setOff"
   >
-    <template v-if="offValue !== false">
-      <pf-radio-button :name="name" :value="radioValue" :class="[`btn-${size}`]" :active-class="onClass" inactive-class="btn-default" :checked-value="onValue" :disabled="disabled" @input="toggle($event)">
+    <template v-if="noOff">
+      <pf-radio-button :name="name" input="checkbox" :value="value" :class="[`btn-${size}`]" :active-class="onClass" inactive-class="btn-default" :checked-value="onValue" :loose="loose" :disabled="disabled" @input="set(onValue)">
         {{ onText }}
       </pf-radio-button>
-      <pf-radio-button :name="name" :value="radioValue" :class="[`btn-${size}`]" :active-class="offClass" inactive-class="btn-default" :checked-value="offValue" :disabled="disabled" @input="toggle($event)">
-        {{ offText }}
-      </pf-radio-button>
-    </template>
-    <template v-else>
-      <pf-radio-button :name="name" input="checkbox" :value="value" :class="[`btn-${size}`]" :active-class="onClass" inactive-class="btn-default" :checked-value="onValue" :disabled="disabled" @input="toggle(onValue)">
-        {{ onText }}
-      </pf-radio-button>
-      <label class="btn" :class="[on ? 'btn-default' : offClass, `btn-${size}`]" @click="toggle(false)">
+      <label class="btn" :class="[on ? 'btn-default' : offClass, `btn-${size}`]" @click="setOff">
         {{ offText }}
       </label>
     </template>
+
+    <template v-else>
+      <pf-radio-button :name="name" :value="radioValue" :class="[`btn-${size}`]" :active-class="onClass" inactive-class="btn-default" :checked-value="onValue" :loose="loose" :disabled="disabled" @input="set($event)">
+        {{ onText }}
+      </pf-radio-button>
+      <pf-radio-button :name="name" :value="radioValue" :class="[`btn-${size}`]" :active-class="offClass" inactive-class="btn-default" :checked-value="offValue" :loose="loose" :disabled="disabled" @input="set($event)">
+        {{ offText }}
+      </pf-radio-button>
+    </template>
+
     <pf-spinner v-if="loading" :size="size" inline loading />
     &nbsp;
     <slot />
@@ -71,13 +73,14 @@ export default {
     },
     disabled: Boolean,
     loading: Boolean,
+    loose: Boolean,
     onText: {
       type: String,
       default: 'ON',
     },
     onValue: {
       type: [Boolean, String, Number],
-      default: '1',
+      default: true,
     },
     onClass: {
       type: String,
@@ -91,6 +94,7 @@ export default {
       type: [Boolean, String, Number],
       default: false,
     },
+    noOff: Boolean,
     offClass: {
       type: String,
       default: 'btn-danger',
@@ -104,42 +108,91 @@ export default {
 
   computed: {
     on() {
-      return this.arrValue.includes(this.onValue);
+      return this.test(this.onValue);
     },
 
     radioValue() {
       if (Array.isArray(this.value)) {
-        return this.value.includes(this.onValue) ? this.onValue : this.offValue;
+        return this.on ? this.onValue : this.offValue;
       }
       return this.value;
     },
 
-    arrValue() {
+    values() {
       return Array.isArray(this.value) ? this.value : [this.value];
     },
   },
 
+  watch: {
+    noOff() {
+      if (!this.test(this.onValue) && !this.test(this.offValue)) {
+        this.setOff();
+      } else if (this.noOff && !Array.isArray(this.value)) {
+        this.$emit('change', this.values);
+      }
+    },
+  },
+
   methods: {
-    toggle(value) {
+    test(value) {
+      if (!this.noOff) {
+        if (this.loose) {
+          return this.value == value;
+        }
+        return this.value === value;
+      }
+      if (this.loose) {
+        return typeof this.values.find(v => v == value) !== 'undefined';
+      }
+      return this.values.includes(value);
+    },
+
+    setOff() {
       if (this.disabled) {
         return;
       }
 
-      if (typeof value === 'undefined') {
-        value = this.value === this.onValue ? this.offValue : this.onValue;
-      }
-
-      if (value === false) {
-        this.$emit('change', this.arrValue.filter(v => v !== this.onValue));
+      if (this.noOff) {
+        this.$emit('change', this.values.filter(v => {
+          if (this.loose) {
+            return v != this.onValue;
+          }
+          return v !== this.onValue;
+        }));
         return;
       }
 
-      if (this.offValue === false && !Array.isArray(value)) {
-        this.$emit('change', this.arrValue.includes(value) ? this.arrValue : [...this.arrValue, value]);
+      this.set(this.offValue);
+    },
+
+    set(value) {
+      if (this.disabled) {
+        return;
+      }
+
+      if (this.noOff && !Array.isArray(value)) {
+        this.$emit('change', this.test(value) ? this.values : [...this.values, value]);
         return;
       }
 
       this.$emit('change', value);
+    },
+
+    toggle() {
+      if (this.disabled) {
+        return;
+      }
+
+      if (this.on) {
+        if (this.noOff) {
+          this.setOff();
+          return;
+        }
+        this.set(this.offValue);
+        return;
+      }
+
+      this.set(this.onValue);
     },
   },
 };

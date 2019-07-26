@@ -28,6 +28,7 @@ export default {
     name: String,
     checkedValue: {
       type: [Boolean, Number, String],
+      default: true,
     },
     input: {
       type: String,
@@ -35,11 +36,12 @@ export default {
       validator: type => ['radio', 'checkbox'].includes(type),
     },
     disabled: Boolean,
+    loose: Boolean,
   },
 
   computed: {
     checked() {
-      return Array.isArray(this.value) ? this.value.includes(this.checkedValue) : this.checkedValue === this.value;
+      return this.test(this.checkedValue);
     },
 
     stateClass() {
@@ -51,20 +53,51 @@ export default {
       }
       return '';
     },
+
+    values() {
+      return Array.isArray(this.value) ? this.value : [this.value];
+    },
+  },
+
+  watch: {
+    input() {
+      if (this.input === 'checkbox' && !Array.isArray(this.value)) {
+        this.$emit('input', this.values);
+      } else if (this.input === 'radio' && Array.isArray(this.value)) {
+        this.$emit('input', this.value.length ? this.value[0] : null);
+      }
+    },
   },
 
   methods: {
+    test(value) {
+      if (this.input === 'radio') {
+        if (this.loose) {
+          return this.value == value;
+        }
+        return this.value === value;
+      }
+      if (this.loose) {
+        return typeof this.values.find(v => v == value) !== 'undefined';
+      }
+      return this.values.includes(value);
+    },
+
     change() {
       if (this.disabled) {
         return;
       }
 
       if (this.input === 'checkbox') {
-        const arrValue = Array.isArray(this.value) ? [...this.value] : [this.value];
         if (this.checked) {
-          this.$emit('input', arrValue.filter(v => v !== this.checkedValue));
+          this.$emit('input', this.values.filter(v => {
+            if (this.loose) {
+              return v != this.checkedValue;
+            }
+            return v !== this.checkedValue;
+          }));
         } else {
-          this.$emit('input', arrValue.includes(this.checkedValue) ? arrValue : [...arrValue, this.checkedValue]);
+          this.$emit('input', this.test(this.checked) ? this.values : [...this.values, this.checkedValue]);
         }
         return;
       }
