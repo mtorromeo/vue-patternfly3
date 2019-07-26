@@ -25,6 +25,8 @@ import Table from './Table.vue';
 import PaginateControl from './PaginateControl.vue';
 import VerticalNavDivider from './VerticalNavDivider.vue';
 import VerticalSubmenu from './VerticalSubmenu.vue';
+import RadioButton from './RadioButton.vue';
+import Toggle from './Toggle.vue';
 import Spinner from './Spinner.vue';
 import Select from './Select.vue';
 import Option from './Option.vue';
@@ -64,6 +66,8 @@ export {
   PaginateControl,
   VerticalNavDivider,
   VerticalSubmenu,
+  RadioButton,
+  Toggle,
   Spinner,
   Select,
   Option,

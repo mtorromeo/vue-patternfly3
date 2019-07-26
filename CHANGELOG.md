@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - New `#footer` slot of `pf-table` which directly maps to the `#default` slot of `pf-paginate-control`.
+- New `pf-radio-button` and `pf-toggle` components.
 
 ## [0.1.0] - 2019-07-11
 ### Added
