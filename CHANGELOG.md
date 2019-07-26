@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [0.1.1] - 2019-07-26
 ### Added
 - New `#footer` slot of `pf-table` which directly maps to the `#default` slot of `pf-paginate-control`.
 - New `pf-radio-button` and `pf-toggle` components.
@@ -274,7 +274,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.25...v0.1.0
 [0.0.25]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.24...v0.0.25
 [0.0.24]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.23...v0.0.24
