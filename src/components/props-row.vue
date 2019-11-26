@@ -3,21 +3,26 @@
   <td>{{propName}}</td>
   <td v-html="description"></td>
   <td>{{prop.type}}</td>
-  <td>{{prop.default}}</td>
-  <td v-if="$parent.interactive"
-      :class="{
-        'has-error': error
-      }" :style="{
-        height: code ? '150px' : null,
-      }">
-    <input v-if="prop.type == 'Boolean'" type="checkbox" :checked="value" @change="update" @click.stop>
-    <select v-else-if="options.length" class="form-control" @change="update" @click.stop>
-      <option v-for="o in options" :key="o" :value="o" :selected="o == value">{{o}}</option>
-    </select>
-    <input v-else-if="!code && prop.object" type="text" class="form-control" :value="editableValue" @change="update" @click.stop>
-    <input v-else-if="!code" type="text" class="form-control" :value="editableValue" @keyup="update" @click.stop>
-    <ace-editor v-else class="form-control" :value="editableValue" @input="update" lang="javascript"></ace-editor>
+  <td v-if="prop.type == 'Function'" colspan="2">
+    <pre><code class="lang-javascript" v-text="prop.default"></code></pre>
   </td>
+  <template v-else>
+    <td>{{prop.default}}</td>
+    <td v-if="$parent.interactive"
+        :class="{
+          'has-error': error
+        }" :style="{
+          height: code ? '150px' : null,
+        }">
+      <input v-if="prop.type == 'Boolean'" type="checkbox" :checked="value" @change="update" @click.stop>
+      <select v-else-if="options.length" class="form-control" @change="update" @click.stop>
+        <option v-for="o in options" :key="o" :value="o" :selected="o == value">{{o}}</option>
+      </select>
+      <input v-else-if="!code && prop.object" type="text" class="form-control" :value="editableValue" @change="update" @click.stop>
+      <input v-else-if="!code" type="text" class="form-control" :value="editableValue" @keyup="update" @click.stop>
+      <ace-editor v-else class="form-control" :value="editableValue" @input="update" lang="javascript" />
+    </td>
+  </template>
 </tr>
 </template>
 
@@ -77,6 +82,9 @@ export default {
         }
         if (prop.type == 'Boolean') {
           prop.default = Boolean(def.default).toString();
+        } else if (prop.type == 'Function') {
+          const fnBody = def.default.toString();
+          prop.default = fnBody.replace(/^function +[A-Za-z0-9_]+ *(\([^)]*\))/, '$1 =>');
         } else if (typeof def.default !== 'undefined') {
           if (typeof def.default == 'function') {
             prop.default = def.default();
