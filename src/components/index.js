@@ -27,6 +27,7 @@ import VerticalNavDivider from './VerticalNavDivider.vue';
 import VerticalSubmenu from './VerticalSubmenu.vue';
 import RadioButton from './RadioButton.vue';
 import Toggle from './Toggle.vue';
+import Combobox from './Combobox.vue';
 import Spinner from './Spinner.vue';
 import Select from './Select.vue';
 import Option from './Option.vue';
@@ -68,6 +69,7 @@ export {
   VerticalSubmenu,
   RadioButton,
   Toggle,
+  Combobox,
   Spinner,
   Select,
   Option,
