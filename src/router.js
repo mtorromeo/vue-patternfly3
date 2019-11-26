@@ -1,70 +1,54 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import HomePage from './pages/home.vue';
-import GetStartedPage from './pages/get-started.vue';
-import LayoutPage from './pages/layout.vue';
-import ApplicationLauncherPage from './pages/application-launcher.vue';
-import ModalPage from './pages/modal.vue';
-import NotificationsPage from './pages/notifications.vue';
-import DrawerPage from './pages/drawer.vue';
-import CardsPage from './pages/cards.vue';
-import ToolbarPage from './pages/toolbar.vue';
-import TablePage from './pages/table.vue';
-import ListViewPage from './pages/list-view.vue';
-import FormControlsPage from './pages/form-controls.vue';
-import UtilizationBarPage from './pages/utilization-bar.vue';
-import ExpandCollapsePage from './pages/expand-collapse.vue';
-import ChartsPage from './pages/charts.vue';
-
 Vue.use(VueRouter);
 
 const router = new VueRouter({
   routes: [{
       path: '/',
-      component: HomePage,
+      component: () => import(/* webpackChunkName: "home" */ './pages/home.vue'),
     }, {
       path: '/get-started',
-      component: GetStartedPage,
+      component: () => import(/* webpackChunkName: "get-started" */ './pages/get-started.vue'),
     }, {
       path: '/layout',
-      component: LayoutPage,
+      component: () => import(/* webpackChunkName: "layout" */ './pages/layout.vue'),
     }, {
       path: '/application-launcher',
-      component: ApplicationLauncherPage,
+      component: () => import(/* webpackChunkName: "application-launcher" */ './pages/application-launcher.vue'),
     }, {
       path: '/notifications/drawer',
-      component: DrawerPage,
+      component: () => import(/* webpackChunkName: "drawer" */ './pages/drawer.vue'),
     }, {
       path: '/notifications',
-      component: NotificationsPage,
+      component: () => import(/* webpackChunkName: "notifications" */ './pages/notifications.vue'),
     }, {
       path: '/cards',
-      component: CardsPage,
+      component: () => import(/* webpackChunkName: "cards" */ './pages/cards.vue'),
     }, {
       path: '/toolbar',
-      component: ToolbarPage,
+      component: () => import(/* webpackChunkName: "toolbar" */ './pages/toolbar.vue'),
     }, {
       path: '/modal',
-      component: ModalPage,
+      component: () => import(/* webpackChunkName: "modal" */ './pages/modal.vue'),
     }, {
       path: '/table',
-      component: TablePage,
+      component: () => import(/* webpackChunkName: "table" */ './pages/table.vue'),
     }, {
       path: '/list-view',
-      component: ListViewPage,
+      component: () => import(/* webpackChunkName: "list-view" */ './pages/list-view.vue'),
     }, {
       path: '/charts',
-      component: ChartsPage,
+      component: () => import(/* webpackChunkName: "charts" */ './pages/charts.vue'),
     }, {
       path: '/expand-collapse',
-      component: ExpandCollapsePage,
+      component: () => import(/* webpackChunkName: "expand-collapse" */ './pages/expand-collapse.vue'),
     }, {
       path: '/form-controls',
-      component: FormControlsPage,
+      component: () => import(/* webpackChunkName: "form-controls" */ './pages/form-controls.vue'),
     }, {
       path: '/utilization-bar',
-      component: UtilizationBarPage,
+      component: () => import(/* webpackChunkName: "utilization-bar" */ './pages/utilization-bar.vue'),
   }],
 });
 
