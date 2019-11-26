@@ -1,7 +1,7 @@
 <template>
   <portal to="modals-target">
     <div class="modal" role="dialog" key="modal" @click="clickOutside">
-      <div class="modal-dialog" @click.stop>
+      <div ref="dialog" class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header" v-if="title">
             <button type="button" class="close" @click="cancel">
@@ -29,6 +29,16 @@
 <script>
 import {Portal} from 'portal-vue';
 import SlotMonitor from '../mixins/SlotMonitor';
+
+function isDescendantOf(node, ancestor) {
+  while (node) {
+    if (node === ancestor) {
+      return true;
+    }
+    node = node.parentElement;
+  }
+  return false;
+}
 
 export default {
   name: 'pf-modal',
@@ -78,8 +88,8 @@ export default {
       this.$emit('close');
     },
 
-    clickOutside() {
-      if (this.outsideClose) {
+    clickOutside(e) {
+      if (this.outsideClose && !isDescendantOf(e.target, this.$refs.dialog)) {
         this.cancel();
       }
     },
