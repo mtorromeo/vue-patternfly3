@@ -1,6 +1,13 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.1.3] - 2019-11-26
+### Added
+- New `pf-combobox` component.
+
+### Fixed
+- `pf-modal`s do not stop event click events from falling through anymore so that other components like `pf-dropdown` can detect outer clicks.
+
 ## [0.1.2] - 2019-07-26
 ### Added
 - `pf-radio-button` and `pf-toggle` can choose if a loose value match should count as checked/on using the `loose` prop.
