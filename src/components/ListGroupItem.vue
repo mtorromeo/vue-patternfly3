@@ -1,7 +1,7 @@
 <template>
 <div class="list-group-item" :class="[stateClass, {'list-view-pf-stacked': stacked}]" :style="{cursor: expandable ? 'pointer' : 'inherit'}" @click="toggle">
-  <div v-if="expandable && withSlot.expansion" class="list-view-pf-expand" :class="{active: expanded}">
-    <pf-icon name="fa-angle-right" :class="{'fa-angle-down': expanded}"/>
+  <div v-if="expandable && withSlot.expansion" class="list-view-pf-expand" :class="{active: isExpanded}">
+    <pf-icon name="fa-angle-right" :class="{'fa-angle-down': isExpanded}"/>
   </div>
   <div v-if="selectable" class="list-view-pf-checkbox">
     <label>
@@ -20,7 +20,7 @@
     <div class="close">
       <pf-icon name="pficon-close" @click="collapse"/>
     </div>
-    <slot v-if="expanded" name="expansion"/>
+    <slot v-if="isExpanded" name="expansion"/>
     <portal-target v-if="expandedAdditional" :name="portal"/>
   </div>
 </div>
@@ -43,7 +43,13 @@ export default {
     PfDropdown,
   },
 
+  model: {
+    prop: 'expanded',
+    event: 'expanded',
+  },
+
   props: {
+    expanded: Boolean,
     expandable: Boolean,
     stacked: Boolean,
     index: {
@@ -53,12 +59,24 @@ export default {
 
   data() {
     return {
-      expanded: false,
+      autoExpanded: false,
       expandedAdditional: null,
     };
   },
 
   computed: {
+    isExpanded: {
+      get() {
+        return typeof this.expanded === 'boolean' ? this.expanded : this.autoExpanded;
+      },
+      set(value) {
+        if (typeof this.expanded !== 'boolean') {
+          this.autoExpanded = value;
+        }
+        this.$emit('expanded', value);
+      },
+    },
+
     portal() {
       return `pf-list-group-item-portal-${this._uid}`;
     },
@@ -74,13 +92,13 @@ export default {
     },
 
     showExpansion() {
-      return (this.expandable && this.expanded) || this.expandedAdditional;
+      return (this.expandable && this.isExpanded) || this.expandedAdditional;
     },
   },
 
   methods: {
     collapse() {
-      this.expanded = false;
+      this.isExpanded = false;
       this.expandedAdditional = null;
     },
 
@@ -99,18 +117,12 @@ export default {
         }
       }
 
-      if (this.expanded) {
-        this.expanded = false;
+      if (this.isExpanded) {
+        this.isExpanded = false;
       } else {
-        this.expanded = true;
+        this.isExpanded = true;
         this.expandedAdditional = null;
       }
-    },
-  },
-
-  watch: {
-    expanded() {
-      this.$emit('expanded', this.expanded);
     },
   },
 };

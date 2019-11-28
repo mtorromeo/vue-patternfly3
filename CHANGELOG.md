@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [Unreleased]
+### Added
+- `pf-group-item` now have a new `expanded` prop that can be used as `v-model` for 2 way binding to control the expanded/collapsed state.
+
 ## [0.1.3] - 2019-11-26
 ### Added
 - New `pf-combobox` component.
