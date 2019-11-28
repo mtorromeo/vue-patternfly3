@@ -49,7 +49,10 @@ export default {
   },
 
   props: {
-    expanded: Boolean,
+    expanded: {
+      type: Boolean,
+      default: null,
+    },
     expandable: Boolean,
     stacked: Boolean,
     index: {
