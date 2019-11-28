@@ -25,6 +25,7 @@
         :selectable="listview.selectable"
         :expandable="listview.expandable"
         :stacked="listview.stacked"
+        :expanded="expandedRow"
       >
         <pf-list-item
           slot-scope="{row}"
@@ -216,6 +217,13 @@ export default {
         },
       },
     };
+  },
+
+  methods: {
+    expandedRow(row) {
+      console.log(row);
+      return Boolean(row.id % 2);
+    },
   },
 };
 </script>
