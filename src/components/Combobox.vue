@@ -223,11 +223,11 @@ export default {
     },
 
     blur() {
-      if (this.filter) {
-        this.filter = null;
-      }
       clearTimeout(this.blurTimeout);
       this.blurTimeout = setTimeout(() => {
+        if (this.filter) {
+          this.filter = null;
+        }
         this.showOptions = false;
       }, 200);
     },
