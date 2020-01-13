@@ -3,23 +3,19 @@
   "version": "0.1.5",
   "description": "PatternFly components for Vue 2",
   "main": "dist/vue-patternfly.js",
-  "module": "dist/vue-patternfly.esm.js",
+  "module": "dist/esm/index.js",
   "unpkg": "dist/vue-patternfly.min.js",
   "jsdelivr": "dist/vue-patternfly.min.js",
   "directories": {
     "test": "test"
   },
   "scripts": {
-    "purge": "rm -rf dist/*",
-    "compile": "NODE_ENV=production rollup -c && webpack --mode production --env production --progress && webpack --mode development --progress",
+    "prepare": "rm -rf dist/* && rollup -c",
     "dev": "rollup -wc",
-    "build": "npm run purge && npm run compile",
-    "lint": "eslint src/*.js",
-    "prepublish": "npm run lint && npm run build"
+    "prepublish": "eslint src/*.js"
   },
   "files": [
-    "dist/",
-    "src/"
+    "dist/"
   ],
   "keywords": [
     "vue",
@@ -38,6 +34,11 @@
   "engines": {
     "node": ">= 6.0"
   },
+  "peerDependencies": {
+    "c3": "~0.6",
+    "uiv": "~0.34",
+    "vue": "~2.6"
+  },
   "dependencies": {
     "c3": "^0.6.8",
     "es6-promise": "^4.2.5",
@@ -55,40 +56,27 @@
     "@babel/plugin-transform-runtime": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/runtime": "^7.1.2",
+    "@surma/rollup-plugin-off-main-thread": "^1.1.1",
     "autoprefixer": "^9.3.1",
     "babel-eslint": "^10.0.1",
-    "babel-loader": "^8.0.4",
-    "css-loader": "^3.2.0",
-    "cssnano": "^4.1.7",
     "eslint": "^6.7.1",
     "eslint-friendly-formatter": "^4.0.0",
-    "eslint-loader": "^3.0.2",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-vue": "^6.0.1",
-    "exports-loader": "^0.7.0",
-    "html-loader": "^0.5.1",
-    "imports-loader": "^0.8.0",
     "lodash-es": "^4.17.11",
-    "mini-css-extract-plugin": "^0.8.0",
     "node-sass": "^4.11.0",
-    "optimize-css-assets-webpack-plugin": "^5.0.1",
     "portal-vue": "^2.1.4",
-    "postcss": "^7.0.14",
-    "postcss-loader": "^3.0.0",
     "resize-observer-polyfill": "^1.5.0",
     "rollup": "^1.1.2",
     "rollup-plugin-babel": "^4.0.3",
     "rollup-plugin-commonjs": "^10.0.1",
-    "rollup-plugin-css-only": "^1.0.0",
+    "rollup-plugin-css-porter": "^1.0.2",
+    "rollup-plugin-embed-css": "^1.0.11",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.2.0",
     "rollup-plugin-vue": "^5.0.0",
-    "sass-loader": "^8.0.0",
-    "style-loader": "^1.0.0",
     "vue-functional-data-merge": "^3.1.0",
-    "vue-loader": "^15.6.2",
-    "vue-template-compiler": "^2.6.6",
-    "webpack": "^4.29.3",
-    "webpack-cli": "^3.2.3"
+    "vue-template-compiler": "^2.6.6"
   }
 }
