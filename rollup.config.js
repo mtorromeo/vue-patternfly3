@@ -11,6 +11,7 @@ import fs from 'fs';
 import path from 'path';
 import util from 'util';
 
+const readFile = util.promisify(fs.readFile);
 const readdir = util.promisify(fs.readdir);
 
 const external = ['vue', 'uiv', 'c3'];
@@ -105,19 +106,28 @@ export default (async () => {
 
   return [
     {
-      ...config(),
-      output: {
-        dir: 'dist/esm',
-        format: 'esm',
-        globals,
-      },
-    },
-    {
-      ...config(null, {}, [omt(), terser()]),
+      ...config(null, {}, [
+        omt({
+          loader: await readFile('./rollup-omt-loader.ejs', 'utf-8'),
+          globals: {
+            ...globals,
+            'vue-patternfly': 'VuePatternfly',
+          },
+        }),
+        terser(),
+      ]),
       output: {
         dir: 'dist/amd',
         format: 'amd',
         sourcemap: true,
+        globals,
+      },
+    },
+    {
+      ...config(),
+      output: {
+        dir: 'dist/esm',
+        format: 'esm',
         globals,
       },
     },

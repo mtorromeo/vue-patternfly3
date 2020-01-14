@@ -1,0 +1,99 @@
+/**
+ * Copyright 2018 Google Inc. All Rights Reserved.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+// If the loader is already loaded, just stop.
+if (!self.<%- amdFunctionName %>) {
+  const globals = <%- JSON.stringify(locals.globals || {}) %>;
+
+  const singleRequire = async name => {
+    if (name !== 'require') {
+      name = name + '.js';
+    }
+    let libname = name;
+    if (libname.substr(libname.length - 3, 3) === '.js') {
+      libname = libname.substr(0, libname.length - 3);
+    }
+    if (libname in globals) {
+      return window[globals[libname]];
+    }
+    if (!registry[name]) {
+      <% if (useEval) { %>
+        const code = await fetch(name).then(resp => resp.text());
+        eval(code);
+      <% } else { %>
+        await new Promise(async resolve => {
+          if ("document" in self) {
+            const script = document.createElement("script");
+            script.src = (window.VUE_PATTERNFLY_PATH || '') + name.slice(1);
+            document.head.appendChild(script);
+            script.onload = resolve;
+          } else {
+            importScripts(name);
+            resolve();
+          }
+        });
+      <% } %>
+
+      if (!registry[name]) {
+        throw new Error(`Module ${name} didn’t register its module`);
+      }
+    }
+    return registry[name];
+  };
+
+  const require = async (names, resolve) => {
+    const modules = await Promise.all(names.map(singleRequire));
+    resolve(modules.length === 1 ? modules[0] : modules);
+  };
+
+  // FIXME: This is probably not generic, lol.
+  require.toUrl = id => `./${id}`;
+
+  const registry = {
+    require: Promise.resolve(require)
+  };
+
+  self.<%- amdFunctionName %> = (moduleName, depsNames, factory) => {
+    if (registry[moduleName]) {
+      // Module is already loading or loaded.
+      return;
+    }
+    registry[moduleName] = new Promise(async resolve => {
+      let exports = {};
+      const module = {
+        uri: location.origin + '/' + (moduleName.substr(0, 1) === '.' ? (window.VUE_PATTERNFLY_PATH || '') + moduleName.slice(1) : moduleName),
+      };
+      const deps = await Promise.all(
+        depsNames.map(depName => {
+          if (depName === "exports") {
+            return exports;
+          }
+          if (depName === "module") {
+            return module;
+          }
+          return singleRequire(depName);
+        })
+      );
+      const facValue = factory(...deps);
+      if (typeof facValue !== 'undefined') {
+        exports = facValue;
+
+        // Hack to auto-register components loaded via script tags
+        if (window.Vue && facValue.hasOwnProperty('name') && facValue.name.substr(0, 3) === 'pf-') {
+          window.Vue.component(facValue.name, facValue);
+        }
+      }
+      resolve(exports);
+    });
+  };
+}
