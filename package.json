@@ -10,12 +10,16 @@
     "test": "test"
   },
   "scripts": {
-    "prepare": "rm -rf dist/* && rollup -c",
+    "prepare": "rm -rf dist/* esm/* cjs/* ssr/* amd/* && rollup -c",
     "dev": "rollup -wc",
     "prepublish": "eslint src/*.js"
   },
   "files": [
-    "dist/"
+    "dist/",
+    "esm/",
+    "cjs/",
+    "ssr/",
+    "amd/"
   ],
   "keywords": [
     "vue",

@@ -117,7 +117,7 @@ export default (async () => {
         terser(),
       ]),
       output: {
-        dir: 'dist/amd',
+        dir: 'amd',
         format: 'amd',
         sourcemap: true,
         globals,
@@ -125,16 +125,21 @@ export default (async () => {
     },
     {
       ...config(),
-      output: {
-        dir: 'dist/esm',
-        format: 'esm',
-        globals,
-      },
+      output: [{
+          dir: 'esm',
+          format: 'esm',
+          globals,
+        }, {
+          dir: 'cjs',
+          format: 'cjs',
+          globals,
+        },
+      ],
     },
     {
       ...config(false, {template: {optimizeSSR: true}}),
       output: {
-        dir: 'dist/cjs',
+        dir: 'ssr',
         format: 'cjs',
         globals,
       },
