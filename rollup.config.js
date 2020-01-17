@@ -14,11 +14,12 @@ import util from 'util';
 const readFile = util.promisify(fs.readFile);
 const readdir = util.promisify(fs.readdir);
 
-const external = ['vue', 'uiv', 'c3'];
+const external = ['vue', 'uiv', 'c3', 'portal-vue'];
 const globals = {
   c3: 'c3',
   vue: 'Vue',
   uiv: 'uiv',
+  'portal-vue': 'PortalVue',
 };
 
 const input = {
@@ -59,11 +60,7 @@ export default (async () => {
     plugins: [
       json(),
       resolve({external}),
-      commonjs({
-        namedExports: {
-          'node_modules/portal-vue/dist/portal-vue.js': ['PortalTarget', 'Portal'],
-        },
-      }),
+      commonjs(),
       babel({
         babelrc: false,
         presets: [
