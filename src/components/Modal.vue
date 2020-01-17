@@ -2,7 +2,7 @@
   <portal to="modals-target">
     <div class="modal" role="dialog" key="modal" @click="clickOutside">
       <div ref="dialog" class="modal-dialog">
-        <div class="modal-content">
+        <component :is="form ? 'form' : 'div'" class="modal-content" :target="target" :method="method" @submit="$emit('submit', $event)">
           <div class="modal-header" v-if="title">
             <button type="button" class="close" @click="cancel">
               <pf-icon name="pficon-close"/>
@@ -15,10 +15,10 @@
           <div class="modal-footer" v-if="withSlot.footer || cancelButton || confirmButton">
             <slot name="footer">
               <button type="button" class="btn btn-default" v-if="cancelButton" @click="cancel">{{cancelButton}}</button>
-              <button type="button" class="btn btn-primary" v-if="confirmButton" @click="confirm">{{confirmButton}}</button>
+              <button :type="form ? 'submit' : 'button'" class="btn btn-primary" v-if="confirmButton" @click="confirm">{{confirmButton}}</button>
             </slot>
           </div>
-        </div>
+        </component>
       </div>
     </div>
 
@@ -51,6 +51,15 @@ export default {
 
   props: {
     title: String,
+    form: Boolean,
+    target: {
+      type: String,
+      default: '',
+    },
+    method: {
+      type: String,
+      default: '',
+    },
     confirmButton: {
       type: String,
       default: 'OK',
