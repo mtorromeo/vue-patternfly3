@@ -64,6 +64,10 @@ export default {
   },
 
   watch: {
+    expanded() {
+      this.autoExpanded = this.expanded;
+    },
+
     autoExpanded() {
       this.$emit('update:expanded', this.autoExpanded);
     },
