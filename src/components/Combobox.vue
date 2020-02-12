@@ -50,7 +50,7 @@
         </li>
       </ul>
 
-      <a href="javascript:void(0)" role="button" class="input-group-addon dropdown-toggle" :class="{disabled: effectiveDisabled}" data-dropdown="dropdown" :disabled="effectiveDisabled" @click="dropdownClick">
+      <a href="javascript:void(0)" role="button" class="input-group-addon dropdown-toggle" :class="{disabled: effectiveDisabled}" data-dropdown="dropdown" :disabled="effectiveDisabled" @click.prevent="dropdownClick">
         <span class="caret" />
         <pf-icon name="glyphicon-remove" />
       </a>
@@ -114,7 +114,7 @@ export default {
   data() {
     return {
       showOptions: false,
-      filter: '',
+      filter: null,
       active: null,
       hasError: false,
       checked: false,
