@@ -24,6 +24,7 @@ const globals = {
 
 const input = {
   index: 'src',
+  'slot-monitor': 'src/mixins/SlotMonitor',
 };
 
 const baseVueOptions = {
