@@ -15,16 +15,34 @@
     </ol>
 
     <div class="cards-pf container-fluid container-cards-pf">
-      <div class="row-cards-pf">
-        <pf-card class="col-md-5 col-lg-3"
-                 :title="card.title"
-                 :sub-title="card.subTitle"
-                 :foot-note="card.footNote"
-                 :foot-href="card.footHref"
-                 :foot-icon="card.footIcon"
-                 :accented="card.accented"
-                 :show-titles-separator="card.showTitlesSeparator">
-        </pf-card>
+      <div class="row row-cards-pf">
+        <div class="col-md-5 col-lg-3">
+          <pf-card
+                  :title="card.title"
+                  :sub-title="card.subTitle"
+                  :foot-note="card.footNote"
+                  :foot-href="card.footHref"
+                  :foot-icon="card.footIcon"
+                  :accented="card.accented"
+                  :show-titles-separator="card.showTitlesSeparator">
+            <template #default>Test content</template>
+          </pf-card>
+        </div>
+
+        <div class="col-md-5 col-lg-3">
+          <pf-card
+                  :title="card.title"
+                  :sub-title="card.subTitle"
+                  :foot-note="card.footNote"
+                  :foot-href="card.footHref"
+                  :foot-icon="card.footIcon"
+                  :accented="card.accented"
+                  :show-titles-separator="card.showTitlesSeparator">
+            <template #default>&lt;template slot=&quot;default&quot;&gt;</template>
+            <template #header>&lt;template slot=&quot;header&quot;&gt;</template>
+            <template #footer>&lt;template slot=&quot;footer&quot;&gt;</template>
+          </pf-card>
+        </div>
       </div>
     </div>
 
@@ -37,6 +55,12 @@
       <props-row name="accented" description="Display accent on top of card" v-model="card.accented"/>
       <props-row name="showTitlesSeparator" description="Show separation between title and content" v-model="card.showTitlesSeparator"/>
     </props-table>
+
+    <slots-table readonly>
+      <slots-row name="default" description="The body of the card" />
+      <slots-row name="header" description="Can be used to override the header's content" />
+      <slots-row name="footer" description="Can be used to override the footer's content" />
+    </slots-table>
   </section>
 
 

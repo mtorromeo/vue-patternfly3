@@ -37,6 +37,11 @@
   margin-top: 50px;
 }
 
+.page .cards-pf.container-fluid > .row.row-cards-pf {
+  margin-left: -30px;
+  margin-right: -30px;
+}
+
 .navbar-brand-name,
 .home .jumbotron h1 {
   background: -webkit-linear-gradient(#93f9b9,#1d976c);
