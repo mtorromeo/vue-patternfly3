@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.1.6] - 2020-06-11
+### Added
+- `pf-card`s can now override the content of the header and footer using the new slots named `header` and `footer`.
+- Updated dependencies.
+
 ### [0.1.5] - 2019-11-27
 ### Fixed
 - Let `pf-group-item` auto-expand like before v0.1.4 if the `expanded` prop is not bound.
