@@ -1,18 +1,20 @@
 <template>
 <div class="card-pf" :class="{'card-pf-accented': accented}">
   <div v-if="showHeader" :class="{'card-pf-heading': showTitlesSeparator, 'card-pf-heading-no-bottom': !showTitlesSeparator}">
-    <pf-dropdown v-if="showFilterInHeader" class="card-pf-time-frame-filter" :text="currentFilter.label" menu-right>
-      <li
-        v-for="(item, i) in filter.filters"
-        :key="i"
-        :class="{'selected': item === currentFilter}"
-      >
-        <a href="javascript:void(0)" role="menuitem" tabindex="-1" @click="filterClicked(item)">
-          {{item.label}}
-        </a>
-      </li>
-    </pf-dropdown>
-    <h2 class="card-pf-title">{{title}}</h2>
+    <slot name="header">
+      <pf-dropdown v-if="showFilterInHeader" class="card-pf-time-frame-filter" :text="currentFilter.label" menu-right>
+        <li
+          v-for="(item, i) in filter.filters"
+          :key="i"
+          :class="{'selected': item === currentFilter}"
+        >
+          <a href="javascript:void(0)" role="menuitem" tabindex="-1" @click="filterClicked(item)">
+            {{item.label}}
+          </a>
+        </li>
+      </pf-dropdown>
+      <h2 class="card-pf-title">{{title}}</h2>
+    </slot>
   </div>
 
   <span v-if="subTitle" class="card-pf-subtitle">{{subTitle}}</span>
@@ -34,14 +36,16 @@
       </li>
     </pf-dropdown>
     <p v-if="showFooter">
-      <a v-if="footHref" :href="footHref" :class="{'card-pf-link-with-icon': footIcon, 'card-pf-link': !footIcon}">
-        <pf-icon v-if="footIcon" :name="footIcon" class="cart-pf-footer-text"/>
-        <span v-if="footNote" class="card-pf-footer-text">{{footNote}}</span>
-      </a>
-      <template v-else>
-        <pf-icon v-if="footIcon" :name="footIcon" class="cart-pf-footer-text"/>
-        <span v-if="footNote" class="card-pf-footer-text">{{footNote}}</span>
-      </template>
+      <slot name="footer">
+        <a v-if="footHref" :href="footHref" :class="{'card-pf-link-with-icon': footIcon, 'card-pf-link': !footIcon}">
+          <pf-icon v-if="footIcon" :name="footIcon" class="cart-pf-footer-text"/>
+          <span v-if="footNote" class="card-pf-footer-text">{{footNote}}</span>
+        </a>
+        <template v-else>
+          <pf-icon v-if="footIcon" :name="footIcon" class="cart-pf-footer-text"/>
+          <span v-if="footNote" class="card-pf-footer-text">{{footNote}}</span>
+        </template>
+      </slot>
     </p>
   </div>
 </div>
@@ -49,9 +53,12 @@
 
 <script>
 import PfDropdown from './Dropdown.vue';
+import SlotMonitor from '../mixins/SlotMonitor';
 
 export default {
   name: 'pf-card',
+
+  mixins: [SlotMonitor],
 
   components: {
     PfDropdown,
@@ -105,11 +112,11 @@ export default {
     },
 
     showHeader() {
-      return this.title || this.showFilterInHeader;
+      return this.withSlot.header || this.title || this.showFilterInHeader;
     },
 
     showFooter() {
-      return this.footNote || this.footIcon;
+      return this.withSlot.footer || this.footNote || this.footIcon;
     },
   },
 };
