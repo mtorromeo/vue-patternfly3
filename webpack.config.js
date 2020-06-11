@@ -51,7 +51,7 @@ module.exports = {
 
   resolve: {
     alias: {
-      'vue-patternfly$': path.resolve('../dist/vue-patternfly.esm.js'),
+      'vue-patternfly$': path.resolve('../dist/vue-patternfly.js'),
     },
   },
 
