@@ -2,11 +2,11 @@
 
 import path from 'path';
 import vue from 'rollup-plugin-vue';
-import babel from 'rollup-plugin-babel';
-import resolve from 'rollup-plugin-node-resolve';
-import json from 'rollup-plugin-json';
+import babel from '@rollup/plugin-babel';
+import resolve from '@rollup/plugin-node-resolve';
+import json from '@rollup/plugin-json';
 import css from 'rollup-plugin-css-only';
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
 
 const src = path.resolve(__dirname, 'src');
 const dist = path.resolve(__dirname, 'dist');
@@ -35,11 +35,7 @@ module.exports = {
     }),
     json(),
     resolve({external}),
-    commonjs({
-      namedExports: {
-        'node_modules/portal-vue/dist/portal-vue.js': ['PortalTarget', 'Portal'],
-      },
-    }),
+    commonjs(),
     babel({
       babelrc: false,
       presets: [
