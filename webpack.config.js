@@ -37,12 +37,6 @@ module.exports = env => {
           formatter: require('eslint-friendly-formatter'),
         },
       }, {
-        test: /\/patternfly-settings-colors\.js/,
-        use: [
-          'imports-loader?patternfly=>{},window=>{patternfly}',
-          'exports-loader?exports=default patternfly.pfPaletteColors',
-        ],
-      }, {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /\/node_modules\//,

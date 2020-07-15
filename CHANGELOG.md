@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.1.7] - 2020-07-15
+- Included a static patternfly palette instead of requiring weird webpack loader's tricks to read id from patternfly. Fixes some import issues of the esm build.
+- Updated dependencies.
+
 ### [0.1.6] - 2020-06-11
 ### Added
 - `pf-card`s can now override the content of the header and footer using the new slots named `header` and `footer`.
