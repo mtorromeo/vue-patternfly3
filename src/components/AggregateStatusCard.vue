@@ -12,7 +12,7 @@
     <h2 class="card-pf-title">
       <span :is="props.href ? 'a' : 'span'" :href="props.href">
         <pf-icon :name="props.icon"/>
-        <span v-if="props.count" class="card-pf-aggregate-status-count">{{props.count}}</span>
+        <span v-if="props.count || props.count === 0" class="card-pf-aggregate-status-count">{{props.count}}</span>
         <span class="card-pf-aggregate-status-title">{{props.title}}</span>
       </span>
     </h2>
