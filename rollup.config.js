@@ -131,6 +131,7 @@ export default (async () => {
           dir: 'cjs',
           format: 'cjs',
           globals,
+          exports: 'default',
         },
       ],
     },
@@ -140,6 +141,7 @@ export default (async () => {
         dir: 'ssr',
         format: 'cjs',
         globals,
+        exports: 'default',
       },
     },
     {
