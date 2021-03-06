@@ -1917,12 +1917,12 @@ builtin-status-codes@^3.0.0:
   resolved "https://registry.yarnpkg.com/builtin-status-codes/-/builtin-status-codes-3.0.0.tgz#85982878e21b98e1c66425e03d0174788f569ee8"
   integrity sha1-hZgoeOIbmOHGZCXgPQF0eI9Wnug=
 
-c3@^0.6.8:
-  version "0.6.14"
-  resolved "https://registry.yarnpkg.com/c3/-/c3-0.6.14.tgz#1969c0ff35749fd97f0ab70cdab8c7c7c267ba6a"
-  integrity sha512-ShbGpm2kGVOGaupEif2j+47GXXuv/D4USHpuFYLKp5VyywHGitnT8r7XIsU4n+U2foN/CUQT4nTdkePW89be1g==
+c3@^0.7.20:
+  version "0.7.20"
+  resolved "https://registry.yarnpkg.com/c3/-/c3-0.7.20.tgz#48cb3dbeeb0a5253aee6c3d795aaaf350e9f1147"
+  integrity sha512-QZg4q5M32x2TEgoiQPgc+G+rAuDErTjtG2AeLxS8s0ZLxHBoqsaRcraVvLBG8Zbmj8hOefz2DCWSlX3gaV/11g==
   dependencies:
-    d3 "^5.0.0"
+    d3 "^5.8.0"
 
 c3@~0.4.11:
   version "0.4.24"
@@ -2850,7 +2850,7 @@ d3-zoom@1:
     d3-selection "1"
     d3-transition "1"
 
-d3@^5.0.0:
+d3@^5.8.0:
   version "5.16.0"
   resolved "https://registry.yarnpkg.com/d3/-/d3-5.16.0.tgz#9c5e8d3b56403c79d4ed42fbd62f6113f199c877"
   integrity sha512-4PL5hHaHwX4m7Zr1UapXW23apo6pexCgdetdJ5kTmADpG/7T9Gkxw0M0tf/pjoB63ezCCm0u5UaFYy2aMt0Mcw==
