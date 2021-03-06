@@ -7586,10 +7586,10 @@ uglify-to-browserify@~1.0.0:
   resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
   integrity sha1-bgkk1r2mta/jSeOabWMoUKD4grc=
 
-uiv@^0.36.0:
-  version "0.36.0"
-  resolved "https://registry.yarnpkg.com/uiv/-/uiv-0.36.0.tgz#0b246de1f97c85f5bb783083a65f1a8e9f9a74ef"
-  integrity sha512-9F8wxe3DgZj/movfDmIpfuBGu6TKnzM5IZmhjOSaVeXhe+b1UmKvPw5DMuWVtTpmjkAOBkG6pkqtk9rbfQREhg==
+uiv@^0.37.0:
+  version "0.37.0"
+  resolved "https://registry.yarnpkg.com/uiv/-/uiv-0.37.0.tgz#a38ac511612ca9d4ead1b379b44cdca872ebd63e"
+  integrity sha512-e1psC34ocS3toJOULKrnwsQOU6cKBcKYkikPO7ZMMZ2iJPzSH/Af05dLme0+78aUIF1OCaL7vluoHcC97KV4XQ==
   dependencies:
     portal-vue "^2.1.7"
     vue-functional-data-merge "^2.0.3"
