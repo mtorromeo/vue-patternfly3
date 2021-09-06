@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {Dropdown} from 'uiv';
+import Dropdown from '../uiv/components/dropdown/Dropdown';
 
 // eslint-disable-next-line no-unused-vars
 const {appendToBody, positionElement, ...props} = Dropdown.props;

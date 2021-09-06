@@ -12,7 +12,7 @@ const src = path.resolve(__dirname, 'src');
 const dist = path.resolve(__dirname, 'dist');
 const {name} = require('./package.json');
 
-const external = ['vue', 'uiv', 'c3'];
+const external = ['vue', 'c3'];
 
 module.exports = {
   input: path.resolve(src, 'index.js'),

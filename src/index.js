@@ -3,8 +3,6 @@ import {version} from '../package.json';
 
 import * as components from './components';
 
-import * as uiv from 'uiv';
-
 const VuePatternfly = {
   version,
   ...components,
@@ -13,7 +11,6 @@ const VuePatternfly = {
     for (const [name, component] of Object.entries(components)) {
       Vue.component(component.name || name, component);
     }
-    uiv.install(Vue);
   },
 };
 

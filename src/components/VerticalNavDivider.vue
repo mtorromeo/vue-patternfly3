@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Tooltip from 'uiv/src/directives/tooltip/tooltip';
+import Tooltip from '../uiv/directives/tooltip/tooltip';
 
 export default {
   name: 'pf-vertical-nav-divider',

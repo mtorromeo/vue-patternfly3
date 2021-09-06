@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import {Popover} from 'uiv';
+import Popover from '../uiv/components/popover/Popover';
 
 export default {
   name: 'pf-column-picker',

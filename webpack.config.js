@@ -29,14 +29,6 @@ module.exports = env => {
 
     module: {
       rules: [{
-        enforce: 'pre',
-        test: /\.(vue|js)$/,
-        loader: 'eslint-loader',
-        exclude: /node_modules/,
-        options: {
-          formatter: require('eslint-friendly-formatter'),
-        },
-      }, {
         test: /\.jsx?$/,
         loader: 'babel-loader',
         exclude: /\/node_modules\//,
