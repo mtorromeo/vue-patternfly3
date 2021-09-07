@@ -5,7 +5,7 @@
     :class="[stateClass, {
       'btn-default': activeClass == 'active' && inactiveClass != 'btn-default',
     }]"
-    :disabled="disabled"
+    :disabled="disabled || null"
   >
     <input :type="input" style="display:none" :name="name" :checked="checked" :disabled="disabled" :value="checkedValue" @change="change">
     <slot />
@@ -22,7 +22,7 @@ export default {
       default: 'active',
     },
     inactiveClass: String,
-    value: {
+    modelValue: {
       type: [Boolean, Number, String, Array],
     },
     name: String,
@@ -38,6 +38,8 @@ export default {
     disabled: Boolean,
     loose: Boolean,
   },
+
+  emits: ['update:modelValue'],
 
   computed: {
     checked() {
@@ -55,16 +57,16 @@ export default {
     },
 
     values() {
-      return Array.isArray(this.value) ? this.value : [this.value];
+      return Array.isArray(this.modelValue) ? this.modelValue : [this.modelValue];
     },
   },
 
   watch: {
     input() {
-      if (this.input === 'checkbox' && !Array.isArray(this.value)) {
-        this.$emit('input', this.values);
-      } else if (this.input === 'radio' && Array.isArray(this.value)) {
-        this.$emit('input', this.value.length ? this.value[0] : null);
+      if (this.input === 'checkbox' && !Array.isArray(this.modelValue)) {
+        this.$emit('update:modelValue', this.values);
+      } else if (this.input === 'radio' && Array.isArray(this.modelValue)) {
+        this.$emit('update:modelValue', this.modelValue.length ? this.modelValue[0] : null);
       }
     },
   },
@@ -73,9 +75,9 @@ export default {
     test(value) {
       if (this.input === 'radio') {
         if (this.loose) {
-          return this.value == value;
+          return this.modelValue == value;
         }
-        return this.value === value;
+        return this.modelValue === value;
       }
       if (this.loose) {
         return typeof this.values.find(v => v == value) !== 'undefined';
@@ -90,20 +92,20 @@ export default {
 
       if (this.input === 'checkbox') {
         if (this.checked) {
-          this.$emit('input', this.values.filter(v => {
+          this.$emit('update:modelValue', this.values.filter(v => {
             if (this.loose) {
               return v != this.checkedValue;
             }
             return v !== this.checkedValue;
           }));
         } else {
-          this.$emit('input', this.test(this.checked) ? this.values : [...this.values, this.checkedValue]);
+          this.$emit('update:modelValue', this.test(this.checked) ? this.values : [...this.values, this.checkedValue]);
         }
         return;
       }
 
       if (!this.checked) {
-        this.$emit('input', this.checkedValue);
+        this.$emit('update:modelValue', this.checkedValue);
       }
     },
   },

@@ -1,9 +1,7 @@
-import {mergeData} from 'vue-functional-data-merge';
+import { h, resolveComponent, mergeProps } from 'vue';
 
 export default {
   name: 'pf-menu-item',
-
-  functional: true,
 
   props: {
     title: {
@@ -19,69 +17,68 @@ export default {
     vertical: Boolean,
   },
 
-  render(h, {props, data, children}) {
-    const {
-      vertical,
-      icon,
-      badge,
-      title,
-      href,
-      target,
-      ...attrs
-    } = props;
-
-    const tag = typeof attrs.to === 'undefined' ? 'li' : 'router-link';
-
-    if (tag === 'router-link') {
-      attrs.tag = 'li';
-      attrs.activeClass = 'active';
-    }
+  render() {
+    let tag = typeof this.to === 'undefined' ? 'li' : 'router-link';
 
     let elements = [];
 
-    if (icon) {
-      elements.push(h('pf-icon', {
-        attrs: {
-          name: icon,
-          title: title,
-        },
+    if (this.icon) {
+      elements.push(h(resolveComponent('pf-icon'), {
+        name: this.icon,
+        title: this.title,
       }));
     }
 
     elements.push(h('span', {
-      staticClass: 'list-group-item-value',
-    }, title));
+      class: 'list-group-item-value',
+    }, this.title));
 
-    if (badge) {
+    if (this.badge) {
       elements.push(h('div', {
-        staticClass: 'badge-container-pf',
+        class: 'badge-container-pf',
       }, [
-        h('div', {staticClass: 'badge'}, badge),
+        h('div', { class: 'badge' }, this.badge),
       ]));
     }
 
     elements = [
       h('a', {
-        attrs: {
-          href,
-          target,
-        },
+        href: this.href,
+        target: this.target,
       }, elements),
     ];
 
+    let children = this.$slots.default ? this.$slots.default() : [];
     if (children) {
-      if (vertical) {
+      if (this.vertical) {
         elements = elements.concat(children);
       } else {
         elements.push(h('ul', {
-          staticClass: 'nav navbar-nav navbar-persistent',
+          class: 'nav navbar-nav navbar-persistent',
         }, children));
       }
     }
 
-    return h(tag, mergeData(data, {
-      attrs,
-      staticClass: 'list-group-item',
-    }), elements);
+    let tagProps = {
+      class: 'list-group-item',
+    };
+
+    if (tag === 'router-link') {
+      tag = resolveComponent('router-link');
+      const liProps = mergeProps(tagProps, this.$attrs);
+      tagProps = {
+        activeClass: 'active',
+        custom: true,
+        to: this.to,
+      };
+      // children = elements;
+      children = {
+        default: ({ navigate }) => h('li', { onClick: navigate, ...liProps }, elements),
+      };
+    } else {
+      children = elements;
+    }
+
+    return h(tag, tagProps, children);
   },
 };

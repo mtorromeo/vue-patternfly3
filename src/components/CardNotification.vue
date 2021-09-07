@@ -1,16 +1,12 @@
-<template functional>
+<template>
   <span
-    v-bind="data.attrs"
-    v-on="listeners"
-    :class="[data.class, data.staticClass]"
-    :style="[data.style, data.staticStyle]"
-    v-if="props.icon || props.count || props.count === 0"
+    v-if="icon || count || count === 0"
     class="card-pf-aggregate-status-notification"
   >
-    <span :is="props.href ? 'a' : 'span'" :href="props.href">
-      <pf-icon v-if="props.icon" :name="props.icon"/>
-      {{props.count}}
-    </span>
+    <component :is="href ? 'a' : 'span'" :href="href">
+      <pf-icon v-if="icon" :name="icon" />
+      {{ count }}
+    </component>
   </span>
 </template>
 

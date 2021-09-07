@@ -1,49 +1,18 @@
 <template>
-<div class="table-wrapper">
-  <table v-if="scrollable"
-    class="table dataTable table-head-clone"
-    :style="{
-      opacity: showClones ? 1 : 0,
-    }"
-    :class="{
-      'table-striped': striped,
-      'table-bordered': bordered,
-      'table-hover': hover,
-    }"
-  >
-    <thead ref="thead-clone">
-      <tr>
-        <th v-if="selectable" class="table-view-pf-select" aria-label="Select all rows">
-          <label>
-            <span class="sr-only">Select all rows</span>
-            <input type="checkbox" @change="changeSelectAll">
-          </label>
-        </th>
-        <th
-          v-for="(column, i) in columns"
-          :key="i"
-          :class="{
-            sorting: sortable && column != sortBy,
-            sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
-            sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
-          }"
-          @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')"
-        >{{column}}</th>
-        <th v-if="actionSpan" :colspan="actionSpan">Actions</th>
-      </tr>
-    </thead>
-  </table>
-
-  <div class="table-overflow-container">
-    <table class="table dataTable" role="grid" :class="{
-      'table-striped': striped,
-      'table-bordered': bordered,
-      'table-hover': hover,
-    }" :style="{
-      'margin-top': scrollable ? `-${headHeight + 1}px` : 0,
-    }">
-      <thead ref="thead">
-        <tr role="row">
+  <div class="table-wrapper">
+    <table v-if="scrollable"
+           class="table dataTable table-head-clone"
+           :style="{
+             opacity: showClones ? 1 : 0,
+           }"
+           :class="{
+             'table-striped': striped,
+             'table-bordered': bordered,
+             'table-hover': hover,
+           }"
+    >
+      <thead ref="thead-clone">
+        <tr>
           <th v-if="selectable" class="table-view-pf-select" aria-label="Select all rows">
             <label>
               <span class="sr-only">Select all rows</span>
@@ -59,51 +28,87 @@
               sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
             }"
             @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')"
-          >{{column}}</th>
-          <th v-if="actionSpan" :colspan="actionSpan">Actions</th>
+          >
+            {{ column }}
+          </th>
+          <th v-if="actionSpan" :colspan="actionSpan">
+            Actions
+          </th>
         </tr>
       </thead>
-
-      <tbody>
-        <pf-table-row ref="row" v-for="(row, i) in rows" :key="keyName ? row[keyName] : i" :num="i" :selectable="selectable">
-          <slot :row="row" />
-          <template #action v-if="withSlot.action">
-            <slot name="action" :row="row" />
-          </template>
-          <template #dropdown v-if="withSlot.dropdown">
-            <slot name="dropdown" :row="row" />
-          </template>
-        </pf-table-row>
-      </tbody>
     </table>
-  </div>
 
-  <pf-paginate-control
-    type="table"
-    v-if="itemsPerPage > 0"
-    ref="pagination"
-    :page="page"
-    :total-items="totalItems"
-    :items-per-page="itemsPerPage"
-    @update:itemsPerPage="$emit('update:itemsPerPage', $event)"
-    :items-per-page-options="itemsPerPageOptions"
-    @change="$emit('update:page', arguments[0])"
-  >
-    <slot name="footer" />
-  </pf-paginate-control>
-</div>
+    <div class="table-overflow-container">
+      <table class="table dataTable" role="grid" :class="{
+        'table-striped': striped,
+        'table-bordered': bordered,
+        'table-hover': hover,
+      }" :style="{
+        'margin-top': scrollable ? `-${headHeight + 1}px` : 0,
+      }">
+        <thead ref="thead">
+          <tr role="row">
+            <th v-if="selectable" class="table-view-pf-select" aria-label="Select all rows">
+              <label>
+                <span class="sr-only">Select all rows</span>
+                <input type="checkbox" @change="changeSelectAll">
+              </label>
+            </th>
+            <th
+              v-for="(column, i) in columns"
+              :key="i"
+              :class="{
+                sorting: sortable && column != sortBy,
+                sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
+                sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
+              }"
+              @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')"
+            >
+              {{ column }}
+            </th>
+            <th v-if="actionSpan" :colspan="actionSpan">
+              Actions
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <pf-table-row v-for="(row, i) in rows" ref="row" :key="keyName ? row[keyName] : i" :num="i" :selectable="selectable">
+            <slot :row="row" />
+            <template v-if="$slots.action" #action>
+              <slot name="action" :row="row" />
+            </template>
+            <template v-if="$slots.dropdown" #dropdown>
+              <slot name="dropdown" :row="row" />
+            </template>
+          </pf-table-row>
+        </tbody>
+      </table>
+    </div>
+
+    <pf-paginate-control
+      v-if="itemsPerPage > 0"
+      ref="pagination"
+      type="table"
+      :page="page"
+      :total-items="totalItems"
+      :items-per-page="itemsPerPage"
+      :items-per-page-options="itemsPerPageOptions"
+      @update:itemsPerPage="$emit('update:itemsPerPage', $event)"
+      @change="$emit('update:page', arguments[0])"
+    >
+      <slot name="footer" />
+    </pf-paginate-control>
+  </div>
 </template>
 
 <script>
 import ResizeObserver from 'resize-observer-polyfill';
 import PfTableRow from './TableRow.vue';
 import debounce from 'lodash-es/debounce';
-import SlotMonitor from '../mixins/SlotMonitor';
 
 export default {
   name: 'pf-table',
-
-  mixins: [SlotMonitor],
 
   components: {
     PfTableRow,
@@ -148,12 +153,36 @@ export default {
     sortDirection: String,
   },
 
+  emits: ['update:page', 'update:itemsPerPage', 'sort-by', 'update:sortBy', 'update:sortDirection'],
+
   data() {
     return {
       headHeight: 27,
       paginationHeight: 38,
       showClones: false,
     };
+  },
+
+  computed: {
+    actionSpan() {
+      let colspan = 0;
+      if (this.$slots.action) {
+        colspan++;
+      }
+      if (this.$slots.dropdown) {
+        colspan++;
+      }
+      return colspan;
+    },
+  },
+
+  watch: {
+    columns: {
+      handler() {
+        this.$nextTick(this.observeThead);
+      },
+      deep: true,
+    },
   },
 
   mounted() {
@@ -174,7 +203,7 @@ export default {
           continue;
         }
 
-        if (entry.target.tagName == 'THEAD') {
+        if (entry.target.tagName === 'THEAD') {
           this.headHeight = theadClone.clientHeight;
         } else {
           this.syncHeaders();
@@ -210,23 +239,10 @@ export default {
     });
   },
 
-  destroyed() {
+  unmounted() {
     this.headObserver.disconnect();
     this.paginationObserver.disconnect();
     this.scrollableUnwatch();
-  },
-
-  computed: {
-    actionSpan() {
-      let colspan = 0;
-      if (this.withSlot.action) {
-        colspan++;
-      }
-      if (this.withSlot.dropdown) {
-        colspan++;
-      }
-      return colspan;
-    },
   },
 
   methods: {
@@ -250,7 +266,7 @@ export default {
       const selected = [];
       for (const row of this.$refs.row) {
         const id = row.num;
-        if (typeof id != 'undefined' && row.selected && this.rows[id]) {
+        if (typeof id !== 'undefined' && row.selected && this.rows[id]) {
           selected.push(this.rows[id]);
         }
       }
@@ -293,15 +309,6 @@ export default {
       }
 
       this.showClones = true;
-    },
-  },
-
-  watch: {
-    columns: {
-      handler() {
-        this.$nextTick(this.observeThead);
-      },
-      deep: true,
     },
   },
 };

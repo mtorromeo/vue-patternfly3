@@ -6,45 +6,47 @@
     'input-group-btn': inInput,
     'btn-group': !isLi && !inInput,
   }">
-    <div :is="btnType" :type="button ? 'button' : null" ref="btn" class="dropdown-toggle" :class="{
-      'btn btn-default': button,
-      'form-control': !button,
-    }" :tabindex="tabindex" :disabled="disabled" :readonly="readonly" role="button" :aria-expanded="show.toString()"
-      @blur="canSearch ? null : close"
-      @click="toggle"
-      @keydown.esc.stop.prevent="close"
-      @keydown.space.stop.prevent="toggle"
-      @keydown.enter.stop.prevent="toggle"
+    <component :is="btnType" ref="btn" :type="button ? 'button' : null" class="dropdown-toggle" :class="{
+                 'btn btn-default': button,
+                 'form-control': !button,
+               }" :tabindex="tabindex" :disabled="disabled" :readonly="readonly" role="button" :aria-expanded="show.toString()"
+               @blur="canSearch ? null : close"
+               @click="toggle"
+               @keydown.esc.stop.prevent="close"
+               @keydown.space.stop.prevent="toggle"
+               @keydown.enter.stop.prevent="toggle"
     >
       <span :class="{
         'filter-option pull-left': button,
         'btn-content': !button,
-      }" v-html="showPlaceholder || selected"></span>
+      }" v-html="showPlaceholder || selected" />
       <span v-if="clearButton && values.length" class="close" @click="clear">&times;</span>
       <span v-if="button" class="bs-caret">
-        <span class="caret"></span>
+        <span class="caret" />
       </span>
-    </div>
+    </component>
 
     <ul class="dropdown-menu">
-      <template>
-        <li v-if="canSearch" class="bs-searchbox">
-          <input type="text" :placeholder="typeof search == 'string' ? search : ''" class="form-control" autocomplete="off" ref="search"
-            v-model="filter"
-            @keyup.esc="close"
-          />
-          <span v-show="filter" class="close" @click="clearSearch">&times;</span>
-        </li>
+      <li v-if="canSearch" class="bs-searchbox">
+        <input ref="search" v-model="filter" type="text" :placeholder="typeof search == 'string' ? search : ''" class="form-control"
+               autocomplete="off"
+               @keyup.esc="close"
+        >
+        <span v-show="filter" class="close" @click="clearSearch">&times;</span>
+      </li>
 
-        <li v-if="required && !clearButton"><a @mousedown.prevent="clear() && close()">{{placeholder}}</a></li>
+      <li v-if="required && !clearButton">
+        <a @mousedown.prevent="clear() && close()">{{ placeholder }}</a>
+      </li>
 
-        <slot/>
-      </template>
+      <slot />
     </ul>
   </div>
 </template>
 
 <script>
+import { provideChildrenTracker } from '../use';
+
 export default {
   name: 'pf-select',
 
@@ -59,9 +61,7 @@ export default {
     },
     name: {
       type: String,
-      default() {
-        return `pf-select-uid-${this._uid}`;
-      },
+      default: null,
     },
     placeholder: String,
     readonly: Boolean,
@@ -70,7 +70,14 @@ export default {
     tabindex: String,
   },
 
-  data () {
+  setup() {
+    const options = provideChildrenTracker();
+    return {
+      options,
+    };
+  },
+
+  data() {
     return {
       filter: '',
       show: false,
@@ -80,18 +87,9 @@ export default {
     };
   },
 
-  updated() {
-    this.selected = this.$children.reduce(function(labels, c) {
-      if (c.checked) {
-        labels.push(c.$el.innerText);
-      }
-      return labels;
-    }, []).join(', ');
-  },
-
   computed: {
     canSearch() {
-      return this.minSearch ? this.$children.length >= this.minSearch : this.search;
+      return this.minSearch ? this.options.length >= this.minSearch : this.search;
     },
 
     showPlaceholder() {
@@ -99,7 +97,7 @@ export default {
     },
 
     values() {
-      return this.$children.reduce(function(values, c) {
+      return this.options.reduce(function(values, c) {
         if (c.checked) {
           values.push(c.value);
         }
@@ -122,10 +120,29 @@ export default {
     },
 
     filter() {
-      for (const c of this.$children) {
+      for (const c of this.options) {
         c.filter = this.filter;
       }
     },
+  },
+
+  updated() {
+    this.selected = this.options.reduce(function(labels, c) {
+      if (c.checked) {
+        labels.push(c.$el.innerText);
+      }
+      return labels;
+    }, []).join(', ');
+  },
+
+  mounted() {
+    this.isLi = this.$el && this.$el.parentNode.tagName === 'LI';
+    this.inInput = !this.isLi && this.$parent._input;
+    document.addEventListener('click', this.outerClick);
+  },
+
+  beforeUnmount() {
+    document.removeEventListener('click', this.outerClick);
   },
 
   methods: {
@@ -168,16 +185,6 @@ export default {
     focus() {
       this.$refs.btn.focus();
     },
-  },
-
-  mounted() {
-    this.isLi = this.$el.parentNode.tagName == 'LI';
-    this.inInput = !this.isLi && this.$parent._input;
-    document.addEventListener('click', this.outerClick);
-  },
-
-  beforeDestroy() {
-    document.removeEventListener('click', this.outerClick);
   },
 };
 </script>

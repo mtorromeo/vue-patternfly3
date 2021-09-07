@@ -1,37 +1,35 @@
 <template>
-<div class="drawer-pf" :class="{
-  'hide': hidden,
-  'drawer-pf-expanded': allowExpand && expanded,
-}">
+  <div class="drawer-pf" :class="{
+    'hide': hidden,
+    'drawer-pf-expanded': allowExpand && expanded,
+  }">
+    <slot name="title">
+      <div v-if="title" class="drawer-pf-title">
+        <a v-if="allowExpand" class="drawer-pf-toggle-expand" @click="expanded = !expanded" />
+        <a class="drawer-pf-close" @click="close">
+          <pf-icon name="fa-close" />
+        </a>
+        <h3 class="text-center">
+          {{ title }}
+        </h3>
+      </div>
+    </slot>
 
-  <slot name="title">
-    <div v-if="title" class="drawer-pf-title">
-      <a v-if="allowExpand" class="drawer-pf-toggle-expand" @click="expanded = !expanded"></a>
-      <a class="drawer-pf-close" @click="close">
-        <pf-icon name="fa-close"/>
-      </a>
-      <h3 class="text-center">{{title}}</h3>
+    <div>
+      <div class="panel-group">
+        <slot />
+      </div>
     </div>
-  </slot>
 
-  <div>
-    <div class="panel-group">
-      <slot/>
-    </div>
+    <div ref="dropdowns" class="dropdown-kebab-pf" />
   </div>
-
-  <div ref="dropdowns" class="dropdown-kebab-pf"></div>
-</div>
 </template>
 
 <script>
+import { ref, provide } from 'vue';
+
 export default {
   name: 'pf-drawer',
-
-  model: {
-    prop: 'hidden',
-    event: 'update:hidden',
-  },
 
   props: {
     hidden: {
@@ -40,6 +38,14 @@ export default {
     },
     allowExpand: Boolean,
     title: String,
+  },
+
+  emits: ['update:hidden'],
+
+  setup() {
+    const activeGroup = ref(null);
+    provide('activeGroup', activeGroup);
+    return { activeGroup };
   },
 
   data() {

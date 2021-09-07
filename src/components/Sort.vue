@@ -1,16 +1,16 @@
 <template>
-<div class="sort-pf">
-  <pf-dropdown :text="current.label">
-    <li v-for="field in normFields" :key="field.name" :class="{'selected': active == field.name}">
-      <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="select(field)">
-        {{field.label}}
-      </a>
-    </li>
-  </pf-dropdown>
-  <button type="button" class="btn btn-link"  @click="invert">
-    <pf-icon class="sort-direction" :name="sortIcon"/>
-  </button>
-</div>
+  <div class="sort-pf">
+    <pf-dropdown :text="current.label">
+      <li v-for="field in normFields" :key="field.name" :class="{'selected': active == field.name}">
+        <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="select(field)">
+          {{ field.label }}
+        </a>
+      </li>
+    </pf-dropdown>
+    <button type="button" class="btn btn-link" @click="invert">
+      <pf-icon class="sort-direction" :name="sortIcon" />
+    </button>
+  </div>
 </template>
 
 <script>
@@ -37,12 +37,38 @@ export default {
     },
   },
 
+  emits: ['change'],
+
   data() {
     return {
       normFields: [],
       active: '',
       ascending: true,
     };
+  },
+
+  computed: {
+    current() {
+      if (!this.active) {
+        return {
+          label: 'Sort by',
+        };
+      }
+      for (const field of this.normFields) {
+        if (field.name == this.active) {
+          return field;
+        }
+      }
+      return {
+        label: 'Sort by',
+      };
+    },
+
+    sortIcon() {
+      const dir = this.ascending ? 'asc' : 'desc';
+      const typ = this.current.type === 'numeric' ? 'numeric' : 'alpha';
+      return `fa-sort-${typ}-${dir}`;
+    },
   },
 
   watch: {
@@ -70,39 +96,15 @@ export default {
     },
     direction: {
       handler() {
-        this.ascending = this.direction == 'ascending';
+        this.ascending = this.direction === 'ascending';
       },
       immediate: true,
     },
   },
 
-  computed: {
-    current() {
-      if (!this.active) {
-        return {
-          label: 'Sort by',
-        };
-      }
-      for (const field of this.normFields) {
-        if (field.name == this.active) {
-          return field;
-        }
-      }
-      return {
-        label: 'Sort by',
-      };
-    },
-
-    sortIcon() {
-      const dir = this.ascending ? 'asc' : 'desc';
-      const typ = this.current.type == 'numeric' ? 'numeric' : 'alpha';
-      return `fa-sort-${typ}-${dir}`;
-    },
-  },
-
   methods: {
     fieldDefinition(field, name) {
-      if (typeof field == 'object') {
+      if (typeof field === 'object') {
         field = Object.assign({}, field);
       } else {
         field = {

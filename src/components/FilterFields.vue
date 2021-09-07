@@ -1,26 +1,28 @@
 <template>
-<div class="input-group">
-  <pf-dropdown :text="current.label" class="input-group-btn" v-if="showDropdown">
-    <li v-for="(item, name) in normFields" :key="name">
-      <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = name">
-        {{item.label}}
-      </a>
-    </li>
-  </pf-dropdown>
-  <pf-select close-on-select class="filter-select" v-if="isSelect" :placeholder="current.placeholder">
-    <pf-option :checked-value="item" v-for="(item, i) in current.values" :key="i" @input="set">{{item}}</pf-option>
-  </pf-select>
-  <div v-else>
-    <input
-      ref="input"
-      class="form-control"
-      type="text"
-      :value="value"
-      @keyup.enter.stop="set"
-      :placeholder="showDropdown || current.placeholder ? current.placeholder : current.label"
-    >
+  <div class="input-group">
+    <pf-dropdown v-if="showDropdown" :text="current.label" class="input-group-btn">
+      <li v-for="(item, name) in normFields" :key="name">
+        <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = name">
+          {{ item.label }}
+        </a>
+      </li>
+    </pf-dropdown>
+    <pf-select v-if="isSelect" close-on-select class="filter-select" :placeholder="current.placeholder">
+      <pf-option v-for="(item, i) in current.values" :key="i" :checked-value="item" @update:model-alue="set">
+        {{ item }}
+      </pf-option>
+    </pf-select>
+    <div v-else>
+      <input
+        ref="input"
+        class="form-control"
+        type="text"
+        :value="value"
+        :placeholder="showDropdown || current.placeholder ? current.placeholder : current.label"
+        @keyup.enter.stop="set"
+      >
+    </div>
   </div>
-</div>
 </template>
 
 <script>
@@ -50,30 +52,13 @@ export default {
     },
   },
 
+  emits: ['filter'],
+
   data() {
     return {
       normFields: [],
       selected: 0,
     };
-  },
-
-  watch: {
-    fields: {
-      handler (fields) {
-        const normFields = [];
-        if (Array.isArray(fields)) {
-          for (const f of fields) {
-            normFields.push(this.fieldDefinition(f));
-          }
-        } else {
-          for (const i of Object.keys(fields)) {
-            normFields.push(this.fieldDefinition(fields[i], i));
-          }
-        }
-        this.normFields = normFields;
-      },
-      immediate: true,
-    },
   },
 
   computed: {
@@ -97,9 +82,28 @@ export default {
     },
   },
 
+  watch: {
+    fields: {
+      handler(fields) {
+        const normFields = [];
+        if (Array.isArray(fields)) {
+          for (const f of fields) {
+            normFields.push(this.fieldDefinition(f));
+          }
+        } else {
+          for (const i of Object.keys(fields)) {
+            normFields.push(this.fieldDefinition(fields[i], i));
+          }
+        }
+        this.normFields = normFields;
+      },
+      immediate: true,
+    },
+  },
+
   methods: {
     fieldDefinition(field, name) {
-      if (typeof field == 'object') {
+      if (typeof field === 'object') {
         field = Object.assign({}, field);
       } else {
         field = {
@@ -115,7 +119,7 @@ export default {
 
     set(value) {
       if (value !== null) {
-        if (typeof value == 'object') {
+        if (typeof value === 'object') {
           value = value.target.value;
         }
         const filter = Object.assign({}, this.current);

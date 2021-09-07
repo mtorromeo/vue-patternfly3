@@ -1,21 +1,28 @@
 import './index.css';
-import {version} from '../package.json';
-
 import * as components from './components';
+import VTooltip from './directives/tooltip';
 
-const VuePatternfly = {
-  version,
-  ...components,
+// Declare install function executed by Vue.use()
+export function install(app) {
+  if (install.installed) {
+    return;
+  }
+  install.installed = true;
+  for (const [name, component] of Object.entries(components)) {
+    app.component(component.name || name, component);
+  }
+  app.directive('tooltip', VTooltip);
+}
 
-  install(Vue) {
-    for (const [name, component] of Object.entries(components)) {
-      Vue.component(component.name || name, component);
-    }
-  },
+// Create module definition for Vue.use()
+const plugin = {
+  install,
 };
 
-export default VuePatternfly;
+export { version } from '../package.json';
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(VuePatternfly);
-}
+// To allow use as module (npm/webpack/etc.) export components
+export * from './components';
+export { default as VTooltip } from './directives/tooltip';
+
+export default plugin;

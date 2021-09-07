@@ -1,7 +1,6 @@
 import AggregateStatusCard from './AggregateStatusCard.vue';
 import ApplicationLauncher from './ApplicationLauncher.vue';
 import LauncherItem from './LauncherItem.vue';
-import C3Chart from './C3Chart.vue';
 import Card from './Card.vue';
 import CardNotification from './CardNotification.vue';
 import Dropdown from './Dropdown.vue';
@@ -43,7 +42,6 @@ export {
   AggregateStatusCard,
   ApplicationLauncher,
   LauncherItem,
-  C3Chart,
   Card,
   CardNotification,
   Dropdown,

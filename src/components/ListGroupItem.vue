@@ -1,52 +1,44 @@
 <template>
-<div class="list-group-item" :class="[stateClass, {'list-view-pf-stacked': stacked}]" :style="{cursor: expandable ? 'pointer' : 'inherit'}" @click="toggle">
-  <div v-if="expandable && withSlot.expansion" class="list-view-pf-expand" :class="{active: isExpanded}">
-    <pf-icon name="fa-angle-right" :class="{'fa-angle-down': isExpanded}"/>
-  </div>
-  <div v-if="selectable" class="list-view-pf-checkbox">
-    <label>
-      <span class="sr-only">Select row {{index}}</span>
-      <input type="checkbox" v-model="selected">
-    </label>
-  </div>
-  <div class="list-view-pf-actions">
-    <slot name="action"/>
-    <pf-dropdown type="link" v-if="withSlot.dropdown" class="dropdown dropdown-kebab-pf" menu-right>
-      <slot name="dropdown"/>
-    </pf-dropdown>
-  </div>
-  <slot/>
-  <div class="list-group-item-container container-fluid" v-show="showExpansion" @click.stop style="cursor: initial">
-    <div class="close">
-      <pf-icon name="pficon-close" @click="collapse"/>
+  <div class="list-group-item" :class="[stateClass, {'list-view-pf-stacked': stacked}]" :style="{cursor: expandable ? 'pointer' : 'inherit'}" @click="toggle">
+    <div v-if="expandable && $slots.expansion" class="list-view-pf-expand" :class="{active: isExpanded}">
+      <pf-icon name="fa-angle-right" :class="{'fa-angle-down': isExpanded}" />
     </div>
-    <slot v-if="isExpanded" name="expansion"/>
-    <portal-target v-if="expandedAdditional" :name="portal"/>
+    <div v-if="selectable" class="list-view-pf-checkbox">
+      <label>
+        <span class="sr-only">Select row {{ index }}</span>
+        <input v-model="selected" type="checkbox">
+      </label>
+    </div>
+    <div class="list-view-pf-actions">
+      <slot name="action" />
+      <pf-dropdown v-if="$slots.dropdown" type="link" class="dropdown dropdown-kebab-pf" menu-right>
+        <slot name="dropdown" />
+      </pf-dropdown>
+    </div>
+    <slot />
+    <div v-show="showExpansion" class="list-group-item-container container-fluid" style="cursor: initial" @click.stop>
+      <div class="close">
+        <pf-icon name="pficon-close" @click="collapse" />
+      </div>
+      <slot v-if="isExpanded" name="expansion" />
+
+      <div v-if="expandedAdditional" ref="additionalRef" />
+    </div>
   </div>
-</div>
 </template>
 
 <script>
-import {PortalTarget} from 'portal-vue';
+import { provide, computed, ref } from 'vue';
 import TableRow from './TableRow.vue';
 import PfDropdown from './Dropdown.vue';
-import SlotMonitor from '../mixins/SlotMonitor';
 
 export default {
   name: 'pf-list-group-item',
-  extends: TableRow,
-
-  mixins: [SlotMonitor],
 
   components: {
-    PortalTarget,
     PfDropdown,
   },
-
-  model: {
-    prop: 'expanded',
-    event: 'expanded',
-  },
+  extends: TableRow,
 
   props: {
     expanded: {
@@ -60,30 +52,39 @@ export default {
     },
   },
 
-  data() {
+  emits: ['update:expanded', 'expanded'],
+
+  setup(props, { emit }) {
+    const autoExpanded = ref(false);
+    const isExpanded = computed({
+      get() {
+        return typeof props.expanded === 'boolean' ? props.expanded : autoExpanded.value;
+      },
+      set(value) {
+        if (typeof props.expanded !== 'boolean') {
+          autoExpanded.value = value;
+        }
+        emit('expanded', value);
+        emit('update:expanded', value);
+      },
+    });
+    provide('listGroupItemExpanded', isExpanded);
+
+    const expandedAdditional = ref(null);
+    provide('listGroupItemExpandedAdditional', expandedAdditional);
+
+    const additionalRef = ref(null);
+    provide('listGroupItemAdditionalPortal', additionalRef);
+
     return {
-      autoExpanded: false,
-      expandedAdditional: null,
+      isExpanded,
+      expandedAdditional,
+      autoExpanded,
+      additionalRef,
     };
   },
 
   computed: {
-    isExpanded: {
-      get() {
-        return typeof this.expanded === 'boolean' ? this.expanded : this.autoExpanded;
-      },
-      set(value) {
-        if (typeof this.expanded !== 'boolean') {
-          this.autoExpanded = value;
-        }
-        this.$emit('expanded', value);
-      },
-    },
-
-    portal() {
-      return `pf-list-group-item-portal-${this._uid}`;
-    },
-
     stateClass() {
       if (this.showExpansion) {
         return 'list-view-pf-expand-active';

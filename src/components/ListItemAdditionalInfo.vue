@@ -1,28 +1,21 @@
 <template>
   <div class="list-view-pf-additional-info-item" :class="{'list-view-pf-additional-info-item-stacked': stacked}" @click="toggle">
-    <div v-if="expandable && withSlot.expansion" class="list-view-pf-expand" :class="{'active': expanded}">
-      <pf-icon name="fa-angle-right" :class="{'fa-angle-down': expanded}"/>
-      <slot/>
+    <div v-if="expandable && $slots.expansion" class="list-view-pf-expand" :class="{'active': expanded}">
+      <pf-icon name="fa-angle-right" :class="{'fa-angle-down': expanded}" />
+      <slot />
     </div>
-    <slot v-else/>
-    <portal :to="portal" v-if="expandable">
-      <slot name="expansion"></slot>
-    </portal>
+    <slot v-else />
+    <teleport v-if="expandable && expanded" :disabled="!listGroupItemAdditionalPortal" :to="listGroupItemAdditionalPortal">
+      <slot name="expansion" />
+    </teleport>
   </div>
 </template>
 
 <script>
-import {Portal} from 'portal-vue';
-import SlotMonitor from '../mixins/SlotMonitor';
-
 export default {
   name: 'pf-list-item-additional-info',
 
-  mixins: [SlotMonitor],
-
-  components: {
-    Portal,
-  },
+  inject: ['listGroupItemExpanded', 'listGroupItemExpandedAdditional', 'listGroupItemAdditionalPortal'],
 
   props: {
     stacked: Boolean,
@@ -30,35 +23,21 @@ export default {
   },
 
   computed: {
-    groupItem() {
-      let parent = this.$parent;
-      while (parent && parent !== this.$root) {
-        if (parent.$vnode.componentOptions.tag == 'pf-list-group-item') {
-          return parent;
-        }
-        parent = parent.$parent;
-      }
-      return null;
-    },
-
-    portal() {
-      return this.expanded ? this.groupItem.portal : '';
-    },
-
     expanded() {
-      return this.groupItem && this.groupItem.expandedAdditional == this._uid;
+      return this.listGroupItemExpandedAdditional === this.$.uid;
     },
   },
 
   methods: {
     toggle(e) {
-      if (this.expandable && this.groupItem) {
-        if (e) {
-          e.stopPropagation();
-        }
-        this.groupItem.expanded = false;
-        this.groupItem.expandedAdditional = this.expanded ? null : this._uid;
+      if (!this.expandable) {
+        return;
       }
+      if (e) {
+        e.stopPropagation();
+      }
+      this.listGroupItemExpanded = false;
+      this.listGroupItemExpandedAdditional = this.expanded ? null : this.$.uid;
     },
   },
 };

@@ -1,13 +1,13 @@
 <template>
-  <li class="list-group-item vertical-header-pf" v-tooltip.right="tooltip">
+  <li v-tooltip.right="tooltip" class="list-group-item vertical-header-pf">
     <span class="list-group-item-value">
-      <slot>{{title}}</slot>
+      <slot>{{ title }}</slot>
     </span>
   </li>
 </template>
 
 <script>
-import Tooltip from '../uiv/directives/tooltip/tooltip';
+import Tooltip from '../directives/tooltip';
 
 export default {
   name: 'pf-vertical-nav-divider',
@@ -16,49 +16,26 @@ export default {
     Tooltip,
   },
 
+  inject: {
+    layoutCollapsed: {
+      default: false,
+    },
+  },
+
   props: {
     title: String,
   },
 
-  data() {
-    return {
-      collapsed: false,
-    };
-  },
-
   computed: {
     tooltip() {
-      return this.collapsed ? this.title : null;
-    },
-  },
-
-  mounted() {
-    const layout = this.layout();
-    if (layout) {
-      layout.$on('update:collapsed', collapsed => {
-        this.collapsed = collapsed;
-      });
-      this.collapsed = layout.collapsed;
-    }
-  },
-
-  methods: {
-    layout() {
-      let parent = this.$parent;
-      while (parent) {
-        if (typeof parent.secondaryMenus != 'undefined') {
-          return parent;
-        }
-        parent = parent.$parent;
-      }
-      return null;
+      return this.layoutCollapsed ? this.title : null;
     },
   },
 };
 </script>
 
 <style lang="scss">
-@import "~patternfly/dist/sass/patternfly/variables";
+@import "patternfly/dist/sass/patternfly/variables";
 
 .nav-pf-vertical.collapsed > .list-group > .list-group-item.vertical-header-pf {
   height: $nav-pf-vertical-link-height / 4;
