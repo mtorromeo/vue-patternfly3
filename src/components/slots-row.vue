@@ -1,12 +1,16 @@
 <template>
-<tr>
-  <td :colspan="typeof value !== 'undefined' || $parent.readonly ? 1 : 2">{{name}}</td>
-  <td v-if="typeof value !== 'undefined' && $parent.toggle"><input type="checkbox" :checked="enabled" @change="$emit('update:enabled', !enabled)"></td>
-  <td v-html="description" :colspan="typeof value !== 'undefined' ? 1 : 2"></td>
-  <td v-if="typeof value !== 'undefined'" :style="{height: height}">
-    <ace-editor class="form-control" :value="value.toString()" @input="update" lang="html"></ace-editor>
-  </td>
-</tr>
+  <tr>
+    <td :colspan="typeof movelValue !== 'undefined' || $parent.readonly ? 1 : 2">
+      {{ name }}
+    </td>
+    <td v-if="typeof movelValue !== 'undefined' && $parent.toggle">
+      <input type="checkbox" :checked="enabled" @change="$emit('update:enabled', !enabled)">
+    </td>
+    <td :colspan="typeof movelValue !== 'undefined' ? 1 : 2" v-html="description" />
+    <td v-if="typeof movelValue !== 'undefined'" :style="{height: height}">
+      <ace-editor class="form-control" :model-value="movelValue.toString()" lang="html" @update:model-value="update" />
+    </td>
+  </tr>
 </template>
 
 <script>
@@ -16,7 +20,7 @@ export default {
   props: {
     name: String,
     description: String,
-    value: String,
+    movelValue: String,
     enabled: Boolean,
     height: {
       type: String,
@@ -24,10 +28,12 @@ export default {
     },
   },
 
+  emits: ['update:modelValue', 'update:enabled'],
+
   methods: {
     update(e) {
       const value = e && e.target ? e.target.value : e;
-      this.$emit('input', value);
+      this.$emit('update:modelValue', value);
     },
   },
 };

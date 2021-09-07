@@ -1,83 +1,82 @@
 <template>
-<article class="page">
-  <header>
-    <h1>Toolbar <code>&lt;pf-toolbar&gt;</code></h1>
-  </header>
+  <article class="page">
+    <header>
+      <h1>Toolbar <code>&lt;pf-toolbar&gt;</code></h1>
+    </header>
 
-  <section>
-    <p>This component implements a toolbar with controls for filters, sorting, searching and custom actions to interact with a data view.</p>
+    <section>
+      <p>This component implements a toolbar with controls for filters, sorting, searching and custom actions to interact with a data view.</p>
 
-    <h4>Related documentation</h4>
-    <ol>
-      <li><a href="http://www.patternfly.org/pattern-library/forms-and-controls/toolbar/#_" target="_blank">Pattern Library > Form and Controls > Toolbar</a></li>
-    </ol>
+      <h4>Related documentation</h4>
+      <ol>
+        <li><a href="https://www.patternfly.org/v3/pattern-library/forms-and-controls/toolbar/#_" target="_blank">Pattern Library > Form and Controls > Toolbar</a></li>
+      </ol>
 
-    <div class="demo-container">
-      <pf-toolbar ref="toolbar"
-                  :view.sync="toolbar.view"
-                  :views="toolbar.views"
-                  :filters.sync="toolbar.filters"
-                  :filter-fields="toolbar.filterFields"
-                  :sort-by.sync="toolbar.sortBy"
-                  :sort-direction.sync="toolbar.sortDirection"
-                  :sort-fields="toolbar.sortFields"
-                  :result-count="toolbar.resultCount"
-                  :attached="toolbar.attached"
-                  :columns="toolbar.columns"
-                  :picked-columns.sync="toolbar.pickedColumns">
+      <div class="demo-container">
+        <pf-toolbar ref="toolbar"
+                    v-model:view="toolbar.view"
+                    v-model:filters="toolbar.filters"
+                    v-model:sort-by="toolbar.sortBy"
+                    v-model:sort-direction="toolbar.sortDirection"
+                    v-model:picked-columns="toolbar.pickedColumns"
+                    :views="toolbar.views"
+                    :filter-fields="toolbar.filterFields"
+                    :sort-fields="toolbar.sortFields"
+                    :result-count="toolbar.resultCount"
+                    :attached="toolbar.attached"
+                    :columns="toolbar.columns">
+          <div v-if="toolbar.slotDefault.enabled" style="float:left" v-html="toolbar.slotDefault.content" />
 
-        <div v-if="toolbar.slotDefault.enabled" v-html="toolbar.slotDefault.content" style="float:left"></div>
+          <template v-if="toolbar.slotFilter.enabled" #filter>
+            <div v-html="toolbar.slotFilter.content" />
+          </template>
 
-        <template #filter v-if="toolbar.slotFilter.enabled">
-          <div v-html="toolbar.slotFilter.content"></div>
-        </template>
+          <pf-dropdown class="dropdown-kebab-pf" type="link">
+            <li role="menuitem">
+              <a title="Menu Title 1">Menu Item 1</a>
+            </li>
+            <li role="menuitem">
+              <a title="Menu Title 2">Menu Item 2</a>
+            </li>
+            <li role="separator" class="divider" />
+            <li role="menuitem">
+              <a title="Menu Title 3">Menu Item 3</a>
+            </li>
+          </pf-dropdown>
+        </pf-toolbar>
+      </div>
 
-        <pf-dropdown class="dropdown-kebab-pf" type="link">
-          <li role="menuitem">
-            <a title="Menu Title 1">Menu Item 1</a>
-          </li>
-          <li role="menuitem">
-            <a title="Menu Title 2">Menu Item 2</a>
-          </li>
-          <li role="separator" class="divider"></li>
-          <li role="menuitem">
-            <a title="Menu Title 3">Menu Item 3</a>
-          </li>
-        </pf-dropdown>
-      </pf-toolbar>
-    </div>
+      <props-table :component-props="toolbarProps">
+        <props-row v-model="toolbar.attached" name="attached" description="Use the layout for the toolbar attached to an adjacient table" />
+        <props-row v-model="toolbar.filterFields" name="filterFields" description="List of available fields for filtering" code />
+        <props-row v-model="toolbar.filters" name="filters" description="List of active filters" code />
+        <props-row v-model="toolbar.view" name="view" description="Active view" />
+        <props-row v-model="toolbar.views" name="views" description="List of available views (names separated by comma)" />
+        <props-row v-model="toolbar.sortBy" name="sortBy" description="Selected sorting field" />
+        <props-row v-model="toolbar.sortDirection" name="sortDirection" description="Selected sorting direction" :options="['ascending', 'descending']" />
+        <props-row v-model="toolbar.sortFields" name="sortFields" description="List of available fields for sorting" code />
+        <props-row v-model="toolbar.columns" name="columns" description="List of available columns to display" code />
+        <props-row v-model="toolbar.pickedColumns" name="pickedColumns" description="List of available columns to display" code />
+        <props-row v-model="toolbar.resultCount" name="resultCount" description="Number of elements matching the filter criteria" />
+      </props-table>
 
-    <props-table :component-props="toolbarProps">
-      <props-row name="attached" description="Use the layout for the toolbar attached to an adjacient table" v-model="toolbar.attached"/>
-      <props-row name="filterFields" description="List of available fields for filtering" v-model="toolbar.filterFields" code/>
-      <props-row name="filters" description="List of active filters" v-model="toolbar.filters" code/>
-      <props-row name="view" description="Active view" v-model="toolbar.view"/>
-      <props-row name="views" description="List of available views (names separated by comma)" v-model="toolbar.views"/>
-      <props-row name="sortBy" description="Selected sorting field" v-model="toolbar.sortBy"/>
-      <props-row name="sortDirection" description="Selected sorting direction" v-model="toolbar.sortDirection" :options="['ascending', 'descending']"/>
-      <props-row name="sortFields" description="List of available fields for sorting" v-model="toolbar.sortFields" code/>
-      <props-row name="columns" description="List of available columns to display" v-model="toolbar.columns" code/>
-      <props-row name="pickedColumns" description="List of available columns to display" v-model="toolbar.pickedColumns" code/>
-      <props-row name="resultCount" description="Number of elements matching the filter criteria" v-model="toolbar.resultCount"/>
-    </props-table>
-
-    <slots-table toggle>
-      <slots-row name="default" description="Action buttons and dropdowns can be placed here" :enabled.sync="toolbar.slotDefault.enabled" v-model="toolbar.slotDefault.content"/>
-      <slots-row name="filter" description="Filter input" :enabled.sync="toolbar.slotFilter.enabled" v-model="toolbar.slotFilter.content"/>
-    </slots-table>
-  </section>
-</article>
+      <slots-table toggle>
+        <slots-row v-model:enabled="toolbar.slotDefault.enabled" v-model="toolbar.slotDefault.content" name="default" description="Action buttons and dropdowns can be placed here" />
+        <slots-row v-model:enabled="toolbar.slotFilter.enabled" v-model="toolbar.slotFilter.content" name="filter" description="Filter input" />
+      </slots-table>
+    </section>
+  </article>
 </template>
 
 <script>
-import VuePatternfly from 'vue-patternfly';
+import { Toolbar } from 'vue-patternfly';
 
 export default {
   name: 'cards-page',
 
   data() {
     return {
-      toolbarProps: VuePatternfly.Toolbar.props,
+      toolbarProps: Toolbar.props,
       toolbar: {
         view: 'table',
         views: 'table,card,list',

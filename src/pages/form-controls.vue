@@ -1,247 +1,241 @@
 <template>
-<article class="page">
-  <header>
-    <h1>RadioButton <code>&lt;pf-radio-button&gt;</code></h1>
-  </header>
+  <article class="page">
+    <header>
+      <h1>RadioButton <code>&lt;pf-radio-button&gt;</code></h1>
+    </header>
 
-  <section>
-    <p>This button can be used for radio or checkbox form inputs that have to be represented by a clickable button. Place multiple buttons bound to the same variable to have them synchronize their status. If you set the <code>input</code>prop to <code>checkbox</code> the value is treated as an array that contains the values of all the checked buttons.</p>
+    <section>
+      <p>This button can be used for radio or checkbox form inputs that have to be represented by a clickable button. Place multiple buttons bound to the same variable to have them synchronize their status. If you set the <code>input</code>prop to <code>checkbox</code> the value is treated as an array that contains the values of all the checked buttons.</p>
 
-    <div class="demo-container">
-      <pf-radio-button
-        :name="btn.name"
-        v-model="btn.value"
-        :checked-value="btn.checkedValue"
-        :active-class="btn.activeClass"
-        :inactive-class="btn.inactiveClass"
-        :input="btn.input"
-        :disabled="btn.disabled"
-        :loose="btn.loose"
-      >
-        Click me for {{ btn.checkedValue }}!
-      </pf-radio-button>
-
-      <pf-radio-button
-        :name="btn.name"
-        v-model="btn.value"
-        checked-value="baz"
-        :active-class="btn.activeClass"
-        :inactive-class="btn.inactiveClass"
-        :input="btn.input"
-        :disabled="btn.disabled"
-        :loose="btn.loose"
-      >
-        Click me for baz!
-      </pf-radio-button>
-
-      <pf-radio-button
-        :name="btn.name"
-        v-model="btn.value"
-        checked-value="bar"
-        :active-class="btn.activeClass"
-        :inactive-class="btn.inactiveClass"
-        :input="btn.input"
-        :disabled="btn.disabled"
-        :loose="btn.loose"
-      >
-        Click me for bar!
-      </pf-radio-button>
-    </div>
-
-    <props-table :component-props="btnProps">
-      <props-row name="name" description="Input name." v-model="btn.name"/>
-      <props-row name="input" description="Type of input." v-model="btn.input" :options="['radio', 'checkbox', 'none']" />
-      <props-row name="value" description="Actual value." v-model="btn.value" />
-      <props-row name="checkedValue" description="Value to match to consider the radio/checkbox as checked." v-model="btn.checkedValue" />
-      <props-row name="activeClass" description="Button class for active state." v-model="btn.activeClass" />
-      <props-row name="inactiveClass" description="Button class for inactive state." v-model="btn.inactiveClass" />
-      <props-row name="disabled" description="Disabled state." v-model="btn.disabled" />
-      <props-row name="loose" description="Use loose value matching." v-model="btn.loose" />
-    </props-table>
-
-
-    <h3>Slots</h3>
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>default</td>
-          <td>Button label</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-
-
-  <header>
-    <h1>Toggle <code>&lt;pf-toggle&gt;</code></h1>
-  </header>
-
-  <section>
-    <p>This is a two-state button with hidden form controls.</p>
-
-    <div class="demo-container">
-      <p>
-        <pf-toggle
-          :name="toggle.name"
-          v-model="toggle.value"
-          :on-value="toggle.onValue"
-          :off-value="toggle.offValue"
-          :on-text="toggle.onText"
-          :on-class="toggle.onClass"
-          :off-text="toggle.offText"
-          :off-class="toggle.offClass"
-          :disabled="toggle.disabled"
-          :loading="toggle.loading"
-          :loose="toggle.loose"
-          :no-off="toggle.noOff"
+      <div class="demo-container">
+        <pf-radio-button
+          v-model="btn.value"
+          :name="btn.name"
+          :checked-value="btn.checkedValue"
+          :active-class="btn.activeClass"
+          :inactive-class="btn.inactiveClass"
+          :input="btn.input"
+          :disabled="btn.disabled"
+          :loose="btn.loose"
         >
-          Toggle me!
-        </pf-toggle>
-      </p>
+          Click me for {{ btn.checkedValue }}!
+        </pf-radio-button>
 
-      <p v-if="toggle.noOff">
-        <pf-toggle
-          :name="toggle.name"
-          v-model="toggle.value"
-          on-value="bar"
-          :off-value="false"
-          :on-text="toggle.onText"
-          :on-class="toggle.onClass"
-          :off-text="toggle.offText"
-          :off-class="toggle.offClass"
-          :disabled="toggle.disabled"
-          :loading="toggle.loading"
-          :loose="toggle.loose"
-          :no-off="toggle.noOff"
+        <pf-radio-button
+          v-model="btn.value"
+          :name="btn.name"
+          checked-value="baz"
+          :active-class="btn.activeClass"
+          :inactive-class="btn.inactiveClass"
+          :input="btn.input"
+          :disabled="btn.disabled"
+          :loose="btn.loose"
         >
-          Toggle me!
-        </pf-toggle>
-      </p>
+          Click me for baz!
+        </pf-radio-button>
 
-      <p v-if="toggle.noOff">
-        <pf-toggle
-          :name="toggle.name"
-          v-model="toggle.value"
-          on-value="baz"
-          :off-value="false"
-          :on-text="toggle.onText"
-          :on-class="toggle.onClass"
-          :off-text="toggle.offText"
-          :off-class="toggle.offClass"
-          :disabled="toggle.disabled"
-          :loading="toggle.loading"
-          :loose="toggle.loose"
-          :no-off="toggle.noOff"
+        <pf-radio-button
+          v-model="btn.value"
+          :name="btn.name"
+          checked-value="bar"
+          :active-class="btn.activeClass"
+          :inactive-class="btn.inactiveClass"
+          :input="btn.input"
+          :disabled="btn.disabled"
+          :loose="btn.loose"
         >
-          Toggle me!
-        </pf-toggle>
-      </p>
-    </div>
+          Click me for bar!
+        </pf-radio-button>
+      </div>
 
-    <props-table :component-props="toggleProps">
-      <props-row name="name" description="Input name." v-model="toggle.name"/>
-      <props-row name="value" description="Actual value." v-model="toggle.value" />
-      <props-row name="onText" description="Label for the ON button." v-model="toggle.onText" />
-      <props-row name="onValue" description="Value to use when the toggle is turned to ON." v-model="toggle.onValue" />
-      <props-row name="onClass" description="Class for the ON button." v-model="toggle.onClass" />
-      <props-row name="offText" description="Label for the OFF button." v-model="toggle.offText" />
-      <props-row name="offValue" description="Value to use when the toggle is turned to OFF." v-model="toggle.offValue" />
-      <props-row name="offClass" description="Class for the OFF button." v-model="toggle.offClass" />
-      <props-row name="disabled" description="Disabled state." v-model="toggle.disabled" />
-      <props-row name="loading" description="Loading state. Useful to apply while asynchronously submitting the change of state." v-model="toggle.loading" />
-      <props-row name="loose" description="Use loose value matching." v-model="toggle.loose" />
-      <props-row name="noOff" description="Do not assign any value when the toggle is OFF. By using multiple <code>pf-toggle</code>s the binded value is an Array of all the toggles set to ON." v-model="toggle.noOff" />
-    </props-table>
+      <props-table :component-props="btnProps">
+        <props-row v-model="btn.name" name="name" description="Input name." />
+        <props-row v-model="btn.input" name="input" description="Type of input." :options="['radio', 'checkbox', 'none']" />
+        <props-row v-model="btn.value" name="value" description="Actual value." />
+        <props-row v-model="btn.checkedValue" name="checkedValue" description="Value to match to consider the radio/checkbox as checked." />
+        <props-row v-model="btn.activeClass" name="activeClass" description="Button class for active state." />
+        <props-row v-model="btn.inactiveClass" name="inactiveClass" description="Button class for inactive state." />
+        <props-row v-model="btn.disabled" name="disabled" description="Disabled state." />
+        <props-row v-model="btn.loose" name="loose" description="Use loose value matching." />
+      </props-table>
 
+      <h3>Slots</h3>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>default</td>
+            <td>Button label</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-    <h3>Slots</h3>
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>default</td>
-          <td>Toggle label</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+    <header>
+      <h1>Toggle <code>&lt;pf-toggle&gt;</code></h1>
+    </header>
 
+    <section>
+      <p>This is a two-state button with hidden form controls.</p>
 
-  <header>
-    <h1>ComboBox <code>&lt;pf-combo-box&gt;</code></h1>
-  </header>
+      <div class="demo-container">
+        <p>
+          <pf-toggle
+            v-model="toggle.value"
+            :name="toggle.name"
+            :on-value="toggle.onValue"
+            :off-value="toggle.offValue"
+            :on-text="toggle.onText"
+            :on-class="toggle.onClass"
+            :off-text="toggle.offText"
+            :off-class="toggle.offClass"
+            :disabled="toggle.disabled"
+            :loading="toggle.loading"
+            :loose="toggle.loose"
+            :no-off="toggle.noOff"
+          >
+            Toggle me!
+          </pf-toggle>
+        </p>
 
-  <section>
-    <p>This is a two-state button with hidden form controls.</p>
+        <p v-if="toggle.noOff">
+          <pf-toggle
+            v-model="toggle.value"
+            :name="toggle.name"
+            on-value="bar"
+            :off-value="false"
+            :on-text="toggle.onText"
+            :on-class="toggle.onClass"
+            :off-text="toggle.offText"
+            :off-class="toggle.offClass"
+            :disabled="toggle.disabled"
+            :loading="toggle.loading"
+            :loose="toggle.loose"
+            :no-off="toggle.noOff"
+          >
+            Toggle me!
+          </pf-toggle>
+        </p>
 
-    <div class="demo-container">
-      <p>
-        <pf-combobox
-          :name="combobox.name"
-          v-model="combobox.value"
-          :options="combobox.options"
-          :placeholder="combobox.placeholder"
-          :disabled="combobox.disabled"
-          :required="combobox.required"
-          :tabindex="combobox.tabindex"
-          :label-field="combobox.labelField"
-          :value-field="combobox.valueField"
-          :with-checkbox="combobox.withCheckbox"
-        />
-      </p>
-    </div>
+        <p v-if="toggle.noOff">
+          <pf-toggle
+            v-model="toggle.value"
+            :name="toggle.name"
+            on-value="baz"
+            :off-value="false"
+            :on-text="toggle.onText"
+            :on-class="toggle.onClass"
+            :off-text="toggle.offText"
+            :off-class="toggle.offClass"
+            :disabled="toggle.disabled"
+            :loading="toggle.loading"
+            :loose="toggle.loose"
+            :no-off="toggle.noOff"
+          >
+            Toggle me!
+          </pf-toggle>
+        </p>
+      </div>
 
-    <props-table :component-props="comboboxProps">
-      <props-row name="name" description="Input name." v-model="combobox.name"/>
-      <props-row name="value" description="Actual value." v-model="combobox.value" />
-      <props-row name="options" description="Array of Strings or Objects representing the available options to pick from." v-model="combobox.options" code />
-      <props-row name="placeholder" description="Text placeholder for the combobox input element." v-model="combobox.placeholder" />
-      <props-row name="disabled" description="Disabled state." v-model="combobox.disabled" />
-      <props-row name="required" description="Required state." v-model="combobox.required" />
-      <props-row name="tabindex" description="Tabindex of the input element." v-model="combobox.tabindex" />
-      <props-row name="labelField" description="If the options' items are Objects, use this field for the label." v-model="combobox.labelField" />
-      <props-row name="valueField" description="If the options' items are Objects, use this field for the value." v-model="combobox.valueField" />
-      <props-row name="match" description="Custom function to match the combobox filter to the options." />
-      <props-row name="highlight" description="Custom function to highlight the part of the options that matches the filter." />
-      <props-row name="withCheckbox" description="Add a checkbox to enable/disable the combobox. If it's a string, the checkbox will have a name that can be submitted with a form." v-model="combobox.withCheckbox" />
-    </props-table>
+      <props-table :component-props="toggleProps">
+        <props-row v-model="toggle.name" name="name" description="Input name." />
+        <props-row v-model="toggle.value" name="value" description="Actual value." />
+        <props-row v-model="toggle.onText" name="onText" description="Label for the ON button." />
+        <props-row v-model="toggle.onValue" name="onValue" description="Value to use when the toggle is turned to ON." />
+        <props-row v-model="toggle.onClass" name="onClass" description="Class for the ON button." />
+        <props-row v-model="toggle.offText" name="offText" description="Label for the OFF button." />
+        <props-row v-model="toggle.offValue" name="offValue" description="Value to use when the toggle is turned to OFF." />
+        <props-row v-model="toggle.offClass" name="offClass" description="Class for the OFF button." />
+        <props-row v-model="toggle.disabled" name="disabled" description="Disabled state." />
+        <props-row v-model="toggle.loading" name="loading" description="Loading state. Useful to apply while asynchronously submitting the change of state." />
+        <props-row v-model="toggle.loose" name="loose" description="Use loose value matching." />
+        <props-row v-model="toggle.noOff" name="noOff" description="Do not assign any value when the toggle is OFF. By using multiple <code>pf-toggle</code>s the binded value is an Array of all the toggles set to ON." />
+      </props-table>
 
+      <h3>Slots</h3>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>default</td>
+            <td>Toggle label</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-    <h3>Slots</h3>
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Scope properties</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>default</td>
-          <td>Option template</td>
-          <td><code>option</code>: the option to render</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
-</article>
+    <header>
+      <h1>ComboBox <code>&lt;pf-combo-box&gt;</code></h1>
+    </header>
+
+    <section>
+      <p>This is a two-state button with hidden form controls.</p>
+
+      <div class="demo-container">
+        <p>
+          <pf-combobox
+            v-model="combobox.value"
+            :name="combobox.name"
+            :options="combobox.options"
+            :placeholder="combobox.placeholder"
+            :disabled="combobox.disabled"
+            :required="combobox.required"
+            :tabindex="combobox.tabindex"
+            :label-field="combobox.labelField"
+            :value-field="combobox.valueField"
+            :with-checkbox="combobox.withCheckbox"
+          />
+        </p>
+      </div>
+
+      <props-table :component-props="comboboxProps">
+        <props-row v-model="combobox.name" name="name" description="Input name." />
+        <props-row v-model="combobox.value" name="value" description="Actual value." />
+        <props-row v-model="combobox.options" name="options" description="Array of Strings or Objects representing the available options to pick from." code />
+        <props-row v-model="combobox.placeholder" name="placeholder" description="Text placeholder for the combobox input element." />
+        <props-row v-model="combobox.disabled" name="disabled" description="Disabled state." />
+        <props-row v-model="combobox.required" name="required" description="Required state." />
+        <props-row v-model="combobox.tabindex" name="tabindex" description="Tabindex of the input element." />
+        <props-row v-model="combobox.labelField" name="labelField" description="If the options' items are Objects, use this field for the label." />
+        <props-row v-model="combobox.valueField" name="valueField" description="If the options' items are Objects, use this field for the value." />
+        <props-row name="match" description="Custom function to match the combobox filter to the options." />
+        <props-row name="highlight" description="Custom function to highlight the part of the options that matches the filter." />
+        <props-row v-model="combobox.withCheckbox" name="withCheckbox" description="Add a checkbox to enable/disable the combobox. If it's a string, the checkbox will have a name that can be submitted with a form." />
+      </props-table>
+
+      <h3>Slots</h3>
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Scope properties</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>default</td>
+            <td>Option template</td>
+            <td><code>option</code>: the option to render</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </article>
 </template>
 
 <script>
-import VuePatternfly from 'vue-patternfly';
-const {RadioButton, Toggle, Combobox} = VuePatternfly;
+import { RadioButton, Toggle, Combobox } from 'vue-patternfly';
 
 export default {
   name: 'form-controls-page',

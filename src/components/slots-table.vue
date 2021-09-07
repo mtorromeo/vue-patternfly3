@@ -1,20 +1,28 @@
 <template>
-<section>
-  <h3 v-html="title"></h3>
-  <table class="table table-striped table-hover">
-    <thead>
-      <tr>
-        <th style="width: 200px">Name</th>
-        <th style="width: 60px" v-if="toggle">Enable</th>
-        <th style="width: 300px">Description</th>
-        <th v-if="!readonly">HTML</th>
-      </tr>
-    </thead>
-    <tbody>
-      <slot/>
-    </tbody>
-  </table>
-</section>
+  <section>
+    <h3 v-html="title" />
+    <table class="table table-striped table-hover">
+      <thead>
+        <tr>
+          <th style="width: 200px">
+            Name
+          </th>
+          <th v-if="toggle" style="width: 60px">
+            Enable
+          </th>
+          <th style="width: 300px">
+            Description
+          </th>
+          <th v-if="!readonly">
+            HTML
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <slot />
+      </tbody>
+    </table>
+  </section>
 </template>
 
 <script>

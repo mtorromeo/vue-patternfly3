@@ -1,29 +1,31 @@
 <template>
-<tr>
-  <td>{{propName}}</td>
-  <td v-html="description"></td>
-  <td>{{prop.type}}</td>
-  <td v-if="prop.type == 'Function'" colspan="2">
-    <pre><code class="lang-javascript" v-text="prop.default"></code></pre>
-  </td>
-  <template v-else>
-    <td>{{prop.default}}</td>
-    <td v-if="$parent.interactive"
-        :class="{
-          'has-error': error
-        }" :style="{
-          height: code ? '150px' : null,
-        }">
-      <input v-if="prop.type == 'Boolean'" type="checkbox" :checked="value" @change="update" @click.stop>
-      <select v-else-if="options.length" class="form-control" @change="update" @click.stop>
-        <option v-for="o in options" :key="o" :value="o" :selected="o == value">{{o}}</option>
-      </select>
-      <input v-else-if="!code && prop.object" type="text" class="form-control" :value="editableValue" @change="update" @click.stop>
-      <input v-else-if="!code" type="text" class="form-control" :value="editableValue" @keyup="update" @click.stop>
-      <ace-editor v-else class="form-control" :value="editableValue" @input="update" lang="javascript" />
+  <tr>
+    <td>{{ propName }}</td>
+    <td v-html="description" />
+    <td>{{ prop.type }}</td>
+    <td v-if="prop.type == 'Function'" colspan="2">
+      <pre><code class="lang-javascript" v-text="prop.default" /></pre>
     </td>
-  </template>
-</tr>
+    <template v-else>
+      <td>{{ prop.default }}</td>
+      <td v-if="$parent.interactive"
+          :class="{
+            'has-error': error
+          }" :style="{
+            height: code ? '150px' : null,
+          }">
+        <input v-if="prop.type == 'Boolean'" type="checkbox" :checked="modelValue" @change="update" @click.stop>
+        <select v-else-if="options.length" class="form-control" @change="update" @click.stop>
+          <option v-for="o in options" :key="o" :value="o" :selected="o == modelValue">
+            {{ o }}
+          </option>
+        </select>
+        <input v-else-if="!code && prop.object" type="text" class="form-control" :value="editableValue" @change="update" @click.stop>
+        <input v-else-if="!code" type="text" class="form-control" :value="editableValue" @keyup="update" @click.stop>
+        <ace-editor v-else class="form-control" :model-value="editableValue" lang="javascript" @update:model-value="update" />
+      </td>
+    </template>
+  </tr>
 </template>
 
 <script>
@@ -40,8 +42,13 @@ export default {
         return [];
       },
     },
-    value: {},
+    modelValue: {
+      type: [Number, String, Boolean, Object, Array],
+      default: null,
+    },
   },
+
+  emits: ['update:modelValue'],
 
   data() {
     return {
@@ -51,17 +58,17 @@ export default {
 
   computed: {
     propName() {
-      return this.name.split(/([A-Z][^A-Z]+)/).
-                       map(v => v.toLowerCase()).
-                       filter(v => v).
-                       join('-');
+      return this.name.split(/([A-Z][^A-Z]+)/)
+        .map(v => v.toLowerCase())
+        .filter(v => v)
+        .join('-');
     },
 
     editableValue() {
       if (this.prop.object) {
-        return JSON.stringify(this.value, null, 2);
+        return JSON.stringify(this.modelValue, null, 2);
       }
-      return this.value;
+      return this.modelValue;
     },
 
     prop() {
@@ -70,23 +77,23 @@ export default {
         object: false,
       };
       const typ = typeof def;
-      if (typ == 'function') {
+      if (typ === 'function') {
         prop.type = def.name;
-      } else if (typ == 'object') {
+      } else if (typ === 'object') {
         prop.object = true;
         if (Array.isArray(def.type)) {
           prop.type = def.type.map(t => t.name).join(' | ');
         } else if (def.type) {
-          prop.object = def.type.name != 'String';
+          prop.object = def.type.name !== 'String';
           prop.type = def.type.name;
         }
-        if (prop.type == 'Boolean') {
+        if (prop.type === 'Boolean') {
           prop.default = Boolean(def.default).toString();
-        } else if (prop.type == 'Function') {
+        } else if (prop.type === 'Function') {
           const fnBody = def.default.toString();
           prop.default = fnBody.replace(/^function +[A-Za-z0-9_]+ *(\([^)]*\))/, '$1 =>');
         } else if (typeof def.default !== 'undefined') {
-          if (typeof def.default == 'function') {
+          if (typeof def.default === 'function') {
             prop.default = def.default();
           } else {
             prop.default = def.default;
@@ -102,21 +109,21 @@ export default {
 
   methods: {
     update(e) {
-      if (this.prop.type == 'Boolean') {
-        this.$emit('input', e.target.checked);
+      if (this.prop.type === 'Boolean') {
+        this.$emit('update:modelValue', e.target.checked);
         return;
       }
       const value = e && e.target ? e.target.value : e;
       if (this.prop.object) {
         try {
-          this.$emit('input', JSON.parse(value));
+          this.$emit('update:modelValue', JSON.parse(value));
           this.error = false;
         } catch (exc) {
           this.error = true;
         }
         return;
       }
-      this.$emit('input', value);
+      this.$emit('update:modelValue', value);
     },
   },
 };

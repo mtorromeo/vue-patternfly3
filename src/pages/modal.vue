@@ -1,58 +1,60 @@
 <template>
-<article class="page">
-  <header>
-    <h1>Modal <code>&lt;pf-modal&gt;</code></h1>
-  </header>
+  <article class="page">
+    <header>
+      <h1>Modal <code>&lt;pf-modal&gt;</code></h1>
+    </header>
 
-  <section>
-    <p>This component implements a toolbar with controls for filters, sorting, searching and custom actions to interact with a data view.</p>
+    <section>
+      <p>This component implements a toolbar with controls for filters, sorting, searching and custom actions to interact with a data view.</p>
 
-    <h4>Related documentation</h4>
-    <ol>
-      <li><a href="http://www.patternfly.org/pattern-library/forms-and-controls/modal-overlay/" target="_blank">Pattern Library > Form and Controls > Modal Overlay</a></li>
-    </ol>
+      <h4>Related documentation</h4>
+      <ol>
+        <li><a href="https://www.patternfly.org/v3/pattern-library/forms-and-controls/modal-overlay/" target="_blank">Pattern Library > Form and Controls > Modal Overlay</a></li>
+      </ol>
 
-    <pf-modal
-      v-if="modal.show"
-      @close="modal.show = false"
-      :title="modal.title"
-      :outside-close="modal.outsideClose"
-      :confirm-button="modal.confirmButton"
-      :cancel-button="modal.cancelButton"
-    >
-      <div v-if="modal.slotDefault.enabled" v-html="modal.slotDefault.content"></div>
+      <pf-modal
+        :show="modal.show"
+        :title="modal.title"
+        :outside-close="modal.outsideClose"
+        :confirm-button="modal.confirmButton"
+        :cancel-button="modal.cancelButton"
+        @close="modal.show = false"
+      >
+        <div v-if="modal.slotDefault.enabled" v-html="modal.slotDefault.content" />
 
-      <template #footer v-if="modal.slotFooter.enabled">
-        <div v-html="modal.slotFooter.content"></div>
-      </template>
-    </pf-modal>
+        <template v-if="modal.slotFooter.enabled" #footer>
+          <div v-html="modal.slotFooter.content" />
+        </template>
+      </pf-modal>
 
-    <button class="btn btn-primary" @click="modal.show = true">Open Modal</button>
+      <button class="btn btn-primary" @click="modal.show = true">
+        Open Modal
+      </button>
 
-    <props-table :component-props="modalProps">
-      <props-row name="title" description="Modal title or empty/undefined to disable it" v-model="modal.title"/>
-      <props-row name="outsideClose" description="Allow clicking outside of the modal to close it" v-model="modal.outsideClose"/>
-      <props-row name="confirmButton" description="Text for the confirmation button or empty/undefined to disable it" v-model="modal.confirmButton"/>
-      <props-row name="cancelButton" description="Text for the cancellation button or empty/undefined to disable it" v-model="modal.cancelButton"/>
-    </props-table>
+      <props-table :component-props="modalProps">
+        <props-row v-model="modal.title" name="title" description="Modal title or empty/undefined to disable it" />
+        <props-row v-model="modal.outsideClose" name="outsideClose" description="Allow clicking outside of the modal to close it" />
+        <props-row v-model="modal.confirmButton" name="confirmButton" description="Text for the confirmation button or empty/undefined to disable it" />
+        <props-row v-model="modal.cancelButton" name="cancelButton" description="Text for the cancellation button or empty/undefined to disable it" />
+      </props-table>
 
-    <slots-table toggle>
-      <slots-row name="default" description="Modal content" :enabled.sync="modal.slotDefault.enabled" v-model="modal.slotDefault.content"/>
-      <slots-row name="footer" description="Custom footer content can be placed here (overrides default buttons)" :enabled.sync="modal.slotFooter.enabled" v-model="modal.slotFooter.content"/>
-    </slots-table>
-  </section>
-</article>
+      <slots-table toggle>
+        <slots-row v-model:enabled="modal.slotDefault.enabled" v-model="modal.slotDefault.content" name="default" description="Modal content" />
+        <slots-row v-model:enabled="modal.slotFooter.enabled" v-model="modal.slotFooter.content" name="footer" description="Custom footer content can be placed here (overrides default buttons)" />
+      </slots-table>
+    </section>
+  </article>
 </template>
 
 <script>
-import VuePatternfly from 'vue-patternfly';
+import { Modal } from 'vue-patternfly';
 
 export default {
   name: 'modals-page',
 
   data() {
     return {
-      modalProps: VuePatternfly.Modal.props,
+      modalProps: Modal.props,
       modal: {
         show: false,
         title: 'Modal Title',

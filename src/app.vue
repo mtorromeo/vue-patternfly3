@@ -15,11 +15,11 @@
     </template>
 
     <template #utility-menu>
-      <pf-notification-bell :updates="$root.drawer.updates" @click="$root.drawer.hidden = !$root.drawer.hidden"></pf-notification-bell>
+      <pf-notification-bell :updates="$root.drawer.updates" @click="$root.drawer.hidden = !$root.drawer.hidden" />
 
       <pf-dropdown tag="li" btn-class="nav-item-iconic" type="link">
         <template #text>
-          <pf-icon name="pficon-user"></pf-icon>
+          <pf-icon name="pficon-user" />
           John Doe
         </template>
 
@@ -28,11 +28,19 @@
         </li>
       </pf-dropdown>
 
-      <pf-application-launcher :open.sync="$root.launcher.open" :label="$root.launcher.label" :disabled="$root.launcher.disabled" :list="$root.launcher.list">
-        <pf-launcher-item :icon="$root.launcher.icon" v-tooltip.left="'Launch the Home UI'" href="/">{{$root.launcher.itemText}}</pf-launcher-item>
-        <pf-launcher-item icon="fa-github" href="https://github.com/mtorromeo/vue-patternfly" target="_blank">GitHub</pf-launcher-item>
-        <pf-launcher-item icon="pficon-build" v-tooltip.left="'Launch the Suavitate UI'">Suavitate</pf-launcher-item>
-        <pf-launcher-item icon="pficon-domain" v-tooltip.left="'Launch the Lorem UI'">Lorem</pf-launcher-item>
+      <pf-application-launcher v-model:open="$root.launcher.open" :label="$root.launcher.label" :disabled="$root.launcher.disabled" :list="$root.launcher.list">
+        <pf-launcher-item v-tooltip.left="'Launch the Home UI'" :icon="$root.launcher.icon" href="/">
+          {{ $root.launcher.itemText }}
+        </pf-launcher-item>
+        <pf-launcher-item icon="fa-github" href="https://github.com/mtorromeo/vue-patternfly" target="_blank">
+          GitHub
+        </pf-launcher-item>
+        <pf-launcher-item v-tooltip.left="'Launch the Suavitate UI'" icon="pficon-build">
+          Suavitate
+        </pf-launcher-item>
+        <pf-launcher-item v-tooltip.left="'Launch the Lorem UI'" icon="pficon-domain">
+          Lorem
+        </pf-launcher-item>
       </pf-application-launcher>
     </template>
 
@@ -41,44 +49,44 @@
         to="/get-started"
         exact
         title="Get Started"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/layout"
         exact
         title="Layout"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/application-launcher"
         exact
         title="Application Launcher"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/toolbar"
         exact
         title="Toolbar"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/table"
         exact
         title="Table"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/list-view"
         exact
         title="ListView"
         icon="list-th-list"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/cards"
         exact
         title="Cards"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/notifications"
@@ -89,26 +97,20 @@
           to="/notifications"
           exact
           title="Inline / Toast"
-        ></pf-menu-item>
+        />
 
         <pf-menu-item
           to="/notifications/drawer"
           exact
           title="Notification Drawer"
-        ></pf-menu-item>
+        />
       </pf-menu-item>
 
       <pf-menu-item
         to="/modal"
         exact
         title="Modal"
-      ></pf-menu-item>
-
-      <pf-menu-item
-        to="/charts"
-        exact
-        title="Charts"
-      ></pf-menu-item>
+      />
     </template>
 
     <template #vertical-menu>
@@ -117,32 +119,32 @@
         exact
         title="Get Started"
         icon="fa-play-circle"
-      ></pf-menu-item>
+      />
 
-      <pf-vertical-nav-divider title="Application Framework"/>
+      <pf-vertical-nav-divider title="Application Framework" />
 
       <pf-menu-item
         to="/layout"
         exact
         title="Layout"
         icon="fa-columns"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/application-launcher"
         exact
         title="Launcher"
         icon="fa-th"
-      ></pf-menu-item>
+      />
 
-      <pf-vertical-nav-divider title="Content Views"/>
+      <pf-vertical-nav-divider title="Content Views" />
 
       <pf-menu-item
         to="/table"
         exact
         title="Table"
         icon="fa-columns"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/list-view"
@@ -150,16 +152,16 @@
         title="ListView"
         icon="fa-columns"
         badge="123"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/cards"
         exact
         title="Cards"
         icon="fa-th"
-      ></pf-menu-item>
+      />
 
-      <pf-vertical-nav-divider title="Communication"/>
+      <pf-vertical-nav-divider title="Communication" />
 
       <pf-vertical-submenu title="Notifications" icon="fa-bell">
         <pf-menu-item
@@ -167,71 +169,64 @@
           exact
           title="Inline / Toast"
           badge="12"
-        ></pf-menu-item>
+        />
 
         <pf-menu-item
           to="/notifications/drawer"
           exact
           title="Notification Drawer"
           badge="12"
-        ></pf-menu-item>
+        />
       </pf-vertical-submenu>
 
-      <pf-vertical-nav-divider title="Form and Controls"/>
+      <pf-vertical-nav-divider title="Form and Controls" />
 
       <pf-menu-item
         to="/modal"
         exact
         title="Modal"
         icon="pficon-applications"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/toolbar"
         exact
         title="Toolbar"
         icon="fa-columns"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/expand-collapse"
         exact
         title="Expand/Collapse"
         icon="fa-angle-right"
-      ></pf-menu-item>
+      />
 
-      <pf-vertical-nav-divider title="Widgets"/>
+      <pf-vertical-nav-divider title="Widgets" />
 
       <pf-menu-item
         to="/form-controls"
         exact
         title="Form Controls"
         icon="fa-edit"
-      ></pf-menu-item>
-
-      <pf-menu-item
-        to="/charts"
-        exact
-        title="Charts"
-        icon="fa-pie-chart"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         to="/utilization-bar"
         exact
         title="Utilization Bar"
         icon="fa-building"
-      ></pf-menu-item>
+      />
 
       <pf-menu-item
         icon="fa-github"
         href="https://github.com/mtorromeo/vue-patternfly"
         target="_blank"
         title="GitHub"
-      ></pf-menu-item>
+      />
     </template>
 
-    <pf-drawer :title="$root.drawer.title" :allow-expand="$root.drawer.allowExpand" v-model="$root.drawer.hidden">
+    <pf-drawer v-model:hidden="$root.drawer.hidden" :title="$root.drawer.title" :allow-expand="$root.drawer.allowExpand">
       <pf-drawer-group :title="$root.drawerGroup.title" :counter="$root.drawerGroup.counter" :loading="$root.drawerGroup.loading">
         <pf-drawer-notification>
           Notification Info
@@ -243,7 +238,7 @@
             <li role="menuitem">
               <a title="Menu Title 2">Menu Item 2</a>
             </li>
-            <li role="separator" class="divider"></li>
+            <li role="separator" class="divider" />
             <li role="menuitem">
               <a title="Menu Title 3">Menu Item 3</a>
             </li>
@@ -255,8 +250,7 @@
         <pf-drawer-notification type="warning" unread>
           Unread Warning
         </pf-drawer-notification>
-        <pf-drawer-notification :type="$root.drawerNotification.type" :date="$root.drawerNotification.date" :time="$root.drawerNotification.time" :message="$root.drawerNotification.message" :unread="$root.drawerNotification.unread" :action="$root.drawerNotification.action" :actions="$root.drawerNotification.actions">
-        </pf-drawer-notification>
+        <pf-drawer-notification :type="$root.drawerNotification.type" :date="$root.drawerNotification.date" :time="$root.drawerNotification.time" :message="$root.drawerNotification.message" :unread="$root.drawerNotification.unread" :action="$root.drawerNotification.action" :actions="$root.drawerNotification.actions" />
 
         <template #actions>
           <pf-drawer-group-action>Mark All Read</pf-drawer-group-action>
@@ -264,17 +258,14 @@
         </template>
       </pf-drawer-group>
 
-      <pf-drawer-group title="Group 2" counter="loading state" loading>
-      </pf-drawer-group>
+      <pf-drawer-group title="Group 2" counter="loading state" loading />
 
-      <pf-drawer-group title="Group 3" counter="empty state">
-      </pf-drawer-group>
+      <pf-drawer-group title="Group 3" counter="empty state" />
     </pf-drawer>
 
-    <pf-notifications ref="notifications" toast>
-    </pf-notifications>
+    <pf-notifications ref="notifications" toast />
 
-    <router-view></router-view>
+    <router-view />
   </pf-layout>
 </template>
 
@@ -309,10 +300,10 @@ export default {
           button: true,
         },
         actions: [
-          {name: 'Sub action 1'},
-          {name: 'Sub action 2'},
+          { name: 'Sub action 1' },
+          { name: 'Sub action 2' },
           '-',
-          {name: 'Sub action 3'},
+          { name: 'Sub action 3' },
         ],
       },
       launcher: {

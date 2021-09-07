@@ -10,4 +10,4 @@ Thumbs.db
 !.eslint*
 !.editorconfig
 node_modules
-report.html
+dist/
