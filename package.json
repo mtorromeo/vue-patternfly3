@@ -1,7 +1,8 @@
 {
   "scripts": {
+    "clean": "rm -rf index.html assets",
     "dev": "vite",
-    "build": "vite build"
+    "build": "npm run clean; vite build"
   },
   "dependencies": {},
   "devDependencies": {

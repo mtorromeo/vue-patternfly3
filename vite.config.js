@@ -5,6 +5,7 @@ import { viteExternalsPlugin } from 'vite-plugin-externals';
 // https://vitejs.dev/config/
 export default defineConfig({
   root: 'src',
+  base: './',
   build: {
     outDir: '..',
   },
