@@ -1,84 +1,81 @@
 <template>
-<div
-  class="clearfix toolbar-pf"
-  :class="{
-    'table-view-pf-toolbar': attached,
-  }"
-  _v-3RyaW5nJyk
->
-  <div class="col-sm-12">
-    <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
-      <div class="filter-pf filter-fields form-group toolbar-pf-filter">
-        <slot name="filter">
-          <pf-filter-fields @filter="addFilter" :fields="filterFields" v-if="showFilter"/>
-        </slot>
-      </div>
-      <div class="form-group" v-if="showSorter || showColumnPicker">
-        <pf-sort
-          :fields="sortFields"
-          v-if="showSorter"
-          :sortBy="sortBy"
-          :direction="sortDirection"
-          @change="setSortBy"
-        />
-
-        <pf-column-picker
-          ref="colpicker"
-          v-if="showColumnPicker"
-          :columns="columns"
-          :value="pickedColumns"
-          @input="setPickedColumns"
-        />
-      </div>
-
-      <div class="toolbar-actions" :class="{
-        'form-group': !hasFindView,
-        'pull-right': !hasFindView,
-        'toolbar-pf-action-right': !hasFindView,
-      }" v-if="withSlot.default">
-        <h5 class="form-group" v-if="showCount && !hasFindView">
-          {{resultCount}} Results
-        </h5>
-
-        <div class="form-group">
-          <slot/>
+  <div
+    class="clearfix toolbar-pf"
+    :class="{
+      'table-view-pf-toolbar': attached,
+    }"
+    _v-3RyaW5nJyk
+  >
+    <div class="col-sm-12">
+      <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
+        <div class="filter-pf filter-fields form-group toolbar-pf-filter">
+          <slot name="filter">
+            <pf-filter-fields v-if="showFilter" :fields="filterFields" @filter="addFilter" />
+          </slot>
         </div>
-      </div>
+        <div v-if="showSorter || showColumnPicker" class="form-group">
+          <pf-sort
+            v-if="showSorter"
+            :fields="sortFields"
+            :sort-by="sortBy"
+            :direction="sortDirection"
+            @change="setSortBy"
+          />
 
-      <div class="toolbar-pf-action-right" v-if="hasFindView">
-        <h5 class="form-group" v-if="showCount && hasFindView">
-          {{resultCount}} Results
-        </h5>
-
-        <div class="form-group toolbar-pf-view-selector">
-          <button
-            type="button"
-            v-for="(viewData, name) in viewList"
-            :key="name"
-            class="btn btn-link"
-            :class="{'active': view == name, 'disabled': viewData.disabled}"
-            :title="viewData.title"
-            @click="activeView = name"
-          >
-            <pf-icon tag="i" :name="viewData.icon" class="view-selector"/>
-          </button>
+          <pf-column-picker
+            v-if="showColumnPicker"
+            ref="colpicker"
+            :columns="columns"
+            :model-value="pickedColumns"
+            @update:model-value="setPickedColumns"
+          />
         </div>
-      </div>
-    </form>
-    <pf-filter-results v-if="showResultFilter" :count="resultCount" :filters="activeFilters"/>
+
+        <div v-if="$slots.default" class="toolbar-actions" :class="{
+          'form-group': !hasFindView,
+          'pull-right': !hasFindView,
+          'toolbar-pf-action-right': !hasFindView,
+        }">
+          <h5 v-if="showCount && !hasFindView" class="form-group">
+            {{ resultCount }} Results
+          </h5>
+
+          <div class="form-group">
+            <slot />
+          </div>
+        </div>
+
+        <div v-if="hasFindView" class="toolbar-pf-action-right">
+          <h5 v-if="showCount && hasFindView" class="form-group">
+            {{ resultCount }} Results
+          </h5>
+
+          <div class="form-group toolbar-pf-view-selector">
+            <button
+              v-for="(viewData, name) in viewList"
+              :key="name"
+              type="button"
+              class="btn btn-link"
+              :class="{'active': view == name, 'disabled': viewData.disabled}"
+              :title="viewData.title"
+              @click="activeView = name"
+            >
+              <pf-icon tag="i" :name="viewData.icon" class="view-selector" />
+            </button>
+          </div>
+        </div>
+      </form>
+      <pf-filter-results v-if="showResultFilter" :count="resultCount" :filters="activeFilters" />
+    </div>
   </div>
-</div>
 </template>
 
 <script>
 import PfSort from './Sort.vue';
 import PfColumnPicker from './ColumnPicker.vue';
-import SlotMonitor from '../mixins/SlotMonitor';
 
 export default {
   name: 'pf-toolbar',
-
-  mixins: [SlotMonitor],
 
   components: {
     PfSort,
@@ -129,35 +126,13 @@ export default {
     attached: Boolean,
   },
 
+  emits: ['update:view', 'update:pickedColumns', 'update:filters', 'update:sortBy', 'update:sortDirection', 'sort-by'],
+
   data() {
     return {
       activeView: null,
       activeFilters: [],
     };
-  },
-
-  mounted() {
-    this.activeView = this.view;
-  },
-
-  methods: {
-    setSortBy(field, direction) {
-      this.$emit('sort-by', field, direction);
-      this.$emit('update:sortBy', field);
-      this.$emit('update:sortDirection', direction);
-    },
-    clearFilter(i) {
-      this.activeFilters.splice(i, 1);
-    },
-    clearAllFilters() {
-      this.activeFilters = [];
-    },
-    addFilter(filter) {
-      this.activeFilters.push(filter);
-    },
-    setPickedColumns(columns) {
-      this.$emit('update:pickedColumns', columns);
-    },
   },
 
   computed: {
@@ -168,17 +143,17 @@ export default {
       return Object.keys(this.filterFields).length;
     },
     showColumnPicker() {
-      return (this.activeView == 'table' || !Object.keys(this.viewList).length) &&
+      return (this.activeView === 'table' || !Object.keys(this.viewList).length) &&
         (Array.isArray(this.columns) ? this.columns : Object.keys(this.columns)).length;
     },
     showCount() {
-      return !this.showResultFilter && typeof this.resultCount != 'undefined';
+      return !this.showResultFilter && typeof this.resultCount !== 'undefined';
     },
     hasFindView() {
       return Object.keys(this.viewList).length;
     },
     viewList() {
-      if (typeof this.views != 'string') {
+      if (typeof this.views !== 'string') {
         return this.views;
       }
 
@@ -232,6 +207,30 @@ export default {
     },
     activeFilters() {
       this.$emit('update:filters', this.activeFilters);
+    },
+  },
+
+  mounted() {
+    this.activeView = this.view;
+  },
+
+  methods: {
+    setSortBy(field, direction) {
+      this.$emit('sort-by', field, direction);
+      this.$emit('update:sortBy', field);
+      this.$emit('update:sortDirection', direction);
+    },
+    clearFilter(i) {
+      this.activeFilters.splice(i, 1);
+    },
+    clearAllFilters() {
+      this.activeFilters = [];
+    },
+    addFilter(filter) {
+      this.activeFilters.push(filter);
+    },
+    setPickedColumns(columns) {
+      this.$emit('update:pickedColumns', columns);
     },
   },
 };

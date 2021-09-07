@@ -1,6 +1,17 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.2.0] - 2021-09-07
+### Changed
+- **BACKWARD INCOMPATIBLE CHANGE**: Migrated the whole library to Vue 3. The project is now in **passive maintenance** mode. Only bug fixes will be applied to this library and development has moved to [vue-patternfly4](https://github.com/mtorromeo/vue-patternfly4).
+- **BACKWARD INCOMPATIBLE CHANGE**: The c3 library dependency and the chart components have been removed as part of the migration to Vue 3.
+- **BACKWARD INCOMPATIBLE CHANGE**: The `value` props of `pf-column-picker`, `pf-combobox`, `pf-dropdown`, `pf-option`, `pf-radio-button` and `pf-toggle` have been renamed to `model-value`. You can still bind with `v-model`.
+- **BACKWARD INCOMPATIBLE CHANGE**: `pf-application-launcher` cannot be controlled by `v-model`. Use `v-model:open ` instead.
+- **BACKWARD INCOMPATIBLE CHANGE**: `pf-drawer` cannot be controlled by `v-model`. Use `v-model:hidden ` instead.
+- **BACKWARD INCOMPATIBLE CHANGE**: `pf-expand-collapse` and `pf-list-group-item` cannot be controlled by `v-model`. Use `v-model:expanded ` instead.
+- **BACKWARD INCOMPATIBLE CHANGE**: Dist files are now built with vite and some form of imports might not work anymore. Valid imports are `import 'vue-patternfly'`, `import 'vue-patternfly/vue-patternfly.css'` and `import { Component } from 'vue-patternfly'`.
+- **BACKWARD INCOMPATIBLE CHANGE**: The uiv library dependency has been removed and consequently its components are no longer automatically recognized.
+
 ### [0.1.7] - 2020-07-15
 - Included a static patternfly palette instead of requiring weird webpack loader's tricks to read id from patternfly. Fixes some import issues of the esm build.
 - Updated dependencies.
@@ -309,7 +320,13 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.2...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.7...v0.2.0
+[0.1.7]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.6...v0.1.7
+[0.1.6]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.5...v0.1.6
+[0.1.5]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.4...v0.1.5
+[0.1.4]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.3...v0.1.4
+[0.1.3]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.2...v0.1.3
 [0.1.2]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.1...v0.1.2
 [0.1.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.25...v0.1.0

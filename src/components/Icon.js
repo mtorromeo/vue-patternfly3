@@ -1,11 +1,9 @@
-// https://www.patternfly.org/styles/icons/
-// http://getbootstrap.com/components/#glyphicons
-import {mergeData} from 'vue-functional-data-merge';
+// https://www.patternfly.org/v3/styles/icons/
+// https://getbootstrap.com/docs/3.4/components/#glyphicons
+import { h } from 'vue';
 
 export default {
   name: 'pf-icon',
-
-  functional: true,
 
   props: {
     name: String,
@@ -16,26 +14,27 @@ export default {
     },
   },
 
-  render(h, {props, data, children}) {
-    let staticClass = '';
+  render() {
+    const classes = [];
     const style = {};
-    if (props.src) {
-      staticClass = 'pficon pf-icon-img';
-      style.backgroundImage = `url("${props.src}")`;
+    if (this.src) {
+      classes.push('pficon');
+      classes.push('pf-icon-img');
+      style.backgroundImage = `url("${this.src}")`;
     } else {
-      const match = (/^(fa|pficon|glyphicon)-/).exec(props.name);
-      staticClass = match ? match[1] : '';
-      if (props.name) {
-        staticClass = `${staticClass} ${props.name}`;
+      const match = (/^(fa|pficon|glyphicon)-/).exec(this.name);
+      if (match) {
+        classes.push(match[1]);
+      }
+      if (this.name) {
+        classes.push(this.name);
       }
     }
 
-    return h(props.tag, mergeData(data, {
-      attrs: {
-        'aria-hidden': 'true',
-      },
-      staticClass,
+    return h(this.tag, {
+      'aria-hidden': 'true',
+      class: classes,
       style,
-    }), children);
+    }, this.$slots);
   },
 };

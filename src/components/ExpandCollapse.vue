@@ -1,26 +1,25 @@
 <template>
   <div class="expand-collapse-pf">
     <div class="expand-collapse-pf-link-container">
-      <span v-if="alignCenter" class="expand-collapse-pf-separator" :class="{bordered}"></span>
+      <span v-if="alignCenter" class="expand-collapse-pf-separator" :class="{bordered}" />
       <button type="button" class="btn btn-link" @click="toggle">
-        <pf-icon :name="isExpanded ? 'fa-angle-down' : 'fa-angle-right'"/>
-        <template v-if="isExpanded">{{textExpanded}}</template>
-        <template v-else>{{textCollapsed}}</template>
+        <pf-icon :name="isExpanded ? 'fa-angle-down' : 'fa-angle-right'" />
+        <template v-if="isExpanded">
+          {{ textExpanded }}
+        </template>
+        <template v-else>
+          {{ textCollapsed }}
+        </template>
       </button>
-      <span class="expand-collapse-pf-separator" :class="{bordered}"></span>
+      <span class="expand-collapse-pf-separator" :class="{bordered}" />
     </div>
-    <slot v-if="isExpanded"/>
+    <slot v-if="isExpanded" />
   </div>
 </template>
 
 <script>
 export default {
   name: 'pf-expand-collapse',
-
-  model: {
-    prop: 'expanded',
-    event: 'update:expanded',
-  },
 
   props: {
     alignCenter: Boolean,
@@ -39,6 +38,8 @@ export default {
     },
   },
 
+  emits: ['update:expanded'],
+
   data() {
     return {
       autoExpanded: this.expanded,
@@ -48,6 +49,16 @@ export default {
   computed: {
     isExpanded() {
       return this.expanded === null ? this.autoExpanded : this.expanded;
+    },
+  },
+
+  watch: {
+    expanded() {
+      this.autoExpanded = this.expanded;
+    },
+
+    autoExpanded() {
+      this.$emit('update:expanded', this.autoExpanded);
     },
   },
 
@@ -62,22 +73,12 @@ export default {
       this.autoExpanded = !this.isExpanded;
     },
   },
-
-  watch: {
-    expanded() {
-      this.autoExpanded = this.expanded;
-    },
-
-    autoExpanded() {
-      this.$emit('update:expanded', this.autoExpanded);
-    },
-  },
 };
 </script>
 
 <style lang="scss">
 /* https://raw.githubusercontent.com/patternfly/patternfly-react/master/packages/patternfly-3/patternfly-react/sass/patternfly-react/_expand-collapse.scss */
-@import "~patternfly/dist/sass/patternfly/color-variables";
+@import "patternfly/dist/sass/patternfly/color-variables";
 
 .expand-collapse-pf {
   .expand-collapse-pf-link-container {

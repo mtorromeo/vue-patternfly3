@@ -1,14 +1,14 @@
 <template>
   <popover class="column-picker" placement="bottom">
     <button ref="popover-trigger" type="button" class="btn btn-link">
-      <pf-icon name="fa-columns"/>
+      <pf-icon name="fa-columns" />
     </button>
 
     <template #popover>
-      <div class="column-picker checkbox" v-for="(column, i) in columns" :key="i">
+      <div v-for="(column, i) in columns" :key="i" class="column-picker checkbox">
         <label>
-          <input type="checkbox" :value="columnValue(column, i)" v-model="iValue" @change="setValue">
-          {{columnLabel(column)}}
+          <input v-model="iValue" type="checkbox" :value="columnValue(column, i)" @change="setValue">
+          {{ columnLabel(column) }}
         </label>
       </div>
     </template>
@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import Popover from '../uiv/components/popover/Popover';
+import Popover from './Popover.vue';
 
 export default {
   name: 'pf-column-picker',
@@ -32,7 +32,7 @@ export default {
         return [];
       },
     },
-    value: {
+    modelValue: {
       type: Array,
       default() {
         return [];
@@ -40,14 +40,24 @@ export default {
     },
   },
 
+  emits: ['update:modelValue'],
+
   data() {
     return {
       iValue: [],
     };
   },
 
+  watch: {
+    modelValue(value) {
+      if (value != this.iValue) {
+        this.iValue = value.slice(0);
+      }
+    },
+  },
+
   mounted() {
-    this.iValue = this.value;
+    this.iValue = this.modelValue;
   },
 
   methods: {
@@ -70,15 +80,7 @@ export default {
           sortedValue.push(value);
         }
       }
-      this.$emit('input', sortedValue);
-    },
-  },
-
-  watch: {
-    value(value) {
-      if (value != this.iValue) {
-        this.iValue = value.slice(0);
-      }
+      this.$emit('update:modelValue', sortedValue);
     },
   },
 };

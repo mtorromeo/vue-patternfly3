@@ -1,30 +1,30 @@
 <template>
   <pf-menu-item vertical
-    :title="title"
-    :icon="icon"
-    :class="{
-      'secondary-nav-item-pf': !tertiary,
-      'tertiary-nav-item-pf': tertiary,
-      'is-hover': active,
-      'mobile-nav-item-pf': active,
-    }"
-    @click="active = !active"
-    @mouseenter="delayOpen"
-    @mouseleave="delayClose"
+                :title="title"
+                :icon="icon"
+                :class="{
+                  'secondary-nav-item-pf': !tertiary,
+                  'tertiary-nav-item-pf': tertiary,
+                  'is-hover': active,
+                  'mobile-nav-item-pf': active,
+                }"
+                @click="active = !active"
+                @mouseenter="delayOpen"
+                @mouseleave="delayClose"
   >
     <div :class="{
-        'nav-pf-secondary-nav': !tertiary,
-        'nav-pf-tertiary-nav': tertiary,
-      }">
+      'nav-pf-secondary-nav': !tertiary,
+      'nav-pf-tertiary-nav': tertiary,
+    }">
       <div class="nav-item-pf-header">
         <a :class="{
-            'secondary-collapse-toggle-pf': !tertiary,
-            'tertiary-collapse-toggle-pf': tertiary,
-          }" @click="active = false"></a>
-        <span v-html="title"></span>
+          'secondary-collapse-toggle-pf': !tertiary,
+          'tertiary-collapse-toggle-pf': tertiary,
+        }" @click="active = false" />
+        <span v-html="title" />
       </div>
       <ul class="list-group">
-        <slot/>
+        <slot />
       </ul>
     </div>
   </pf-menu-item>
@@ -47,6 +47,16 @@ export default {
       active: false,
       tertiary: false,
     };
+  },
+
+  watch: {
+    active() {
+      const layout = this.layout();
+      if (!layout) {
+        return;
+      }
+      layout[this.tertiary ? 'tertiaryMenus' : 'secondaryMenus'] += this.active ? +1 : -1;
+    },
   },
 
   mounted() {
@@ -83,22 +93,12 @@ export default {
     layout() {
       let parent = this.$parent;
       while (parent) {
-        if (typeof parent.secondaryMenus != 'undefined') {
+        if (typeof parent.secondaryMenus !== 'undefined') {
           return parent;
         }
         parent = parent.$parent;
       }
       return null;
-    },
-  },
-
-  watch: {
-    active() {
-      const layout = this.layout();
-      if (!layout) {
-        return;
-      }
-      layout[this.tertiary ? 'tertiaryMenus' : 'secondaryMenus'] += this.active ? +1 : -1;
     },
   },
 };

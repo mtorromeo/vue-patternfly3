@@ -1,52 +1,58 @@
 <template>
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h4 class="panel-title">
-      <a @click="toggle" :class="{collapsed: !expanded}" :aria-expanded="expanded ? 'true' : 'false'">
-        {{title}}
-      </a>
-    </h4>
-    <span class="panel-counter">{{counter}}</span>
-  </div>
-
-  <transition name="collapse">
-    <div v-show="expanded" class="panel-collapse" :aria-expanded="expanded ? 'true' : 'false'">
-      <div v-if="empty && !loading" class="blank-slate-pf">
-        <div class="blank-slate-pf-icon">
-          <pf-icon name="pficon-info"/>
-        </div>
-        <h4 class="h1 blank-slate-pf-title">No Notifications Available</h4>
-      </div>
-
-      <div class="panel-body" v-else>
-        <slot/>
-
-        <div v-if="loading" class="drawer-pf-loading text-center">
-          <span class="spinner spinner-xs spinner-inline"></span> Loading
-        </div>
-      </div>
-
-      <div v-if="withSlot.actions" class="drawer-pf-action">
-        <slot name="actions" />
-      </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a :class="{collapsed: !expanded}" :aria-expanded="expanded ? 'true' : 'false'" @click="toggle">
+          {{ title }}
+        </a>
+      </h4>
+      <span class="panel-counter">{{ counter }}</span>
     </div>
-  </transition>
-</div>
+
+    <transition name="collapse">
+      <div v-show="expanded" class="panel-collapse" :aria-expanded="expanded ? 'true' : 'false'">
+        <div v-if="empty && !loading" class="blank-slate-pf">
+          <div class="blank-slate-pf-icon">
+            <pf-icon name="pficon-info" />
+          </div>
+          <h4 class="h1 blank-slate-pf-title">
+            No Notifications Available
+          </h4>
+        </div>
+
+        <div v-else class="panel-body">
+          <slot />
+
+          <div v-if="loading" class="drawer-pf-loading text-center">
+            <span class="spinner spinner-xs spinner-inline" /> Loading
+          </div>
+        </div>
+
+        <div v-if="$slots.actions" class="drawer-pf-action">
+          <slot name="actions" />
+        </div>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
-import SlotMonitor from '../mixins/SlotMonitor';
-
 export default {
   name: 'pf-drawer-group',
 
-  mixins: [SlotMonitor],
+  inject: {
+    activeGroup: {
+      default: null,
+    },
+  },
 
   props: {
     title: String,
     counter: String,
     loading: Boolean,
   },
+
+  emits: ['opened', 'closed'],
 
   data() {
     return {
@@ -55,16 +61,25 @@ export default {
     };
   },
 
-  mounted() {
-    this.$parent.$on('groupChanged', group => {
+  watch: {
+    activeGroup(group) {
       if (group !== this) {
         this.close();
       }
-    });
+    },
+
+    expanded(value) {
+      if (value) {
+        this.$emit('opened', this);
+        this.activeGroup = this;
+      } else {
+        this.$emit('closed', this);
+      }
+    },
   },
 
   updated() {
-    this.empty = !this.withSlot.default;
+    this.empty = !this.$slots.default;
   },
 
   methods: {
@@ -76,17 +91,6 @@ export default {
     },
     toggle() {
       this.expanded = !this.expanded;
-    },
-  },
-
-  watch: {
-    expanded(value) {
-      if (value) {
-        this.$emit('opened', this);
-        this.$parent.$emit('groupChanged', this);
-      } else {
-        this.$emit('closed', this);
-      }
     },
   },
 };

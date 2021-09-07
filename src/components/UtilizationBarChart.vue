@@ -1,53 +1,51 @@
 <template>
-<div class="utilization-bar-chart-pf" :class="{'data-unavailable-pf': !dataAvailable}">
-  <template v-if="!inline">
-    <div v-if="title" class="progress-description" v-html="title"></div>
-    <div class="progress progress-label-top-right" v-if="dataAvailable">
-      <div class="progress-bar" :aria-valuenow="percent" aria-valuemin="0"
-           aria-valuemax="100" v-tooltip="percent + '% Used'"
-           :class="{
-             'animate': animate,
-             'progress-bar-success': isOk,
-             'progress-bar-danger': isError,
-             'progress-bar-warning': isWarning,
-            }"
-           :style="{width: percent + '%'}">
-        <span v-html="footerHTML"></span>
-      </div>
-      <div class="progress-bar progress-bar-remaining"
-           :style="{width: (100 - percent) + '%'}"
-           v-tooltip="(100 - percent) + '% Available'">
-      </div>
-    </div>
-  </template>
-  <template v-else>
-    <div class="progress-container progress-description-left progress-label-right"
-         :style="{
-           'padding-left': titleWidthPx,
-           'padding-right': footerWidthPx,
-          }">
-      <div v-if="title" class="progress-description"  :style="{'max-width': titleWidthPx}" v-html="title"></div>
-      <div class="progress" v-if="dataAvailable">
-        <div class="progress-bar" :aria-valuenow="percent" aria-valuemin="0"
-             aria-valuemax="100" v-tooltip="percent + '% Used'"
+  <div class="utilization-bar-chart-pf" :class="{'data-unavailable-pf': !dataAvailable}">
+    <template v-if="!inline">
+      <div v-if="title" class="progress-description" v-html="title" />
+      <div v-if="dataAvailable" class="progress progress-label-top-right">
+        <div v-tooltip="percent + '% Used'" class="progress-bar" :aria-valuenow="percent"
+             aria-valuemin="0" aria-valuemax="100"
              :class="{
                'animate': animate,
                'progress-bar-success': isOk,
                'progress-bar-danger': isError,
                'progress-bar-warning': isWarning,
-              }"
-              :style="{width: percent + '%'}">
-           <span v-html="footerHTML" :style="{'max-width': footerWidthPx}"></span>
+             }"
+             :style="{width: percent + '%'}">
+          <span v-html="footerHTML" />
         </div>
-        <div class="progress-bar progress-bar-remaining"
-             :style="{width: (100 - percent) + '%'}"
-             v-tooltip="(100 - percent) + '% Available'">
+        <div v-tooltip="(100 - percent) + '% Available'"
+             class="progress-bar progress-bar-remaining"
+             :style="{width: (100 - percent) + '%'}" />
+      </div>
+    </template>
+    <template v-else>
+      <div class="progress-container progress-description-left progress-label-right"
+           :style="{
+             'padding-left': titleWidthPx,
+             'padding-right': footerWidthPx,
+           }">
+        <div v-if="title" class="progress-description" :style="{'max-width': titleWidthPx}" v-html="title" />
+        <div v-if="dataAvailable" class="progress">
+          <div v-tooltip="percent + '% Used'" class="progress-bar" :aria-valuenow="percent"
+               aria-valuemin="0" aria-valuemax="100"
+               :class="{
+                 'animate': animate,
+                 'progress-bar-success': isOk,
+                 'progress-bar-danger': isError,
+                 'progress-bar-warning': isWarning,
+               }"
+               :style="{width: percent + '%'}">
+            <span :style="{'max-width': footerWidthPx}" v-html="footerHTML" />
+          </div>
+          <div v-tooltip="(100 - percent) + '% Available'"
+               class="progress-bar progress-bar-remaining"
+               :style="{width: (100 - percent) + '%'}" />
         </div>
       </div>
-    </div>
-  </template>
-  <pf-empty-chart v-if="!dataAvailable" :height="45"></pf-empty-chart>
-</div>
+    </template>
+    <pf-empty-chart v-if="!dataAvailable" :height="45" />
+  </div>
 </template>
 
 <script>
@@ -77,15 +75,9 @@ export default {
     };
   },
 
-  mounted() {
-    this.$nextTick(function() {
-      this.animate = false;
-    }.bind(this));
-  },
-
   computed: {
     dataAvailable() {
-      return typeof this.value != 'undefined' && typeof this.total != 'undefined';
+      return typeof this.value !== 'undefined' && typeof this.total !== 'undefined';
     },
 
     percent() {
@@ -126,6 +118,12 @@ export default {
     footerWidthPx() {
       return this.footerWidth ? `${this.footerWidth}px` : null;
     },
+  },
+
+  mounted() {
+    this.$nextTick(function() {
+      this.animate = false;
+    }.bind(this));
   },
 };
 </script>

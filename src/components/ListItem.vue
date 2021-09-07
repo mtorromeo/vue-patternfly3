@@ -1,31 +1,27 @@
-<template functional>
+<template>
   <div
-    v-bind="data.attrs"
-    v-on="listeners"
-    :class="[data.class, data.staticClass]"
-    :style="[data.style, data.staticStyle]"
     class="list-view-pf-main-info"
   >
     <slot>
-      <div class="list-view-pf-left" v-if="props.icon || props.iconSrc || $slots.left || $scopedSlots.left">
+      <div v-if="icon || iconSrc || $slots.left" class="list-view-pf-left">
         <slot name="left">
-          <pf-icon :name="props.icon" :src="props.iconSrc" :class="[
-            `list-view-pf-icon-${props.iconSize}`,
-            {[`list-view-pf-icon-${props.iconVariant}`]: props.iconVariant},
-          ]"/>
+          <pf-icon :name="icon" :src="iconSrc" :class="[
+            `list-view-pf-icon-${iconSize}`,
+            {[`list-view-pf-icon-${iconVariant}`]: iconVariant},
+          ]" />
         </slot>
       </div>
       <div class="list-view-pf-body">
-        <div class="list-view-pf-description" v-if="$slots.heading || $scopedSlots.heading || $slots.description || $scopedSlots.description">
-          <div class="list-group-item-heading" v-if="$slots.heading || $scopedSlots.heading">
-            <slot name="heading"/>
+        <div v-if="$slots.heading || $slots.description" class="list-view-pf-description">
+          <div v-if="$slots.heading" class="list-group-item-heading">
+            <slot name="heading" />
           </div>
-          <div class="list-group-item-text" v-if="$slots.description || $scopedSlots.description">
-            <slot name="description"/>
+          <div v-if="$slots.description" class="list-group-item-text">
+            <slot name="description" />
           </div>
         </div>
-        <div class="list-view-pf-additional-info" v-if="$slots['additional-info'] || $scopedSlots['additional-info']">
-          <slot name="additional-info"/>
+        <div v-if="$slots['additional-info']" class="list-view-pf-additional-info">
+          <slot name="additional-info" />
         </div>
       </div>
     </slot>
@@ -46,6 +42,7 @@ export default {
     },
     iconVariant: {
       type: String,
+      default: '',
       validator: variant => ['', null, 'info', 'success', 'warning', 'danger'].indexOf(variant) >= 0,
     },
   },

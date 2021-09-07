@@ -1,57 +1,57 @@
 <template>
-<div
-  class="alert"
-  :class="[alertClass, {
-    'alert-dismissable': persistent,
-    'toast-pf': toast,
-  }]"
->
-  <pf-dropdown v-if="showDropdown">
-    <li
-      v-for="action in actions"
-      :key="action.name"
-      :role="isSeparator(action) ? 'separator' : 'menuitem'"
-      :class="{
-        divider: isSeparator(action),
-        disabled: action.disabled === true,
-      }"
-    >
-      <a
-        v-if="!isSeparator(action)"
-        class="secondary-action"
-        :title="action.title"
-        @click="triggered(action)"
+  <div
+    class="alert"
+    :class="[alertClass, {
+      'alert-dismissable': persistent,
+      'toast-pf': toast,
+    }]"
+  >
+    <pf-dropdown v-if="showDropdown">
+      <li
+        v-for="actionItem in actions"
+        :key="actionItem.name"
+        :role="isSeparator(actionItem) ? 'separator' : 'menuitem'"
+        :class="{
+          divider: isSeparator(actionItem),
+          disabled: actionItem.disabled === true,
+        }"
       >
-        {{action.name}}
-      </a>
-    </li>
-  </pf-dropdown>
+        <a
+          v-if="!isSeparator(actionItem)"
+          class="secondary-action"
+          :title="actionItem.title"
+          @click="triggered(actionItem)"
+        >
+          {{ actionItem.name }}
+        </a>
+      </li>
+    </pf-dropdown>
 
-  <button
-    v-show="persistent"
-    @click="dismiss"
-    type="button"
-    class="close"
-    data-dismiss="alert"
-    aria-hidden="true"
-  >
-    <pf-icon name="pficon-close"/>
-  </button>
+    <button
+      v-show="persistent"
+      type="button"
+      class="close"
+      data-dismiss="alert"
+      aria-hidden="true"
+      @click="dismiss"
+    >
+      <pf-icon name="pficon-close" />
+    </button>
 
-  <button
-    type="button"
-    v-if="action && action.name"
-    class="pull-right btn"
-    :class="[buttonClass]"
-    :title="action.title"
-    @click="triggered(action)"
-  >
-    {{action.name}}
-  </button>
+    <button
+      v-if="action && action.name"
+      type="button"
+      class="pull-right btn"
+      :class="[buttonClass]"
+      :title="action.title"
+      @click="triggered(action)"
+    >
+      {{ action.name }}
+    </button>
 
-  <pf-icon :name="typeIcon"/>
-  <slot/>
-</div>
+    <pf-icon :name="typeIcon" />
+    <slot />
+  </div>
 </template>
 
 <script>
@@ -84,6 +84,8 @@ export default {
       default: false,
     },
   },
+
+  emits: ['dismiss'],
 
   computed: {
     showDropdown() {
@@ -137,7 +139,7 @@ export default {
       }
     },
     isSeparator(action) {
-      return action == '-' || action.separator;
+      return action === '-' || action.separator;
     },
     dismiss() {
       this.$emit('dismiss', this);
@@ -147,7 +149,7 @@ export default {
       }
     },
     triggered(action) {
-      if (typeof action.handler == 'function') {
+      if (typeof action.handler === 'function') {
         action.handler(action);
       }
       this.$emit(action.emit || 'action', action);

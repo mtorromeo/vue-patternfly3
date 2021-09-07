@@ -1,35 +1,40 @@
 <template>
-  <portal to="modals-target">
-    <div class="modal" role="dialog" key="modal" @click="clickOutside">
-      <div ref="dialog" class="modal-dialog">
-        <component :is="form ? 'form' : 'div'" class="modal-content" :target="target" :method="method" @submit="$emit('submit', $event)">
-          <div class="modal-header" v-if="title">
-            <button type="button" class="close" @click="cancel">
-              <pf-icon name="pficon-close"/>
-            </button>
-            <h4 class="modal-title">{{title}}</h4>
-          </div>
-          <div class="modal-body">
-            <slot/>
-          </div>
-          <div class="modal-footer" v-if="withSlot.footer || cancelButton || confirmButton">
-            <slot name="footer">
-              <button type="button" class="btn btn-default" v-if="cancelButton" @click="cancel">{{cancelButton}}</button>
-              <button :type="form ? 'submit' : 'button'" class="btn btn-primary" v-if="confirmButton" @click="confirm">{{confirmButton}}</button>
-            </slot>
-          </div>
-        </component>
+  <teleport :to="modalsTarget || 'body'">
+    <transition-group name="pf-drop-fade">
+      <div v-if="show" key="modal" v-bind="$attrs" class="modal" role="dialog" @click="clickOutside">
+        <div ref="dialog" class="modal-dialog">
+          <component :is="form ? 'form' : 'div'" class="modal-content" :target="target" :method="method" @submit="$emit('submit', $event)">
+            <div v-if="title" class="modal-header">
+              <button type="button" class="close" @click="cancel">
+                <pf-icon name="pficon-close" />
+              </button>
+              <h4 class="modal-title">
+                {{ title }}
+              </h4>
+            </div>
+            <div class="modal-body">
+              <slot />
+            </div>
+            <div v-if="$slots.footer || cancelButton || confirmButton" class="modal-footer">
+              <slot name="footer">
+                <button v-if="cancelButton" type="button" class="btn btn-default" @click="cancel">
+                  {{ cancelButton }}
+                </button>
+                <button v-if="confirmButton" :type="form ? 'submit' : 'button'" class="btn btn-primary" @click="confirm">
+                  {{ confirmButton }}
+                </button>
+              </slot>
+            </div>
+          </component>
+        </div>
       </div>
-    </div>
 
-    <div class="modal-backdrop in" key="backdrop" @click="clickOutside"></div>
-  </portal>
+      <div v-if="show" key="backdrop" class="modal-backdrop in" @click="clickOutside" />
+    </transition-group>
+  </teleport>
 </template>
 
 <script>
-import {Portal} from 'portal-vue';
-import SlotMonitor from '../mixins/SlotMonitor';
-
 function isDescendantOf(node, ancestor) {
   while (node) {
     if (node === ancestor) {
@@ -43,11 +48,7 @@ function isDescendantOf(node, ancestor) {
 export default {
   name: 'pf-modal',
 
-  mixins: [SlotMonitor],
-
-  components: {
-    Portal,
-  },
+  inject: ['modalsTarget'],
 
   props: {
     title: String,
@@ -72,13 +73,16 @@ export default {
       type: Boolean,
       default: false,
     },
+    show: Boolean,
   },
+
+  emits: ['submit', 'confirm', 'cancel', 'close'],
 
   mounted() {
     document.documentElement.classList.add('modal-open');
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     document.documentElement.classList.remove('modal-open');
   },
 
@@ -111,5 +115,24 @@ export default {
   display: block !important;
   transform: translateY(0);
   bottom: auto;
+}
+
+.modal-backdrop.pf-drop-fade-enter-active,
+.modal-backdrop.pf-drop-fade-leave-active,
+.modal.pf-drop-fade-enter-active,
+.modal.pf-drop-fade-leave-active {
+  transition: transform .2s linear, opacity .2s linear;
+}
+
+.modal.pf-drop-fade-enter-from,
+.modal.pf-drop-fade-leave-to {
+  transform: translateY(-100%);
+}
+
+.modal.pf-drop-fade-enter-from,
+.modal.pf-drop-fade-leave-to,
+.modal-backdrop.pf-drop-fade-enter-from,
+.modal-backdrop.pf-drop-fade-leave-to {
+  opacity: 0;
 }
 </style>

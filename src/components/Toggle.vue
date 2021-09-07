@@ -9,7 +9,7 @@
     @keyup.right="setOff"
   >
     <template v-if="noOff">
-      <pf-radio-button :name="name" input="checkbox" :value="value" :class="[`btn-${size}`]" :active-class="onClass" inactive-class="btn-default" :checked-value="onValue" :loose="loose" :disabled="disabled" @input="set(onValue)">
+      <pf-radio-button :name="name" input="checkbox" :model-value="modelValue" :class="[`btn-${size}`]" :active-class="onClass" inactive-class="btn-default" :checked-value="onValue" :loose="loose" :disabled="disabled" @update:model-value="set(onValue)">
         {{ onText }}
       </pf-radio-button>
       <label class="btn" :class="[on ? 'btn-default' : offClass, `btn-${size}`]" @click="setOff">
@@ -18,10 +18,10 @@
     </template>
 
     <template v-else>
-      <pf-radio-button :name="name" :value="radioValue" :class="[`btn-${size}`]" :active-class="onClass" inactive-class="btn-default" :checked-value="onValue" :loose="loose" :disabled="disabled" @input="set($event)">
+      <pf-radio-button :name="name" :model-value="radioValue" :class="[`btn-${size}`]" :active-class="onClass" inactive-class="btn-default" :checked-value="onValue" :loose="loose" :disabled="disabled" @update:model-value="set($event)">
         {{ onText }}
       </pf-radio-button>
-      <pf-radio-button :name="name" :value="radioValue" :class="[`btn-${size}`]" :active-class="offClass" inactive-class="btn-default" :checked-value="offValue" :loose="loose" :disabled="disabled" @input="set($event)">
+      <pf-radio-button :name="name" :model-value="radioValue" :class="[`btn-${size}`]" :active-class="offClass" inactive-class="btn-default" :checked-value="offValue" :loose="loose" :disabled="disabled" @update:model-value="set($event)">
         {{ offText }}
       </pf-radio-button>
     </template>
@@ -31,20 +31,6 @@
     <slot />
   </div>
 </template>
-
-<style lang="scss">
-@import "~bootstrap-sass/assets/stylesheets/bootstrap/variables";
-
-.btn-group.disabled {
-  color: $btn-link-disabled-color;
-}
-
-.btn-group > .spinner.spinner-inline {
-  position: relative;
-  top: 2px;
-  left: 5px;
-}
-</style>
 
 <script>
 import PfRadioButton from './RadioButton.vue';
@@ -58,16 +44,12 @@ export default {
     PfSpinner,
   },
 
-  model: {
-    event: 'change',
-  },
-
   props: {
     name: {
       type: String,
       default: null,
     },
-    value: {
+    modelValue: {
       type: [Boolean, String, Number, Array],
       required: true,
     },
@@ -106,20 +88,22 @@ export default {
     },
   },
 
+  emits: ['change', 'update:modelValue'],
+
   computed: {
     on() {
       return this.test(this.onValue);
     },
 
     radioValue() {
-      if (Array.isArray(this.value)) {
+      if (Array.isArray(this.modelValue)) {
         return this.on ? this.onValue : this.offValue;
       }
-      return this.value;
+      return this.modelValue;
     },
 
     values() {
-      return Array.isArray(this.value) ? this.value : [this.value];
+      return Array.isArray(this.modelValue) ? this.modelValue : [this.modelValue];
     },
   },
 
@@ -127,8 +111,8 @@ export default {
     noOff() {
       if (!this.test(this.onValue) && !this.test(this.offValue)) {
         this.setOff();
-      } else if (this.noOff && !Array.isArray(this.value)) {
-        this.$emit('change', this.values);
+      } else if (this.noOff && !Array.isArray(this.modelValue)) {
+        this.$emit('update:modelValue', this.values);
       }
     },
   },
@@ -137,9 +121,9 @@ export default {
     test(value) {
       if (!this.noOff) {
         if (this.loose) {
-          return this.value == value;
+          return this.modelValue == value;
         }
-        return this.value === value;
+        return this.modelValue === value;
       }
       if (this.loose) {
         return typeof this.values.find(v => v == value) !== 'undefined';
@@ -153,12 +137,14 @@ export default {
       }
 
       if (this.noOff) {
-        this.$emit('change', this.values.filter(v => {
+        const value = this.values.filter(v => {
           if (this.loose) {
             return v != this.onValue;
           }
           return v !== this.onValue;
-        }));
+        });
+        this.$emit('change', value);
+        this.$emit('update:modelValue', value);
         return;
       }
 
@@ -171,11 +157,11 @@ export default {
       }
 
       if (this.noOff && !Array.isArray(value)) {
-        this.$emit('change', this.test(value) ? this.values : [...this.values, value]);
-        return;
+        value = this.test(value) ? this.values : [...this.values, value];
       }
 
       this.$emit('change', value);
+      this.$emit('update:modelValue', value);
     },
 
     toggle() {
@@ -197,3 +183,17 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import "bootstrap-sass/assets/stylesheets/bootstrap/variables";
+
+.btn-group.disabled {
+  color: $btn-link-disabled-color;
+}
+
+.btn-group > .spinner.spinner-inline {
+  position: relative;
+  top: 2px;
+  left: 5px;
+}
+</style>

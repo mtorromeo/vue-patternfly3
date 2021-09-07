@@ -1,50 +1,47 @@
 <template>
-<div>
-  <div class="list-group list-view-pf list-view-pf-view">
-    <pf-list-group-item
-      ref="row"
-      v-for="(row, i) in rows"
-      :key="keyName ? row[keyName] : i"
-      :index="i"
-      :selectable="selectable"
-      :expandable="expandable"
-      :stacked="stacked"
-    >
-      <slot :row="row" :index="i"/>
-      <template #action v-if="withSlot.action">
-        <slot name="action" :row="row" :index="i"/>
-      </template>
-      <template #dropdown v-if="withSlot.dropdown">
-        <slot name="dropdown" :row="row" :index="i"/>
-      </template>
-      <template #expansion v-if="withSlot.expansion">
-        <slot name="expansion" :row="row" :index="i"/>
-      </template>
-    </pf-list-group-item>
-  </div>
+  <div>
+    <div class="list-group list-view-pf list-view-pf-view">
+      <pf-list-group-item
+        v-for="(row, i) in rows"
+        ref="row"
+        :key="keyName ? row[keyName] : i"
+        :index="i"
+        :selectable="selectable"
+        :expandable="expandable"
+        :stacked="stacked"
+      >
+        <slot :row="row" :index="i" />
+        <template v-if="$slots.action" #action>
+          <slot name="action" :row="row" :index="i" />
+        </template>
+        <template v-if="$slots.dropdown" #dropdown>
+          <slot name="dropdown" :row="row" :index="i" />
+        </template>
+        <template v-if="$slots.expansion" #expansion>
+          <slot name="expansion" :row="row" :index="i" />
+        </template>
+      </pf-list-group-item>
+    </div>
 
-  <pf-paginate-control
-    type="list"
-    v-if="itemsPerPage > 0"
-    ref="pagination"
-    :page="page"
-    :total-items="totalItems"
-    :items-per-page="itemsPerPage"
-    @update:itemsPerPage="$emit('update:itemsPerPage', $event)"
-    :items-per-page-options="itemsPerPageOptions"
-    @change="$emit('update:page', arguments[0])"
-  />
-</div>
+    <pf-paginate-control
+      v-if="itemsPerPage > 0"
+      ref="pagination"
+      type="list"
+      :page="page"
+      :total-items="totalItems"
+      :items-per-page="itemsPerPage"
+      :items-per-page-options="itemsPerPageOptions"
+      @update:itemsPerPage="$emit('update:itemsPerPage', $event)"
+      @change="$emit('update:page', arguments[0])"
+    />
+  </div>
 </template>
 
 <script>
 import PfListGroupItem from './ListGroupItem.vue';
-import SlotMonitor from '../mixins/SlotMonitor';
 
 export default {
   name: 'pf-list-view',
-
-  mixins: [SlotMonitor],
 
   components: {
     PfListGroupItem,
@@ -77,6 +74,8 @@ export default {
     },
     keyName: String,
   },
+
+  emits: ['update:itemsPerPage', 'update:page'],
 
   methods: {
     setAllSelected(selected = true) {

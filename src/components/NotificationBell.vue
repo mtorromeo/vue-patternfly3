@@ -1,15 +1,11 @@
-<template functional>
+<template>
   <li>
     <a
-      v-bind="data.attrs"
-      v-on="listeners"
-      :class="[data.class, data.staticClass]"
-      :style="[data.style, data.staticStyle]"
       class="nav-item-iconic"
       href="javascript:void(0)"
     >
-      <pf-icon name="fa-bell" title="Notifications"/>
-      <span class="badge" v-if="props.updates !== false"><span v-html="props.updates"></span></span>
+      <pf-icon name="fa-bell" title="Notifications" />
+      <span v-if="updates !== false" class="badge"><span v-html="updates" /></span>
     </a>
   </li>
 </template>

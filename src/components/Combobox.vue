@@ -7,7 +7,7 @@
       'has-error': hasError,
     }"
   >
-    <input v-if="name" type="hidden" :name="name" :value="value" :disabled="effectiveDisabled" :required="required">
+    <input v-if="name" type="hidden" :name="name" :value="modelValue" :disabled="effectiveDisabled" :required="required">
     <div class="input-group">
       <label v-if="withCheckbox" class="input-group-addon">
         <input v-model="checked" type="checkbox" :name="withCheckbox" value="1">
@@ -62,16 +62,12 @@
 export default {
   name: 'pf-combobox',
 
-  model: {
-    event: 'update',
-  },
-
   props: {
     name: {
       type: String,
       default: null,
     },
-    value: {
+    modelValue: {
       type: [String, Number],
       default: null,
     },
@@ -111,6 +107,8 @@ export default {
     },
   },
 
+  emits: ['update', 'update:modelValue'],
+
   data() {
     return {
       showOptions: false,
@@ -123,14 +121,14 @@ export default {
 
   computed: {
     hasValue() {
-      return this.value !== null;
+      return this.modelValue !== null;
     },
 
     label() {
-      if (!this.hasValue || typeof this.optionsMap[this.value] === 'undefined') {
+      if (!this.hasValue || typeof this.optionsMap[this.modelValue] === 'undefined') {
         return '';
       }
-      return this.optionsMap[this.value].label;
+      return this.optionsMap[this.modelValue].label;
     },
 
     optionsMap() {
@@ -170,6 +168,7 @@ export default {
       set(text) {
         this.filter = text;
         this.$emit('update', null);
+        this.$emit('update:modelValue', null);
       },
     },
 
@@ -205,8 +204,9 @@ export default {
       if (value === null) {
         this.filter = null;
       }
-      if (value !== this.value) {
+      if (value !== this.modelValue) {
         this.$emit('update', value);
+        this.$emit('update:modelValue', value);
         this.hasError = false;
       }
       this.$refs.text.focus();
