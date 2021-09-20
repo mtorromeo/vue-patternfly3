@@ -246,7 +246,7 @@ export default {
       }
     });
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.clearListeners();
     if (this.$refs.popup && this.$refs.popup.parentNode) {
       this.$refs.popup.parentNode.removeChild(this.$refs.popup);
@@ -296,17 +296,17 @@ export default {
     },
     clearListeners() {
       if (this.triggerEl) {
-        this.triggerEl('focus', this.show);
-        this.triggerEl('blur', this.hide);
-        this.triggerEl('mouseenter', this.show);
-        this.triggerEl('mouseleave', this.hide);
-        this.triggerEl('click', this.toggle);
-        this.triggerEl('mouseenter', this.handleAuto);
-        this.triggerEl('mouseleave', this.handleAuto);
-        this.triggerEl('focus', this.handleAuto);
-        this.triggerEl('blur', this.handleAuto);
+        this.triggerEl.removeEventListener('focus', this.show);
+        this.triggerEl.removeEventListener('blur', this.hide);
+        this.triggerEl.removeEventListener('mouseenter', this.show);
+        this.triggerEl.removeEventListener('mouseleave', this.hide);
+        this.triggerEl.removeEventListener('click', this.toggle);
+        this.triggerEl.removeEventListener('mouseenter', this.handleAuto);
+        this.triggerEl.removeEventListener('mouseleave', this.handleAuto);
+        this.triggerEl.removeEventListener('focus', this.handleAuto);
+        this.triggerEl.removeEventListener('blur', this.handleAuto);
       }
-      window('click', this.windowClicked);
+      window.removeEventListener('click', this.windowClicked);
       this.clearTimeouts();
     },
     clearTimeouts() {
