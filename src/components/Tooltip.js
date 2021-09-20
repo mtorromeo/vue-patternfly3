@@ -37,7 +37,7 @@ export default {
     },
     trigger: {
       type: String,
-      default: 'over-focus',
+      default: 'hover-focus',
     },
   },
   computed: {
