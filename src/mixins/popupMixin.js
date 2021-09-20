@@ -275,7 +275,7 @@ export default {
         }
       }
     },
-       initListeners() {
+    initListeners() {
       if (this.triggerEl) {
         if (this.trigger === 'hover') {
           this.triggerEl.addEventListener('mouseenter', this.show);
@@ -294,7 +294,7 @@ export default {
       }
       window.addEventListener('click', this.windowClicked);
     },
-   clearListeners() {
+    clearListeners() {
       if (this.triggerEl) {
         this.triggerEl.removeEventListener('focus', this.show);
         this.triggerEl.removeEventListener('blur', this.hide);
