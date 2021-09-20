@@ -306,7 +306,7 @@ export default {
         this.triggerEl.removeEventListener('focus', this.handleAuto);
         this.triggerEl.removeEventListener('blur', this.handleAuto);
       }
-      window('click', this.windowClicked);
+      window.removeEventListener('click', this.windowClicked);
       this.clearTimeouts();
     },
     clearTimeouts() {
