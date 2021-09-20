@@ -246,7 +246,7 @@ export default {
       }
     });
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.clearListeners();
     if (this.$refs.popup && this.$refs.popup.parentNode) {
       this.$refs.popup.parentNode.removeChild(this.$refs.popup);
@@ -278,35 +278,35 @@ export default {
     initListeners() {
       if (this.triggerEl) {
         if (this.trigger === 'hover') {
-          this.triggerEl.addEventListener('mouseenter', this.show);
-          this.triggerEl.addEventListener('mouseleave', this.hide);
+          this.on(this.triggerEl, 'mouseenter', this.show)
+          this.on(this.triggerEl, 'mouseleave', this.hide)
         } else if (this.trigger === 'focus') {
-          this.triggerEl.addEventListener('focus', this.show);
-          this.triggerEl.addEventListener('blur', this.hide);
+          this.on(this.triggerEl, 'focus', this.show)
+          this.on(this.triggerEl, 'blur', this.hide)
         } else if (this.trigger === 'hover-focus') {
-          this.triggerEl.addEventListener('mouseenter', this.handleAuto);
-          this.triggerEl.addEventListener('mouseleave', this.handleAuto);
-          this.triggerEl.addEventListener('focus', this.handleAuto);
-          this.triggerEl.addEventListener('blur', this.handleAuto);
+          this.on(this.triggerEl, 'mouseenter', this.handleAuto)
+          this.on(this.triggerEl, 'mouseleave', this.handleAuto)
+          this.on(this.triggerEl, 'focus', this.handleAuto)
+          this.on(this.triggerEl, 'blur', this.handleAuto)
         } else if (this.trigger === 'click' || this.trigger === 'outside-click') {
-          this.triggerEl.addEventListener('click', this.toggle);
+          this.on(this.triggerEl, 'click', this.toggle)
         }
       }
-      window.addEventListener('click', this.windowClicked);
+      this.on(window, 'click', this.windowClicked)
     },
     clearListeners() {
       if (this.triggerEl) {
-        this.triggerEl('focus', this.show);
-        this.triggerEl('blur', this.hide);
-        this.triggerEl('mouseenter', this.show);
-        this.triggerEl('mouseleave', this.hide);
-        this.triggerEl('click', this.toggle);
-        this.triggerEl('mouseenter', this.handleAuto);
-        this.triggerEl('mouseleave', this.handleAuto);
-        this.triggerEl('focus', this.handleAuto);
-        this.triggerEl('blur', this.handleAuto);
+        this.off(this.triggerEl, 'focus', this.show)
+        this.off(this.triggerEl, 'blur', this.hide)
+        this.off(this.triggerEl, 'mouseenter', this.show)
+        this.off(this.triggerEl, 'mouseleave', this.hide)
+        this.off(this.triggerEl, 'click', this.toggle)
+        this.off(this.triggerEl, 'mouseenter', this.handleAuto)
+        this.off(this.triggerEl, 'mouseleave', this.handleAuto)
+        this.off(this.triggerEl, 'focus', this.handleAuto)
+        this.off(this.triggerEl, 'blur', this.handleAuto)
       }
-      window('click', this.windowClicked);
+      this.off(window, 'click', this.windowClicked)
       this.clearTimeouts();
     },
     clearTimeouts() {
@@ -332,6 +332,13 @@ export default {
       if (popup) {
         setTooltipPosition(popup, this.triggerEl, this.placement, this.autoPlacement, this.appendTo, this.viewport);
       }
+    },
+    off(element, event, handler) {
+      element.removeEventListener(event, handler)
+    },
+
+    on(element, event, handler) {
+      element.addEventListener(event, handler)
     },
     hideOnLeave() {
       if (this.trigger === 'hover' || (this.trigger === 'hover-focus' && !this.triggerEl.matches(':focus'))) {
