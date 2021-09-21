@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.2.1] - 2021-09-21
+### Fixed
+- Fixed event unbinding in `pf-popup` and tooltips.
+- Fixed default trigger event for tooltips.
+
 ### [0.2.0] - 2021-09-07
 ### Changed
 - **BACKWARD INCOMPATIBLE CHANGE**: Migrated the whole library to Vue 3. The project is now in **passive maintenance** mode. Only bug fixes will be applied to this library and development has moved to [vue-patternfly4](https://github.com/mtorromeo/vue-patternfly4).
@@ -320,7 +325,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.7...v0.2.0
 [0.1.7]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.6...v0.1.7
 [0.1.6]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.5...v0.1.6
