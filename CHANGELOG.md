@@ -3,8 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ### [0.2.1] - 2021-09-21
 ### Fixed
-- Fixed event unbinding in `pf-popup` and tooltips.
-- Fixed default trigger event for tooltips.
+- Fixed event unbinding in `pf-popup` and tooltips (Contributed by [@MrDeerly]).
+- Fixed default trigger event for tooltips (Contributed by [@MrDeerly]).
 
 ### [0.2.0] - 2021-09-07
 ### Changed
@@ -361,4 +361,5 @@ disabled, as per PatternFly design guidelines.
 [0.0.3]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.2...v0.0.3
 [0.0.2]: https://github.com/mtorromeo/vue-patternfly/compare/v0.0.1...v0.0.2
 
+[@MrDeerly]: https://github.com/MrDeerly
 [@pebri86]: https://github.com/pebri86
