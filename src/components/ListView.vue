@@ -32,7 +32,7 @@
       :items-per-page="itemsPerPage"
       :items-per-page-options="itemsPerPageOptions"
       @update:itemsPerPage="$emit('update:itemsPerPage', $event)"
-      @change="$emit('update:page', arguments[0])"
+      @change="$emit('update:page', $event)"
     />
   </div>
 </template>
