@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.2.1] - 2021-09-29
+### Fixed
+- Fixed event propagation of the `update:page` event in `pf-list-view` (Contributed by [@MrDeerly]).
+
 ### [0.2.1] - 2021-09-21
 ### Fixed
 - Fixed event unbinding in `pf-popup` and tooltips (Contributed by [@MrDeerly]).
