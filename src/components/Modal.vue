@@ -1,5 +1,5 @@
 <template>
-  <teleport :to="modalsTarget || 'body'">
+  <teleport :to="modalsTarget.value || 'body'">
     <transition-group name="pf-drop-fade">
       <div v-if="show" key="modal" v-bind="$attrs" class="modal" role="dialog" @click="clickOutside">
         <div ref="dialog" class="modal-dialog">
