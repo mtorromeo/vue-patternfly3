@@ -8,9 +8,9 @@
   >
     <div class="col-sm-12">
       <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
-        <div class="filter-pf filter-fields form-group toolbar-pf-filter">
+        <div v-if="showFilter" class="filter-pf filter-fields form-group toolbar-pf-filter">
           <slot name="filter">
-            <pf-filter-fields v-if="showFilter" :fields="filterFields" @filter="addFilter" />
+            <pf-filter-fields :fields="filterFields" @filter="addFilter" />
           </slot>
         </div>
         <div v-if="showSorter || showColumnPicker" class="form-group">
