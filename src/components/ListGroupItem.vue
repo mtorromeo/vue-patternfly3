@@ -46,6 +46,7 @@ export default {
       default: null,
     },
     expandable: Boolean,
+    selectable: Boolean,
     stacked: Boolean,
     index: {
       type: [String, Number],
