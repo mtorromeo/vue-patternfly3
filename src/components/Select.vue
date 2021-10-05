@@ -9,7 +9,7 @@
     <component :is="btnType" ref="btn" :type="button ? 'button' : null" class="dropdown-toggle" :class="{
                  'btn btn-default': button,
                  'form-control': !button,
-               }" :tabindex="tabindex" v-bind="attributes" :readonly="readonly" role="button" :aria-expanded="show.toString()"
+               }" :tabindex="tabindex" :disabled="disabled || null" :readonly="readonly" role="button" :aria-expanded="show.toString()"
                @blur="canSearch ? null : close"
                @click="toggle"
                @keydown.esc.stop.prevent="close"
@@ -107,14 +107,6 @@ export default {
 
     btnType() {
       return this.button ? 'button' : 'div';
-    },
-    
-    attributes() {
-      const attrs = Object.assign({}, this.$attrs);
-      if (this.disabled) {
-        attrs.disabled = "disabled";
-      }
-      return attrs;
     },
   },
 
