@@ -6,7 +6,7 @@
       'btn-default': activeClass == 'active' && inactiveClass != 'btn-default',
     }]"
     :disabled="disabled || null"
-    >
+   >
     <input :type="input" style="display:none" :name="name" :checked="checked" :disabled="disabled || null" :value="checkedValue" @change="change">
     <slot />
   </label>
