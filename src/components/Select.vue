@@ -9,7 +9,7 @@
     <component :is="btnType" ref="btn" :type="button ? 'button' : null" class="dropdown-toggle" :class="{
                  'btn btn-default': button,
                  'form-control': !button,
-               }" :tabindex="tabindex" :disabled="disabled" :readonly="readonly" role="button" :aria-expanded="show.toString()"
+               }" :tabindex="tabindex" :disabled="disabled || null" :readonly="readonly" role="button" :aria-expanded="show.toString()"
                @blur="canSearch ? null : close"
                @click="toggle"
                @keydown.esc.stop.prevent="close"
