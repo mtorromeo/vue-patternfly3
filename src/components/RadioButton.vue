@@ -5,9 +5,9 @@
     :class="[stateClass, {
       'btn-default': activeClass == 'active' && inactiveClass != 'btn-default',
     }]"
-    v-bind="attributes"
-  >
-    <input :type="input" style="display:none" :name="name" :checked="checked" v-bind="attributes" :value="checkedValue" @change="change">
+    :disabled="disabled || null"
+    >
+    <input :type="input" style="display:none" :name="name" :checked="checked" :disabled="disabled || null" :value="checkedValue" @change="change">
     <slot />
   </label>
 </template>
@@ -58,14 +58,6 @@ export default {
 
     values() {
       return Array.isArray(this.modelValue) ? this.modelValue : [this.modelValue];
-    },
-    
-    attributes() {
-      const attrs = Object.assign({}, this.$attrs);
-      if (this.disabled) {
-        attrs.disabled = "disabled";
-      }
-      return attrs;
     },
   },
 
