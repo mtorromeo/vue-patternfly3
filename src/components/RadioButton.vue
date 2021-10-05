@@ -7,7 +7,7 @@
     }]"
     :disabled="disabled || null"
   >
-    <input :type="input" style="display:none" :name="name" :checked="checked" :disabled="disabled" :value="checkedValue" @change="change">
+    <input :type="input" style="display:none" :name="name" :checked="checked" :disabled="disabled || null" :value="checkedValue" @change="change">
     <slot />
   </label>
 </template>
