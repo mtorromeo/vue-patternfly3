@@ -1,7 +1,7 @@
 <template>
   <teleport :to="modalsTarget || 'body'">
     <transition-group name="pf-drop-fade">
-      <div v-if="show" key="modal" v-bind="$attrs" class="modal" role="dialog" @click="clickOutside">
+      <div v-if="show" key="modal" ref="modal" v-bind="$attrs" class="modal" role="dialog" @click="clickOutside">
         <div ref="dialog" class="modal-dialog">
           <component :is="form ? 'form' : 'div'" class="modal-content" :target="target" :method="method" @submit="$emit('submit', $event)">
             <div v-if="title" class="modal-header">
@@ -29,22 +29,12 @@
         </div>
       </div>
 
-      <div v-if="show" key="backdrop" class="modal-backdrop in" @click="clickOutside" />
+      <div v-if="show" key="backdrop" ref="backdrop" class="modal-backdrop in" @click="clickOutside" />
     </transition-group>
   </teleport>
 </template>
 
 <script>
-function isDescendantOf(node, ancestor) {
-  while (node) {
-    if (node === ancestor) {
-      return true;
-    }
-    node = node.parentElement;
-  }
-  return false;
-}
-
 export default {
   name: 'pf-modal',
 
@@ -102,8 +92,10 @@ export default {
     },
 
     clickOutside(e) {
-      if (this.outsideClose && !isDescendantOf(e.target, this.$refs.dialog)) {
-        this.cancel();
+    if (this.outsideClose) {
+        if ([this.$refs.modal, this.$refs.backdrop].indexOf(e.target) !== -1) {
+          this.cancel();
+        }
       }
     },
   },
