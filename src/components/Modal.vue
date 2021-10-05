@@ -92,7 +92,7 @@ export default {
     },
 
     clickOutside(e) {
-    if (this.outsideClose) {
+      if (this.outsideClose) {
         if ([this.$refs.modal, this.$refs.backdrop].indexOf(e.target) !== -1) {
           this.cancel();
         }
