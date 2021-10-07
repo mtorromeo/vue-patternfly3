@@ -8,7 +8,7 @@
       </li>
     </pf-dropdown>
     <pf-select v-if="isSelect" close-on-select class="filter-select" :placeholder="current.placeholder">
-      <pf-option v-for="(item, i) in current.values" :key="i" :checked-value="item" @update:model-alue="set">
+      <pf-option v-for="(item, i) in current.values" :key="i" :checked-value="item" @update:model-value="set">
         {{ item }}
       </pf-option>
     </pf-select>
