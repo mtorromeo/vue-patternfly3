@@ -3,13 +3,21 @@ import { h, resolveComponent, mergeProps } from 'vue';
 export default {
   name: 'pf-menu-item',
 
+  inheritAttrs: false,
+
   props: {
     title: {
       type: String,
       required: true,
     },
     to: [String, Object],
-    exact: Boolean,
+    replace: Boolean,
+    activeClass: {
+      type: String,
+      default: 'active',
+    },
+    ariaCurrentValue: String,
+    exactActiveClass: String,
     icon: String,
     badge: String,
     href: String,
@@ -59,17 +67,20 @@ export default {
       }
     }
 
-    let tagProps = {
+    let tagProps = mergeProps({
       class: 'list-group-item',
-    };
+    }, this.$attrs);
 
     if (tag === 'router-link') {
       tag = resolveComponent('router-link');
-      const liProps = mergeProps(tagProps, this.$attrs);
+      const liProps = { ...tagProps };
       tagProps = {
-        activeClass: 'active',
         custom: true,
         to: this.to,
+        replace: this.replace,
+        activeClass: this.activeClass,
+        ariaCurrentValue: this.ariaCurrentValue,
+        exactActiveClass: this.exactActiveClass,
       };
       // children = elements;
       children = {
