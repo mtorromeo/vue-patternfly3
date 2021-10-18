@@ -1,6 +1,19 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.2.3] - 2021-10-18
+### Fixed
+- Add missing `selectable` prop to `pf-list-group-item` (Contributed by [@MrDeerly]).
+- Fixed layout of `pf-toolbar` with no filters by not rendering the filter slot (Contributed by [@MrDeerly]).
+- Do not disable `pf-select` components by default (Contributed by [@MrDeerly]).
+- Fixed disabled attribute of inputs in `pf-radio-button` (Contributed by [@MrDeerly]).
+- Fixed filters not working for the `pf-select` component (Contributed by [@MrDeerly]).
+- Extra attributes on `pf-menu-item` are not passed to `router-link`s.
+
+### [0.2.2]  - 2021-09-29
+### Fixed
+- Fixed forwaring of the page number event from `pf-list-view` (Contributed by [@MrDeerly]).
+
 ### [0.2.1] - 2021-09-29
 ### Fixed
 - Fixed event propagation of the `update:page` event in `pf-list-view` (Contributed by [@MrDeerly]).
@@ -329,7 +342,9 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.3...HEAD
+[0.2.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.2...v0.2.3
+[0.2.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.7...v0.2.0
 [0.1.7]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.6...v0.1.7
