@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [Unreleased]
+### Fixed
+- Set href of the link when using the `pf-menu-item` as a `router-link`.
+
 ### [0.2.3] - 2021-10-18
 ### Fixed
 - Add missing `selectable` prop to `pf-list-group-item` (Contributed by [@MrDeerly]).
@@ -12,7 +16,7 @@ All notable changes to this project will be documented in this file.
 
 ### [0.2.2]  - 2021-09-29
 ### Fixed
-- Fixed forwaring of the page number event from `pf-list-view` (Contributed by [@MrDeerly]).
+- Fixed forwarding of the page number event from `pf-list-view` (Contributed by [@MrDeerly]).
 
 ### [0.2.1] - 2021-09-29
 ### Fixed

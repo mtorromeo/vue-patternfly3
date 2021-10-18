@@ -28,38 +28,39 @@ export default {
   render() {
     let tag = typeof this.to === 'undefined' ? 'li' : 'router-link';
 
-    let elements = [];
+    const linkBuilder = href => {
+      const linkChildren = [];
 
-    if (this.icon) {
-      elements.push(h(resolveComponent('pf-icon'), {
-        name: this.icon,
-        title: this.title,
-      }));
-    }
+      if (this.icon) {
+        linkChildren.push(h(resolveComponent('pf-icon'), {
+          name: this.icon,
+          title: this.title,
+        }));
+      }
 
-    elements.push(h('span', {
-      class: 'list-group-item-value',
-    }, this.title));
+      linkChildren.push(h('span', {
+        class: 'list-group-item-value',
+      }, this.title));
 
-    if (this.badge) {
-      elements.push(h('div', {
-        class: 'badge-container-pf',
-      }, [
-        h('div', { class: 'badge' }, this.badge),
-      ]));
-    }
+      if (this.badge) {
+        linkChildren.push(h('div', {
+          class: 'badge-container-pf',
+        }, [
+          h('div', { class: 'badge' }, this.badge),
+        ]));
+      }
 
-    elements = [
-      h('a', {
-        href: this.href,
+      return h('a', {
+        href,
         target: this.target,
-      }, elements),
-    ];
+      }, linkChildren);
+    };
 
+    let elements = [];
     let children = this.$slots.default ? this.$slots.default() : [];
     if (children) {
       if (this.vertical) {
-        elements = elements.concat(children);
+        elements = children;
       } else {
         elements.push(h('ul', {
           class: 'nav navbar-nav navbar-persistent',
@@ -82,11 +83,16 @@ export default {
         ariaCurrentValue: this.ariaCurrentValue,
         exactActiveClass: this.exactActiveClass,
       };
-      // children = elements;
+
       children = {
-        default: ({ navigate }) => h('li', { onClick: navigate, ...liProps }, elements),
+        default: ({ navigate, href }) => {
+          const link = linkBuilder(this.href || href);
+          elements.unshift(link);
+          return h('li', { onClick: navigate, ...liProps }, elements);
+        },
       };
     } else {
+      elements.unshift(linkBuilder(this.href));
       children = elements;
     }
 
