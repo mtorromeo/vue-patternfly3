@@ -1,7 +1,11 @@
 <template>
   <div class="utilization-bar-chart-pf" :class="{'data-unavailable-pf': !dataAvailable}">
     <template v-if="!inline">
-      <div v-if="title" class="progress-description" v-html="title" />
+      <div v-if="title" class="progress-description">
+        <slot name="title">
+          {{ title }}
+        </slot>
+      </div>
       <div v-if="dataAvailable" class="progress progress-label-top-right">
         <div v-tooltip="percent + '% Used'" class="progress-bar" :aria-valuenow="percent"
              aria-valuemin="0" aria-valuemax="100"
@@ -12,7 +16,19 @@
                'progress-bar-warning': isWarning,
              }"
              :style="{width: percent + '%'}">
-          <span v-html="footerHTML" />
+          <span>
+            <span :style="{'max-width': footerWidthPx}">
+              <slot v-if="footer || $slots.footer" name="footer">
+                {{ footer }}
+              </slot>
+              <template v-else-if="footerFormat === 'percent'">
+                <strong>{{ percent }}%</strong> used
+              </template>
+              <template v-else>
+                <strong>{{ value }} of {{ total }} {{ units }}</strong> used
+              </template>
+            </span>
+          </span>
         </div>
         <div v-tooltip="(100 - percent) + '% Available'"
              class="progress-bar progress-bar-remaining"
@@ -25,7 +41,11 @@
              'padding-left': titleWidthPx,
              'padding-right': footerWidthPx,
            }">
-        <div v-if="title" class="progress-description" :style="{'max-width': titleWidthPx}" v-html="title" />
+        <div v-if="title" class="progress-description" :style="{'max-width': titleWidthPx}">
+          <slot name="title">
+            {{ title }}
+          </slot>
+        </div>
         <div v-if="dataAvailable" class="progress">
           <div v-tooltip="percent + '% Used'" class="progress-bar" :aria-valuenow="percent"
                aria-valuemin="0" aria-valuemax="100"
@@ -36,7 +56,17 @@
                  'progress-bar-warning': isWarning,
                }"
                :style="{width: percent + '%'}">
-            <span :style="{'max-width': footerWidthPx}" v-html="footerHTML" />
+            <span :style="{'max-width': footerWidthPx}">
+              <slot v-if="footer || $slots.footer" name="footer">
+                {{ footer }}
+              </slot>
+              <template v-else-if="footerFormat === 'percent'">
+                <strong>{{ percent }}%</strong> used
+              </template>
+              <template v-else>
+                <strong>{{ value }} {{ units }}</strong> used
+              </template>
+            </span>
           </div>
           <div v-tooltip="(100 - percent) + '% Available'"
                class="progress-bar progress-bar-remaining"
@@ -94,21 +124,6 @@ export default {
 
     isOk() {
       return !this.isError && !this.isWarning;
-    },
-
-    footerHTML() {
-      if (this.footer) {
-        return this.footer;
-      }
-      switch (this.footerFormat) {
-        case 'percent':
-          return `<strong>${this.percent}%</strong> used`;
-        default:
-          if (this.inline) {
-            return `<strong>${this.value} ${this.units}</strong> used`;
-          }
-          return `<strong>${this.value} of ${this.total} ${this.units}</strong> used`;
-      }
     },
 
     titleWidthPx() {
