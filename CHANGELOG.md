@@ -5,6 +5,9 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Set href of the link when using the `pf-menu-item` as a `router-link`.
 
+### Added
+- New `pf-button` component.
+
 ### [0.2.3] - 2021-10-18
 ### Fixed
 - Add missing `selectable` prop to `pf-list-group-item` (Contributed by [@MrDeerly]).

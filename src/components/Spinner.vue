@@ -6,6 +6,7 @@
       'spinner-inverse': inverse,
     }]"
     class="spinner"
+    :aria-valuetext="ariaValueText"
   />
   <component :is="tag" v-else>
     <slot />
@@ -28,6 +29,10 @@ export default {
     tag: {
       type: String,
       default: 'div',
+    },
+    ariaValueText: {
+      type: String,
+      default: 'Loading...',
     },
   },
 };
