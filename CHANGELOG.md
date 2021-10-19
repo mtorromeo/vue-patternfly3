@@ -1,7 +1,7 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-### [Unreleased]
+### [0.2.4] - 2021-10-19
 ### Fixed
 - Set href of the link when using the `pf-menu-item` as a `router-link`.
 
@@ -349,9 +349,10 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.3...HEAD
-[0.2.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.2...v0.2.3
-[0.2.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.1...v0.2.2
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.4...HEAD
+[0.2.4]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.3...v0.2.4
+[0.2.3]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.2...v0.2.3
+[0.2.2]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.1...v0.2.2
 [0.2.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.7...v0.2.0
 [0.1.7]: https://github.com/mtorromeo/vue-patternfly/compare/v0.1.6...v0.1.7
