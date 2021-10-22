@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.2.5] - 2021-10-22
+### Fixed
+- fix(Tooltip): exported `pf-tooltip` component.
+- fix(Button): fixed error when using `pf-button` without a `router-link`.
+
 ### [0.2.4] - 2021-10-19
 ### Fixed
 - Set href of the link when using the `pf-menu-item` as a `router-link`.
