@@ -1,7 +1,7 @@
 <template>
   <component
     :is="to ? 'router-link' : 'void'"
-    v-slot="{ navigate, href, isActive, isExactActive }"
+    v-slot="routerCtx"
     :to="to"
     :replace="replace"
     custom
@@ -13,20 +13,20 @@
       :disabled="effectiveDisabled || null"
       class="btn"
       :class="[`btn-${variant}`, {
-        [activeClass]: isActive,
-        [exactActiveClass]: isExactActive,
+        [activeClass]: routerCtx?.isActive,
+        [exactActiveClass]: routerCtx?.isExactActive,
         'btn-block': block,
         'active': active,
         'btn-sm': small,
         'btn-xs': xSmall,
         'btn-lg': large,
       }]"
-      :aria-current="isExactActive ? ariaCurrentValue : null"
+      :aria-current="routerCtx?.isExactActive ? ariaCurrentValue : null"
       :aria-pressed="active || null"
       :tabindex="tabIdx"
       :role="buttonComponent !== 'button' ? 'button' : null"
-      :href="$attrs.href || (buttonComponent === 'a' ? href : null)"
-      @click="onClick($event, navigate)"
+      :href="href || (buttonComponent === 'a' ? routerCtx?.href : null)"
+      @click="onClick($event, routerCtx?.navigate)"
     >
       <pf-spinner
         v-if="loading"
@@ -61,7 +61,7 @@ export default {
 
     variant: {
       type: String,
-      default: 'primary',
+      default: 'default',
       validator: v => ['default', 'primary', 'success', 'info', 'warning', 'danger', 'link'].includes(v),
     },
 
@@ -97,6 +97,11 @@ export default {
       default: null,
     },
 
+    href: {
+      type: String,
+      default: null,
+    },
+
     // router-link attributes
     to: {
       type: [String, Object],
@@ -124,7 +129,7 @@ export default {
       if (this.component !== 'auto') {
         return this.component;
       }
-      return this.to ? 'a' : 'button';
+      return (this.href || this.to) ? 'a' : 'button';
     },
 
     effectiveDisabled() {
@@ -152,7 +157,7 @@ export default {
         return;
       }
 
-      if (this.to) {
+      if (navigate) {
         navigate(e);
         return;
       }
