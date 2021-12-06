@@ -14,12 +14,12 @@
       <div class="demo-container">
         <pf-table v-model:page="table.page"
                   v-model:items-per-page="table.itemsPerPage"
+                  v-model:sort-by="table.sortBy"
+                  v-model:sort-direction="table.sortDirection"
                   :columns="table.columns"
                   :rows="table.rows"
                   :key-name="table.keyName"
-                  v-model:sort-by="table.sortBy"
                   :total-items="table.totalItems"
-                  v-model:sort-direction="table.sortDirection"
                   :items-per-page-options="table.itemsPerPageOptions"
                   :striped="table.striped"
                   :bordered="table.bordered"
@@ -38,16 +38,16 @@
             <td>{{ row.state }}</td>
           </template>
           <template #action>
-            <a href="#" class="btn btn-default">
+            <a href="#" class="btn btn-default" @click.prevent>
               Action
             </a>
           </template>
           <template #dropdown>
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
+            <li><a href="#" @click.prevent>Action</a></li>
+            <li><a href="#" @click.prevent>Another action</a></li>
+            <li><a href="#" @click.prevent>Something else here</a></li>
             <li role="separator" class="divider" />
-            <li><a href="#">Separated link</a></li>
+            <li><a href="#" @click.prevent>Separated link</a></li>
           </template>
           <template #footer>
             Footer slot

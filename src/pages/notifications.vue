@@ -44,10 +44,10 @@
               <input v-model="notifications.message" type="text" class="form-control">
             </td>
             <td rowspan="2">
-              <button class="btn btn-default" @click="notify">
+              <pf-button @click="notify">
                 <span class="fa fa-play-circle" />
                 Run
-              </button>
+              </pf-button>
             </td>
           </tr>
           <tr>

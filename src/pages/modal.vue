@@ -27,9 +27,9 @@
         </template>
       </pf-modal>
 
-      <button class="btn btn-primary" @click="modal.show = true">
+      <pf-button variant="primary" @click="modal.show = true">
         Open Modal
-      </button>
+      </pf-button>
 
       <props-table :component-props="modalProps">
         <props-row v-model="modal.title" name="title" description="Modal title or empty/undefined to disable it" />
