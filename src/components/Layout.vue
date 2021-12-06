@@ -6,7 +6,7 @@
     <nav v-if="!disabled" class="navbar" :class="{
       'navbar-pf': horizontal,
       'navbar-pf-vertical': !horizontal,
-    }" role="navigation">
+    }" role="navigation" data-ouia-header="true">
       <div class="navbar-header">
         <button v-if="collapsable" type="button" class="navbar-toggle" @click="collapsed = !collapsed">
           <span class="sr-only">Toggle navigation</span>
@@ -18,7 +18,7 @@
       </div>
 
       <div class="collapse navbar-collapse navbar-collapse-1">
-        <ul v-if="horizontal" class="nav navbar-nav navbar-primary" :class="{'persistent-secondary': horizontalSecondary}">
+        <ul v-if="horizontal" class="nav navbar-nav navbar-primary" :class="{'persistent-secondary': horizontalSecondary}" data-ouia-navigation="true">
           <slot name="horizontal-menu" />
         </ul>
 
@@ -44,7 +44,7 @@
       'show-mobile-tertiary': tertiaryMenus && mobile,
       'hover-tertiary-nav-pf': tertiaryMenus,
     }">
-      <ul class="list-group">
+      <ul class="list-group" data-ouia-navigation="true">
         <slot name="vertical-menu" />
       </ul>
     </div>
@@ -56,7 +56,7 @@
       'collapsed-nav': !disabled && collapsed,
       'container-pf-nav-pf-vertical': !disabled && !horizontal,
       'hidden-icons-pf': !disabled && !icons,
-    }">
+    }" :data-ouia-main="noOuiaMain ? null : 'true'">
       <slot />
 
       <div ref="modalsTarget" />
@@ -84,6 +84,9 @@ export default {
     disabled: Boolean,
     nomargin: Boolean,
     horizontalSecondary: Boolean,
+
+    noOuiaMain: Boolean,
+
     ...ouiaProps,
   },
 
