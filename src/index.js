@@ -11,6 +11,8 @@ export function install(app) {
   for (const [name, component] of Object.entries(components)) {
     app.component(component.name || name, component);
   }
+  // also register old name for backward compatibility
+  app.component('PfToastNotification', components.Notification);
   app.directive('tooltip', VTooltip);
 }
 
