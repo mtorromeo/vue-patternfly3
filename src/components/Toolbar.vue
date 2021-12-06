@@ -52,17 +52,16 @@
           </h5>
 
           <div class="form-group toolbar-pf-view-selector">
-            <button
+            <pf-button
               v-for="(viewData, name) in viewList"
               :key="name"
-              type="button"
-              class="btn btn-link"
+              variant="link"
               :class="{'active': view == name, 'disabled': viewData.disabled}"
               :title="viewData.title"
               @click="activeView = name"
             >
               <pf-icon tag="i" :name="viewData.icon" class="view-selector" />
-            </button>
+            </pf-button>
           </div>
         </div>
       </form>
@@ -72,14 +71,16 @@
 </template>
 
 <script>
-import PfSort from './Sort.vue';
+import PfButton from './Button.vue';
 import PfColumnPicker from './ColumnPicker.vue';
+import PfSort from './Sort.vue';
 import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
   name: 'PfToolbar',
 
   components: {
+    PfButton,
     PfSort,
     PfColumnPicker,
   },

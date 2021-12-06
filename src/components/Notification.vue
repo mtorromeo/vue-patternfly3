@@ -39,16 +39,15 @@
       <pf-icon name="pficon-close" />
     </button>
 
-    <button
+    <pf-button
       v-if="action && action.name"
-      type="button"
-      class="pull-right btn"
-      :class="[buttonClass]"
+      class="pull-right"
+      :variant="buttonVariant"
       :title="action.title"
       @click="triggered(action)"
     >
       {{ action.name }}
-    </button>
+    </pf-button>
 
     <pf-icon :name="typeIcon" />
     <slot />
@@ -57,12 +56,14 @@
 
 <script>
 import { ouiaProps, useOUIAProps } from '../use';
+import PfButton from './Button.vue';
 import PfDropdown from './Dropdown.vue';
 
 export default {
   name: 'PfNotification',
 
   components: {
+    PfButton,
     PfDropdown,
   },
 
@@ -101,11 +102,11 @@ export default {
     alertClass() {
       return `alert-${this.type || 'info'}`;
     },
-    buttonClass() {
+    buttonVariant() {
       if (!this.action || !this.action.button) {
-        return 'btn-link';
+        return 'link';
       }
-      return `btn-${this.action.button}`;
+      return this.action.button;
     },
     typeIcon() {
       switch (this.type) {

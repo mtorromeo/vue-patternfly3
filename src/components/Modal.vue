@@ -17,12 +17,12 @@
             </div>
             <div v-if="$slots.footer || cancelButton || confirmButton" class="modal-footer">
               <slot name="footer">
-                <button v-if="cancelButton" type="button" class="btn btn-default" @click="cancel">
+                <pf-button v-if="cancelButton" @click="cancel">
                   {{ cancelButton }}
-                </button>
-                <button v-if="confirmButton" :type="form ? 'submit' : 'button'" class="btn btn-primary" @click="confirm">
+                </pf-button>
+                <pf-button v-if="confirmButton" :type="form ? 'submit' : 'button'" variant="primary" @click="confirm">
                   {{ confirmButton }}
-                </button>
+                </pf-button>
               </slot>
             </div>
           </component>
@@ -34,7 +34,9 @@
   </teleport>
 </template>
 
-<script>import { ouiaProps, useOUIAProps } from '../use';
+<script>
+import { ouiaProps, useOUIAProps } from '../use';
+import PfButton from './Button.vue';
 
 function isDescendantOf(node, ancestor) {
   while (node) {
@@ -48,6 +50,10 @@ function isDescendantOf(node, ancestor) {
 
 export default {
   name: 'PfModal',
+
+  components: {
+    PfButton,
+  },
 
   inject: ['modalsTarget'],
 

@@ -7,20 +7,22 @@
         </a>
       </li>
     </pf-dropdown>
-    <button type="button" class="btn btn-link" @click="invert">
+    <pf-button variant="link" @click="invert">
       <pf-icon class="sort-direction" :name="sortIcon" />
-    </button>
+    </pf-button>
   </div>
 </template>
 
 <script>
 import { ouiaProps, useOUIAProps } from '../use';
+import PfButton from './Button.vue';
 import PfDropdown from './Dropdown.vue';
 
 export default {
   name: 'PfSort',
 
   components: {
+    PfButton,
     PfDropdown,
   },
 

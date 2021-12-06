@@ -1,8 +1,8 @@
 <template>
   <pf-popover v-bind="ouiaProps" class="column-picker" placement="bottom">
-    <button ref="popover-trigger" type="button" class="btn btn-link">
+    <pf-button ref="popover-trigger" variant="link">
       <pf-icon name="fa-columns" />
-    </button>
+    </pf-button>
 
     <template #popover>
       <div v-for="(column, i) in columns" :key="i" class="column-picker checkbox">
@@ -17,6 +17,7 @@
 
 <script>
 import { ouiaProps, useOUIAProps } from '../use';
+import PfButton from './Button.vue';
 import PfPopover from './Popover.vue';
 
 export default {
@@ -24,6 +25,7 @@ export default {
 
   components: {
     PfPopover,
+    PfButton,
   },
 
   props: {
