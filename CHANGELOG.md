@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.2.6] - 2021-12-06
+### Added
+- feat: Implemented [OUIA](https://ouia.readthedocs.io/en/latest/README.html#metadata) data attributes on all components.
+
 ### [0.2.5] - 2021-10-22
 ### Fixed
 - fix(Tooltip): exported `pf-tooltip` component.
