@@ -1,6 +1,7 @@
 <template>
   <div
     v-if="loading"
+    v-bind="ouiaProps"
     :class="[`spinner-${size}`, {
       'spinner-inline': inline,
       'spinner-inverse': inverse,
@@ -13,9 +14,10 @@
   </component>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-spinner',
+  name: 'PfSpinner',
 
   props: {
     loading: Boolean,
@@ -34,6 +36,11 @@ export default {
       type: String,
       default: 'Loading...',
     },
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 };
 </script>

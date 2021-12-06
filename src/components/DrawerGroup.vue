@@ -1,5 +1,5 @@
 <template>
-  <div class="panel panel-default">
+  <div v-bind="ouiaProps" class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">
         <a :class="{collapsed: !expanded}" :aria-expanded="expanded ? 'true' : 'false'" @click="toggle">
@@ -36,9 +36,10 @@
   </div>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-drawer-group',
+  name: 'PfDrawerGroup',
 
   inject: {
     activeGroup: {
@@ -50,9 +51,14 @@ export default {
     title: String,
     counter: String,
     loading: Boolean,
+    ...ouiaProps,
   },
 
   emits: ['opened', 'closed'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   data() {
     return {

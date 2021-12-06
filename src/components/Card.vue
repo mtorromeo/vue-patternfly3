@@ -1,5 +1,5 @@
 <template>
-  <div class="card-pf" :class="{'card-pf-accented': accented}">
+  <div v-bind="ouiaProps" class="card-pf" :class="{'card-pf-accented': accented}">
     <div v-if="showHeader" :class="{'card-pf-heading': showTitlesSeparator, 'card-pf-heading-no-bottom': !showTitlesSeparator}">
       <slot name="header">
         <pf-dropdown v-if="showFilterInHeader" class="card-pf-time-frame-filter" :text="currentFilter.label" menu-right>
@@ -54,10 +54,11 @@
 </template>
 
 <script>
+import { ouiaProps, useOUIAProps } from '../use';
 import PfDropdown from './Dropdown.vue';
 
 export default {
-  name: 'pf-card',
+  name: 'PfCard',
 
   components: {
     PfDropdown,
@@ -83,9 +84,14 @@ export default {
       type: Boolean,
       default: true,
     },
+    ...ouiaProps,
   },
 
   emits: ['filter'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   computed: {
     currentFilter() {

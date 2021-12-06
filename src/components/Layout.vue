@@ -1,5 +1,5 @@
 <template>
-  <div :class="{
+  <div v-bind="ouiaProps" :class="{
     'pf-layout-flex': display == 'flex',
     'pf-layout-grid': display == 'grid',
   }">
@@ -66,9 +66,10 @@
 
 <script>
 import { ref, provide } from 'vue';
+import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-layout',
+  name: 'PfLayout',
 
   props: {
     display: {
@@ -83,16 +84,21 @@ export default {
     disabled: Boolean,
     nomargin: Boolean,
     horizontalSecondary: Boolean,
+    ...ouiaProps,
   },
 
   emits: ['update:collapsed'],
 
-  setup() {
+  setup(props) {
     const collapsed = ref(false);
     provide('layoutCollapsed', collapsed);
     const modalsTarget = ref(null);
     provide('modalsTarget', modalsTarget);
-    return { collapsed, modalsTarget };
+    return {
+      collapsed,
+      modalsTarget,
+      ...useOUIAProps(props),
+    };
   },
 
   data() {

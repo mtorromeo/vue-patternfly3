@@ -1,5 +1,5 @@
 <template>
-  <tr role="row" :class="{selected: selectable && selected}">
+  <tr v-bind="ouiaProps" role="row" :class="{selected: selectable && selected}">
     <td v-if="selectable" class="table-view-pf-select">
       <label>
         <span class="sr-only">Select row {{ num }}</span>
@@ -21,10 +21,11 @@
 </template>
 
 <script>
+import { ouiaProps, useOUIAProps } from '../use';
 import PfDropdown from './Dropdown.vue';
 
 export default {
-  name: 'pf-table-row',
+  name: 'PfTableRow',
 
   components: {
     PfDropdown,
@@ -33,9 +34,14 @@ export default {
   props: {
     num: Number,
     selectable: Boolean,
+    ...ouiaProps,
   },
 
   emits: ['select'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   data() {
     return {

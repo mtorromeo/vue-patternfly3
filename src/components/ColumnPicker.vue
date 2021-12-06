@@ -1,5 +1,5 @@
 <template>
-  <popover class="column-picker" placement="bottom">
+  <pf-popover v-bind="ouiaProps" class="column-picker" placement="bottom">
     <button ref="popover-trigger" type="button" class="btn btn-link">
       <pf-icon name="fa-columns" />
     </button>
@@ -12,17 +12,18 @@
         </label>
       </div>
     </template>
-  </popover>
+  </pf-popover>
 </template>
 
 <script>
-import Popover from './Popover.vue';
+import { ouiaProps, useOUIAProps } from '../use';
+import PfPopover from './Popover.vue';
 
 export default {
-  name: 'pf-column-picker',
+  name: 'PfColumnPicker',
 
   components: {
-    Popover,
+    PfPopover,
   },
 
   props: {
@@ -38,9 +39,14 @@ export default {
         return [];
       },
     },
+    ...ouiaProps,
   },
 
   emits: ['update:modelValue'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   data() {
     return {

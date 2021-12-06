@@ -7,7 +7,7 @@
     custom
   >
     <component
-      v-bind="$attrs"
+      v-bind="{ ...$attrs, ...ouiaProps }"
       :is="buttonComponent"
       :type="buttonComponent === 'button' ? type : null"
       :disabled="effectiveDisabled || null"
@@ -42,11 +42,12 @@
 </template>
 
 <script>
+import { ouiaProps, useOUIAProps } from '../use';
 import PfSpinner from './Spinner.vue';
 import Void from './Void.js';
 
 export default {
-  name: 'pf-button',
+  name: 'PfButton',
 
   components: { PfSpinner, Void },
 
@@ -120,9 +121,15 @@ export default {
       type: String,
       default: null,
     },
+
+    ...ouiaProps,
   },
 
   emits: ['click'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   computed: {
     buttonComponent() {

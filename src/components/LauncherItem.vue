@@ -1,5 +1,5 @@
 <template>
-  <li class="applauncher-pf-item" role="menuitem">
+  <li v-bind="ouiaProps" class="applauncher-pf-item" role="menuitem">
     <a class="applauncher-pf-link" :href="href" v-bind="$attrs">
       <pf-icon tag="i" aria-hidden="true" :name="icon" class="applauncher-pf-link-icon" />
       <span class="applauncher-pf-link-title"><slot /></span>
@@ -7,9 +7,10 @@
   </li>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-launcher-item',
+  name: 'PfLauncherItem',
 
   inheritAttrs: false,
 
@@ -19,6 +20,11 @@ export default {
       default: '#',
     },
     icon: String,
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 };
 </script>

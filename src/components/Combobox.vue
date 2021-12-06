@@ -1,5 +1,6 @@
 <template>
   <div
+    v-bind="ouiaProps"
     class="combobox-container"
     :class="{
       'combobox-disabled': effectiveDisabled,
@@ -58,9 +59,10 @@
   </div>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-combobox',
+  name: 'PfCombobox',
 
   props: {
     name: {
@@ -105,9 +107,14 @@ export default {
       type: [Boolean, String],
       default: false,
     },
+    ...ouiaProps,
   },
 
   emits: ['update', 'update:modelValue'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   data() {
     return {

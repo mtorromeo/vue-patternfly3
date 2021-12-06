@@ -1,9 +1,10 @@
 // https://www.patternfly.org/v3/styles/icons/
 // https://getbootstrap.com/docs/3.4/components/#glyphicons
 import { h } from 'vue';
+import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-icon',
+  name: 'PfIcon',
 
   props: {
     name: String,
@@ -12,6 +13,11 @@ export default {
       type: String,
       default: 'span',
     },
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 
   render() {
@@ -35,6 +41,7 @@ export default {
       'aria-hidden': 'true',
       class: classes,
       style,
+      ...this.ouiaProps,
     }, this.$slots);
   },
 };

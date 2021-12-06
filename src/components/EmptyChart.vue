@@ -1,5 +1,6 @@
 <template>
   <div
+    v-bind="ouiaProps"
     class="empty-chart-content"
     :style="{
       'height': `${height}px`,
@@ -13,15 +14,21 @@
   </div>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-empty-chart',
+  name: 'PfEmptyChart',
 
   props: {
     height: {
       type: Number,
       default: 40,
     },
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="table-wrapper">
+  <div v-bind="ouiaProps" class="table-wrapper">
     <table v-if="scrollable"
            class="table dataTable table-head-clone"
            :style="{
@@ -106,9 +106,10 @@
 import ResizeObserver from 'resize-observer-polyfill';
 import PfTableRow from './TableRow.vue';
 import debounce from 'lodash-es/debounce';
+import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-table',
+  name: 'PfTable',
 
   components: {
     PfTableRow,
@@ -151,9 +152,14 @@ export default {
     sortable: Boolean,
     sortBy: String,
     sortDirection: String,
+    ...ouiaProps,
   },
 
   emits: ['update:page', 'update:itemsPerPage', 'sort-by', 'update:sortBy', 'update:sortDirection'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   data() {
     return {

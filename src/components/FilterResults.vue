@@ -1,5 +1,5 @@
 <template>
-  <div class="filter-pf">
+  <div v-bind="ouiaProps" class="filter-pf">
     <div class="row toolbar-pf-results">
       <div class="col-sm-12">
         <h5>{{ count }} Results</h5>
@@ -20,9 +20,10 @@
   </div>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-filter-results',
+  name: 'PfFilterResults',
 
   props: {
     count: Number,
@@ -32,6 +33,11 @@ export default {
         return [];
       },
     },
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 };
 </script>

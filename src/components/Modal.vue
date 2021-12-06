@@ -1,7 +1,7 @@
 <template>
   <teleport :to="modalsTarget || 'body'">
     <transition-group name="pf-drop-fade">
-      <div v-if="show" key="modal" v-bind="$attrs" class="modal" role="dialog" @click="clickOutside">
+      <div v-if="show" key="modal" v-bind="{ ...$attrs, ...ouiaProps }" class="modal" role="dialog" @click="clickOutside">
         <div ref="dialog" class="modal-dialog">
           <component :is="form ? 'form' : 'div'" class="modal-content" :target="target" :method="method" @submit="$emit('submit', $event)">
             <div v-if="title" class="modal-header">
@@ -34,7 +34,8 @@
   </teleport>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 function isDescendantOf(node, ancestor) {
   while (node) {
     if (node === ancestor) {
@@ -46,7 +47,7 @@ function isDescendantOf(node, ancestor) {
 }
 
 export default {
-  name: 'pf-modal',
+  name: 'PfModal',
 
   inject: ['modalsTarget'],
 
@@ -74,9 +75,14 @@ export default {
       default: false,
     },
     show: Boolean,
+    ...ouiaProps,
   },
 
   emits: ['submit', 'confirm', 'cancel', 'close'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   mounted() {
     document.documentElement.classList.add('modal-open');

@@ -1,8 +1,9 @@
 import popupMixin from '../mixins/popupMixin';
 import { h } from 'vue';
+import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-tooltip',
+  name: 'PfeTooltip',
 
   mixins: [popupMixin],
 
@@ -15,6 +16,11 @@ export default {
       type: String,
       default: 'hover-focus',
     },
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 
   data() {
@@ -32,7 +38,7 @@ export default {
   render() {
     return h(
       this.tag,
-      {},
+      this.ouiaProps,
       [
         this.$slots.default && this.$slots.default(),
         h('div',

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-bind="ouiaProps">
     <div class="list-group list-view-pf list-view-pf-view">
       <pf-list-group-item
         v-for="(row, i) in rows"
@@ -38,10 +38,11 @@
 </template>
 
 <script>
+import { ouiaProps, useOUIAProps } from '../use';
 import PfListGroupItem from './ListGroupItem.vue';
 
 export default {
-  name: 'pf-list-view',
+  name: 'PfListView',
 
   components: {
     PfListGroupItem,
@@ -73,9 +74,14 @@ export default {
       },
     },
     keyName: String,
+    ...ouiaProps,
   },
 
   emits: ['update:itemsPerPage', 'update:page'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   methods: {
     setAllSelected(selected = true) {

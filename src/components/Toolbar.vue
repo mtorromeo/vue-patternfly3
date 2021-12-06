@@ -1,5 +1,6 @@
 <template>
   <div
+    v-bind="ouiaProps"
     class="clearfix toolbar-pf"
     :class="{
       'table-view-pf-toolbar': attached,
@@ -73,9 +74,10 @@
 <script>
 import PfSort from './Sort.vue';
 import PfColumnPicker from './ColumnPicker.vue';
+import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-toolbar',
+  name: 'PfToolbar',
 
   components: {
     PfSort,
@@ -124,9 +126,14 @@ export default {
     },
     resultCount: Number,
     attached: Boolean,
+    ...ouiaProps,
   },
 
   emits: ['update:view', 'update:pickedColumns', 'update:filters', 'update:sortBy', 'update:sortDirection', 'sort-by'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   data() {
     return {

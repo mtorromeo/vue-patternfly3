@@ -1,5 +1,5 @@
 <template>
-  <div class="list-view-pf-additional-info-item" :class="{'list-view-pf-additional-info-item-stacked': stacked}" @click="toggle">
+  <div v-bind="ouiaProps" class="list-view-pf-additional-info-item" :class="{'list-view-pf-additional-info-item-stacked': stacked}" @click="toggle">
     <div v-if="expandable && $slots.expansion" class="list-view-pf-expand" :class="{'active': expanded}">
       <pf-icon name="fa-angle-right" :class="{'fa-angle-down': expanded}" />
       <slot />
@@ -11,15 +11,21 @@
   </div>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-list-item-additional-info',
+  name: 'PfListItemAdditionalInfo',
 
   inject: ['listGroupItemExpanded', 'listGroupItemExpandedAdditional', 'listGroupItemAdditionalPortal'],
 
   props: {
     stacked: Boolean,
     expandable: Boolean,
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 
   computed: {

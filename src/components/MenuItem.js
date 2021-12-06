@@ -1,7 +1,8 @@
 import { h, resolveComponent, mergeProps } from 'vue';
+import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-menu-item',
+  name: 'PfMenuItem',
 
   inheritAttrs: false,
 
@@ -23,6 +24,11 @@ export default {
     href: String,
     target: String,
     vertical: Boolean,
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 
   render() {
@@ -70,6 +76,7 @@ export default {
 
     let tagProps = mergeProps({
       class: 'list-group-item',
+      ...this.ouiaProps,
     }, this.$attrs);
 
     if (tag === 'router-link') {

@@ -1,5 +1,5 @@
 <template>
-  <div ref="select" class="bootstrap-select" :class="{
+  <div ref="select" v-bind="ouiaProps" class="bootstrap-select" :class="{
     open: show,
     disabled,
     dropdown: isLi,
@@ -45,10 +45,10 @@
 </template>
 
 <script>
-import { provideChildrenTracker } from '../use';
+import { ouiaProps, provideChildrenTracker, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-select',
+  name: 'PfSelect',
 
   props: {
     button: Boolean,
@@ -68,12 +68,14 @@ export default {
     required: Boolean,
     search: Boolean,
     tabindex: String,
+    ...ouiaProps,
   },
 
-  setup() {
+  setup(props) {
     const options = provideChildrenTracker();
     return {
       options,
+      ...useOUIAProps(props),
     };
   },
 

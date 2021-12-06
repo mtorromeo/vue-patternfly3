@@ -1,13 +1,22 @@
 <template>
-  <div class="drawer-pf-action-link">
+  <div v-bind="ouiaProps" class="drawer-pf-action-link">
     <button type="button" class="btn btn-link">
       <slot />
     </button>
   </div>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-drawer-group-action',
+  name: 'PfDrawerGroupAction',
+
+  props: {
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 };
 </script>

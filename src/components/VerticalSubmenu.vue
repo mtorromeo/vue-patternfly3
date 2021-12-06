@@ -1,5 +1,5 @@
 <template>
-  <pf-menu-item vertical
+  <pf-menu-item v-bind="ouiaProps" vertical
                 :title="title"
                 :icon="icon"
                 :class="{
@@ -30,9 +30,10 @@
   </pf-menu-item>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-vertical-submenu',
+  name: 'PfVerticalSubmenu',
 
   props: {
     title: {
@@ -40,6 +41,11 @@ export default {
       required: true,
     },
     icon: String,
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 
   data() {

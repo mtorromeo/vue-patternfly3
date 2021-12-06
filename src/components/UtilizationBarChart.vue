@@ -1,5 +1,5 @@
 <template>
-  <div class="utilization-bar-chart-pf" :class="{'data-unavailable-pf': !dataAvailable}">
+  <div v-bind="ouiaProps" class="utilization-bar-chart-pf" :class="{'data-unavailable-pf': !dataAvailable}">
     <template v-if="!inline">
       <div v-if="title" class="progress-description">
         <slot name="title">
@@ -78,9 +78,10 @@
   </div>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-utilization-bar-chart',
+  name: 'PfUtilizationBarChart',
 
   props: {
     value: Number,
@@ -97,6 +98,11 @@ export default {
     error: Number,
     titleWidth: Number,
     footerWidth: Number,
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 
   data() {

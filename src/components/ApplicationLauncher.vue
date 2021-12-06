@@ -1,5 +1,5 @@
 <template>
-  <li class="applauncher-pf dropdown" :class="{'applauncher-pf-block-list': !list, open: open && !disabled}">
+  <li v-bind="ouiaProps" class="applauncher-pf dropdown" :class="{'applauncher-pf-block-list': !list, open: open && !disabled}">
     <a :id="`pf-application-launcher-${$.uid}`" class="dropdown-toggle drawer-pf-trigger-icon nav-item-iconic" :class="{disabled: disabled || !$slots.default}" href="javascript:void(0)" @click.stop="toggle">
       <pf-icon name="fa-th" class="applauncher-pf-icon" aria-hidden="true" tag="i" />
       <span class="applauncher-pf-title">
@@ -14,9 +14,10 @@
   </li>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-application-launcher',
+  name: 'PfApplicationLauncher',
 
   props: {
     label: {
@@ -26,9 +27,14 @@ export default {
     disabled: Boolean,
     list: Boolean,
     open: Boolean,
+    ...ouiaProps,
   },
 
   emits: ['update:open'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   mounted() {
     document.documentElement.addEventListener('click', this.hide);

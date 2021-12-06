@@ -1,5 +1,5 @@
 <template>
-  <div class="sort-pf">
+  <div v-bind="ouiaProps" class="sort-pf">
     <pf-dropdown :text="current.label">
       <li v-for="field in normFields" :key="field.name" :class="{'selected': active == field.name}">
         <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="select(field)">
@@ -14,10 +14,11 @@
 </template>
 
 <script>
+import { ouiaProps, useOUIAProps } from '../use';
 import PfDropdown from './Dropdown.vue';
 
 export default {
-  name: 'pf-sort',
+  name: 'PfSort',
 
   components: {
     PfDropdown,
@@ -35,9 +36,14 @@ export default {
       type: String,
       default: 'ascending',
     },
+    ...ouiaProps,
   },
 
   emits: ['change'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   data() {
     return {

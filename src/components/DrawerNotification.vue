@@ -1,5 +1,6 @@
 <template>
   <div
+    v-bind="ouiaProps"
     class="drawer-pf-notification"
     :class="{unread, 'expanded-notification': $parent.$parent.expanded}"
   >
@@ -48,10 +49,11 @@
 </template>
 
 <script>
+import { ouiaProps, useOUIAProps } from '../use';
 import PfDropdown from './Dropdown.vue';
 
 export default {
-  name: 'pf-drawer-notification',
+  name: 'PfDrawerNotification',
 
   components: {
     PfDropdown,
@@ -69,6 +71,11 @@ export default {
       default: 'info',
       validator: type => ['', null, 'info', 'success', 'warning', 'danger'].indexOf(type) >= 0,
     },
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 
   computed: {

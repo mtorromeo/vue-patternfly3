@@ -1,5 +1,5 @@
 <template>
-  <div class="drawer-pf" :class="{
+  <div v-bind="ouiaProps" class="drawer-pf" :class="{
     'hide': hidden,
     'drawer-pf-expanded': allowExpand && expanded,
   }">
@@ -27,9 +27,10 @@
 
 <script>
 import { ref, provide } from 'vue';
+import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-drawer',
+  name: 'PfDrawer',
 
   props: {
     hidden: {
@@ -38,14 +39,18 @@ export default {
     },
     allowExpand: Boolean,
     title: String,
+    ...ouiaProps,
   },
 
   emits: ['update:hidden'],
 
-  setup() {
+  setup(props) {
     const activeGroup = ref(null);
     provide('activeGroup', activeGroup);
-    return { activeGroup };
+    return {
+      activeGroup,
+      ...useOUIAProps(props),
+    };
   },
 
   data() {

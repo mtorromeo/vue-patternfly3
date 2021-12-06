@@ -1,5 +1,5 @@
 <template>
-  <component :is="tag" :class="{
+  <component :is="tag" v-bind="ouiaProps" :class="{
     'btn-group': tag === 'div',
     dropdown: !dropup,
     dropup: dropup,
@@ -18,9 +18,10 @@
   </component>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-dropdown',
+  name: 'PfDropdown',
 
   props: {
     tag: {
@@ -58,9 +59,14 @@ export default {
       default: '',
     },
     noCaret: Boolean,
+    ...ouiaProps,
   },
 
   emits: ['update:modelValue'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   data() {
     return {

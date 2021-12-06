@@ -1,5 +1,6 @@
 <template>
   <div
+    v-bind="ouiaProps"
     class="alert"
     :class="[alertClass, {
       'alert-dismissable': persistent,
@@ -55,10 +56,11 @@
 </template>
 
 <script>
+import { ouiaProps, useOUIAProps } from '../use';
 import PfDropdown from './Dropdown.vue';
 
 export default {
-  name: 'pf-toast-notification',
+  name: 'PfNotification',
 
   components: {
     PfDropdown,
@@ -83,9 +85,14 @@ export default {
       type: Boolean,
       default: false,
     },
+    ...ouiaProps,
   },
 
   emits: ['dismiss'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   computed: {
     showDropdown() {

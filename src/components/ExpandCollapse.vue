@@ -1,8 +1,8 @@
 <template>
-  <div class="expand-collapse-pf">
+  <div v-bind="ouiaProps" class="expand-collapse-pf">
     <div class="expand-collapse-pf-link-container">
       <span v-if="alignCenter" class="expand-collapse-pf-separator" :class="{bordered}" />
-      <button type="button" class="btn btn-link" @click="toggle">
+      <pf-button variant="link" @click="toggle">
         <pf-icon :name="isExpanded ? 'fa-angle-down' : 'fa-angle-right'" />
         <template v-if="isExpanded">
           {{ textExpanded }}
@@ -10,7 +10,7 @@
         <template v-else>
           {{ textCollapsed }}
         </template>
-      </button>
+      </pf-button>
       <span class="expand-collapse-pf-separator" :class="{bordered}" />
     </div>
     <slot v-if="isExpanded" />
@@ -18,8 +18,15 @@
 </template>
 
 <script>
+import { ouiaProps, useOUIAProps } from '../use';
+import PfButton from './Button.vue';
+
 export default {
-  name: 'pf-expand-collapse',
+  name: 'PfExpandCollapse',
+
+  components: {
+    PfButton,
+  },
 
   props: {
     alignCenter: Boolean,
@@ -36,9 +43,14 @@ export default {
       type: Boolean,
       default: null,
     },
+    ...ouiaProps,
   },
 
   emits: ['update:expanded'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   data() {
     return {

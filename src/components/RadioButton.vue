@@ -1,5 +1,6 @@
 <template>
   <label
+    v-bind="ouiaProps"
     type="button"
     class="btn"
     :class="[stateClass, {
@@ -12,9 +13,10 @@
   </label>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-radio-button',
+  name: 'PfRadioButton',
 
   props: {
     activeClass: {
@@ -37,9 +39,14 @@ export default {
     },
     disabled: Boolean,
     loose: Boolean,
+    ...ouiaProps,
   },
 
   emits: ['update:modelValue'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   computed: {
     checked() {

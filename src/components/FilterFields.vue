@@ -1,5 +1,5 @@
 <template>
-  <div class="input-group">
+  <div v-bind="ouiaProps" class="input-group">
     <pf-dropdown v-if="showDropdown" :text="current.label" class="input-group-btn">
       <li v-for="(item, name) in normFields" :key="name">
         <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = name">
@@ -29,9 +29,10 @@
 import PfSelect from './Select.vue';
 import PfOption from './Option.vue';
 import PfDropdown from './Dropdown.vue';
+import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-filter-fields',
+  name: 'PfFilterFields',
 
   components: {
     PfDropdown,
@@ -50,9 +51,14 @@ export default {
         return {};
       },
     },
+    ...ouiaProps,
   },
 
   emits: ['filter'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   data() {
     return {

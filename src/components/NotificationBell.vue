@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li v-bind="ouiaProps">
     <a
       class="nav-item-iconic"
       href="javascript:void(0)"
@@ -10,15 +10,21 @@
   </li>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-notification-bell',
+  name: 'PfNotificationBell',
 
   props: {
     updates: {
       type: [String, Boolean],
       default: false,
     },
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 };
 </script>

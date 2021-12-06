@@ -1,5 +1,6 @@
 <template>
   <div
+    v-bind="ouiaProps"
     tabindex="0"
     class="btn-group btn-group-flip"
     :class="{disabled}"
@@ -33,11 +34,12 @@
 </template>
 
 <script>
+import { ouiaProps, useOUIAProps } from '../use';
 import PfRadioButton from './RadioButton.vue';
 import PfSpinner from './Spinner.vue';
 
 export default {
-  name: 'pf-toggle',
+  name: 'PfToggle',
 
   components: {
     PfRadioButton,
@@ -86,9 +88,14 @@ export default {
       default: 'sm',
       validator: val => ['lg', 'md', 'sm', 'xs'].includes(val),
     },
+    ...ouiaProps,
   },
 
   emits: ['change', 'update:modelValue'],
+
+  setup(props) {
+    return useOUIAProps(props);
+  },
 
   computed: {
     on() {

@@ -1,5 +1,6 @@
 <template>
   <div
+    v-bind="ouiaProps"
     :class="{
       'card-pf-accented': accented,
       'card-pf-aggregate-status-alt': layout === 'tall',
@@ -21,9 +22,10 @@
   </div>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-aggregate-status-card',
+  name: 'PfAggregateStatusCard',
 
   props: {
     title: String,
@@ -35,6 +37,11 @@ export default {
       type: Boolean,
       default: true,
     },
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 };
 </script>

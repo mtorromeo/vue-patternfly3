@@ -1,7 +1,7 @@
 <template>
   <component :is="tag">
     <slot />
-    <div ref="popup" style="display:block" @mouseleave="hideOnLeave">
+    <div v-bind="ouiaProps" ref="popup" style="display:block" @mouseleave="hideOnLeave">
       <div class="arrow" />
       <h3 v-if="title" class="popover-title">
         {{ title }}
@@ -17,8 +17,11 @@
 
 <script>
 import popupMixin from '../mixins/popupMixin';
+import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
+  name: 'PfPopover',
+
   mixins: [popupMixin],
 
   props: {
@@ -34,6 +37,11 @@ export default {
       type: String,
       default: 'outside-click',
     },
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 
   data() {

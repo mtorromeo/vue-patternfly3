@@ -1,5 +1,5 @@
 <template>
-  <div class="list-group-item" :class="[stateClass, {'list-view-pf-stacked': stacked}]" :style="{cursor: expandable ? 'pointer' : 'inherit'}" @click="toggle">
+  <div v-bind="ouiaProps" class="list-group-item" :class="[stateClass, {'list-view-pf-stacked': stacked}]" :style="{cursor: expandable ? 'pointer' : 'inherit'}" @click="toggle">
     <div v-if="expandable && $slots.expansion" class="list-view-pf-expand" :class="{active: isExpanded}">
       <pf-icon name="fa-angle-right" :class="{'fa-angle-down': isExpanded}" />
     </div>
@@ -31,9 +31,10 @@
 import { provide, computed, ref } from 'vue';
 import TableRow from './TableRow.vue';
 import PfDropdown from './Dropdown.vue';
+import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-list-group-item',
+  name: 'PfListGroupItem',
 
   components: {
     PfDropdown,
@@ -51,6 +52,7 @@ export default {
     index: {
       type: [String, Number],
     },
+    ...ouiaProps,
   },
 
   emits: ['update:expanded', 'expanded'],
@@ -82,6 +84,7 @@ export default {
       expandedAdditional,
       autoExpanded,
       additionalRef,
+      ...useOUIAProps(props),
     };
   },
 

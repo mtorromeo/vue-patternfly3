@@ -1,5 +1,5 @@
 <template>
-  <form class="content-view-pf-pagination clearfix" :class="[`${type}-view-pf-pagination`]" aria-label="Search results pages">
+  <form v-bind="ouiaProps" class="content-view-pf-pagination clearfix" :class="[`${type}-view-pf-pagination`]" aria-label="Search results pages">
     <div v-if="itemsPerPageOptions && itemsPerPageOptions.length" class="form-group">
       <pf-select ref="perpage" button close-on-select class="pagination-pf-pagesize">
         <pf-option v-for="(item, i) in itemsPerPageOptions" :key="i" :model-value="itemsPerPage" :checked-value="item" @update:model-value="$emit('update:itemsPerPage', $event)">
@@ -60,9 +60,10 @@
 <script>
 import PfSelect from './Select.vue';
 import PfOption from './Option.vue';
+import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-paginate-control',
+  name: 'PfPaginateControl',
 
   components: {
     PfSelect,
@@ -123,6 +124,13 @@ export default {
       type: String,
       default: 'per page',
     },
+    ...ouiaProps,
+  },
+
+  emits: ['change', 'update:itemsPerPage'],
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 
   computed: {

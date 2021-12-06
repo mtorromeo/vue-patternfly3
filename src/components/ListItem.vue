@@ -1,5 +1,6 @@
 <template>
   <div
+    v-bind="ouiaProps"
     class="list-view-pf-main-info"
   >
     <slot>
@@ -28,9 +29,10 @@
   </div>
 </template>
 
-<script>
+<script>import { ouiaProps, useOUIAProps } from '../use';
+
 export default {
-  name: 'pf-list-item',
+  name: 'PfListItem',
 
   props: {
     icon: String,
@@ -45,6 +47,11 @@ export default {
       default: '',
       validator: variant => ['', null, 'info', 'success', 'warning', 'danger'].indexOf(variant) >= 0,
     },
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 };
 </script>

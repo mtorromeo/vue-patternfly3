@@ -1,5 +1,5 @@
 <template>
-  <div v-show="$slots.default || notifications.length" :class="{'toast-notifications-list-pf': toast}">
+  <div v-show="$slots.default || notifications.length" v-bind="ouiaProps" :class="{'toast-notifications-list-pf': toast}">
     <slot />
     <pf-notification v-for="(n, i) in notifications" ref="notification" :key="i" :persistent="n.persistent" :type="n.type" :toast="toast" @dismiss="dismiss(i)">
       <span v-html="n.message" />
@@ -8,10 +8,11 @@
 </template>
 
 <script>
+import { ouiaProps, useOUIAProps } from '../use';
 import PfNotification from './Notification.vue';
 
 export default {
-  name: 'pf-notifications',
+  name: 'PfNotifications',
 
   components: {
     PfNotification,
@@ -26,6 +27,11 @@ export default {
       type: Boolean,
       default: false,
     },
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 
   data() {

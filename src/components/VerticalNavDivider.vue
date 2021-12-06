@@ -1,5 +1,5 @@
 <template>
-  <li v-tooltip.right="tooltip" class="list-group-item vertical-header-pf">
+  <li v-tooltip.right="tooltip" v-bind="ouiaProps" class="list-group-item vertical-header-pf">
     <span class="list-group-item-value">
       <slot>{{ title }}</slot>
     </span>
@@ -8,9 +8,10 @@
 
 <script>
 import Tooltip from '../directives/tooltip';
+import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-vertical-nav-divider',
+  name: 'PfVerticalNavDivider',
 
   directives: {
     Tooltip,
@@ -24,6 +25,11 @@ export default {
 
   props: {
     title: String,
+    ...ouiaProps,
+  },
+
+  setup(props) {
+    return useOUIAProps(props);
   },
 
   computed: {

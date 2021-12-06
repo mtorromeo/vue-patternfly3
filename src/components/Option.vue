@@ -1,5 +1,5 @@
 <template>
-  <li v-if="!filtered" :class="{'selected': checked}">
+  <li v-if="!filtered" v-bind="ouiaProps" :class="{'selected': checked}">
     <a href="javascript:void(0)" role="menuitem" @click="check">
       <input ref="input" type="radio" :name="name === null ? $parent.name : name" :value="modelValue" :checked="checked" style="display:none">
       <slot />
@@ -9,10 +9,10 @@
 </template>
 
 <script>
-import { useChildrenTracker } from '../use';
+import { ouiaProps, useChildrenTracker, useOUIAProps } from '../use';
 
 export default {
-  name: 'pf-option',
+  name: 'PfOption',
 
   props: {
     name: {
@@ -21,12 +21,14 @@ export default {
     },
     modelValue: {},
     checkedValue: {},
+    ...ouiaProps,
   },
 
   emits: ['update:modelValue'],
 
-  setup() {
+  setup(props) {
     useChildrenTracker();
+    return useOUIAProps(props);
   },
 
   data() {
