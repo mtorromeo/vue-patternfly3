@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.2.8] - 2021-12-09
+### Fixed
+- fix(Tooltip): fixed component name
+
 ### [0.2.7] - 2021-12-06
 ### Fixed
 - fix(Notification): Re-register `pf-notification` as `pf-toast-notification` for backward compatibility.
