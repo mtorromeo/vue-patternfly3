@@ -3,7 +3,7 @@ import { h } from 'vue';
 import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
-  name: 'PfeTooltip',
+  name: 'PfTooltip',
 
   mixins: [popupMixin],
 
