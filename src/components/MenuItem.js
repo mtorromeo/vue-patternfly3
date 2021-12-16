@@ -1,4 +1,5 @@
 import { h, resolveComponent, mergeProps } from 'vue';
+import { renderSlot } from '../render';
 import { ouiaProps, useOUIAProps } from '../use';
 
 export default {
@@ -63,7 +64,7 @@ export default {
     };
 
     let elements = [];
-    let children = this.$slots.default ? this.$slots.default() : [];
+    let children = renderSlot(this.$slots.default, []);
     if (children) {
       if (this.vertical) {
         elements = children;

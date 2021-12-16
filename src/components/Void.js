@@ -1,3 +1,5 @@
+import { renderSlot } from '../render';
+
 export default {
   name: 'Void',
 
@@ -29,11 +31,7 @@ export default {
       return;
     }
 
-    if (!this.$slots.default) {
-      return [];
-    }
-
-    let children = this.$slots.default();
+    let children = renderSlot(this.$slots.default);
     if (this.alter) {
       children = this.alter(children);
     }
