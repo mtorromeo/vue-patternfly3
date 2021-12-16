@@ -171,12 +171,10 @@ export default {
 
     text: {
       get() {
-        return this.hasValue ? this.label : this.filter;
+        return this.filter === null ? this.label : this.filter;
       },
       set(text) {
         this.filter = text;
-        this.$emit('update', null);
-        this.$emit('update:modelValue', null);
       },
     },
 
@@ -209,9 +207,7 @@ export default {
   methods: {
     setValue(value) {
       this.showOptions = false;
-      if (value === null) {
-        this.filter = null;
-      }
+      this.filter = null;
       if (value !== this.modelValue) {
         this.$emit('update', value);
         this.$emit('update:modelValue', value);
