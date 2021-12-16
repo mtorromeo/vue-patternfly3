@@ -31,7 +31,7 @@
 import { provide, computed, ref } from 'vue';
 import TableRow from './TableRow.vue';
 import PfDropdown from './Dropdown.vue';
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfListGroupItem',

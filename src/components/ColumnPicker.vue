@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 import PfButton from './Button.vue';
 import PfPopover from './Popover.vue';
 

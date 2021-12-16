@@ -1,6 +1,6 @@
 import popupMixin from '../mixins/popupMixin';
 import { h } from 'vue';
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 import { renderSlot } from '../render';
 
 export default {

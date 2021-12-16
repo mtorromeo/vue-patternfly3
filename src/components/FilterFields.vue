@@ -29,7 +29,7 @@
 import PfSelect from './Select.vue';
 import PfOption from './Option.vue';
 import PfDropdown from './Dropdown.vue';
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfFilterFields',

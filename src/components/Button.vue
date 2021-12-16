@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 import PfSpinner from './Spinner.vue';
 import Void from './Void.js';
 

@@ -8,7 +8,7 @@
 
 <script>
 import Tooltip from '../directives/tooltip';
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfVerticalNavDivider',

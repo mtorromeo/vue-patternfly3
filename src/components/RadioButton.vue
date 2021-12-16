@@ -13,7 +13,8 @@
   </label>
 </template>
 
-<script>import { ouiaProps, useOUIAProps } from '../use';
+<script>
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfRadioButton',

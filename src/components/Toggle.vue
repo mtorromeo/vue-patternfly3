@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 import PfRadioButton from './RadioButton.vue';
 import PfSpinner from './Spinner.vue';
 

@@ -26,5 +26,6 @@ export { version } from '../package.json';
 // To allow use as module (npm/webpack/etc.) export components
 export * from './components';
 export { default as VTooltip } from './directives/tooltip';
+export * as ouia from './ouia';
 
 export default plugin;

@@ -17,7 +17,7 @@
 
 <script>
 import popupMixin from '../mixins/popupMixin';
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfPopover',

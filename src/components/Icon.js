@@ -1,7 +1,7 @@
 // https://www.patternfly.org/v3/styles/icons/
 // https://getbootstrap.com/docs/3.4/components/#glyphicons
 import { h } from 'vue';
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfIcon',

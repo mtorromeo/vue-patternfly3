@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfDropdown',

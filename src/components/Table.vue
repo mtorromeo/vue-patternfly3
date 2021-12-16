@@ -106,7 +106,7 @@
 import ResizeObserver from 'resize-observer-polyfill';
 import PfTableRow from './TableRow.vue';
 import debounce from 'lodash-es/debounce';
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfTable',

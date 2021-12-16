@@ -9,7 +9,8 @@
 </template>
 
 <script>
-import { ouiaProps, useChildrenTracker, useOUIAProps } from '../use';
+import { provideChildrenTracker } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfOption',

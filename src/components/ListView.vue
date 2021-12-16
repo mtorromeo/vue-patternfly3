@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 import PfListGroupItem from './ListGroupItem.vue';
 
 export default {

@@ -45,7 +45,8 @@
 </template>
 
 <script>
-import { ouiaProps, provideChildrenTracker, useOUIAProps } from '../use';
+import { provideChildrenTracker } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfSelect',

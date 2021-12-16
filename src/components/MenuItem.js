@@ -1,6 +1,6 @@
 import { h, resolveComponent, mergeProps } from 'vue';
 import { renderSlot } from '../render';
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfMenuItem',

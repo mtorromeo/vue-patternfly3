@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 import PfNotification from './Notification.vue';
 
 export default {

@@ -74,7 +74,7 @@
 import PfButton from './Button.vue';
 import PfColumnPicker from './ColumnPicker.vue';
 import PfSort from './Sort.vue';
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfToolbar',

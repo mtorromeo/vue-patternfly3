@@ -27,7 +27,7 @@
 
 <script>
 import { ref, provide } from 'vue';
-import { ouiaProps, useOUIAProps } from '../use';
+import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
   name: 'PfDrawer',
