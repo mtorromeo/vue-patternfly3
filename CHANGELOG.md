@@ -1,6 +1,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.2.9] - 2021-12-17
+# Added
+- added compatibility with vue 3 configured in compat mode.
+- feat: exported ouia utilities.
+
+### Fixed
+- fix(Combobox): do not emit null value when clearing the filter while still editing.
+- fix: exported Popover, TableRow and Void components.
+
 ### [0.2.8] - 2021-12-09
 ### Fixed
 - fix(Tooltip): fixed component name
@@ -366,7 +375,9 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.7...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.9...HEAD
+[0.2.9]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.8...v0.2.9
+[0.2.8]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.7...v0.2.8
 [0.2.7]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.6...v0.2.7
 [0.2.6]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.5...v0.2.6
 [0.2.5]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.4...v0.2.5
