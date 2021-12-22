@@ -147,7 +147,7 @@ export function setTooltipPosition(tooltip, trigger, placement, auto, appendToSe
 
 export default {
   props: {
-    value: {
+    modelValue: {
       type: Boolean,
       default: false,
     },
@@ -201,7 +201,7 @@ export default {
     };
   },
   watch: {
-    value(v) {
+    modelValue(v) {
       v ? this.show() : this.hide();
     },
     trigger() {
@@ -241,7 +241,7 @@ export default {
     this.$nextTick(() => {
       this.initTriggerElByTarget(this.target);
       this.initListeners();
-      if (this.value) {
+      if (this.modelValue) {
         this.show();
       }
     });

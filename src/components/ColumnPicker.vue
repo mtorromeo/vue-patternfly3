@@ -1,6 +1,6 @@
 <template>
   <pf-popover v-bind="ouiaProps" class="column-picker" placement="bottom">
-    <pf-button ref="popover-trigger" variant="link">
+    <pf-button data-role="trigger" variant="link">
       <pf-icon name="fa-columns" />
     </pf-button>
 
