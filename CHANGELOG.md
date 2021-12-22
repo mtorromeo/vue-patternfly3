@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.2.10] - 2021-12-22
+### Fixed
+- fix(Popover, ColumnPicker): restored popover trigger element functionality.
+- fix(Option): incorrect usage of composition api.
+
 ### [0.2.9] - 2021-12-17
 # Added
 - added compatibility with vue 3 configured in compat mode.
@@ -36,7 +41,7 @@ All notable changes to this project will be documented in this file.
 
 ### [0.2.3] - 2021-10-18
 ### Fixed
-- Add missing `selectable` prop to `pf-list-group-item` (Contributed by [@MrDeerly]).
+- Add missing `selectable` prop to `tipf-list-group-item` (Contributed by [@MrDeerly]).
 - Fixed layout of `pf-toolbar` with no filters by not rendering the filter slot (Contributed by [@MrDeerly]).
 - Do not disable `pf-select` components by default (Contributed by [@MrDeerly]).
 - Fixed disabled attribute of inputs in `pf-radio-button` (Contributed by [@MrDeerly]).
@@ -375,7 +380,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.9...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.10...HEAD
+[0.2.10]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.9...v0.2.10
 [0.2.9]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.8...v0.2.9
 [0.2.8]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.7...v0.2.8
 [0.2.7]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.6...v0.2.7
