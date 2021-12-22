@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import { provideChildrenTracker } from '../use';
+import { useChildrenTracker } from '../use';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
 export default {
