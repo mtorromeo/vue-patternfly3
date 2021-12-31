@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.2.11] - 2021-12-31
+### Fixed
+- fix(Dropdown): avoided possible access to undefined $refs while destructing the component.
+
 ### [0.2.10] - 2021-12-22
 ### Fixed
 - fix(Popover, ColumnPicker): restored popover trigger element functionality.
@@ -380,7 +384,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.10...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.11...HEAD
+[0.2.11]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.10...v0.2.11
 [0.2.10]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.9...v0.2.10
 [0.2.9]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.8...v0.2.9
 [0.2.8]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.7...v0.2.8
