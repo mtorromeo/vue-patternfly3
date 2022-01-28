@@ -17,12 +17,12 @@
       {{ firstItem }}-{{ lastItem }} {{ labelOf }} {{ totalItems }}
       <ul class="pagination pagination-pf-back">
         <li :class="{disabled: page == 1}">
-          <a href="javascript:void(0)" :title="labelFirstPage" @click="setPage(1)">
+          <a href="javascript:void(0)" :title="labelFirstPage" @click.prevent="setPage(1)">
             <pf-icon name="fa-angle-double-left" class="i" />
           </a>
         </li>
         <li :class="{disabled: page <= 1}">
-          <a href="javascript:void(0)" :title="labelPreviousPage" @click="setPage(page - 1)">
+          <a href="javascript:void(0)" :title="labelPreviousPage" @click.prevent="setPage(page - 1)">
             <pf-icon name="fa-angle-left" class="i" />
           </a>
         </li>
@@ -43,12 +43,12 @@
 
       <ul class="pagination pagination-pf-forward">
         <li :class="{disabled: page >= pages}">
-          <a href="javascript:void(0)" :title="labelNextPage" @click="setPage(page + 1)">
+          <a href="javascript:void(0)" :title="labelNextPage" @click.prevent="setPage(page + 1)">
             <pf-icon name="fa-angle-right" class="i" />
           </a>
         </li>
         <li :class="{disabled: page >= pages}">
-          <a href="javascript:void(0)" :title="labelLastPage" @click="setPage(pages)">
+          <a href="javascript:void(0)" :title="labelLastPage" @click.prevent="setPage(pages)">
             <pf-icon name="fa-angle-double-right" class="i" />
           </a>
         </li>

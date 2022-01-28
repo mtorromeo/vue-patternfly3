@@ -43,7 +43,7 @@
         role="listbox"
       >
         <li v-for="o of filteredOptions" :key="o.value" :data-value="o.value" role="option" :aria-selected="o.value === active" :class="{active: o.value === active}" @click.stop.prevent="setValue(o.value)">
-          <a href="javascript:void(0)" role="presentation">
+          <a href="javascript:void(0)" role="presentation" @click.prevent>
             <slot :option="o">
               <span v-html="o.highlighted" />
             </slot>

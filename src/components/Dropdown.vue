@@ -1,10 +1,13 @@
 <template>
-  <component :is="tag" v-bind="ouiaProps" :class="{
-    'btn-group': tag === 'div',
-    dropdown: !dropup,
-    dropup: dropup,
-    open: show,
-  }"
+  <component
+    :is="tag"
+    v-bind="ouiaProps"
+    :class="{
+      'btn-group': tag === 'div',
+      dropdown: !dropup,
+      dropup: dropup,
+      open: show,
+    }"
   >
     <button ref="trigger" role="button" aria-haspopup="true" type="button" class="btn dropdown-toggle" :class="[type ? `btn-${type}` : '', btnClass]">
       <slot name="text">

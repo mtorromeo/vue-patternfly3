@@ -17,6 +17,7 @@ module.exports = {
     'vue/max-attributes-per-line': 'off',
     'vue/html-closing-bracket-newline': 'off',
     'vue/component-definition-name-casing': 'off',
+    'vue/require-default-prop': 'off',
     'space-before-function-paren': ['error', 'never'],
     semi: ['error', 'always'],
     'comma-dangle': [
@@ -24,5 +25,6 @@ module.exports = {
       'always-multiline',
     ],
     indent: ['error', 2, { CallExpression: { arguments: 'first' }, SwitchCase: 1 }],
+    eqeqeq: 'off',
   },
 };

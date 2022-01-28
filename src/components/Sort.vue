@@ -2,7 +2,7 @@
   <div v-bind="ouiaProps" class="sort-pf">
     <pf-dropdown :text="current.label">
       <li v-for="field in normFields" :key="field.name" :class="{'selected': active == field.name}">
-        <a href="javascript:void(0);" class="sort-field" role="menuitem" tabindex="-1" @click="select(field)">
+        <a href="javascript:void(0)" class="sort-field" role="menuitem" tabindex="-1" @click.prevent="select(field)">
           {{ field.label }}
         </a>
       </li>

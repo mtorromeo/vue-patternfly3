@@ -1,6 +1,6 @@
 <template>
   <li v-if="!filtered" v-bind="ouiaProps" :class="{'selected': checked}">
-    <a href="javascript:void(0)" role="menuitem" @click="check">
+    <a href="javascript:void(0)" role="menuitem" @click.prevent="check">
       <input ref="input" type="radio" :name="name === null ? $parent.name : name" :value="modelValue" :checked="checked" style="display:none">
       <slot />
       <pf-icon v-show="checked" name="glyphicon-close" class="check-mark" />

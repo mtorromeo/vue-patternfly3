@@ -94,7 +94,7 @@
       :total-items="totalItems"
       :items-per-page="itemsPerPage"
       :items-per-page-options="itemsPerPageOptions"
-      @update:itemsPerPage="$emit('update:itemsPerPage', $event)"
+      @update:items-per-page="$emit('update:itemsPerPage', $event)"
       @change="$emit('update:page', arguments[0])"
     >
       <slot name="footer" />

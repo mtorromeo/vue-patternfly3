@@ -36,6 +36,12 @@ export default {
     },
   },
 
+  methods: {
+    isNotEmpty() {
+      return !!this.text;
+    },
+  },
+
   render() {
     return h(
       this.tag,
@@ -58,11 +64,5 @@ export default {
         ),
       ],
     );
-  },
-
-  methods: {
-    isNotEmpty() {
-      return !!this.text;
-    },
   },
 };

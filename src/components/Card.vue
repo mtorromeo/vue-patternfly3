@@ -8,7 +8,7 @@
             :key="i"
             :class="{'selected': item === currentFilter}"
           >
-            <a href="javascript:void(0)" role="menuitem" tabindex="-1" @click="filterClicked(item)">
+            <a href="javascript:void(0)" role="menuitem" tabindex="-1" @click.prevent="filterClicked(item)">
               {{ item.label }}
             </a>
           </li>
@@ -32,7 +32,7 @@
           :key="i"
           :class="{'selected': item === currentFilter}"
         >
-          <a href="javascript:void(0)" role="menuitem" tabindex="-1" @click="filterClicked(item)">
+          <a href="javascript:void(0)" role="menuitem" tabindex="-1" @click.prevent="filterClicked(item)">
             {{ item.label }}
           </a>
         </li>
