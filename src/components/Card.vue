@@ -53,11 +53,23 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import PfDropdown from './Dropdown.vue';
 
-export default {
+export interface CardFilter {
+  label: string;
+  value: string;
+}
+
+export interface CardFilterProp {
+  filters: CardFilter[];
+  defaultFilter?: number;
+  position: 'header' | 'footer';
+}
+
+export default defineComponent({
   name: 'PfCard',
 
   components: {
@@ -71,10 +83,13 @@ export default {
     footHref: String,
     footIcon: String,
     filter: {
-      type: Object,
-      default() {
-        return {};
-      },
+      type: Object as PropType<CardFilterProp>,
+      default: (): CardFilterProp => ({
+        filters: [],
+        position: 'footer',
+      }),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      validator: (v: any) => v?.filters?.length >= 0,
     },
     accented: {
       type: Boolean,
@@ -95,21 +110,21 @@ export default {
 
   computed: {
     currentFilter() {
-      if (!this.filter || !this.filter.filters) {
+      if (!this.filter?.filters) {
         return null;
       }
-      if (this.filter.defaultFilter) {
+      if (this.filter?.defaultFilter) {
         return this.filter.filters[this.filter.defaultFilter];
       }
       return this.filter.filters[0];
     },
 
     showFilterInHeader() {
-      return this.filter && this.filter.filters && this.filter.position && this.filter.position === 'header';
+      return this.currentFilter && this.filter?.position === 'header';
     },
 
     showFilterInFooter() {
-      return this.filter && this.filter.filters && this.filter.position && this.filter.position === 'footer';
+      return this.currentFilter && this.filter?.position === 'footer';
     },
 
     showHeader() {
@@ -122,9 +137,9 @@ export default {
   },
 
   methods: {
-    filterClicked(filter) {
+    filterClicked(filter: CardFilter) {
       this.$emit('filter', filter);
     },
   },
-};
+});
 </script>

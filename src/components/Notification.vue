@@ -9,16 +9,16 @@
   >
     <pf-dropdown v-if="showDropdown">
       <li
-        v-for="actionItem in actions"
-        :key="actionItem.name"
-        :role="isSeparator(actionItem) ? 'separator' : 'menuitem'"
+        v-for="(actionItem, i) in actions"
+        :key="isAction(actionItem) ? actionItem.name : i"
+        :role="isAction(actionItem) ? 'menuitem' : 'separator'"
         :class="{
-          divider: isSeparator(actionItem),
-          disabled: actionItem.disabled === true,
+          divider: !isAction(actionItem),
+          disabled: isAction(actionItem) && actionItem.disabled === true,
         }"
       >
         <a
-          v-if="!isSeparator(actionItem)"
+          v-if="isAction(actionItem)"
           class="secondary-action"
           :title="actionItem.title"
           @click="triggered(actionItem)"
@@ -54,12 +54,34 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
-import PfButton from './Button.vue';
+import PfButton, { ButtonVariant } from './Button.vue';
 import PfDropdown from './Dropdown.vue';
 
-export default {
+export type NotificationType = 'info' | 'success' | 'warning' | 'danger';
+
+export interface Notification {
+  message: string;
+  type?: NotificationType;
+  persistent?: boolean;
+}
+
+export interface NotificationAction {
+  name: string;
+  title?: string;
+  disabled?: boolean;
+  separator?: boolean;
+  emit?: string;
+  handler?: (action: NotificationAction) => void;
+}
+
+export function isNotificationAction(action: NotificationAction | '-'): action is NotificationAction {
+  return action !== '-' && !action.separator;
+}
+
+export default defineComponent({
   name: 'PfNotification',
 
   components: {
@@ -68,14 +90,14 @@ export default {
   },
 
   props: {
-    action: Object,
-    actions: Array,
+    action: Object as PropType<NotificationAction & { button: ButtonVariant | true; }>,
+    actions: Array as PropType<(NotificationAction | '-')[]>,
     delay: {
       type: Number,
       default: 8000,
     },
     type: {
-      type: String,
+      type: String as PropType<NotificationType>,
       default: 'info',
     },
     toast: {
@@ -89,25 +111,34 @@ export default {
     ...ouiaProps,
   },
 
-  emits: ['dismiss'],
+  emits: ['dismiss', 'action', '' as string],
 
   setup(props) {
     return useOUIAProps(props);
+  },
+
+  data(this: void) {
+    return {
+      $timeout: null as ReturnType<typeof setTimeout> | null,
+    };
   },
 
   computed: {
     showDropdown() {
       return this.toast && this.actions && this.actions.length;
     },
+
     alertClass() {
       return `alert-${this.type || 'info'}`;
     },
-    buttonVariant() {
+
+    buttonVariant(): ButtonVariant {
       if (!this.action || !this.action.button) {
         return 'link';
       }
-      return this.action.button;
+      return this.action.button === true ? 'default' : this.action.button;
     },
+
     typeIcon() {
       switch (this.type) {
         case 'success':
@@ -129,9 +160,11 @@ export default {
       },
       immediate: true,
     },
+
     delay() {
       this.updateTimeout();
     },
+
     persistent() {
       this.updateTimeout();
     },
@@ -139,31 +172,33 @@ export default {
 
   methods: {
     updateTimeout() {
-      if (this._timeout) {
-        clearTimeout(this._timeout);
+      if (this.$timeout) {
+        clearTimeout(this.$timeout);
       }
       if (this.toast && !this.persistent) {
-        this._timeout = setTimeout(this.dismiss, this.delay);
+        this.$timeout = setTimeout(this.dismiss, this.delay);
       }
     },
-    isSeparator(action) {
-      return action === '-' || action.separator;
-    },
+
+    isAction: isNotificationAction,
+
     dismiss() {
       this.$emit('dismiss', this);
       // workaround race conditions in event dispatching and handling in parent component
-      if (this.toast && !this.persistent && this.$parent.notifications && this.$parent.notifications.length) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      if (this.toast && !this.persistent && (this.$parent as any).notifications?.length) {
         setTimeout(this.dismiss, 250);
       }
     },
-    triggered(action) {
+
+    triggered(action: NotificationAction) {
       if (typeof action.handler === 'function') {
         action.handler(action);
       }
       this.$emit(action.emit || 'action', action);
     },
   },
-};
+});
 </script>
 
 <style>

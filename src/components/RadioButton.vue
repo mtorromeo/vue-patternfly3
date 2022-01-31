@@ -13,10 +13,11 @@
   </label>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfRadioButton',
 
   props: {
@@ -26,7 +27,7 @@ export default {
     },
     inactiveClass: String,
     modelValue: {
-      type: [Boolean, Number, String, Array],
+      type: [Boolean, String, Number, Array] as PropType<boolean | string | number | Array<boolean | string | number>>,
     },
     name: String,
     checkedValue: {
@@ -36,7 +37,7 @@ export default {
     input: {
       type: String,
       default: 'radio',
-      validator: type => ['radio', 'checkbox'].includes(type),
+      validator: (type: never) => ['radio', 'checkbox'].includes(type),
     },
     disabled: Boolean,
     loose: Boolean,
@@ -80,7 +81,7 @@ export default {
   },
 
   methods: {
-    test(value) {
+    test(value: boolean | string | number | Array<boolean | string | number>) {
       if (this.input === 'radio') {
         if (this.loose) {
           return this.modelValue == value;
@@ -89,6 +90,9 @@ export default {
       }
       if (this.loose) {
         return typeof this.values.find(v => v == value) !== 'undefined';
+      }
+      if (Array.isArray(value)) {
+        return this.values.filter(v => value.includes(v)).length === 0;
       }
       return this.values.includes(value);
     },
@@ -117,5 +121,5 @@ export default {
       }
     },
   },
-};
+});
 </script>

@@ -13,12 +13,23 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import PfButton from './Button.vue';
 import PfDropdown from './Dropdown.vue';
 
-export default {
+export type SortDirection = 'ascending' | 'descending' | 'asc' | 'desc';
+
+export interface SortField {
+  name: string;
+  label: string;
+  type?: 'alpha' | 'numeric';
+}
+
+export type SortFieldDefinition = Partial<SortField> | string;
+
+export default defineComponent({
   name: 'PfSort',
 
   components: {
@@ -28,15 +39,14 @@ export default {
 
   props: {
     fields: {
-      type: [Array, Object],
-      default() {
-        return [];
-      },
+      type: [Array, Object] as PropType<SortFieldDefinition[] | Record<string, SortFieldDefinition>>,
+      default: (): SortFieldDefinition[] => [],
     },
     sortBy: String,
     direction: {
-      type: String,
+      type: String as PropType<SortDirection>,
       default: 'ascending',
+      validator: (v: never) => ['ascending', 'descending', 'asc', 'desc'].includes(v),
     },
     ...ouiaProps,
   },
@@ -47,18 +57,19 @@ export default {
     return useOUIAProps(props);
   },
 
-  data() {
+  data(this: void) {
     return {
-      normFields: [],
+      normFields: [] as SortField[],
       active: '',
       ascending: true,
     };
   },
 
   computed: {
-    current() {
+    current(): SortField {
       if (!this.active) {
         return {
+          name: '',
           label: 'Sort by',
         };
       }
@@ -68,6 +79,7 @@ export default {
         }
       }
       return {
+        name: '',
         label: 'Sort by',
       };
     },
@@ -85,59 +97,58 @@ export default {
         const normFields = [];
         if (Array.isArray(fields)) {
           for (const f of fields) {
-            normFields.push(this.fieldDefinition(f));
+            normFields.push(this.normalizeField(f));
           }
         } else {
           for (const i of Object.keys(fields)) {
-            normFields.push(this.fieldDefinition(fields[i], i));
+            normFields.push(this.normalizeField(fields[i], i));
           }
         }
         this.normFields = normFields;
       },
       immediate: true,
     },
+
     sortBy: {
       handler(sortBy) {
         this.active = sortBy;
       },
       immediate: true,
     },
+
     direction: {
       handler() {
-        this.ascending = this.direction === 'ascending';
+        this.ascending = this.direction === 'ascending' || this.direction === 'asc';
       },
       immediate: true,
     },
   },
 
   methods: {
-    fieldDefinition(field, name) {
-      if (typeof field === 'object') {
-        field = Object.assign({}, field);
-      } else {
-        field = {
-          label: field,
-        };
-      }
-      field.name = name || field.label;
+    normalizeField(fieldDefinition: SortFieldDefinition, name?: string): SortField {
+      const field: SortField = {
+        name: typeof fieldDefinition === 'object' ? fieldDefinition.name : '',
+        label: typeof fieldDefinition === 'object' ? fieldDefinition.label : fieldDefinition,
+        type: typeof fieldDefinition === 'object' ? fieldDefinition.type : 'alpha',
+      };
+      field.name = name || field.name || field.label || '';
       if (!field.label) {
         field.label = name;
       }
-      if (!field.type) {
-        field.type = 'alpha';
-      }
       return field;
     },
-    select(field) {
+
+    select(field: SortField) {
       this.active = field.name;
       this.$emit('change', this.active, this.ascending ? 'ascending' : 'descending');
     },
+
     invert() {
       this.ascending = !this.ascending;
       this.$emit('change', this.active, this.ascending ? 'ascending' : 'descending');
     },
   },
-};
+});
 </script>
 
 <style>

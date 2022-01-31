@@ -15,12 +15,18 @@
   </pf-popover>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import PfButton from './Button.vue';
 import PfPopover from './Popover.vue';
 
-export default {
+export type Column = {
+  name?: string;
+  label?: string;
+} | string;
+
+export default defineComponent({
   name: 'PfColumnPicker',
 
   components: {
@@ -30,16 +36,12 @@ export default {
 
   props: {
     columns: {
-      type: [Array, Object],
-      default() {
-        return [];
-      },
+      type: [Array, Object] as PropType<Column[] | Record<string, Column>>,
+      default: (): Column[] => [],
     },
     modelValue: {
-      type: Array,
-      default() {
-        return [];
-      },
+      type: Array as PropType<string[]>,
+      default: (): string[] => [],
     },
     ...ouiaProps,
   },
@@ -50,9 +52,9 @@ export default {
     return useOUIAProps(props);
   },
 
-  data() {
+  data(this: void) {
     return {
-      iValue: [],
+      iValue: [] as string[],
     };
   },
 
@@ -69,16 +71,18 @@ export default {
   },
 
   methods: {
-    columnValue(column, i) {
-      let value = Array.isArray(this.columns) ? column : i;
+    columnValue(column: Column, i: string | number | typeof Symbol.iterator | typeof Symbol.unscopables) {
+      let value = typeof i === 'string' ? i : column;
       if (typeof value === 'object') {
         value = typeof value.name === 'undefined' ? value.label : value.name;
       }
       return value;
     },
-    columnLabel(column) {
+
+    columnLabel(column: Column) {
       return typeof column === 'object' ? column.label : column;
     },
+
     setValue() {
       const sortedValue = [];
       const iter = Array.isArray(this.columns) ? this.columns.entries() : Object.entries(this.columns);
@@ -91,7 +95,7 @@ export default {
       this.$emit('update:modelValue', sortedValue);
     },
   },
-};
+});
 </script>
 
 <style>

@@ -1,5 +1,14 @@
 import Tooltip from '../components/Tooltip';
-import { createApp, h } from 'vue';
+import { App, createApp, DefineComponent, defineComponent, DirectiveBinding, h, ObjectDirective } from 'vue';
+import { TooltipPlacement, TooltipTrigger } from '../mixins/popupMixin';
+
+function isTooltipPlacement(value: string): value is TooltipPlacement {
+  return /(top)|(left)|(right)|(bottom)/.test(value);
+}
+
+function isTooltipTrigger(value: string): value is TooltipTrigger {
+  return /(hover)|(focus)|(click)/.test(value);
+}
 
 function getContainer() {
   const cont = document.createElement('div');
@@ -7,7 +16,7 @@ function getContainer() {
   return cont;
 }
 
-function bind(el, binding) {
+function bind(el: (Element | DefineComponent) & { 'v-tooltip'?: App }, binding: DirectiveBinding) {
   unbind(el);
   const options = [];
   for (const key in binding.modifiers) {
@@ -16,11 +25,15 @@ function bind(el, binding) {
     }
   }
 
-  const props = {};
+  const props: {
+    placement?: TooltipPlacement;
+    trigger?: TooltipTrigger;
+    enterable?: boolean;
+  } = {};
   options.forEach(option => {
-    if (/(top)|(left)|(right)|(bottom)/.test(option)) {
+    if (isTooltipPlacement(option)) {
       props.placement = option;
-    } else if (/(hover)|(focus)|(click)/.test(option)) {
+    } else if (isTooltipTrigger(option)) {
       props.trigger = option;
     } else if (/unenterable/.test(option)) {
       props.enterable = false;
@@ -28,14 +41,14 @@ function bind(el, binding) {
   });
 
   const container = getContainer();
-  const vm = createApp({
+  const vm = createApp(defineComponent({
     data() {
       return {
         container,
       };
     },
     render() {
-      return h(Tooltip, {
+      return h(Tooltip as unknown as DefineComponent, {
         target: el,
         appendTo: binding.arg && '#' + binding.arg,
         text: typeof binding.value === 'string' ? (binding.value && binding.value.toString()) : (binding.value && binding.value.text && binding.value.text.toString()),
@@ -46,29 +59,36 @@ function bind(el, binding) {
         ...props,
       });
     },
-  });
+  }));
   vm.mount(container);
   el['v-tooltip'] = vm;
 }
 
-function unbind(el) {
+function unbind(el: (Element | DefineComponent) & { 'v-tooltip'?: App }) {
   const vm = el['v-tooltip'];
-  if (vm) {
-    const container = vm.container;
-    vm.unmount();
+  if (!vm) {
+    return;
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const container = (vm as any)?.container;
+  if (container instanceof HTMLElement) {
     document.documentElement.removeChild(container);
   }
+  vm.unmount();
   delete el['v-tooltip'];
 }
 
-function updated(el, binding) {
+function updated(el: (Element | DefineComponent) & { 'v-tooltip'?: App }, binding: DirectiveBinding) {
   if (binding.value !== binding.oldValue) {
     bind(el, binding);
   }
 }
 
-export default {
+const directive: ObjectDirective = {
   created: bind,
   updated: updated,
-  umounted: unbind,
+  unmounted: unbind,
 };
+
+export default directive;

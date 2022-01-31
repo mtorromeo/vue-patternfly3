@@ -37,7 +37,7 @@
           width: (pages.toString().length * .8 + 1.5) + 'em'
         }"
         :value="page"
-        @change="setPage($event.target.value)"
+        @change="$event.target instanceof HTMLInputElement && setPage(Number($event.target.value))"
       >
       {{ labelOf }} {{ pages }}
 
@@ -57,12 +57,13 @@
   </form>
 </template>
 
-<script>
-import PfSelect from './Select.vue';
+<script lang="ts">
+import PfSelect, { isPfSelect } from './Select.vue';
 import PfOption from './Option.vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'PfPaginateControl',
 
   components: {
@@ -80,7 +81,7 @@ export default {
     type: {
       type: String,
       default: 'list',
-      validator: type => ['list', 'card', 'table'].indexOf(type) >= 0,
+      validator: (type: never) => ['list', 'card', 'table'].includes(type),
     },
     totalItems: {
       type: Number,
@@ -92,9 +93,7 @@ export default {
     },
     itemsPerPageOptions: {
       type: Array,
-      default() {
-        return [10, 25, 50, 100, 500];
-      },
+      default: () => [10, 25, 50, 100, 500],
     },
     labelFirstPage: {
       type: String,
@@ -148,7 +147,7 @@ export default {
   },
 
   methods: {
-    setPage(page) {
+    setPage(page: number) {
       page = Math.max(Math.min(page, this.pages), 1);
       if (!isNaN(page) && page !== this.page) {
         this.$emit('change', page);
@@ -156,11 +155,16 @@ export default {
     },
 
     openPerPageSelect() {
-      this.$refs.perpage.focus();
-      this.$refs.perpage.open();
+      if (!(this.$refs.perpage instanceof HTMLElement)) {
+        return;
+      }
+      if (isPfSelect(this.$refs.perpage)) {
+        this.$refs.perpage.focus();
+        this.$refs.perpage.open();
+      }
     },
   },
-};
+});
 </script>
 
 <style>

@@ -15,11 +15,12 @@
   </component>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import popupMixin from '../mixins/popupMixin';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfPopover',
 
   mixins: [popupMixin],
@@ -44,7 +45,7 @@ export default {
     return useOUIAProps(props);
   },
 
-  data() {
+  data(this: void) {
     return {
       name: 'popover',
     };
@@ -61,5 +62,5 @@ export default {
       return this.title || this.content || this.$slots.popover;
     },
   },
-};
+});
 </script>

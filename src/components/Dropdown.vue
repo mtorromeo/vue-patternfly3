@@ -21,10 +21,11 @@
   </component>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfDropdown',
 
   props: {
@@ -45,7 +46,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    notCloseElements: Array,
+    notCloseElements: Array as PropType<Element[]>,
     text: {
       type: String,
       default: '',
@@ -72,7 +73,7 @@ export default {
     return useOUIAProps(props);
   },
 
-  data() {
+  data(this: void) {
     return {
       show: false,
     };
@@ -85,11 +86,13 @@ export default {
   },
 
   mounted() {
-    if (this.$refs.trigger) {
+    if (this.$refs.trigger instanceof HTMLElement) {
       this.$refs.trigger.addEventListener('click', this.toggle);
       this.$refs.trigger.addEventListener('keydown', this.onKeyPress);
     }
-    this.$refs.dropdown.addEventListener('keydown', this.onKeyPress);
+    if (this.$refs.dropdown instanceof HTMLElement) {
+      this.$refs.dropdown.addEventListener('keydown', this.onKeyPress);
+    }
     window.addEventListener('click', this.windowClicked);
     window.addEventListener('touchend', this.windowClicked);
     if (this.modelValue) {
@@ -99,29 +102,31 @@ export default {
 
   beforeUnmount() {
     this.removeDropdownFromBody();
-    if (this.$refs.trigger) {
-      this.$refs.trigger.addEventListener('click', this.toggle);
-      this.$refs.trigger.addEventListener('keydown', this.onKeyPress);
+    if (this.$refs.trigger instanceof HTMLElement) {
+      this.$refs.trigger.removeEventListener('click', this.toggle);
+      this.$refs.trigger.removeEventListener('keydown', this.onKeyPress);
     }
-    this.$refs.dropdown.addEventListener('keydown', this.onKeyPress);
-    window.addEventListener('click', this.windowClicked);
-    window.addEventListener('touchend', this.windowClicked);
+    if (this.$refs.dropdown instanceof HTMLElement) {
+      this.$refs.dropdown.removeEventListener('keydown', this.onKeyPress);
+    }
+    window.removeEventListener('click', this.windowClicked);
+    window.removeEventListener('touchend', this.windowClicked);
   },
 
   methods: {
-    onKeyPress(event) {
+    onKeyPress(event: KeyboardEvent) {
       const dropdownEl = this.$refs.dropdown;
-      if (!this.show || !dropdownEl) {
+      if (!this.show || !(dropdownEl instanceof HTMLElement)) {
         return;
       }
 
       const keyCode = event.keyCode || event.which;
       if (keyCode === 27) {
         this.toggle(false);
-        this.$refs.trigger && this.$refs.trigger.focus();
+        this.$refs.trigger instanceof HTMLElement && this.$refs.trigger.focus();
       } else if (keyCode === 13) {
         const currentFocus = dropdownEl.querySelector('li > a:focus');
-        currentFocus && currentFocus.click();
+        currentFocus instanceof HTMLAnchorElement && currentFocus.click();
       } else if (keyCode === 38 || keyCode === 40) {
         event.preventDefault();
         event.stopPropagation();
@@ -134,7 +139,7 @@ export default {
         } else {
           for (let i = 0; i < items.length; i++) {
             if (currentFocus === items[i]) {
-              if (keyCode === 38 && i < items.length > 0) {
+              if (keyCode === 38 && i > 0 && i < items.length) {
                 focus = items[i - 1];
               } else if (keyCode === 40 && i < items.length - 1) {
                 focus = items[i + 1];
@@ -144,7 +149,7 @@ export default {
           }
         }
 
-        if (focus) {
+        if (focus instanceof HTMLElement) {
           if (!focus.getAttribute('tabindex')) {
             focus.setAttribute('tabindex', '-1');
           }
@@ -154,7 +159,7 @@ export default {
     },
 
     appendDropdownToBody() {
-      if (!this.$refs.dropdown || !this.appendTo) {
+      if (!(this.$refs.dropdown instanceof HTMLElement) || !this.appendTo) {
         return;
       }
 
@@ -165,13 +170,13 @@ export default {
     },
 
     setDropdownPosition() {
-      if (!this.$refs.dropdown || !this.$refs.trigger || !this.appendTo) {
+      if (!(this.$refs.dropdown instanceof HTMLElement) || !(this.$refs.trigger instanceof Element) || !this.appendTo) {
         return;
       }
 
       const rP = this.appendTo.offsetParent.getBoundingClientRect();
       const rT = this.$refs.trigger.getBoundingClientRect();
-      let rD = {};
+      let rD: DOMRect;
       if (this.menuRight || this.dropup) {
         rD = this.$refs.dropdown.getBoundingClientRect();
       }
@@ -195,7 +200,7 @@ export default {
       this.$refs.dropdown.style.right = 'auto';
     },
 
-    toggle(show) {
+    toggle(show?: boolean | Event) {
       if (this.disabled) {
         return;
       }
@@ -210,9 +215,9 @@ export default {
       this.$emit('update:modelValue', this.show);
     },
 
-    windowClicked(event) {
+    windowClicked(event: MouseEvent | TouchEvent) {
       const target = event.target;
-      if (!this.show || !target || !this.$refs.dropdown || !this.$el) {
+      if (!this.show || !(target instanceof Element) || !(this.$refs.dropdown instanceof HTMLElement) || !this.$el) {
         return;
       }
 
@@ -243,7 +248,7 @@ export default {
     },
 
     removeDropdownFromBody() {
-      if (!this.$refs.dropdown || !this.$el) {
+      if (!(this.$refs.dropdown instanceof HTMLElement) || !this.$el) {
         return;
       }
 
@@ -251,5 +256,5 @@ export default {
       this.$el.appendChild(this.$refs.dropdown);
     },
   },
-};
+});
 </script>

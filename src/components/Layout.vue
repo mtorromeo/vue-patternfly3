@@ -1,14 +1,28 @@
 <template>
-  <div v-bind="ouiaProps" :class="{
-    'pf-layout-flex': display == 'flex',
-    'pf-layout-grid': display == 'grid',
-  }">
-    <nav v-if="!disabled" class="navbar" :class="{
-      'navbar-pf': horizontal,
-      'navbar-pf-vertical': !horizontal,
-    }" role="navigation" data-ouia-header="true">
+  <div
+    v-bind="ouiaProps"
+    :class="{
+      'pf-layout-flex': display == 'flex',
+      'pf-layout-grid': display == 'grid',
+    }"
+  >
+    <nav
+      v-if="!disabled"
+      class="navbar"
+      :class="{
+        'navbar-pf': horizontal,
+        'navbar-pf-vertical': !horizontal,
+      }"
+      role="navigation"
+      data-ouia-header="true"
+    >
       <div class="navbar-header">
-        <button v-if="collapsable" type="button" class="navbar-toggle" @click="collapsed = !collapsed">
+        <button
+          v-if="collapsable"
+          type="button"
+          class="navbar-toggle"
+          @click="collapsed = !collapsed"
+        >
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar" />
           <span class="icon-bar" />
@@ -18,45 +32,61 @@
       </div>
 
       <div class="collapse navbar-collapse navbar-collapse-1">
-        <ul v-if="horizontal" class="nav navbar-nav navbar-primary" :class="{'persistent-secondary': horizontalSecondary}" data-ouia-navigation="true">
+        <ul
+          v-if="horizontal"
+          class="nav navbar-nav navbar-primary"
+          :class="{ 'persistent-secondary': horizontalSecondary }"
+          data-ouia-navigation="true"
+        >
           <slot name="horizontal-menu" />
         </ul>
 
-        <ul class="nav navbar-nav" :class="{
-          'navbar-utility': horizontal,
-          'navbar-right': !horizontal,
-          'navbar-iconic': !horizontal,
-        }">
+        <ul
+          class="nav navbar-nav"
+          :class="{
+            'navbar-utility': horizontal,
+            'navbar-right': !horizontal,
+            'navbar-iconic': !horizontal,
+          }"
+        >
           <slot name="utility-menu" />
         </ul>
       </div>
     </nav>
 
-    <div v-if="!disabled && !horizontal" class="nav-pf-vertical nav-pf-vertical-with-sub-menus" :class="{
-      collapsed: collapsed,
-      hidden: mobile,
-      'hidden-icons-pf': !icons,
-      'show-mobile-nav': mobile && !collapsed,
-      'secondary-visible-pf': secondaryMenus && !tertiaryMenus && !tablet,
-      'show-mobile-secondary': secondaryMenus && !tertiaryMenus && mobile,
-      'hover-secondary-nav-pf': secondaryMenus || tertiaryMenus,
-      'tertiary-visible-pf': tertiaryMenus && !tablet,
-      'show-mobile-tertiary': tertiaryMenus && mobile,
-      'hover-tertiary-nav-pf': tertiaryMenus,
-    }">
+    <div
+      v-if="!disabled && !horizontal"
+      class="nav-pf-vertical nav-pf-vertical-with-sub-menus"
+      :class="{
+        collapsed: collapsed,
+        hidden: mobile,
+        'hidden-icons-pf': !icons,
+        'show-mobile-nav': mobile && !collapsed,
+        'secondary-visible-pf': secondaryMenus && !tertiaryMenus && !tablet,
+        'show-mobile-secondary': secondaryMenus && !tertiaryMenus && mobile,
+        'hover-secondary-nav-pf': secondaryMenus || tertiaryMenus,
+        'tertiary-visible-pf': tertiaryMenus && !tablet,
+        'show-mobile-tertiary': tertiaryMenus && mobile,
+        'hover-tertiary-nav-pf': tertiaryMenus,
+      }"
+    >
       <ul class="list-group" data-ouia-navigation="true">
         <slot name="vertical-menu" />
       </ul>
     </div>
 
-    <div class="pf-layout-container" :class="{
-      'hidden-nav': mobile,
-      'container-flex': !disabled && display == 'flex',
-      'container-fluid': !disabled && !nomargin,
-      'collapsed-nav': !disabled && collapsed,
-      'container-pf-nav-pf-vertical': !disabled && !horizontal,
-      'hidden-icons-pf': !disabled && !icons,
-    }" :data-ouia-main="noOuiaMain ? null : 'true'">
+    <div
+      class="pf-layout-container"
+      :class="{
+        'hidden-nav': mobile,
+        'container-flex': !disabled && display == 'flex',
+        'container-fluid': !disabled && !nomargin,
+        'collapsed-nav': !disabled && collapsed,
+        'container-pf-nav-pf-vertical': !disabled && !horizontal,
+        'hidden-icons-pf': !disabled && !icons,
+      }"
+      :data-ouia-main="noOuiaMain ? null : 'true'"
+    >
       <slot />
 
       <div ref="modalsTarget" />
@@ -64,18 +94,18 @@
   </div>
 </template>
 
-<script>
-import { ref, provide } from 'vue';
+<script lang="ts">
+import { ref, provide, defineComponent, DefineComponent } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+const PfLayout = defineComponent({
   name: 'PfLayout',
 
   props: {
     display: {
       type: String,
       default: 'block',
-      validator: display => ['block', 'flex', 'grid'].indexOf(display) >= 0,
+      validator: (display: never) => ['block', 'flex', 'grid'].includes(display),
     },
 
     icons: Boolean,
@@ -95,8 +125,10 @@ export default {
   setup(props) {
     const collapsed = ref(false);
     provide('layoutCollapsed', collapsed);
-    const modalsTarget = ref(null);
+
+    const modalsTarget = ref<HTMLElement>(null);
     provide('modalsTarget', modalsTarget);
+
     return {
       collapsed,
       modalsTarget,
@@ -104,7 +136,7 @@ export default {
     };
   },
 
-  data() {
+  data(this: void) {
     return {
       secondaryMenus: 0,
       tertiaryMenus: 0,
@@ -197,7 +229,13 @@ export default {
       }
     },
   },
-};
+});
+
+export function isPfLayout(component: unknown): component is InstanceType<typeof PfLayout> {
+  return typeof component === 'object' && (component as DefineComponent).$options?.name === 'PfLayout';
+}
+
+export default PfLayout;
 </script>
 
 <style>
@@ -216,7 +254,7 @@ nav.navbar-pf-vertical > .collapse .navbar-right:last-child {
 }
 
 .layout-pf.layout-pf-fixed.transitions .nav-pf-vertical {
-  transition: all .2s cubic-bezier(.35,0,.25,1);
+  transition: all 0.2s cubic-bezier(0.35, 0, 0.25, 1);
 }
 
 .layout-pf.layout-pf-fixed .container-pf-nav-pf-vertical {

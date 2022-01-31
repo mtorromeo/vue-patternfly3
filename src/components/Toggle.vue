@@ -3,42 +3,71 @@
     v-bind="ouiaProps"
     tabindex="0"
     class="btn-group btn-group-flip"
-    :class="{disabled}"
+    :class="{ disabled }"
     @keyup.space="toggle"
     @keyup.enter="toggle"
     @keyup.left="set(onValue)"
     @keyup.right="setOff"
   >
     <template v-if="noOff">
-      <pf-radio-button :name="name" input="checkbox" :model-value="modelValue" :class="[`btn-${size}`]" :active-class="onClass" inactive-class="btn-default" :checked-value="onValue" :loose="loose" :disabled="disabled" @update:model-value="set(onValue)">
-        {{ onText }}
-      </pf-radio-button>
-      <label class="btn" :class="[on ? 'btn-default' : offClass, `btn-${size}`]" @click="setOff">
-        {{ offText }}
-      </label>
+      <pf-radio-button
+        :name="name"
+        input="checkbox"
+        :model-value="modelValue"
+        :class="[`btn-${size}`]"
+        :active-class="onClass"
+        inactive-class="btn-default"
+        :checked-value="onValue"
+        :loose="loose"
+        :disabled="disabled"
+        @update:model-value="set(onValue)"
+      >{{ onText }}</pf-radio-button>
+      <label
+        class="btn"
+        :class="[on ? 'btn-default' : offClass, `btn-${size}`]"
+        @click="setOff"
+      >{{ offText }}</label>
     </template>
 
     <template v-else>
-      <pf-radio-button :name="name" :model-value="radioValue" :class="[`btn-${size}`]" :active-class="onClass" inactive-class="btn-default" :checked-value="onValue" :loose="loose" :disabled="disabled" @update:model-value="set($event)">
-        {{ onText }}
-      </pf-radio-button>
-      <pf-radio-button :name="name" :model-value="radioValue" :class="[`btn-${size}`]" :active-class="offClass" inactive-class="btn-default" :checked-value="offValue" :loose="loose" :disabled="disabled" @update:model-value="set($event)">
-        {{ offText }}
-      </pf-radio-button>
+      <pf-radio-button
+        :name="name"
+        :model-value="radioValue"
+        :class="[`btn-${size}`]"
+        :active-class="onClass"
+        inactive-class="btn-default"
+        :checked-value="onValue"
+        :loose="loose"
+        :disabled="disabled"
+        @update:model-value="set($event)"
+      >{{ onText }}</pf-radio-button>
+      <pf-radio-button
+        :name="name"
+        :model-value="radioValue"
+        :class="[`btn-${size}`]"
+        :active-class="offClass"
+        inactive-class="btn-default"
+        :checked-value="offValue"
+        :loose="loose"
+        :disabled="disabled"
+        @update:model-value="set($event)"
+      >{{ offText }}</pf-radio-button>
     </template>
 
-    <pf-spinner v-if="loading" :size="size" inline loading />
-    &nbsp;
+    <pf-spinner v-if="loading" :size="size" inline loading />&nbsp;
     <slot />
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import PfRadioButton from './RadioButton.vue';
 import PfSpinner from './Spinner.vue';
 
-export default {
+export type ToggleSize = 'xs' | 'sm' | 'md' | 'lg';
+
+export default defineComponent({
   name: 'PfToggle',
 
   components: {
@@ -52,7 +81,7 @@ export default {
       default: null,
     },
     modelValue: {
-      type: [Boolean, String, Number, Array],
+      type: [Boolean, String, Number, Array] as PropType<boolean | string | number | Array<boolean | string | number>>,
       required: true,
     },
     disabled: Boolean,
@@ -84,9 +113,9 @@ export default {
       default: 'btn-danger',
     },
     size: {
-      type: String,
+      type: String as PropType<ToggleSize>,
       default: 'sm',
-      validator: val => ['lg', 'md', 'sm', 'xs'].includes(val),
+      validator: (val: never) => ['lg', 'md', 'sm', 'xs'].includes(val),
     },
     ...ouiaProps,
   },
@@ -125,7 +154,7 @@ export default {
   },
 
   methods: {
-    test(value) {
+    test(value: boolean | string | number | Array<boolean | string | number>) {
       if (!this.noOff) {
         if (this.loose) {
           return this.modelValue == value;
@@ -134,6 +163,9 @@ export default {
       }
       if (this.loose) {
         return typeof this.values.find(v => v == value) !== 'undefined';
+      }
+      if (Array.isArray(value)) {
+        return this.values.filter(v => value.includes(v)).length === 0;
       }
       return this.values.includes(value);
     },
@@ -158,7 +190,7 @@ export default {
       this.set(this.offValue);
     },
 
-    set(value) {
+    set(value: boolean | string | number | Array<boolean | string | number>) {
       if (this.disabled) {
         return;
       }
@@ -188,7 +220,7 @@ export default {
       this.set(this.onValue);
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

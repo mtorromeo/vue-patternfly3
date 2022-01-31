@@ -29,10 +29,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfListItem',
 
   props: {
@@ -41,12 +42,12 @@ export default {
     iconSize: {
       type: String,
       default: 'md',
-      validator: size => ['sm', 'md', 'lg'].indexOf(size) >= 0,
+      validator: (size: never) => ['sm', 'md', 'lg'].includes(size),
     },
     iconVariant: {
       type: String,
       default: '',
-      validator: variant => ['', null, 'info', 'success', 'warning', 'danger'].indexOf(variant) >= 0,
+      validator: (variant: never) => ['', null, 'info', 'success', 'warning', 'danger'].includes(variant),
     },
     ...ouiaProps,
   },
@@ -54,5 +55,5 @@ export default {
   setup(props) {
     return useOUIAProps(props);
   },
-};
+});
 </script>

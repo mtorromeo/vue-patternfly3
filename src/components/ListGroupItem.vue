@@ -27,13 +27,13 @@
   </div>
 </template>
 
-<script>
-import { provide, computed, ref } from 'vue';
+<script lang="ts">
+import { provide, computed, ref, defineComponent } from 'vue';
 import TableRow from './TableRow.vue';
 import PfDropdown from './Dropdown.vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfListGroupItem',
 
   components: {
@@ -60,10 +60,10 @@ export default {
   setup(props, { emit }) {
     const autoExpanded = ref(false);
     const isExpanded = computed({
-      get() {
+      get(): boolean {
         return typeof props.expanded === 'boolean' ? props.expanded : autoExpanded.value;
       },
-      set(value) {
+      set(value: boolean) {
         if (typeof props.expanded !== 'boolean') {
           autoExpanded.value = value;
         }
@@ -110,14 +110,14 @@ export default {
       this.expandedAdditional = null;
     },
 
-    toggle(e) {
+    toggle(e: MouseEvent | TouchEvent) {
       if (!this.expandable) {
         return;
       }
 
       if (e) {
         let target = e.target;
-        while (target && target !== this.$el) {
+        while (target instanceof Element && target !== this.$el) {
           if (['A', 'BUTTON', 'INPUT', 'SELECT'].indexOf(target.tagName) >= 0) {
             return;
           }
@@ -133,5 +133,5 @@ export default {
       }
     },
   },
-};
+});
 </script>

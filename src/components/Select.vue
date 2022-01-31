@@ -1,26 +1,44 @@
 <template>
-  <div ref="select" v-bind="ouiaProps" class="bootstrap-select" :class="{
-    open: show,
-    disabled,
-    dropdown: isLi,
-    'input-group-btn': inInput,
-    'btn-group': !isLi && !inInput,
-  }">
-    <component :is="btnType" ref="btn" :type="button ? 'button' : null" class="dropdown-toggle" :class="{
-                 'btn btn-default': button,
-                 'form-control': !button,
-               }" :tabindex="tabindex" :disabled="disabled || null" :readonly="readonly" role="button" :aria-expanded="show.toString()"
-               @blur="canSearch ? null : close"
-               @click="toggle"
-               @keydown.esc.stop.prevent="close"
-               @keydown.space.stop.prevent="toggle"
-               @keydown.enter.stop.prevent="toggle"
+  <div
+    ref="select"
+    v-bind="ouiaProps"
+    class="bootstrap-select"
+    :class="{
+      open: show,
+      disabled,
+      dropdown: isLi,
+      'input-group-btn': !isLi && inInput,
+      'btn-group': !isLi && !inInput,
+    }"
+  >
+    <component
+      :is="btnType"
+      ref="btn"
+      :type="button ? 'button' : null"
+      class="dropdown-toggle"
+      :class="{
+        'btn btn-default': button,
+        'form-control': !button,
+      }"
+      :tabindex="tabindex"
+      :disabled="disabled || null"
+      :readonly="readonly"
+      role="button"
+      :aria-expanded="show.toString()"
+      @blur="canSearch ? null : close"
+      @click="toggle"
+      @keydown.esc.stop.prevent="close"
+      @keydown.space.stop.prevent="toggle"
+      @keydown.enter.stop.prevent="toggle"
     >
-      <span :class="{
-        'filter-option pull-left': button,
-        'btn-content': !button,
-      }" v-html="showPlaceholder || selected" />
-      <span v-if="clearButton && values.length" class="close" @click="clear">&times;</span>
+      <span
+        :class="{
+          'filter-option pull-left': button,
+          'btn-content': !button,
+        }"
+        v-html="showPlaceholder || selected"
+      />
+      <span v-if="clearButton && values.length" class="close" @click="clear()">&times;</span>
       <span v-if="button" class="bs-caret">
         <span class="caret" />
       </span>
@@ -28,15 +46,20 @@
 
     <ul class="dropdown-menu">
       <li v-if="canSearch" class="bs-searchbox">
-        <input ref="search" v-model="filter" type="text" :placeholder="typeof search == 'string' ? search : ''" class="form-control"
-               autocomplete="off"
-               @keyup.esc="close"
-        >
+        <input
+          ref="search"
+          v-model="filter"
+          type="text"
+          :placeholder="typeof search == 'string' ? search : ''"
+          class="form-control"
+          autocomplete="off"
+          @keyup.esc="close"
+        />
         <span v-show="filter" class="close" @click="clearSearch">&times;</span>
       </li>
 
       <li v-if="required && !clearButton">
-        <a @mousedown.prevent="clear() && close()">{{ placeholder }}</a>
+        <a @mousedown.prevent="clear(true)">{{ placeholder }}</a>
       </li>
 
       <slot />
@@ -44,11 +67,13 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { provideChildrenTracker } from '../use';
 import { ouiaProps, useOUIAProps } from '../ouia';
+import { DefineComponent, defineComponent, inject, provide, Ref, ref } from 'vue';
+import PfOption, { OptionSymbol } from './Option.vue';
 
-export default {
+const PfSelect = defineComponent({
   name: 'PfSelect',
 
   props: {
@@ -73,19 +98,30 @@ export default {
   },
 
   setup(props) {
-    const options = provideChildrenTracker();
+    const show = ref(false);
+
+    function select() {
+      if (props.closeOnSelect) {
+        show.value = false;
+      }
+    }
+
+    provide('select', select);
+    provide('selectName', props.name);
+
     return {
-      options,
+      show,
+      select,
+      inInput: inject('inInput', false),
+      options: provideChildrenTracker(OptionSymbol) as Ref<(InstanceType<typeof PfOption>)[]>,
       ...useOUIAProps(props),
     };
   },
 
-  data() {
+  data(this: void) {
     return {
       filter: '',
-      show: false,
       isLi: false,
-      inInput: false,
       selected: '',
     };
   },
@@ -102,7 +138,7 @@ export default {
     values() {
       return this.options.reduce(function(values, c) {
         if (c.checked) {
-          values.push(c.value);
+          values.push(c.modelValue);
         }
         return values;
       }, []);
@@ -115,9 +151,9 @@ export default {
 
   watch: {
     show(val) {
-      if (val && this.$refs.search) {
+      if (val && this.$refs.search instanceof HTMLElement) {
         this.$refs.search.focus();
-      } else {
+      } else if (this.$refs.btn instanceof HTMLElement) {
         this.$refs.btn.focus();
       }
     },
@@ -140,7 +176,6 @@ export default {
 
   mounted() {
     this.isLi = this.$el && this.$el.parentNode.tagName === 'LI';
-    this.inInput = !this.isLi && this.$parent._input;
     document.addEventListener('click', this.outerClick);
   },
 
@@ -157,48 +192,56 @@ export default {
       this.show = true;
     },
 
-    clear() {
+    clear(close = false) {
       if (this.disabled || this.readonly) {
         return;
       }
-      this.toggle();
+      if (close) {
+        this.close();
+      } else {
+        this.toggle();
+      }
     },
 
     clearSearch() {
       this.filter = '';
-      this.$refs.search.focus();
+      if (this.$refs.search instanceof HTMLElement) {
+        this.$refs.search.focus();
+      }
     },
 
     toggle() {
       this.show = !this.show;
     },
 
-    outerClick(e) {
-      if (!this.$el.contains(e.target)) {
-        this.close();
-      }
-    },
-
-    select() {
-      if (this.closeOnSelect) {
+    outerClick(e: MouseEvent | TouchEvent) {
+      if (this.$el && !this.$el.contains(e.target)) {
         this.close();
       }
     },
 
     focus() {
-      this.$refs.btn.focus();
+      if (this.$refs.btn instanceof HTMLElement) {
+        this.$refs.btn.focus();
+      }
     },
   },
-};
+});
+
+export function isPfSelect(component: unknown): component is InstanceType<typeof PfSelect> {
+  return typeof component === 'object' && (component as DefineComponent).$options?.name === 'PfSelect';
+}
+
+export default PfSelect;
 </script>
 
 <style scoped>
-.form-control.dropdown-toggle{
+.form-control.dropdown-toggle {
   height: auto;
   padding-right: 24px;
 }
-.form-control.dropdown-toggle:after{
-  content: ' ';
+.form-control.dropdown-toggle:after {
+  content: " ";
   position: absolute;
   right: 13px;
   top: 50%;
@@ -227,10 +270,13 @@ export default {
 .form-control.dropdown-toggle:focus {
   outline: 0;
   border-color: #66afe9 !important;
-  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+    0 0 8px rgba(102, 175, 233, 0.6);
 }
-.form-control.dropdown-toggle>.close { margin-left: 5px;}
-.btn-group-justified .dropdown-toggle>span:not(.close) {
+.form-control.dropdown-toggle > .close {
+  margin-left: 5px;
+}
+.btn-group-justified .dropdown-toggle > span:not(.close) {
   width: calc(100% - 18px);
   display: inline-block;
   overflow: hidden;
@@ -238,5 +284,7 @@ export default {
   text-overflow: ellipsis;
   margin-bottom: -4px;
 }
-.btn-group-justified .dropdown-menu { width: 100%; }
+.btn-group-justified .dropdown-menu {
+  width: 100%;
+}
 </style>

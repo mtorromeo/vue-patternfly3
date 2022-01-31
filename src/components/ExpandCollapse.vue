@@ -17,11 +17,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import PfButton from './Button.vue';
 
-export default {
+export default defineComponent({
   name: 'PfExpandCollapse',
 
   components: {
@@ -52,9 +53,10 @@ export default {
     return useOUIAProps(props);
   },
 
-  data() {
+  data(this: void) {
     return {
-      autoExpanded: this.expanded,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      autoExpanded: (this as any).expanded,
     };
   },
 
@@ -85,7 +87,7 @@ export default {
       this.autoExpanded = !this.isExpanded;
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

@@ -1,5 +1,5 @@
 <template>
-  <teleport :to="modalsTarget || 'body'">
+  <teleport :to="modalsTarget">
     <transition-group name="pf-drop-fade">
       <div v-if="show" key="modal" v-bind="{ ...$attrs, ...ouiaProps }" class="modal" role="dialog" @click="clickOutside">
         <div ref="dialog" class="modal-dialog">
@@ -34,11 +34,12 @@
   </teleport>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, inject } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import PfButton from './Button.vue';
 
-function isDescendantOf(node, ancestor) {
+function isDescendantOf(node: Node, ancestor: Node) {
   while (node) {
     if (node === ancestor) {
       return true;
@@ -48,14 +49,12 @@ function isDescendantOf(node, ancestor) {
   return false;
 }
 
-export default {
+export default defineComponent({
   name: 'PfModal',
 
   components: {
     PfButton,
   },
-
-  inject: ['modalsTarget'],
 
   props: {
     title: String,
@@ -87,7 +86,10 @@ export default {
   emits: ['submit', 'confirm', 'cancel', 'close'],
 
   setup(props) {
-    return useOUIAProps(props);
+    return {
+      modalsTarget: inject<HTMLElement | string>('modalsTarget', 'body'),
+      ...useOUIAProps(props),
+    };
   },
 
   mounted() {
@@ -113,13 +115,13 @@ export default {
       this.$emit('close');
     },
 
-    clickOutside(e) {
-      if (this.outsideClose && !isDescendantOf(e.target, this.$refs.dialog)) {
+    clickOutside(e: MouseEvent | TouchEvent) {
+      if (this.outsideClose && e.target instanceof Node && this.$refs.dialog instanceof HTMLElement && !isDescendantOf(e.target, this.$refs.dialog)) {
         this.cancel();
       }
     },
   },
-};
+});
 </script>
 
 <style>

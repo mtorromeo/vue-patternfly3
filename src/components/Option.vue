@@ -1,18 +1,21 @@
 <template>
   <li v-if="!filtered" v-bind="ouiaProps" :class="{'selected': checked}">
     <a href="javascript:void(0)" role="menuitem" @click.prevent="check">
-      <input ref="input" type="radio" :name="name === null ? $parent.name : name" :value="modelValue" :checked="checked" style="display:none">
+      <input ref="input" type="radio" :name="name === null ? selectName : name" :value="modelValue" :checked="checked" style="display:none">
       <slot />
       <pf-icon v-show="checked" name="glyphicon-close" class="check-mark" />
     </a>
   </li>
 </template>
 
-<script>
+<script lang="ts">
 import { useChildrenTracker } from '../use';
 import { ouiaProps, useOUIAProps } from '../ouia';
+import { defineComponent, inject } from 'vue';
 
-export default {
+export const OptionSymbol = Symbol('Option');
+
+export default defineComponent({
   name: 'PfOption',
 
   props: {
@@ -28,11 +31,15 @@ export default {
   emits: ['update:modelValue'],
 
   setup(props) {
-    useChildrenTracker();
-    return useOUIAProps(props);
+    useChildrenTracker(OptionSymbol);
+    return {
+      select: inject<() => void>('select', () => null),
+      selectName: inject<string>('selectName', null),
+      ...useOUIAProps(props),
+    };
   },
 
-  data() {
+  data(this: void) {
     return {
       label: '',
       filter: '',
@@ -59,8 +66,8 @@ export default {
   methods: {
     check() {
       this.$emit('update:modelValue', this.checkedValue);
-      this.$parent.select(this);
+      this.select();
     },
   },
-};
+});
 </script>

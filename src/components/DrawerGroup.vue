@@ -36,17 +36,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, defineComponent, inject } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfDrawerGroup',
-
-  inject: {
-    activeGroup: {
-      default: null,
-    },
-  },
 
   props: {
     title: String,
@@ -58,10 +53,13 @@ export default {
   emits: ['opened', 'closed'],
 
   setup(props) {
-    return useOUIAProps(props);
+    return {
+      activeGroup: inject<Component>('activeGroup', null),
+      ...useOUIAProps(props),
+    };
   },
 
-  data() {
+  data(this: void) {
     return {
       expanded: false,
       empty: true,
@@ -100,7 +98,7 @@ export default {
       this.expanded = !this.expanded;
     },
   },
-};
+});
 </script>
 
 <style>

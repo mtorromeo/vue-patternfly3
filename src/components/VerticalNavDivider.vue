@@ -6,21 +6,16 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, inject } from 'vue';
 import Tooltip from '../directives/tooltip';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfVerticalNavDivider',
 
   directives: {
     Tooltip,
-  },
-
-  inject: {
-    layoutCollapsed: {
-      default: false,
-    },
   },
 
   props: {
@@ -29,7 +24,10 @@ export default {
   },
 
   setup(props) {
-    return useOUIAProps(props);
+    return {
+      layoutCollapsed: inject('layoutCollapsed', false),
+      ...useOUIAProps(props),
+    };
   },
 
   computed: {
@@ -37,7 +35,7 @@ export default {
       return this.layoutCollapsed ? this.title : null;
     },
   },
-};
+});
 </script>
 
 <style lang="scss">

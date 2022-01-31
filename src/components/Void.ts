@@ -1,20 +1,28 @@
-import { renderSlot } from '../render';
+import { DefineComponent, defineComponent, PropType, Slot, VNode } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'Void',
+
+  inheritAttrs: false,
 
   props: {
     alter: {
-      type: Function,
+      type: Function as PropType<(v: VNode[]) => VNode[]>,
       default: null,
     },
 
     useRef: {
-      type: Object,
+      type: Object as PropType<DefineComponent>,
       default: null,
     },
 
     template: Boolean,
+  },
+
+  setup() {
+    return {
+      templateFn: null as Slot,
+    };
   },
 
   render() {
@@ -31,15 +39,15 @@ export default {
       return;
     }
 
-    let children = renderSlot(this.$slots.default);
+    if (!this.$slots.default) {
+      return [];
+    }
+
+    let children = this.$slots.default();
     if (this.alter) {
       children = this.alter(children);
     }
 
-    if (children.length !== 1) {
-      // eslint-disable-next-line no-unused-vars
-      const _ = this.$attrs;
-    }
     return children;
   },
-};
+});

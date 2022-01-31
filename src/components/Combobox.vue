@@ -11,7 +11,7 @@
     <input v-if="name" type="hidden" :name="name" :value="modelValue" :disabled="effectiveDisabled" :required="required">
     <div class="input-group">
       <label v-if="withCheckbox" class="input-group-addon">
-        <input v-model="checked" type="checkbox" :name="withCheckbox" value="1">
+        <input v-model="checked" type="checkbox" :name="typeof withCheckbox === 'string' ? withCheckbox : null" value="1">
       </label>
 
       <input
@@ -27,7 +27,7 @@
         :required="required"
         :tabindex="tabindex"
         class="combobox form-control"
-        @focus="$refs.text.select()"
+        @focus="($refs.text as HTMLInputElement).select()"
         @blur="blur"
         @keydown.esc="showOptions = false"
         @keydown.up.prevent="prev"
@@ -51,18 +51,29 @@
         </li>
       </ul>
 
-      <a href="javascript:void(0)" role="button" class="input-group-addon dropdown-toggle" :class="{disabled: effectiveDisabled}" data-dropdown="dropdown" :disabled="effectiveDisabled" @click.prevent="dropdownClick">
-        <span class="caret" />
-        <pf-icon name="glyphicon-remove" />
-      </a>
+      <slot name="dropdownTrigger" :disabled="effectiveDisabled" :clickHandler="dropdownClick">
+        <a href="javascript:void(0)" role="button" class="input-group-addon dropdown-toggle" :class="{disabled: effectiveDisabled}" data-dropdown="dropdown" :disabled="effectiveDisabled" @click.prevent="dropdownClick">
+          <span class="caret" />
+          <pf-icon name="glyphicon-remove" />
+        </a>
+      </slot>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+type Option = Record<string, never> | string | number;
+
+interface NormalizedOption {
+  option: Option;
+  label: string;
+  value: string | number;
+}
+
+export default defineComponent({
   name: 'PfCombobox',
 
   props: {
@@ -85,8 +96,8 @@ export default {
       default: null,
     },
     options: {
-      type: Array,
-      default: () => [],
+      type: Array as PropType<Option[]>,
+      default: (): Option[] => [],
     },
     labelField: {
       type: String,
@@ -98,11 +109,11 @@ export default {
     },
     match: {
       type: Function,
-      default: (o, q) => o.label.toString().toLowerCase().includes(q.toLowerCase()),
+      default: (o: NormalizedOption, q: string) => o.label.toString().toLowerCase().includes(q.toLowerCase()),
     },
     highlight: {
       type: Function,
-      default: (o, q) => o.label.replace(new RegExp(q.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'), 'ig'), '<strong>$&</strong>'),
+      default: (o: NormalizedOption, q: string) => o.label.replace(new RegExp(q.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'), 'ig'), '<strong>$&</strong>'),
     },
     withCheckbox: {
       type: [Boolean, String],
@@ -117,11 +128,12 @@ export default {
     return useOUIAProps(props);
   },
 
-  data() {
+  data(this: void) {
     return {
+      blurTimeout: null as ReturnType<typeof setTimeout> | null,
       showOptions: false,
-      filter: null,
-      active: null,
+      filter: null as string,
+      active: null as string | number,
       hasError: false,
       checked: false,
     };
@@ -139,15 +151,15 @@ export default {
       return this.optionsMap[this.modelValue].label;
     },
 
-    optionsMap() {
-      const map = {};
+    optionsMap(): Record<string | number, NormalizedOption> {
+      const map: Record<string | number, NormalizedOption> = {};
       for (const o of this.options) {
         const isObj = typeof o === 'object';
         const value = isObj ? o[this.valueField] : o;
         const label = isObj ? o[this.labelField] : o;
         map[value] = {
           option: o,
-          label,
+          label: label.toString(),
           value,
         };
       }
@@ -170,10 +182,10 @@ export default {
     },
 
     text: {
-      get() {
+      get(): string {
         return this.filter === null ? this.label : this.filter;
       },
-      set(text) {
+      set(text: string) {
         this.filter = text;
       },
     },
@@ -205,7 +217,7 @@ export default {
   },
 
   methods: {
-    setValue(value) {
+    setValue(value: string | number) {
       this.showOptions = false;
       this.filter = null;
       if (value !== this.modelValue) {
@@ -213,7 +225,7 @@ export default {
         this.$emit('update:modelValue', value);
         this.hasError = false;
       }
-      this.$refs.text.focus();
+      (this.$refs.text as HTMLInputElement).focus();
     },
 
     toggleOptions() {
@@ -222,7 +234,7 @@ export default {
         if (this.filter === null) {
           this.filter = '';
         }
-        this.$refs.text.focus();
+        (this.$refs.text as HTMLInputElement).focus();
       }
     },
 
@@ -271,7 +283,7 @@ export default {
       this.active = this.filteredOptions[activeIdx].value;
     },
 
-    apply(e) {
+    apply(e: Event) {
       if (!this.dropdownOpen) {
         return;
       }
@@ -291,7 +303,7 @@ export default {
       this.setValue(this.filteredOptions[activeIdx].value);
     },
 
-    dropdownClick(e) {
+    dropdownClick(e: Event) {
       if (this.effectiveDisabled) {
         e.preventDefault();
         return;
@@ -305,5 +317,5 @@ export default {
       this.toggleOptions();
     },
   },
-};
+});
 </script>

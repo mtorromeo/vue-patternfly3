@@ -20,11 +20,12 @@
   </tr>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import PfDropdown from './Dropdown.vue';
 
-export default {
+export default defineComponent({
   name: 'PfTableRow',
 
   components: {
@@ -43,7 +44,7 @@ export default {
     return useOUIAProps(props);
   },
 
-  data() {
+  data(this: void) {
     return {
       selected: false,
     };
@@ -54,5 +55,5 @@ export default {
       this.$emit('select', this.selected);
     },
   },
-};
+});
 </script>

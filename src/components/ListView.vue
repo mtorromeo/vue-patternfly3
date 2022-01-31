@@ -3,7 +3,7 @@
     <div class="list-group list-view-pf list-view-pf-view">
       <pf-list-group-item
         v-for="(row, i) in rows"
-        ref="row"
+        ref="listItems"
         :key="keyName ? row[keyName] : i"
         :index="i"
         :selectable="selectable"
@@ -31,17 +31,18 @@
       :total-items="totalItems"
       :items-per-page="itemsPerPage"
       :items-per-page-options="itemsPerPageOptions"
-      @update:itemsPerPage="$emit('update:itemsPerPage', $event)"
+      @update:items-per-page="$emit('update:itemsPerPage', $event)"
       @change="$emit('update:page', $event)"
     />
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType, ref } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import PfListGroupItem from './ListGroupItem.vue';
 
-export default {
+export default defineComponent({
   name: 'PfListView',
 
   components: {
@@ -60,18 +61,14 @@ export default {
     },
     itemsPerPageOptions: {
       type: Array,
-      default() {
-        return [10, 25, 50, 100, 500];
-      },
+      default: () => [10, 25, 50, 100, 500],
     },
     expandable: Boolean,
     selectable: Boolean,
     stacked: Boolean,
     rows: {
-      type: Array,
-      default() {
-        return [];
-      },
+      type: Array as PropType<Record<string, string | number>[]>,
+      default: (): Record<string, string | number>[] => [],
     },
     keyName: String,
     ...ouiaProps,
@@ -80,19 +77,23 @@ export default {
   emits: ['update:itemsPerPage', 'update:page'],
 
   setup(props) {
-    return useOUIAProps(props);
+    const listItems = ref<InstanceType<typeof PfListGroupItem>[]>();
+    return {
+      listItems,
+      ...useOUIAProps(props),
+    };
   },
 
   methods: {
     setAllSelected(selected = true) {
-      for (const row of this.$refs.row) {
+      for (const row of this.listItems) {
         row.selected = selected;
       }
     },
 
     getSelected() {
       const selected = [];
-      for (const row of this.$refs.row) {
+      for (const row of this.listItems) {
         const id = row.num;
         if (typeof id !== 'undefined' && row.selected && this.rows[id]) {
           selected.push(this.rows[id]);
@@ -101,5 +102,5 @@ export default {
       return selected;
     },
   },
-};
+});
 </script>

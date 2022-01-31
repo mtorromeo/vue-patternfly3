@@ -1,13 +1,11 @@
+import { App } from 'vue';
+
 import './index.css';
 import * as components from './components';
 import VTooltip from './directives/tooltip';
 
 // Declare install function executed by Vue.use()
-export function install(app) {
-  if (install.installed) {
-    return;
-  }
-  install.installed = true;
+export function install(app: App) {
   for (const [name, component] of Object.entries(components)) {
     app.component(component.name || name, component);
   }
@@ -20,8 +18,6 @@ export function install(app) {
 const plugin = {
   install,
 };
-
-export { version } from '../package.json';
 
 // To allow use as module (npm/webpack/etc.) export components
 export * from './components';

@@ -1,9 +1,9 @@
 // https://www.patternfly.org/v3/styles/icons/
 // https://getbootstrap.com/docs/3.4/components/#glyphicons
-import { h } from 'vue';
+import { CSSProperties, defineComponent, h } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfIcon',
 
   props: {
@@ -21,8 +21,8 @@ export default {
   },
 
   render() {
-    const classes = [];
-    const style = {};
+    const classes: string[] = [];
+    const style: CSSProperties = {};
     if (this.src) {
       classes.push('pficon');
       classes.push('pf-icon-img');
@@ -44,4 +44,4 @@ export default {
       ...this.ouiaProps,
     }, this.$slots);
   },
-};
+});

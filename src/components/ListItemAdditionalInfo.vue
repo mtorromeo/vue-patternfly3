@@ -11,13 +11,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, inject, RendererElement } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfListItemAdditionalInfo',
-
-  inject: ['listGroupItemExpanded', 'listGroupItemExpandedAdditional', 'listGroupItemAdditionalPortal'],
 
   props: {
     stacked: Boolean,
@@ -26,7 +25,12 @@ export default {
   },
 
   setup(props) {
-    return useOUIAProps(props);
+    return {
+      listGroupItemExpanded: inject('listGroupItemExpanded', false),
+      listGroupItemExpandedAdditional: inject<number>('listGroupItemExpandedAdditional', null),
+      listGroupItemAdditionalPortal: inject<string | RendererElement>('listGroupItemAdditionalPortal', null),
+      ...useOUIAProps(props),
+    };
   },
 
   computed: {
@@ -36,7 +40,7 @@ export default {
   },
 
   methods: {
-    toggle(e) {
+    toggle(e: MouseEvent | TouchEvent) {
       if (!this.expandable) {
         return;
       }
@@ -47,5 +51,5 @@ export default {
       this.listGroupItemExpandedAdditional = this.expanded ? null : this.$.uid;
     },
   },
-};
+});
 </script>

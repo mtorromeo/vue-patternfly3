@@ -7,11 +7,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
-import PfNotification from './Notification.vue';
+import PfNotification, { Notification, NotificationType } from './Notification.vue';
 
-export default {
+export default defineComponent({
   name: 'PfNotifications',
 
   components: {
@@ -34,25 +35,28 @@ export default {
     return useOUIAProps(props);
   },
 
-  data() {
+  data(this: void) {
     return {
-      notifications: [],
+      notifications: [] as Notification[],
     };
   },
 
   methods: {
-    add(notification, type = 'info', persistent) {
-      if (typeof notification !== 'object') {
+    add(message: string | Notification, type: NotificationType = 'info', persistent?: boolean) {
+      let notification: Notification;
+      if (typeof message === 'string') {
         notification = {
-          message: notification,
+          message,
           type,
           persistent: typeof persistent === 'undefined' ? this.persistent : persistent,
         };
+      } else {
+        notification = message;
       }
       this.notifications.push(notification);
     },
 
-    dismiss(i) {
+    dismiss(i: number | Notification) {
       if (typeof i === 'object') {
         const obj = i;
         i = this.notifications.indexOf(obj);
@@ -63,5 +67,5 @@ export default {
       this.notifications.splice(i, 1);
     },
   },
-};
+});
 </script>

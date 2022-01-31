@@ -1,8 +1,8 @@
 <template>
   <div v-bind="ouiaProps" class="input-group">
     <pf-dropdown v-if="showDropdown" :text="current.label" class="input-group-btn">
-      <li v-for="(item, name) in normFields" :key="name">
-        <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = name">
+      <li v-for="(item, i) in normFields" :key="item.name">
+        <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = i">
           {{ item.label }}
         </a>
       </li>
@@ -25,13 +25,24 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import PfSelect from './Select.vue';
 import PfOption from './Option.vue';
 import PfDropdown from './Dropdown.vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
+import { defineComponent, PropType } from 'vue';
 
-export default {
+export interface FilterField {
+  name: string;
+  label: string;
+  placeholder?: string;
+  value?: string;
+  values?: string[];
+}
+
+export type FilterFieldDefinition = Partial<FilterField> | string;
+
+export default defineComponent({
   name: 'PfFilterFields',
 
   components: {
@@ -46,10 +57,8 @@ export default {
       default: '',
     },
     fields: {
-      type: [Array, Object],
-      default() {
-        return {};
-      },
+      type: [Array, Object] as PropType<FilterFieldDefinition[] | Record<string, FilterFieldDefinition>>,
+      default: (): FilterFieldDefinition[] => [],
     },
     ...ouiaProps,
   },
@@ -60,21 +69,21 @@ export default {
     return useOUIAProps(props);
   },
 
-  data() {
+  data(this: void) {
     return {
-      normFields: [],
+      normFields: [] as FilterField[],
       selected: 0,
     };
   },
 
   computed: {
-    current() {
+    current(): FilterField {
       let selected = this.selected;
       if (!this.normFields[selected]) {
         if (!this.normFields.length) {
-          return {};
+          return null;
         }
-        selected = this.normFields[0];
+        selected = 0;
       }
       return this.normFields[selected];
     },
@@ -94,11 +103,11 @@ export default {
         const normFields = [];
         if (Array.isArray(fields)) {
           for (const f of fields) {
-            normFields.push(this.fieldDefinition(f));
+            normFields.push(this.normalizeField(f));
           }
         } else {
           for (const i of Object.keys(fields)) {
-            normFields.push(this.fieldDefinition(fields[i], i));
+            normFields.push(this.normalizeField(fields[i], i));
           }
         }
         this.normFields = normFields;
@@ -108,36 +117,37 @@ export default {
   },
 
   methods: {
-    fieldDefinition(field, name) {
-      if (typeof field === 'object') {
-        field = Object.assign({}, field);
-      } else {
-        field = {
-          label: field,
-        };
-      }
-      field.name = name || field.label;
+    normalizeField(fieldDefinition: FilterFieldDefinition, name?: string): FilterField {
+      const field: FilterField = {
+        name: typeof fieldDefinition === 'object' ? fieldDefinition.name : '',
+        label: typeof fieldDefinition === 'object' ? fieldDefinition.label : fieldDefinition,
+        placeholder: typeof fieldDefinition === 'object' ? fieldDefinition.placeholder : undefined,
+      };
+      field.name = name || field.name || field.label || '';
       if (!field.label) {
         field.label = name;
       }
       return field;
     },
 
-    set(value) {
+    set(value: KeyboardEvent | string) {
       if (value !== null) {
-        if (typeof value === 'object') {
+        if (value instanceof KeyboardEvent) {
+          if (!(value.target instanceof HTMLInputElement)) {
+            return;
+          }
           value = value.target.value;
         }
         const filter = Object.assign({}, this.current);
         filter.value = value;
         this.$emit('filter', filter);
       }
-      if (!this.isSelect) {
+      if (this.$refs.input instanceof HTMLInputElement) {
         this.$refs.input.value = '';
       }
     },
   },
-};
+});
 </script>
 
 <style>

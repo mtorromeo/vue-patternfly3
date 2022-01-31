@@ -1,26 +1,31 @@
 <template>
-  <div v-bind="ouiaProps" class="utilization-bar-chart-pf" :class="{'data-unavailable-pf': !dataAvailable}">
+  <div
+    v-bind="ouiaProps"
+    class="utilization-bar-chart-pf"
+    :class="{ 'data-unavailable-pf': !dataAvailable }"
+  >
     <template v-if="!inline">
       <div v-if="title" class="progress-description">
-        <slot name="title">
-          {{ title }}
-        </slot>
+        <slot name="title">{{ title }}</slot>
       </div>
       <div v-if="dataAvailable" class="progress progress-label-top-right">
-        <div v-tooltip="percent + '% Used'" class="progress-bar" :aria-valuenow="percent"
-             aria-valuemin="0" aria-valuemax="100"
-             :class="{
-               'animate': animate,
-               'progress-bar-success': isOk,
-               'progress-bar-danger': isError,
-               'progress-bar-warning': isWarning,
-             }"
-             :style="{width: percent + '%'}">
+        <div
+          v-tooltip="percent + '% Used'"
+          class="progress-bar"
+          :aria-valuenow="percent"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          :class="{
+            'animate': animate,
+            'progress-bar-success': isOk,
+            'progress-bar-danger': isError,
+            'progress-bar-warning': isWarning,
+          }"
+          :style="{ width: percent + '%' }"
+        >
           <span>
-            <span :style="{'max-width': footerWidthPx}">
-              <slot v-if="footer || $slots.footer" name="footer">
-                {{ footer }}
-              </slot>
+            <span :style="{ 'max-width': footerWidthPx }">
+              <slot v-if="footer || $slots.footer" name="footer">{{ footer }}</slot>
               <template v-else-if="footerFormat === 'percent'">
                 <strong>{{ percent }}%</strong> used
               </template>
@@ -30,36 +35,41 @@
             </span>
           </span>
         </div>
-        <div v-tooltip="(100 - percent) + '% Available'"
-             class="progress-bar progress-bar-remaining"
-             :style="{width: (100 - percent) + '%'}" />
+        <div
+          v-tooltip="(100 - percent) + '% Available'"
+          class="progress-bar progress-bar-remaining"
+          :style="{ width: (100 - percent) + '%' }"
+        />
       </div>
     </template>
     <template v-else>
-      <div class="progress-container progress-description-left progress-label-right"
-           :style="{
-             'padding-left': titleWidthPx,
-             'padding-right': footerWidthPx,
-           }">
-        <div v-if="title" class="progress-description" :style="{'max-width': titleWidthPx}">
-          <slot name="title">
-            {{ title }}
-          </slot>
+      <div
+        class="progress-container progress-description-left progress-label-right"
+        :style="{
+          'padding-left': titleWidthPx,
+          'padding-right': footerWidthPx,
+        }"
+      >
+        <div v-if="title" class="progress-description" :style="{ 'max-width': titleWidthPx }">
+          <slot name="title">{{ title }}</slot>
         </div>
         <div v-if="dataAvailable" class="progress">
-          <div v-tooltip="percent + '% Used'" class="progress-bar" :aria-valuenow="percent"
-               aria-valuemin="0" aria-valuemax="100"
-               :class="{
-                 'animate': animate,
-                 'progress-bar-success': isOk,
-                 'progress-bar-danger': isError,
-                 'progress-bar-warning': isWarning,
-               }"
-               :style="{width: percent + '%'}">
-            <span :style="{'max-width': footerWidthPx}">
-              <slot v-if="footer || $slots.footer" name="footer">
-                {{ footer }}
-              </slot>
+          <div
+            v-tooltip="percent + '% Used'"
+            class="progress-bar"
+            :aria-valuenow="percent"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            :class="{
+              'animate': animate,
+              'progress-bar-success': isOk,
+              'progress-bar-danger': isError,
+              'progress-bar-warning': isWarning,
+            }"
+            :style="{ width: percent + '%' }"
+          >
+            <span :style="{ 'max-width': footerWidthPx }">
+              <slot v-if="footer || $slots.footer" name="footer">{{ footer }}</slot>
               <template v-else-if="footerFormat === 'percent'">
                 <strong>{{ percent }}%</strong> used
               </template>
@@ -68,9 +78,11 @@
               </template>
             </span>
           </div>
-          <div v-tooltip="(100 - percent) + '% Available'"
-               class="progress-bar progress-bar-remaining"
-               :style="{width: (100 - percent) + '%'}" />
+          <div
+            v-tooltip="(100 - percent) + '% Available'"
+            class="progress-bar progress-bar-remaining"
+            :style="{ width: (100 - percent) + '%' }"
+          />
         </div>
       </div>
     </template>
@@ -78,10 +90,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfUtilizationBarChart',
 
   props: {
@@ -106,7 +119,7 @@ export default {
     return useOUIAProps(props);
   },
 
-  data() {
+  data(this: void) {
     return {
       animate: true,
     };
@@ -143,20 +156,20 @@ export default {
   },
 
   mounted() {
-    this.$nextTick(function() {
+    this.$nextTick(() => {
       this.animate = false;
-    }.bind(this));
+    });
   },
-};
+});
 </script>
 
 <style>
 /* Utilization bar chart - Animate load */
 .utilization-bar-chart-pf .progress-bar {
-  -webkit-transition: width .75s ease-in-out;
-  -moz-transition: width .75s ease-in-out;
-  -o-transition: width .75s ease-in-out;
-  transition: width .75s ease-in-out;
+  -webkit-transition: width 0.75s ease-in-out;
+  -moz-transition: width 0.75s ease-in-out;
+  -o-transition: width 0.75s ease-in-out;
+  transition: width 0.75s ease-in-out;
 }
 
 .utilization-bar-chart-pf .progress-bar.animate {

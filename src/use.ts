@@ -1,24 +1,24 @@
-import { provide, inject, ref, onMounted, onBeforeUnmount, nextTick, getCurrentInstance } from 'vue';
+import { provide, inject, ref, onMounted, onBeforeUnmount, nextTick, getCurrentInstance, Component } from 'vue';
 
-export function tryOnMounted(fn, sync = true) {
+export function tryOnMounted(hook: () => unknown, sync = true) {
   if (getCurrentInstance()) {
-    onMounted(fn);
+    onMounted(hook);
   } else if (sync) {
-    fn();
+    hook();
   } else {
-    nextTick(fn);
+    nextTick(hook);
   }
-};
+}
 
 const ChildrenTrackerSymbol = Symbol('Children tracker provide/inject symbol');
 
-export function provideChildrenTracker() {
-  const items = ref([]);
+export function provideChildrenTracker(symbol?: symbol) {
+  const items = ref<Component[]>([]);
 
-  provide(ChildrenTrackerSymbol, {
-    register: item => items.value.push(item),
+  provide(symbol || ChildrenTrackerSymbol, {
+    register: (item: Component) => items.value.push(item),
 
-    unregister: item => {
+    unregister: (item: Component) => {
       const idx = items.value.findIndex(i => i === item);
       if (idx >= 0) {
         items.value.splice(idx, 1);
@@ -29,8 +29,8 @@ export function provideChildrenTracker() {
   return items;
 }
 
-export function useChildrenTracker() {
-  const tracker = inject(ChildrenTrackerSymbol, null);
+export function useChildrenTracker(symbol?: symbol) {
+  const tracker = inject(symbol || ChildrenTrackerSymbol, null);
 
   if (tracker) {
     tryOnMounted(() => {

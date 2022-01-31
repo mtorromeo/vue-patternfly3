@@ -14,10 +14,11 @@
   </component>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfSpinner',
 
   props: {
@@ -25,7 +26,7 @@ export default {
     size: {
       type: String,
       default: 'md',
-      validator: val => ['lg', 'md', 'sm', 'xs'].indexOf(val) >= 0,
+      validator: (val: never) => ['lg', 'md', 'sm', 'xs'].includes(val),
     },
     inline: Boolean,
     inverse: Boolean,
@@ -43,5 +44,5 @@ export default {
   setup(props) {
     return useOUIAProps(props);
   },
-};
+});
 </script>

@@ -6,11 +6,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import PfButton from './Button.vue';
 
-export default {
+export default defineComponent({
   name: 'PfDrawerGroupAction',
 
   components: {
@@ -24,5 +25,5 @@ export default {
   setup(props) {
     return useOUIAProps(props);
   },
-};
+});
 </script>

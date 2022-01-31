@@ -1,3 +1,8 @@
+import { DefineComponent, defineComponent, PropType, ref } from 'vue';
+
+export type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
+export type TooltipTrigger = 'hover' | 'focus' | 'click' | 'hover-focus' | 'outside-click';
+
 export function getViewportSize() {
   const width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
   const height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
@@ -7,7 +12,7 @@ export function getViewportSize() {
   };
 }
 
-export function isAvailableAtPosition(trigger, popup, placement) {
+export function isAvailableAtPosition(trigger: HTMLElement, popup: HTMLElement, placement: TooltipPlacement) {
   const triggerRect = trigger.getBoundingClientRect();
   const popupRect = popup.getBoundingClientRect();
   const viewPortSize = getViewportSize();
@@ -40,10 +45,7 @@ export function isAvailableAtPosition(trigger, popup, placement) {
   return top && right && bottom && left;
 }
 
-export function setTooltipPosition(tooltip, trigger, placement, auto, appendToSelector, viewport) {
-  if (!(tooltip instanceof Element) || !(trigger instanceof Element)) {
-    return;
-  }
+export function setTooltipPosition(tooltip: HTMLElement, trigger: HTMLElement, placement: TooltipPlacement, auto: boolean, appendToSelector: string | null, viewport: string | ((trigger: HTMLElement) => Element)) {
   const isPopover = tooltip && tooltip.className && tooltip.className.indexOf('popover') >= 0;
   let containerScrollTop;
   let containerScrollLeft;
@@ -60,9 +62,9 @@ export function setTooltipPosition(tooltip, trigger, placement, auto, appendToSe
   if (auto) {
     // Try: right -> bottom -> left -> top
     // Cause the default placement is top
-    const placements = ['right', 'bottom', 'left', 'top'];
+    const placements: TooltipPlacement[] = ['right', 'bottom', 'left', 'top'];
     // The class switch helper function
-    const changePlacementClass = (placement) => {
+    const changePlacementClass = (placement: TooltipPlacement) => {
       // console.log(placement)
       placements.forEach(placement => {
         tooltip.classList.remove(placement);
@@ -145,7 +147,7 @@ export function setTooltipPosition(tooltip, trigger, placement, auto, appendToSe
   tooltip.style.left = `${left}px`;
 }
 
-export default {
+export default defineComponent({
   props: {
     modelValue: {
       type: Boolean,
@@ -155,8 +157,12 @@ export default {
       type: String,
       default: 'span',
     },
+    trigger: {
+      type: String as PropType<TooltipTrigger>,
+      default: 'hover-focus',
+    },
     placement: {
-      type: String,
+      type: String as PropType<TooltipPlacement>,
       default: 'top',
     },
     autoPlacement: {
@@ -187,33 +193,53 @@ export default {
       type: Boolean,
       default: true,
     },
-    target: null,
-    viewport: null,
+    target: {
+      type: [Object, String] as PropType<string | HTMLElement | DefineComponent>,
+      default: null,
+    },
+    viewport: {
+      type: [Function, String] as PropType<string | ((trigger: HTMLElement) => Element)>,
+      default: null,
+    },
     customClass: String,
   },
-  data() {
+
+  emits: ['input', 'show', 'hide'],
+
+  setup() {
+    const triggerEl: HTMLElement = ref(null);
     return {
-      triggerEl: null,
+      triggerEl,
+    };
+  },
+
+  data(this: void) {
+    return {
+      name: '',
       hideTimeoutId: 0,
       showTimeoutId: 0,
       transitionTimeoutId: 0,
       autoTimeoutId: 0,
     };
   },
+
   watch: {
     modelValue(v) {
       v ? this.show() : this.hide();
     },
+
     trigger() {
       this.clearListeners();
       this.initListeners();
     },
+
     target(value) {
       this.clearListeners();
       this.initTriggerElByTarget(value);
       this.initListeners();
     },
-    allContent(value) {
+
+    allContent() {
       // can not use value because it can not detect slot changes
       if (this.isNotEmpty()) {
         // reset position while content changed & is shown
@@ -227,6 +253,7 @@ export default {
         this.hide();
       }
     },
+
     enable(value) {
       // hide if enable changed to false
       if (!value) {
@@ -234,8 +261,9 @@ export default {
       }
     },
   },
+
   mounted() {
-    if (this.$refs.popup && this.$refs.popup.parentNode) {
+    if (this.$refs.popup instanceof HTMLElement && this.$refs.popup.parentNode) {
       this.$refs.popup.parentNode.removeChild(this.$refs.popup);
     }
     this.$nextTick(() => {
@@ -246,21 +274,27 @@ export default {
       }
     });
   },
+
   beforeUnmount() {
     this.clearListeners();
-    if (this.$refs.popup && this.$refs.popup.parentNode) {
+    if (this.$refs.popup instanceof HTMLElement && this.$refs.popup.parentNode) {
       this.$refs.popup.parentNode.removeChild(this.$refs.popup);
     }
   },
+
   methods: {
-    initTriggerElByTarget(target) {
+    isNotEmpty() {
+      return false;
+    },
+
+    initTriggerElByTarget(target: string | HTMLElement | DefineComponent) {
       if (target) {
         // target exist
         if (typeof target === 'string') { // is selector
-          this.triggerEl = document.querySelector(target);
-        } else if (target instanceof Element) { // is element
+          this.triggerEl = document.querySelector(target) as HTMLElement;
+        } else if (target instanceof HTMLElement) { // is element
           this.triggerEl = target;
-        } else if (target.$el instanceof Element) { // is component
+        } else if (target.$el instanceof HTMLElement) { // is component
           this.triggerEl = target.$el;
         }
       } else {
@@ -275,6 +309,7 @@ export default {
         }
       }
     },
+
     initListeners() {
       if (this.triggerEl) {
         if (this.trigger === 'hover') {
@@ -294,6 +329,7 @@ export default {
       }
       window.addEventListener('click', this.windowClicked);
     },
+
     clearListeners() {
       if (this.triggerEl) {
         this.triggerEl.removeEventListener('focus', this.show);
@@ -309,6 +345,7 @@ export default {
       window.removeEventListener('click', this.windowClicked);
       this.clearTimeouts();
     },
+
     clearTimeouts() {
       if (this.hideTimeoutId) {
         clearTimeout(this.hideTimeoutId);
@@ -327,17 +364,21 @@ export default {
         this.autoTimeoutId = 0;
       }
     },
+
     resetPosition() {
       const popup = this.$refs.popup;
-      if (popup) {
-        setTooltipPosition(popup, this.triggerEl, this.placement, this.autoPlacement, this.appendTo, this.viewport);
+      if (!(popup instanceof HTMLElement) || !this.triggerEl) {
+        return;
       }
+      setTooltipPosition(popup, this.triggerEl, this.placement, this.autoPlacement, this.appendTo, this.viewport);
     },
+
     hideOnLeave() {
       if (this.trigger === 'hover' || (this.trigger === 'hover-focus' && !this.triggerEl.matches(':focus'))) {
         this.$hide();
       }
     },
+
     toggle() {
       if (this.isShown()) {
         this.hide();
@@ -345,6 +386,7 @@ export default {
         this.show();
       }
     },
+
     show() {
       if (this.enable && this.triggerEl && this.isNotEmpty() && !this.isShown()) {
         const popUpAppendedContainer = this.hideTimeoutId > 0; // weird condition
@@ -360,7 +402,7 @@ export default {
         this.showTimeoutId = setTimeout(() => {
           this.showTimeoutId = 0;
           const popup = this.$refs.popup;
-          if (popup) {
+          if (popup instanceof HTMLElement) {
             const alreadyOpenModalNum = document.querySelectorAll('.modal-backdrop').length;
             if (alreadyOpenModalNum > 1) {
               const defaultZ = this.name === 'popover' ? 1060 : 1070;
@@ -381,6 +423,7 @@ export default {
         }, this.showDelay);
       }
     },
+
     hide() {
       if (this.showTimeoutId > 0) {
         clearTimeout(this.showTimeoutId);
@@ -395,7 +438,7 @@ export default {
         this.hideTimeoutId = setTimeout(() => {
           this.hideTimeoutId = 0;
           const popup = this.$refs.popup;
-          if (popup && !popup.matches(':hover')) {
+          if (popup instanceof HTMLElement && !popup.matches(':hover')) {
             this.$hide();
           }
         }, 100);
@@ -403,18 +446,19 @@ export default {
         this.$hide();
       }
     },
+
     $hide() {
       if (this.isShown()) {
         clearTimeout(this.hideTimeoutId);
         this.hideTimeoutId = setTimeout(() => {
           this.hideTimeoutId = 0;
-          if (this.$refs.popup) {
+          if (this.$refs.popup instanceof HTMLElement) {
             this.$refs.popup.classList.remove('in');
           }
           // gives fade out time
           this.transitionTimeoutId = setTimeout(() => {
             this.transitionTimeoutId = 0;
-            if (this.$refs.popup && this.$refs.popup.parentNode) {
+            if (this.$refs.popup instanceof HTMLElement && this.$refs.popup.parentNode) {
               this.$refs.popup.parentNode.removeChild(this.$refs.popup);
             }
             this.$emit('input', false);
@@ -423,16 +467,20 @@ export default {
         }, this.hideDelay);
       }
     },
+
     isShown() {
-      return this.$refs.popup && this.$refs.popup.classList.contains('in');
+      return this.$refs.popup instanceof HTMLElement && this.$refs.popup.classList.contains('in');
     },
-    windowClicked(event) {
-      if (this.triggerEl && typeof this.triggerEl.contains === 'function' && !this.triggerEl.contains(event.target) &&
-        this.trigger === 'outside-click' && !(this.$refs.popup && this.$refs.popup.contains(event.target)) &&
-        this.isShown()) {
+
+    windowClicked(event: MouseEvent) {
+      if (this.trigger !== 'outside-click' || !(event.target instanceof Node) || !(this.triggerEl instanceof HTMLElement) || !(this.$refs.popup instanceof HTMLElement)) {
+        return;
+      }
+      if (!this.triggerEl.contains(event.target) && !this.$refs.popup.contains(event.target) && this.isShown()) {
         this.hide();
       }
     },
+
     handleAuto() {
       clearTimeout(this.autoTimeoutId);
       this.autoTimeoutId = setTimeout(() => {
@@ -445,4 +493,4 @@ export default {
       }, 20); // 20ms make firefox happy
     },
   },
-};
+});

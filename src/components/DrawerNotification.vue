@@ -2,22 +2,23 @@
   <div
     v-bind="ouiaProps"
     class="drawer-pf-notification"
-    :class="{unread, 'expanded-notification': $parent.$parent.expanded}"
+    :class="{unread, 'expanded-notification': drawerExpanded}"
   >
-    <pf-dropdown v-if="showDropdown" class="pull-right dropdown-kebab-pf" type="link" :append-to="$parent.$parent.$refs.dropdowns" menu-right>
+    <pf-dropdown v-if="showDropdown" class="pull-right dropdown-kebab-pf" type="link" :append-to="drawerDropdowns" menu-right>
       <li
-        v-for="actionItem in actions"
-        :key="actionItem.name"
-        :role="isSeparator(actionItem) ? 'separator' : 'menuitem'"
+        v-for="(actionItem, i) in actions"
+        :key="isAction(actionItem) ? actionItem.name : i"
+        :role="isAction(actionItem) ? 'menuitem' : 'separator'"
         :class="{
-          divider: isSeparator(actionItem),
-          disabled: actionItem.disabled === true,
+          divider: !isAction(actionItem),
+          disabled: isAction(actionItem) && actionItem.disabled === true,
         }"
       >
-        <a v-if="!isSeparator(actionItem)"
-           class="secondary-action"
-           :title="actionItem.title"
-           @click="triggered(actionItem)"
+        <a
+          v-if="isAction(actionItem)"
+          class="secondary-action"
+          :title="actionItem.title"
+          @click="triggered(actionItem)"
         >
           {{ actionItem.name }}
         </a>
@@ -47,12 +48,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, inject, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
-import PfButton from './Button.vue';
+import PfButton, { ButtonVariant } from './Button.vue';
 import PfDropdown from './Dropdown.vue';
+import { isNotificationAction, NotificationAction, NotificationType } from './Notification.vue';
 
-export default {
+export default defineComponent({
   name: 'PfDrawerNotification',
 
   components: {
@@ -61,22 +64,28 @@ export default {
   },
 
   props: {
-    action: Object,
-    actions: Array,
+    action: Object as PropType<NotificationAction & { button: ButtonVariant | true; }>,
+    actions: Array as PropType<(NotificationAction | '-')[]>,
     message: String,
     date: String,
     time: String,
     unread: Boolean,
     type: {
-      type: String,
+      type: String as PropType<NotificationType>,
       default: 'info',
-      validator: type => ['', null, 'info', 'success', 'warning', 'danger'].indexOf(type) >= 0,
+      validator: (type: never) => ['', null, 'info', 'success', 'warning', 'danger'].includes(type),
     },
     ...ouiaProps,
   },
 
+  emits: ['action', '' as string],
+
   setup(props) {
-    return useOUIAProps(props);
+    return {
+      drawerExpanded: inject('drawerExpanded', false),
+      drawerDropdowns: inject<HTMLElement>('drawerDropdowns', null),
+      ...useOUIAProps(props),
+    };
   },
 
   computed: {
@@ -84,11 +93,11 @@ export default {
       return this.$slots.dropdown || (this.actions && this.actions.length);
     },
 
-    buttonVariant() {
+    buttonVariant(): ButtonVariant {
       if (!this.action || !this.action.button) {
         return 'link';
       }
-      return this.action.button;
+      return this.action.button === true ? 'default' : this.action.button;
     },
 
     typeIcon() {
@@ -106,17 +115,16 @@ export default {
   },
 
   methods: {
-    triggered(action) {
+    triggered(action: NotificationAction) {
       if (typeof action.handler === 'function') {
         action.handler(action);
       }
       this.$emit(action.emit || 'action', action);
     },
-    isSeparator(action) {
-      return action === '-' || action.separator;
-    },
+
+    isAction: isNotificationAction,
   },
-};
+});
 </script>
 
 <style>

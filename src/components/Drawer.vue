@@ -1,17 +1,19 @@
 <template>
-  <div v-bind="ouiaProps" class="drawer-pf" :class="{
-    'hide': hidden,
-    'drawer-pf-expanded': allowExpand && expanded,
-  }">
+  <div
+    v-bind="ouiaProps"
+    class="drawer-pf"
+    :class="{
+      'hide': hidden,
+      'drawer-pf-expanded': allowExpand && expanded,
+    }"
+  >
     <slot name="title">
       <div v-if="title" class="drawer-pf-title">
         <a v-if="allowExpand" class="drawer-pf-toggle-expand" @click="expanded = !expanded" />
         <a class="drawer-pf-close" @click="close">
           <pf-icon name="fa-close" />
         </a>
-        <h3 class="text-center">
-          {{ title }}
-        </h3>
+        <h3 class="text-center">{{ title }}</h3>
       </div>
     </slot>
 
@@ -25,11 +27,11 @@
   </div>
 </template>
 
-<script>
-import { ref, provide } from 'vue';
+<script lang="ts">
+import { ref, provide, defineComponent } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfDrawer',
 
   props: {
@@ -47,15 +49,17 @@ export default {
   setup(props) {
     const activeGroup = ref(null);
     provide('activeGroup', activeGroup);
-    return {
-      activeGroup,
-      ...useOUIAProps(props),
-    };
-  },
 
-  data() {
+    const expanded = ref(false);
+    provide('drawerExpanded', expanded);
+
+    const dropdowns = ref(null);
+    provide('drawerDropdowns', dropdowns);
+
     return {
-      expanded: false,
+      dropdowns,
+      expanded,
+      ...useOUIAProps(props),
     };
   },
 
@@ -64,7 +68,7 @@ export default {
       this.$emit('update:hidden', true);
     },
   },
-};
+});
 </script>
 
 <style>

@@ -41,12 +41,15 @@
   </component>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import PfSpinner from './Spinner.vue';
-import Void from './Void.js';
+import Void from './Void';
 
-export default {
+export type ButtonVariant = 'default' | 'primary' | 'success' | 'info' | 'warning' | 'danger' | 'link';
+
+export default defineComponent({
   name: 'PfButton',
 
   components: { PfSpinner, Void },
@@ -61,9 +64,9 @@ export default {
     },
 
     variant: {
-      type: String,
+      type: String as PropType<ButtonVariant>,
       default: 'default',
-      validator: v => ['default', 'primary', 'success', 'info', 'warning', 'danger', 'link'].includes(v),
+      validator: (v: never) => ['default', 'primary', 'success', 'info', 'warning', 'danger', 'link'].includes(v),
     },
 
     component: {
@@ -158,7 +161,7 @@ export default {
   },
 
   methods: {
-    onClick(e, navigate) {
+    onClick(e: MouseEvent, navigate: (event?: MouseEvent) => never) {
       if (this.effectiveDisabled) {
         e.preventDefault();
         return;
@@ -172,5 +175,5 @@ export default {
       this.$emit('click', e);
     },
   },
-};
+});
 </script>

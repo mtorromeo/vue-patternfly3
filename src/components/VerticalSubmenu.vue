@@ -1,26 +1,33 @@
 <template>
-  <pf-menu-item v-bind="ouiaProps" vertical
-                :title="title"
-                :icon="icon"
-                :class="{
-                  'secondary-nav-item-pf': !tertiary,
-                  'tertiary-nav-item-pf': tertiary,
-                  'is-hover': active,
-                  'mobile-nav-item-pf': active,
-                }"
-                @click="active = !active"
-                @mouseenter="delayOpen"
-                @mouseleave="delayClose"
+  <pf-menu-item
+    v-bind="ouiaProps"
+    vertical
+    :title="title"
+    :icon="icon"
+    :class="{
+      'secondary-nav-item-pf': !tertiary,
+      'tertiary-nav-item-pf': tertiary,
+      'is-hover': active,
+      'mobile-nav-item-pf': active,
+    }"
+    @click="active = !active"
+    @mouseenter="delayOpen"
+    @mouseleave="delayClose"
   >
-    <div :class="{
-      'nav-pf-secondary-nav': !tertiary,
-      'nav-pf-tertiary-nav': tertiary,
-    }">
+    <div
+      :class="{
+        'nav-pf-secondary-nav': !tertiary,
+        'nav-pf-tertiary-nav': tertiary,
+      }"
+    >
       <div class="nav-item-pf-header">
-        <a :class="{
-          'secondary-collapse-toggle-pf': !tertiary,
-          'tertiary-collapse-toggle-pf': tertiary,
-        }" @click="active = false" />
+        <a
+          :class="{
+            'secondary-collapse-toggle-pf': !tertiary,
+            'tertiary-collapse-toggle-pf': tertiary,
+          }"
+          @click="active = false"
+        />
         <span v-html="title" />
       </div>
       <ul class="list-group">
@@ -30,10 +37,13 @@
   </pf-menu-item>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
+import type PfLayout from './Layout.vue';
+import { isPfLayout } from './Layout.vue';
 
-export default {
+export default defineComponent({
   name: 'PfVerticalSubmenu',
 
   props: {
@@ -49,8 +59,10 @@ export default {
     return useOUIAProps(props);
   },
 
-  data() {
+  data(this: void) {
     return {
+      openTimeout: null as ReturnType<typeof setTimeout> | null,
+      closeTimeout: null as ReturnType<typeof setTimeout> | null,
       active: false,
       tertiary: false,
     };
@@ -74,11 +86,11 @@ export default {
     delayOpen() {
       if (this.closeTimeout) {
         clearTimeout(this.closeTimeout);
-        this.closeTimeout = false;
+        this.closeTimeout = null;
       }
       if (!this.active && !this.openTimeout) {
         this.openTimeout = setTimeout(() => {
-          this.openTimeout = false;
+          this.openTimeout = null;
           this.active = true;
         }, 500);
       }
@@ -87,20 +99,20 @@ export default {
     delayClose() {
       if (this.openTimeout) {
         clearTimeout(this.openTimeout);
-        this.openTimeout = false;
+        this.openTimeout = null;
       }
       if (this.active && !this.closeTimeout) {
         this.closeTimeout = setTimeout(() => {
-          this.closeTimeout = false;
+          this.closeTimeout = null;
           this.active = false;
         }, 1000);
       }
     },
 
-    layout() {
+    layout(): InstanceType<typeof PfLayout> | null {
       let parent = this.$parent;
       while (parent) {
-        if (typeof parent.secondaryMenus !== 'undefined') {
+        if (isPfLayout(parent)) {
           return parent;
         }
         parent = parent.$parent;
@@ -108,5 +120,5 @@ export default {
       return null;
     },
   },
-};
+});
 </script>

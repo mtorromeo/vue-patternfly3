@@ -8,8 +8,15 @@
     _v-3RyaW5nJyk
   >
     <div class="col-sm-12">
-      <form class="toolbar-pf-actions" :class="{'no-filter-results': !showResultFilter}" @submit="$event.preventDefault()">
-        <div v-if="showFilter || $slots.filter" class="filter-pf filter-fields form-group toolbar-pf-filter">
+      <form
+        class="toolbar-pf-actions"
+        :class="{ 'no-filter-results': !showResultFilter }"
+        @submit="$event.preventDefault()"
+      >
+        <div
+          v-if="showFilter || $slots.filter"
+          class="filter-pf filter-fields form-group toolbar-pf-filter"
+        >
           <slot name="filter">
             <pf-filter-fields :fields="filterFields" @filter="addFilter" />
           </slot>
@@ -32,14 +39,16 @@
           />
         </div>
 
-        <div v-if="$slots.default" class="toolbar-actions" :class="{
-          'form-group': !hasFindView,
-          'pull-right': !hasFindView,
-          'toolbar-pf-action-right': !hasFindView,
-        }">
-          <h5 v-if="showCount && !hasFindView" class="form-group">
-            {{ resultCount }} Results
-          </h5>
+        <div
+          v-if="$slots.default"
+          class="toolbar-actions"
+          :class="{
+            'form-group': !hasFindView,
+            'pull-right': !hasFindView,
+            'toolbar-pf-action-right': !hasFindView,
+          }"
+        >
+          <h5 v-if="showCount && !hasFindView" class="form-group">{{ resultCount }} Results</h5>
 
           <div class="form-group">
             <slot />
@@ -47,16 +56,14 @@
         </div>
 
         <div v-if="hasFindView" class="toolbar-pf-action-right">
-          <h5 v-if="showCount && hasFindView" class="form-group">
-            {{ resultCount }} Results
-          </h5>
+          <h5 v-if="showCount && hasFindView" class="form-group">{{ resultCount }} Results</h5>
 
           <div class="form-group toolbar-pf-view-selector">
             <pf-button
               v-for="(viewData, name) in viewList"
               :key="name"
               variant="link"
-              :class="{'active': view == name, 'disabled': viewData.disabled}"
+              :class="{ 'active': view == name, 'disabled': viewData.disabled }"
               :title="viewData.title"
               @click="activeView = name"
             >
@@ -70,13 +77,21 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import PfButton from './Button.vue';
-import PfColumnPicker from './ColumnPicker.vue';
-import PfSort from './Sort.vue';
+import PfColumnPicker, { Column } from './ColumnPicker.vue';
+import PfSort, { SortDirection, SortFieldDefinition } from './Sort.vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
+import { DefineComponent, defineComponent, PropType } from 'vue';
+import { Filter } from './FilterResults.vue';
 
-export default {
+export interface ToolbarView {
+  icon: string;
+  title?: string;
+  disabled?: boolean;
+}
+
+const PfToolbar = defineComponent({
   name: 'PfToolbar',
 
   components: {
@@ -88,42 +103,34 @@ export default {
   props: {
     view: String,
     views: {
-      type: [Object, String],
-      default() {
-        return {};
-      },
+      type: [Object, String] as PropType<Record<string, ToolbarView> | string>,
+      default: () => ({}),
     },
     columns: {
-      type: [Array, Object],
-      default() {
-        return [];
-      },
+      type: [Array, Object] as PropType<Column[] | Record<string, Column>>,
+      default: (): Column[] => [],
     },
     pickedColumns: {
-      type: Array,
-      default() {
-        return [];
-      },
+      type: Array as PropType<string[]>,
+      default: (): string[] => [],
     },
     filterFields: {
       type: [Array, Object],
-      default() {
-        return {};
-      },
+      default: () => ({}),
     },
     filters: {
-      type: Array,
-      default() {
-        return [];
-      },
+      type: Array as PropType<Filter[]>,
+      default: (): Filter[] => [],
     },
     sortBy: String,
-    sortDirection: String,
+    sortDirection: {
+      type: String as PropType<SortDirection>,
+      default: 'ascending',
+      validator: (v: never) => ['ascending', 'descending'].includes(v),
+    },
     sortFields: {
-      type: [Array, Object],
-      default() {
-        return [];
-      },
+      type: [Array, Object] as PropType<SortFieldDefinition[] | Record<string, SortFieldDefinition>>,
+      default: (): SortFieldDefinition[] => [],
     },
     resultCount: Number,
     attached: Boolean,
@@ -136,10 +143,10 @@ export default {
     return useOUIAProps(props);
   },
 
-  data() {
+  data(this: void) {
     return {
-      activeView: null,
-      activeFilters: [],
+      activeView: null as string | null,
+      activeFilters: [] as Filter[],
     };
   },
 
@@ -165,7 +172,7 @@ export default {
         return this.views;
       }
 
-      const viewList = {};
+      const viewList: Record<string, ToolbarView> = {};
       const presets = this.views.split(',').map(v => v.trim());
       if (presets.indexOf('table') > -1) {
         viewList.table = {
@@ -201,8 +208,8 @@ export default {
     },
     views: {
       handler() {
-        if (!this.views[this.activeView]) {
-          const names = Object.keys(this.views);
+        if (!(this.activeView in this.viewList)) {
+          const names = Object.keys(this.viewList);
           if (names.length > 0) {
             this.activeView = names[0];
           }
@@ -223,25 +230,31 @@ export default {
   },
 
   methods: {
-    setSortBy(field, direction) {
+    setSortBy(field: string, direction: SortDirection) {
       this.$emit('sort-by', field, direction);
       this.$emit('update:sortBy', field);
       this.$emit('update:sortDirection', direction);
     },
-    clearFilter(i) {
+    clearFilter(i: number) {
       this.activeFilters.splice(i, 1);
     },
     clearAllFilters() {
       this.activeFilters = [];
     },
-    addFilter(filter) {
+    addFilter(filter: Filter) {
       this.activeFilters.push(filter);
     },
-    setPickedColumns(columns) {
+    setPickedColumns(columns: string[]) {
       this.$emit('update:pickedColumns', columns);
     },
   },
-};
+});
+
+export function isPfToolbar(component: unknown): component is InstanceType<typeof PfToolbar> {
+  return typeof component === 'object' && (component as DefineComponent).$options?.name === 'PfToolbar';
+}
+
+export default PfToolbar;
 </script>
 
 <style>

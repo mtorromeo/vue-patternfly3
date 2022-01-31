@@ -10,29 +10,34 @@
           <li v-for="(filter, i) in filters" :key="i">
             <span class="active-filter label label-info">
               {{ filter.label }}: {{ filter.value }}
-              <a><pf-icon name="pficon-close" @click="$parent.clearFilter(i)" /></a>
+              <a><pf-icon name="pficon-close" @click="toolbar().clearFilter(i)" /></a>
             </span>
           </li>
         </ul>
-        <p><a v-if="filters.length > 0" class="clear-filters" @click="$parent.clearAllFilters()">Clear All Filters</a></p>
+        <p><a v-if="filters.length > 0" class="clear-filters" @click="toolbar().clearAllFilters()">Clear All Filters</a></p>
       </div>
     </div>
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
+import PfToolbar, { isPfToolbar } from './Toolbar.vue';
 
-export default {
+export interface Filter {
+  label: string;
+  value: string;
+}
+
+export default defineComponent({
   name: 'PfFilterResults',
 
   props: {
     count: Number,
     filters: {
-      type: Array,
-      default() {
-        return [];
-      },
+      type: Array as PropType<Filter[]>,
+      default: (): Filter[] => [],
     },
     ...ouiaProps,
   },
@@ -40,5 +45,18 @@ export default {
   setup(props) {
     return useOUIAProps(props);
   },
-};
+
+  methods: {
+    toolbar(): InstanceType<typeof PfToolbar> | null {
+      let parent = this.$parent;
+      while (parent) {
+        if (isPfToolbar(parent)) {
+          return parent;
+        }
+        parent = parent.$parent;
+      }
+      return null;
+    },
+  },
+});
 </script>

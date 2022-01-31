@@ -14,10 +14,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfEmptyChart',
 
   props: {
@@ -31,7 +32,7 @@ export default {
   setup(props) {
     return useOUIAProps(props);
   },
-};
+});
 </script>
 
 <style>

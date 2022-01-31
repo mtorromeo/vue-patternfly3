@@ -1,8 +1,8 @@
-import { h, resolveComponent, mergeProps } from 'vue';
+import { h, resolveComponent, mergeProps, defineComponent, Slot, DefineComponent, VNodeArrayChildren } from 'vue';
 import { renderSlot } from '../render';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
-export default {
+export default defineComponent({
   name: 'PfMenuItem',
 
   inheritAttrs: false,
@@ -33,9 +33,9 @@ export default {
   },
 
   render() {
-    let tag = typeof this.to === 'undefined' ? 'li' : 'router-link';
+    let tag: string | DefineComponent = typeof this.to === 'undefined' ? 'li' : 'router-link';
 
-    const linkBuilder = href => {
+    const linkBuilder = (href: string) => {
       const linkChildren = [];
 
       if (this.icon) {
@@ -63,8 +63,8 @@ export default {
       }, linkChildren);
     };
 
-    let elements = [];
-    let children = renderSlot(this.$slots.default, []);
+    let elements: VNodeArrayChildren = [];
+    let children: VNodeArrayChildren | Slot = renderSlot(this.$slots.default, []);
     if (children) {
       if (this.vertical) {
         elements = children;
@@ -81,7 +81,7 @@ export default {
     }, this.$attrs);
 
     if (tag === 'router-link') {
-      tag = resolveComponent('router-link');
+      tag = resolveComponent('router-link') as DefineComponent;
       const liProps = { ...tagProps };
       tagProps = {
         custom: true,
@@ -92,12 +92,10 @@ export default {
         exactActiveClass: this.exactActiveClass,
       };
 
-      children = {
-        default: ({ navigate, href }) => {
-          const link = linkBuilder(this.href || href);
-          elements.unshift(link);
-          return h('li', { onClick: navigate, ...liProps }, elements);
-        },
+      children = ({ navigate, href }: { navigate: () => void, href: string }) => {
+        const link = linkBuilder(this.href || href);
+        elements.unshift(link);
+        return [h('li', { onClick: navigate, ...liProps }, elements)];
       };
     } else {
       elements.unshift(linkBuilder(this.href));
@@ -106,4 +104,4 @@ export default {
 
     return h(tag, tagProps, children);
   },
-};
+});
