@@ -8,7 +8,7 @@
       </li>
     </pf-dropdown>
     <pf-select v-if="isSelect" close-on-select class="filter-select" :placeholder="current.placeholder">
-      <pf-option v-for="(item, i) in current.values" :key="i" :checked-value="item" @update:model-value="set">
+      <pf-option v-for="(item, i) in current.values" :key="i" :checked-value="item" @update:model-value="set($event as string)">
         {{ item }}
       </pf-option>
     </pf-select>
@@ -63,7 +63,9 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['filter'],
+  emits: {
+    filter: (value: FilterField) => value !== undefined,
+  },
 
   setup(props) {
     return useOUIAProps(props);

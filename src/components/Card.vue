@@ -102,7 +102,9 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['filter'],
+  emits: {
+    filter: (filter: CardFilter) => filter !== undefined,
+  },
 
   setup(props) {
     return useOUIAProps(props);

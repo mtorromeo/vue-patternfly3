@@ -111,7 +111,10 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['dismiss', 'action', '' as string],
+  emits: {
+    dismiss: (event: unknown) => event !== undefined,
+    action: (action: NotificationAction) => action !== undefined,
+  },
 
   setup(props) {
     return useOUIAProps(props);
@@ -195,7 +198,7 @@ export default defineComponent({
       if (typeof action.handler === 'function') {
         action.handler(action);
       }
-      this.$emit(action.emit || 'action', action);
+      this.$emit(action.emit as 'action' || 'action', action);
     },
   },
 });

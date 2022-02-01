@@ -1,6 +1,7 @@
-import { h, resolveComponent, mergeProps, defineComponent, Slot, DefineComponent, VNodeArrayChildren } from 'vue';
+import { h, resolveComponent, mergeProps, defineComponent, Slot, DefineComponent, PropType, VNode } from 'vue';
 import { renderSlot } from '../render';
 import { ouiaProps, useOUIAProps } from '../ouia';
+import type { RouteLocationRaw } from 'vue-router';
 
 export default defineComponent({
   name: 'PfMenuItem',
@@ -8,11 +9,11 @@ export default defineComponent({
   inheritAttrs: false,
 
   props: {
-    title: {
-      type: String,
-      required: true,
+    title: String,
+    to: {
+      type: [String, Object] as PropType<RouteLocationRaw>,
+      default: undefined,
     },
-    to: [String, Object],
     replace: Boolean,
     activeClass: {
       type: String,
@@ -33,7 +34,7 @@ export default defineComponent({
   },
 
   render() {
-    let tag: string | DefineComponent = typeof this.to === 'undefined' ? 'li' : 'router-link';
+    let tag: string | DefineComponent = this.to ? 'router-link' : 'li';
 
     const linkBuilder = (href: string) => {
       const linkChildren = [];
@@ -63,45 +64,47 @@ export default defineComponent({
       }, linkChildren);
     };
 
-    let elements: VNodeArrayChildren = [];
-    let children: VNodeArrayChildren | Slot = renderSlot(this.$slots.default, []);
-    if (children) {
-      if (this.vertical) {
-        elements = children;
-      } else {
-        elements.push(h('ul', {
-          class: 'nav navbar-nav navbar-persistent',
-        }, children));
+    const slot: Slot = (href?: string) => {
+      let elements: VNode[] = [];
+      const children: VNode[] | Slot = renderSlot(this.$slots.default, []);
+      if (children) {
+        if (this.vertical) {
+          elements = children;
+        } else {
+          elements.push(h('ul', {
+            class: 'nav navbar-nav navbar-persistent',
+          }, children));
+        }
       }
-    }
+
+      elements.unshift(linkBuilder(this.href || href));
+      return elements;
+    };
 
     let tagProps = mergeProps({
       class: 'list-group-item',
       ...this.ouiaProps,
     }, this.$attrs);
 
-    if (tag === 'router-link') {
-      tag = resolveComponent('router-link') as DefineComponent;
-      const liProps = { ...tagProps };
-      tagProps = {
-        custom: true,
-        to: this.to,
-        replace: this.replace,
-        activeClass: this.activeClass,
-        ariaCurrentValue: this.ariaCurrentValue,
-        exactActiveClass: this.exactActiveClass,
-      };
-
-      children = ({ navigate, href }: { navigate: () => void, href: string }) => {
-        const link = linkBuilder(this.href || href);
-        elements.unshift(link);
-        return [h('li', { onClick: navigate, ...liProps }, elements)];
-      };
-    } else {
-      elements.unshift(linkBuilder(this.href));
-      children = elements;
+    if (tag !== 'router-link') {
+      return h(tag, tagProps, slot);
     }
 
-    return h(tag, tagProps, children);
+    tag = resolveComponent('router-link') as DefineComponent;
+    const liProps = { ...tagProps };
+    tagProps = {
+      custom: true,
+      to: this.to,
+      replace: this.replace,
+      activeClass: this.activeClass,
+      ariaCurrentValue: this.ariaCurrentValue,
+      exactActiveClass: this.exactActiveClass,
+    };
+
+    const routerSlot: Slot = ({ navigate, href }: { navigate: () => void, href: string }) => {
+      return [h('li', { onClick: navigate, ...liProps }, slot(href))];
+    };
+
+    return h(tag, tagProps, routerSlot);
   },
 });

@@ -2,7 +2,7 @@
   <form v-bind="ouiaProps" class="content-view-pf-pagination clearfix" :class="[`${type}-view-pf-pagination`]" aria-label="Search results pages">
     <div v-if="itemsPerPageOptions && itemsPerPageOptions.length" class="form-group">
       <pf-select ref="perpage" button close-on-select class="pagination-pf-pagesize">
-        <pf-option v-for="(item, i) in itemsPerPageOptions" :key="i" :model-value="itemsPerPage" :checked-value="item" @update:model-value="$emit('update:itemsPerPage', $event)">
+        <pf-option v-for="(item, i) in itemsPerPageOptions" :key="i" :model-value="itemsPerPage" :checked-value="item" @update:model-value="$emit('update:itemsPerPage', $event as number | string)">
           {{ item }}
         </pf-option>
       </pf-select>
@@ -61,7 +61,7 @@
 import PfSelect, { isPfSelect } from './Select.vue';
 import PfOption from './Option.vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
-import { defineComponent } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
 export default defineComponent({
   name: 'PfPaginateControl',
@@ -92,7 +92,7 @@ export default defineComponent({
       default: 25,
     },
     itemsPerPageOptions: {
-      type: Array,
+      type: Array as PropType<(number | string)[]>,
       default: () => [10, 25, 50, 100, 500],
     },
     labelFirstPage: {
@@ -126,7 +126,10 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['change', 'update:itemsPerPage'],
+  emits: {
+    change: (page: string | number) => page !== undefined,
+    'update:itemsPerPage': (value: string | number) => value !== undefined,
+  },
 
   setup(props) {
     return useOUIAProps(props);

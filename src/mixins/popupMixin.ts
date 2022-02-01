@@ -204,7 +204,12 @@ export default defineComponent({
     customClass: String,
   },
 
-  emits: ['input', 'show', 'hide'],
+  emits: {
+    'update:modelValue': (value: boolean) => value !== undefined,
+    input: (value: boolean) => value !== undefined,
+    show: () => true,
+    hide: () => true,
+  },
 
   setup() {
     const triggerEl: HTMLElement = ref(null);
@@ -417,6 +422,7 @@ export default defineComponent({
               this.resetPosition();
             }
             popup.classList.add('in');
+            this.$emit('update:modelValue', true);
             this.$emit('input', true);
             this.$emit('show');
           }
@@ -461,6 +467,7 @@ export default defineComponent({
             if (this.$refs.popup instanceof HTMLElement && this.$refs.popup.parentNode) {
               this.$refs.popup.parentNode.removeChild(this.$refs.popup);
             }
+            this.$emit('update:modelValue', false);
             this.$emit('input', false);
             this.$emit('hide');
           }, this.transitionDuration);

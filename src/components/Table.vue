@@ -24,10 +24,10 @@
             :key="i"
             :class="{
               sorting: sortable && column != sortBy,
-              sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
-              sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
+              sorting_asc: sortable && column == sortBy && sortAscending,
+              sorting_desc: sortable && column == sortBy && !sortAscending,
             }"
-            @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')"
+            @click="setSortBy(column, column == sortBy && sortAscending ? 'desc' : 'asc')"
           >
             {{ column }}
           </th>
@@ -59,10 +59,10 @@
               :key="i"
               :class="{
                 sorting: sortable && column != sortBy,
-                sorting_asc: sortable && column == sortBy && sortDirection == 'asc',
-                sorting_desc: sortable && column == sortBy && sortDirection == 'desc',
+                sorting_asc: sortable && column == sortBy && sortAscending,
+                sorting_desc: sortable && column == sortBy && !sortAscending,
               }"
-              @click="setSortBy(column, column != sortBy || sortDirection == 'desc' ? 'asc' : 'desc')"
+              @click="setSortBy(column, column == sortBy && sortAscending ? 'desc' : 'asc')"
             >
               {{ column }}
             </th>
@@ -149,11 +149,21 @@ export default defineComponent({
     scrollable: Boolean,
     sortable: Boolean,
     sortBy: String,
-    sortDirection: String as PropType<SortDirection>,
+    sortDirection: {
+      type: String as PropType<SortDirection>,
+      default: 'asc',
+      validator: (v: never) => ['asc', 'desc'].includes(v),
+    },
     ...ouiaProps,
   },
 
-  emits: ['update:page', 'update:itemsPerPage', 'sort-by', 'update:sortBy', 'update:sortDirection'],
+  emits: {
+    'update:page': (page: string | number) => page !== undefined,
+    'update:itemsPerPage': (value: string | number) => value !== undefined,
+    'sort-by': (field: string, direction: SortDirection) => field !== undefined && direction !== undefined,
+    'update:sortBy': (field: string) => field !== undefined,
+    'update:sortDirection': (direction: SortDirection) => direction !== undefined,
+  },
 
   setup(props) {
     const thead = ref<HTMLTableSectionElement | null>(null);
@@ -294,6 +304,10 @@ export default defineComponent({
         colspan++;
       }
       return colspan;
+    },
+
+    sortAscending() {
+      return this.sortDirection === 'asc';
     },
   },
 

@@ -44,7 +44,9 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['update:hidden'],
+  emits: {
+    'update:hidden': (value: boolean) => value !== undefined,
+  },
 
   setup(props) {
     const activeGroup = ref(null);

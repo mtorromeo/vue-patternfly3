@@ -60,7 +60,7 @@ export default defineComponent({
       default: 10,
     },
     itemsPerPageOptions: {
-      type: Array,
+      type: Array as PropType<(number | string)[]>,
       default: () => [10, 25, 50, 100, 500],
     },
     expandable: Boolean,
@@ -74,7 +74,10 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['update:itemsPerPage', 'update:page'],
+  emits: {
+    'update:itemsPerPage': (itemsPerPage: number) => itemsPerPage !== undefined,
+    'update:page': (page: number) => page !== undefined,
+  },
 
   setup(props) {
     const listItems = ref<InstanceType<typeof PfListGroupItem>[]>();

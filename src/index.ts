@@ -6,11 +6,16 @@ import VTooltip from './directives/tooltip';
 
 // Declare install function executed by Vue.use()
 export function install(app: App) {
+  const registered: string[] = [];
   for (const [name, component] of Object.entries(components)) {
-    app.component(component.name || name, component);
+    const componentName = component.name || name;
+    if (!registered.includes(componentName)) {
+      app.component(componentName, component);
+      registered.push(componentName);
+    }
   }
   // also register old name for backward compatibility
-  app.component('PfToastNotification', components.Notification);
+  app.component('PfToastNotification', components.PfNotification);
   app.directive('tooltip', VTooltip);
 }
 

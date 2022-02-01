@@ -47,7 +47,9 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['update:expanded'],
+  emits: {
+    'update:expanded': (value: boolean) => value !== undefined,
+  },
 
   setup(props) {
     return useOUIAProps(props);

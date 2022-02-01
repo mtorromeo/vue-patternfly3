@@ -36,7 +36,9 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['update:open'],
+  emits: {
+    'update:open': (open: boolean) => open !== undefined,
+  },
 
   setup(props) {
     return useOUIAProps(props);

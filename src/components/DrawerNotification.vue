@@ -78,7 +78,9 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['action', '' as string],
+  emits: {
+    action: (action: NotificationAction) => action !== undefined,
+  },
 
   setup(props) {
     return {
@@ -119,7 +121,7 @@ export default defineComponent({
       if (typeof action.handler === 'function') {
         action.handler(action);
       }
-      this.$emit(action.emit || 'action', action);
+      this.$emit(action.emit as 'action' || 'action', action);
     },
 
     isAction: isNotificationAction,

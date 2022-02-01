@@ -19,7 +19,7 @@ import { ouiaProps, useOUIAProps } from '../ouia';
 import PfButton from './Button.vue';
 import PfDropdown from './Dropdown.vue';
 
-export type SortDirection = 'ascending' | 'descending' | 'asc' | 'desc';
+export type SortDirection = 'asc' | 'desc';
 
 export interface SortField {
   name: string;
@@ -45,13 +45,15 @@ export default defineComponent({
     sortBy: String,
     direction: {
       type: String as PropType<SortDirection>,
-      default: 'ascending',
-      validator: (v: never) => ['ascending', 'descending', 'asc', 'desc'].includes(v),
+      default: 'asc',
+      validator: (v: never) => ['asc', 'desc'].includes(v),
     },
     ...ouiaProps,
   },
 
-  emits: ['change'],
+  emits: {
+    change: (active: string, direction: SortDirection) => active !== undefined && direction !== undefined,
+  },
 
   setup(props) {
     return useOUIAProps(props);
@@ -118,7 +120,7 @@ export default defineComponent({
 
     direction: {
       handler() {
-        this.ascending = this.direction === 'ascending' || this.direction === 'asc';
+        this.ascending = this.direction === 'asc';
       },
       immediate: true,
     },
@@ -140,12 +142,12 @@ export default defineComponent({
 
     select(field: SortField) {
       this.active = field.name;
-      this.$emit('change', this.active, this.ascending ? 'ascending' : 'descending');
+      this.$emit('change', this.active, this.ascending ? 'asc' : 'desc');
     },
 
     invert() {
       this.ascending = !this.ascending;
-      this.$emit('change', this.active, this.ascending ? 'ascending' : 'descending');
+      this.$emit('change', this.active, this.ascending ? 'asc' : 'desc');
     },
   },
 });

@@ -120,7 +120,9 @@ const PfLayout = defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['update:collapsed'],
+  emits: {
+    'update:collapsed': (value: boolean) => value !== undefined,
+  },
 
   setup(props) {
     const collapsed = ref(false);

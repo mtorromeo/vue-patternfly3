@@ -1,5 +1,5 @@
 <template>
-  <teleport :to="modalsTarget">
+  <teleport :to="modalsTarget || 'body'">
     <transition-group name="pf-drop-fade">
       <div v-if="show" key="modal" v-bind="{ ...$attrs, ...ouiaProps }" class="modal" role="dialog" @click="clickOutside">
         <div ref="dialog" class="modal-dialog">
@@ -83,11 +83,16 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['submit', 'confirm', 'cancel', 'close'],
+  emits: {
+    submit: (event: Event) => event !== undefined,
+    confirm: () => true,
+    cancel: () => true,
+    close: () => true,
+  },
 
   setup(props) {
     return {
-      modalsTarget: inject<HTMLElement | string>('modalsTarget', 'body'),
+      modalsTarget: inject<HTMLElement | string>('modalsTarget'),
       ...useOUIAProps(props),
     };
   },

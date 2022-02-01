@@ -11,7 +11,7 @@
 <script lang="ts">
 import { useChildrenTracker } from '../use';
 import { ouiaProps, useOUIAProps } from '../ouia';
-import { defineComponent, inject } from 'vue';
+import { defineComponent, inject, PropType } from 'vue';
 
 export const OptionSymbol = Symbol('Option');
 
@@ -23,12 +23,20 @@ export default defineComponent({
       type: String,
       default: null,
     },
-    modelValue: {},
-    checkedValue: {},
+    modelValue: {
+      type: null as unknown as PropType<unknown>,
+      default: null,
+    },
+    checkedValue: {
+      type: null as unknown as PropType<unknown>,
+      default: null,
+    },
     ...ouiaProps,
   },
 
-  emits: ['update:modelValue'],
+  emits: {
+    'update:modelValue': (value: unknown) => value !== undefined,
+  },
 
   setup(props) {
     useChildrenTracker(OptionSymbol);

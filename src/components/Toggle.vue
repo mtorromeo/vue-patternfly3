@@ -120,7 +120,10 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['change', 'update:modelValue'],
+  emits: {
+    change: (value: boolean | string | number | Array<boolean | string | number>) => value !== undefined,
+    'update:modelValue': (value: boolean | string | number | Array<boolean | string | number>) => value !== undefined,
+  },
 
   setup(props) {
     return useOUIAProps(props);

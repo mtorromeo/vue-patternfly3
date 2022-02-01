@@ -46,7 +46,9 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['update:modelValue'],
+  emits: {
+    'update:modelValue': (value: string[]) => value !== undefined,
+  },
 
   setup(props) {
     return useOUIAProps(props);

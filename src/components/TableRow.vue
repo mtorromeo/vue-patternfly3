@@ -38,7 +38,9 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['select'],
+  emits: {
+    select: (selected: boolean) => selected !== undefined,
+  },
 
   setup(props) {
     return useOUIAProps(props);

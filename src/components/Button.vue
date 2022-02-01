@@ -42,7 +42,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { DefineComponent, defineComponent, PropType } from 'vue';
+import type { RouteLocationRaw } from 'vue-router';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import PfSpinner from './Spinner.vue';
 import Void from './Void';
@@ -70,7 +71,7 @@ export default defineComponent({
     },
 
     component: {
-      type: [String, Object],
+      type: [String, Object] as PropType<string | DefineComponent>,
       default: 'auto',
     },
 
@@ -108,7 +109,7 @@ export default defineComponent({
 
     // router-link attributes
     to: {
-      type: [String, Object],
+      type: [String, Object] as PropType<RouteLocationRaw>,
       default: null,
     },
     replace: Boolean,
@@ -128,7 +129,9 @@ export default defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['click'],
+  emits: {
+    click: (event: MouseEvent) => event !== undefined,
+  },
 
   setup(props) {
     return useOUIAProps(props);

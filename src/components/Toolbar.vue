@@ -84,6 +84,7 @@ import PfSort, { SortDirection, SortFieldDefinition } from './Sort.vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import { DefineComponent, defineComponent, PropType } from 'vue';
 import { Filter } from './FilterResults.vue';
+import { FilterFieldDefinition } from './FilterFields.vue';
 
 export interface ToolbarView {
   icon: string;
@@ -115,8 +116,8 @@ const PfToolbar = defineComponent({
       default: (): string[] => [],
     },
     filterFields: {
-      type: [Array, Object],
-      default: () => ({}),
+      type: [Array, Object] as PropType<FilterFieldDefinition[] | Record<string, FilterFieldDefinition>>,
+      default: (): FilterFieldDefinition[] => [],
     },
     filters: {
       type: Array as PropType<Filter[]>,
@@ -125,8 +126,8 @@ const PfToolbar = defineComponent({
     sortBy: String,
     sortDirection: {
       type: String as PropType<SortDirection>,
-      default: 'ascending',
-      validator: (v: never) => ['ascending', 'descending'].includes(v),
+      default: 'asc',
+      validator: (v: never) => ['asc', 'desc'].includes(v),
     },
     sortFields: {
       type: [Array, Object] as PropType<SortFieldDefinition[] | Record<string, SortFieldDefinition>>,
@@ -137,7 +138,14 @@ const PfToolbar = defineComponent({
     ...ouiaProps,
   },
 
-  emits: ['update:view', 'update:pickedColumns', 'update:filters', 'update:sortBy', 'update:sortDirection', 'sort-by'],
+  emits: {
+    'update:view': (view: string) => view !== undefined,
+    'update:pickedColumns': (columns: string[]) => columns !== undefined,
+    'update:filters': (filters: Filter[]) => filters !== undefined,
+    'update:sortBy': (field: string) => field !== undefined,
+    'update:sortDirection': (direction: SortDirection) => direction !== undefined,
+    'sort-by': (field: string, direction: SortDirection) => field !== undefined && direction !== undefined,
+  },
 
   setup(props) {
     return useOUIAProps(props);
