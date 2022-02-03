@@ -1,7 +1,8 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-### [0.3.0] - 2021-02-03
+## [0.3.0] - 2021-02-03
+### Added
 - refactor: converted the whole codebase to typescript.
 - feat(typescript): exported type definitions for all components.
 - feat(Combobox): the dropdown trigger element is now slotted (slot name is `dropdownTrigger`) for better customization.
@@ -13,17 +14,17 @@ All notable changes to this project will be documented in this file.
 - **BACKWARD INCOMPATIBLE CHANGE**: All components are now exported with the name matching the component name (eg. `PfButton` instead of `Button`). The old exports are maintained for backwards compatibility but importing `* from 'vue-patternfly'` will now include the same components exported twice.
 - **BACKWARD INCOMPATIBLE CHANGE**: All sort direction properties have been normalized as `'asc' | 'desc'` instead of a mix of `'asc' | 'desc'` and `'ascending' | 'descending'`.
 
-### [0.2.11] - 2021-12-31
+## [0.2.11] - 2021-12-31
 ### Fixed
 - fix(Dropdown): avoided possible access to undefined $refs while destructing the component.
 
-### [0.2.10] - 2021-12-22
+## [0.2.10] - 2021-12-22
 ### Fixed
 - fix(Popover, ColumnPicker): restored popover trigger element functionality.
 - fix(Option): incorrect usage of composition api.
 
-### [0.2.9] - 2021-12-17
-# Added
+## [0.2.9] - 2021-12-17
+### Added
 - added compatibility with vue 3 configured in compat mode.
 - feat: exported ouia utilities.
 
@@ -31,31 +32,31 @@ All notable changes to this project will be documented in this file.
 - fix(Combobox): do not emit null value when clearing the filter while still editing.
 - fix: exported Popover, TableRow and Void components.
 
-### [0.2.8] - 2021-12-09
+## [0.2.8] - 2021-12-09
 ### Fixed
 - fix(Tooltip): fixed component name
 
-### [0.2.7] - 2021-12-06
+## [0.2.7] - 2021-12-06
 ### Fixed
 - fix(Notification): Re-register `pf-notification` as `pf-toast-notification` for backward compatibility.
 
-### [0.2.6] - 2021-12-06
+## [0.2.6] - 2021-12-06
 ### Added
 - feat: Implemented [OUIA](https://ouia.readthedocs.io/en/latest/README.html#metadata) data attributes on all components.
 
-### [0.2.5] - 2021-10-22
+## [0.2.5] - 2021-10-22
 ### Fixed
 - fix(Tooltip): exported `pf-tooltip` component.
 - fix(Button): fixed error when using `pf-button` without a `router-link`.
 
-### [0.2.4] - 2021-10-19
+## [0.2.4] - 2021-10-19
 ### Fixed
 - Set href of the link when using the `pf-menu-item` as a `router-link`.
 
 ### Added
 - New `pf-button` component.
 
-### [0.2.3] - 2021-10-18
+## [0.2.3] - 2021-10-18
 ### Fixed
 - Add missing `selectable` prop to `tipf-list-group-item` (Contributed by [@MrDeerly]).
 - Fixed layout of `pf-toolbar` with no filters by not rendering the filter slot (Contributed by [@MrDeerly]).
@@ -64,20 +65,20 @@ All notable changes to this project will be documented in this file.
 - Fixed filters not working for the `pf-select` component (Contributed by [@MrDeerly]).
 - Extra attributes on `pf-menu-item` are not passed to `router-link`s.
 
-### [0.2.2]  - 2021-09-29
+## [0.2.2]  - 2021-09-29
 ### Fixed
 - Fixed forwarding of the page number event from `pf-list-view` (Contributed by [@MrDeerly]).
 
-### [0.2.1] - 2021-09-29
+## [0.2.1] - 2021-09-29
 ### Fixed
 - Fixed event propagation of the `update:page` event in `pf-list-view` (Contributed by [@MrDeerly]).
 
-### [0.2.1] - 2021-09-21
+## [0.2.1] - 2021-09-21
 ### Fixed
 - Fixed event unbinding in `pf-popup` and tooltips (Contributed by [@MrDeerly]).
 - Fixed default trigger event for tooltips (Contributed by [@MrDeerly]).
 
-### [0.2.0] - 2021-09-07
+## [0.2.0] - 2021-09-07
 ### Changed
 - **BACKWARD INCOMPATIBLE CHANGE**: Migrated the whole library to Vue 3. The project is now in **passive maintenance** mode. Only bug fixes will be applied to this library and development has moved to [vue-patternfly4](https://github.com/mtorromeo/vue-patternfly4).
 - **BACKWARD INCOMPATIBLE CHANGE**: The c3 library dependency and the chart components have been removed as part of the migration to Vue 3.
@@ -88,20 +89,20 @@ All notable changes to this project will be documented in this file.
 - **BACKWARD INCOMPATIBLE CHANGE**: Dist files are now built with vite and some form of imports might not work anymore. Valid imports are `import 'vue-patternfly'`, `import 'vue-patternfly/vue-patternfly.css'` and `import { Component } from 'vue-patternfly'`.
 - **BACKWARD INCOMPATIBLE CHANGE**: The uiv library dependency has been removed and consequently its components are no longer automatically recognized.
 
-### [0.1.7] - 2020-07-15
+## [0.1.7] - 2020-07-15
 - Included a static patternfly palette instead of requiring weird webpack loader's tricks to read id from patternfly. Fixes some import issues of the esm build.
 - Updated dependencies.
 
-### [0.1.6] - 2020-06-11
+## [0.1.6] - 2020-06-11
 ### Added
 - `pf-card`s can now override the content of the header and footer using the new slots named `header` and `footer`.
 - Updated dependencies.
 
-### [0.1.5] - 2019-11-27
+## [0.1.5] - 2019-11-27
 ### Fixed
 - Let `pf-group-item` auto-expand like before v0.1.4 if the `expanded` prop is not bound.
 
-### [0.1.4] - 2019-11-27
+## [0.1.4] - 2019-11-27
 ### Added
 - `pf-group-item` now have a new `expanded` prop that can be used as `v-model` for 2 way binding to control the expanded/collapsed state.
 
