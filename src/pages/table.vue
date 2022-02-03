@@ -237,7 +237,7 @@ export default {
         itemsPerPage: 25,
         itemsPerPageOptions: [10, 25, 50, 100, 500],
         sortBy: '',
-        sortDirection: '',
+        sortDirection: 'asc',
       },
     };
   },

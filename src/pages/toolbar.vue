@@ -53,7 +53,7 @@
         <props-row v-model="toolbar.view" name="view" description="Active view" />
         <props-row v-model="toolbar.views" name="views" description="List of available views (names separated by comma)" />
         <props-row v-model="toolbar.sortBy" name="sortBy" description="Selected sorting field" />
-        <props-row v-model="toolbar.sortDirection" name="sortDirection" description="Selected sorting direction" :options="['ascending', 'descending']" />
+        <props-row v-model="toolbar.sortDirection" name="sortDirection" description="Selected sorting direction" :options="['asc', 'desc']" />
         <props-row v-model="toolbar.sortFields" name="sortFields" description="List of available fields for sorting" code />
         <props-row v-model="toolbar.columns" name="columns" description="List of available columns to display" code />
         <props-row v-model="toolbar.pickedColumns" name="pickedColumns" description="List of available columns to display" code />
@@ -98,7 +98,7 @@ export default {
           },
         },
         sortBy: 'date',
-        sortDirection: 'ascending',
+        sortDirection: 'asc',
         sortFields: {
           name: 'Name',
           date: 'Date',

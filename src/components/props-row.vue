@@ -15,6 +15,7 @@
             height: code ? '150px' : null,
           }">
         <input v-if="prop.type == 'Boolean'" type="checkbox" :checked="modelValue" @change="update" @click.stop>
+        <input v-else-if="prop.type == 'Number'" type="number" class="form-control" :value="modelValue" @keyup="update" @change="update" @click.stop>
         <select v-else-if="options.length" class="form-control" @change="update" @click.stop>
           <option v-for="o in options" :key="o" :value="o" :selected="o == modelValue">
             {{ o }}
@@ -111,6 +112,10 @@ export default {
     update(e) {
       if (this.prop.type === 'Boolean') {
         this.$emit('update:modelValue', e.target.checked);
+        return;
+      }
+      if (this.prop.type === 'Number') {
+        this.$emit('update:modelValue', Number(e.target.value));
         return;
       }
       const value = e && e.target ? e.target.value : e;

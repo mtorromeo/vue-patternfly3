@@ -14,8 +14,8 @@
         <pf-utilization-bar-chart
           :title="barchart.title"
           :units="barchart.units"
-          :value="barchart.value"
-          :total="barchart.total"
+          :value="Number(barchart.value)"
+          :total="Number(barchart.total)"
           :footer="barchart.footer"
           :footer-format="barchart.footerFormat"
           :inline="barchart.inline"
