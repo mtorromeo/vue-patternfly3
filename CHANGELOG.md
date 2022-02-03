@@ -1,6 +1,18 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+### [0.3.0] - 2021-02-03
+- refactor: converted the whole codebase to typescript.
+- feat(typescript): exported type definitions for all components.
+- feat(Combobox): the dropdown trigger element is now slotted (slot name is `dropdownTrigger`) for better customization.
+
+### Fixed
+- fix(Dropdown): fixed removal of event listeners on umount.
+
+### Changed
+- **BACKWARD INCOMPATIBLE CHANGE**: All components are now exported with the name matching the component name (eg. `PfButton` instead of `Button`). The old exports are maintained for backwards compatibility but importing `* from 'vue-patternfly'` will now include the same components exported twice.
+- **BACKWARD INCOMPATIBLE CHANGE**: All sort direction properties have been normalized as `'asc' | 'desc'` instead of a mix of `'asc' | 'desc'` and `'ascending' | 'descending'`.
+
 ### [0.2.11] - 2021-12-31
 ### Fixed
 - fix(Dropdown): avoided possible access to undefined $refs while destructing the component.
@@ -384,7 +396,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.11...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.11...v0.3.0
 [0.2.11]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.10...v0.2.11
 [0.2.10]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.9...v0.2.10
 [0.2.9]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.8...v0.2.9
