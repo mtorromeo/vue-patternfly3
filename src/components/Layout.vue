@@ -189,7 +189,7 @@ const PfLayout = defineComponent({
     },
 
     collapsed() {
-      this.$emit('update:collapsed', this.collapsed);
+      this.$emit('update:collapsed', this.collapsed || false);
     },
   },
 
