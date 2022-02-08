@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.3.1] - 2021-02-08
+### Fixed
+- fix(Layout): never pass undefined|null to emitted event update:collapsed.
+- fix(OUIA): reverted ouia component names to use V-PF3/ prefix.
+
 ## [0.3.0] - 2021-02-03
 ### Added
 - refactor: converted the whole codebase to typescript.
@@ -397,7 +402,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.1...HEAD
+[0.3.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.11...v0.3.0
 [0.2.11]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.10...v0.2.11
 [0.2.10]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.9...v0.2.10
