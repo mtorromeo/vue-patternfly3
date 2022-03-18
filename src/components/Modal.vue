@@ -56,6 +56,8 @@ export default defineComponent({
     PfButton,
   },
 
+  inheritAttrs: false,
+
   props: {
     title: String,
     form: Boolean,
