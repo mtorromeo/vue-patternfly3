@@ -1,6 +1,11 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.3.2] - 2021-03-18
+### Fixed
+- fix(Modal): disabled implicit attr inheritance in modals.
+- fix(ListView): do not assume a specific typescript type for pf-list-view rows.
+
 ## [0.3.1] - 2021-02-08
 ### Fixed
 - fix(Layout): never pass undefined|null to emitted event update:collapsed.
@@ -402,7 +407,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.2...HEAD
+[0.3.2]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.11...v0.3.0
 [0.2.11]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.10...v0.2.11
