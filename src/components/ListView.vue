@@ -4,7 +4,7 @@
       <pf-list-group-item
         v-for="(row, i) in rows"
         ref="listItems"
-        :key="keyName ? row[keyName] : i"
+        :key="keyName && ['string', 'number', 'symbol'].includes(typeof row[keyName]) ? row[keyName] as (string | number | symbol) : i"
         :index="i"
         :selectable="selectable"
         :expandable="expandable"
@@ -67,8 +67,8 @@ export default defineComponent({
     selectable: Boolean,
     stacked: Boolean,
     rows: {
-      type: Array as PropType<Record<string, string | number>[]>,
-      default: (): Record<string, string | number>[] => [],
+      type: Array as PropType<Record<string, unknown>[]>,
+      default: (): Record<string, unknown>[] => [],
     },
     keyName: String,
     ...ouiaProps,
