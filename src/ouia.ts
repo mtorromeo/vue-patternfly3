@@ -24,12 +24,12 @@ export function useOUIAProps(props: OUIAProps, {
 } = {}) {
   if (name === null) {
     const instance = getCurrentInstance();
-    name = instance?.proxy?.$options.name;
+    name = instance?.proxy?.$options.name?.replace(/^pf-|^Pf/, '');
   }
 
   return {
     ouiaProps: computed(() => ({
-      'data-ouia-component-type': name,
+      'data-ouia-component-type': `V-PF3/${name}`,
       'data-ouia-safe': unref(safe) ?? props.ouiaSafe,
       'data-ouia-component-id': props.ouiaId || getDefaultOUIAId(name, variant),
     })),

@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.3.4] - 2022-04-29
+### Fixed
+- fix(OUIA): restored ouia type `V-PF3/` prefix.
+
 ## [0.3.3] - 2022-04-29
 ### Fixed
 - fix: changed typescript types to correctly handle null/undefined.
@@ -411,7 +415,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.3...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.4...HEAD
+[0.3.4]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.0...v0.3.1
