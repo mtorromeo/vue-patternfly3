@@ -21,7 +21,7 @@ export default defineComponent({
 
   setup() {
     return {
-      templateFn: null as Slot,
+      templateFn: undefined as Slot | undefined,
     };
   },
 

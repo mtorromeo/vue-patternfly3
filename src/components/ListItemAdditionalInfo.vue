@@ -27,8 +27,8 @@ export default defineComponent({
   setup(props) {
     return {
       listGroupItemExpanded: inject('listGroupItemExpanded', false),
-      listGroupItemExpandedAdditional: inject<number>('listGroupItemExpandedAdditional', null),
-      listGroupItemAdditionalPortal: inject<string | RendererElement>('listGroupItemAdditionalPortal', null),
+      listGroupItemExpandedAdditional: inject<number | null>('listGroupItemExpandedAdditional', null),
+      listGroupItemAdditionalPortal: inject<string | RendererElement | null>('listGroupItemAdditionalPortal', null),
       ...useOUIAProps(props),
     };
   },

@@ -1,4 +1,4 @@
-import { reactive, getCurrentInstance } from 'vue';
+import { getCurrentInstance, ComputedRef, computed, unref } from 'vue';
 
 export interface OUIAProps {
   ouiaId?: string;
@@ -17,22 +17,22 @@ export const ouiaProps = {
   ouiaSafe: Boolean,
 };
 
-/**
- * @param {string} name OUIA component type
- * @param {string} variant Optional variant to add to the generated ID
- */
-export function useOUIAProps(props: OUIAProps, name: string | null = null, variant: string | null = null) {
+export function useOUIAProps(props: OUIAProps, {
+  name = null as string | null | undefined,
+  variant = null as string | null,
+  safe = null as boolean | ComputedRef<boolean> | null,
+} = {}) {
   if (name === null) {
     const instance = getCurrentInstance();
-    name = instance.proxy.$options.name.replace(/^pf-|^Pf/, '');
+    name = instance?.proxy?.$options.name;
   }
 
   return {
-    ouiaProps: reactive({
-      'data-ouia-component-type': `V-PF3/${name}`,
-      'data-ouia-safe': props.ouiaSafe,
+    ouiaProps: computed(() => ({
+      'data-ouia-component-type': name,
+      'data-ouia-safe': unref(safe) ?? props.ouiaSafe,
       'data-ouia-component-id': props.ouiaId || getDefaultOUIAId(name, variant),
-    }),
+    })),
   };
 }
 

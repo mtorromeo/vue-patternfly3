@@ -62,7 +62,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
-import PfRadioButton from './RadioButton.vue';
+import PfRadioButton, { RadioValueType } from './RadioButton.vue';
 import PfSpinner from './Spinner.vue';
 
 export type ToggleSize = 'xs' | 'sm' | 'md' | 'lg';
@@ -81,7 +81,7 @@ export default defineComponent({
       default: null,
     },
     modelValue: {
-      type: [Boolean, String, Number, Array] as PropType<boolean | string | number | Array<boolean | string | number>>,
+      type: [Boolean, String, Number, Array] as PropType<RadioValueType>,
       required: true,
     },
     disabled: Boolean,
@@ -121,8 +121,8 @@ export default defineComponent({
   },
 
   emits: {
-    change: (value: boolean | string | number | Array<boolean | string | number>) => value !== undefined,
-    'update:modelValue': (value: boolean | string | number | Array<boolean | string | number>) => value !== undefined,
+    change: (value: RadioValueType) => value !== undefined,
+    'update:modelValue': (value: RadioValueType) => value !== undefined,
   },
 
   setup(props) {
@@ -157,7 +157,7 @@ export default defineComponent({
   },
 
   methods: {
-    test(value: boolean | string | number | Array<boolean | string | number>) {
+    test(value: RadioValueType) {
       if (!this.noOff) {
         if (this.loose) {
           return this.modelValue == value;
@@ -193,7 +193,7 @@ export default defineComponent({
       this.set(this.offValue);
     },
 
-    set(value: boolean | string | number | Array<boolean | string | number>) {
+    set(value: RadioValueType) {
       if (this.disabled) {
         return;
       }

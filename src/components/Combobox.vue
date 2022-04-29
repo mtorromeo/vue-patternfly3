@@ -11,7 +11,7 @@
     <input v-if="name" type="hidden" :name="name" :value="modelValue" :disabled="effectiveDisabled" :required="required">
     <div class="input-group">
       <label v-if="withCheckbox" class="input-group-addon">
-        <input v-model="checked" type="checkbox" :name="typeof withCheckbox === 'string' ? withCheckbox : null" value="1">
+        <input v-model="checked" type="checkbox" :name="typeof withCheckbox === 'string' ? withCheckbox : undefined" value="1">
       </label>
 
       <input
@@ -51,7 +51,7 @@
         </li>
       </ul>
 
-      <slot name="dropdownTrigger" :disabled="effectiveDisabled" :clickHandler="dropdownClick">
+      <slot name="dropdownTrigger" :disabled="effectiveDisabled" :click-handler="dropdownClick">
         <a href="javascript:void(0)" role="button" class="input-group-addon dropdown-toggle" :class="{disabled: effectiveDisabled}" data-dropdown="dropdown" :disabled="effectiveDisabled" @click.prevent="dropdownClick">
           <span class="caret" />
           <pf-icon name="glyphicon-remove" />
@@ -82,7 +82,7 @@ export default defineComponent({
       default: null,
     },
     modelValue: {
-      type: [String, Number],
+      type: [String, Number] as PropType<string | number |null>,
       default: null,
     },
     placeholder: {
@@ -108,11 +108,11 @@ export default defineComponent({
       default: 'id',
     },
     match: {
-      type: Function,
+      type: Function as PropType<(o: NormalizedOption, q: string) => boolean>,
       default: (o: NormalizedOption, q: string) => o.label.toString().toLowerCase().includes(q.toLowerCase()),
     },
     highlight: {
-      type: Function,
+      type: Function as PropType<(o: NormalizedOption, q: string) => string>,
       default: (o: NormalizedOption, q: string) => o.label.replace(new RegExp(q.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&'), 'ig'), '<strong>$&</strong>'),
     },
     withCheckbox: {
@@ -123,8 +123,8 @@ export default defineComponent({
   },
 
   emits: {
-    update: (value: string | number) => value !== undefined,
-    'update:modelValue': (value: string | number) => value !== undefined,
+    update: (value: string | number | null) => value !== undefined,
+    'update:modelValue': (value: string | number | null) => value !== undefined,
   },
 
   setup(props) {
@@ -133,10 +133,10 @@ export default defineComponent({
 
   data(this: void) {
     return {
-      blurTimeout: null as ReturnType<typeof setTimeout> | null,
+      blurTimeout: undefined as ReturnType<typeof setTimeout> | undefined,
       showOptions: false,
-      filter: null as string,
-      active: null as string | number,
+      filter: null as string | null,
+      active: null as string | number | null,
       hasError: false,
       checked: false,
     };
@@ -148,7 +148,7 @@ export default defineComponent({
     },
 
     label() {
-      if (!this.hasValue || typeof this.optionsMap[this.modelValue] === 'undefined') {
+      if (this.modelValue === null || typeof this.optionsMap[this.modelValue] === 'undefined') {
         return '';
       }
       return this.optionsMap[this.modelValue].label;
@@ -173,15 +173,17 @@ export default defineComponent({
       if (this.filter === null) {
         return [];
       }
-      return Object.values(this.optionsMap).reduce((options, o) => {
+
+      const options = [];
+      for (const o of Object.values(this.optionsMap)) {
         if (this.match(o, this.filter)) {
           options.push({
             ...o,
             highlighted: this.highlight(o, this.filter),
           });
         }
-        return options;
-      }, []);
+      }
+      return options;
     },
 
     text: {
@@ -198,7 +200,7 @@ export default defineComponent({
     },
 
     effectiveDisabled() {
-      return this.disabled || (this.withCheckbox && !this.checked);
+      return this.disabled || Boolean(this.withCheckbox && !this.checked);
     },
   },
 
@@ -220,7 +222,7 @@ export default defineComponent({
   },
 
   methods: {
-    setValue(value: string | number) {
+    setValue(value: string | number | null) {
       this.showOptions = false;
       this.filter = null;
       if (value !== this.modelValue) {

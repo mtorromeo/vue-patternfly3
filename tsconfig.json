@@ -24,7 +24,7 @@
     "skipLibCheck": true,
     "importHelpers": true,
     "strict": true,
-    "strictNullChecks": false,
+    "strictNullChecks": true,
     "allowJs": true,
     "useDefineForClassFields": true,
     "sourceMap": true,

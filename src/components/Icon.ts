@@ -27,7 +27,7 @@ export default defineComponent({
       classes.push('pficon');
       classes.push('pf-icon-img');
       style.backgroundImage = `url("${this.src}")`;
-    } else {
+    } else if (this.name) {
       const match = (/^(fa|pficon|glyphicon)-/).exec(this.name);
       if (match) {
         classes.push(match[1]);

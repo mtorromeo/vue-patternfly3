@@ -79,7 +79,7 @@ export default defineComponent({
   },
 
   mounted() {
-    this.tertiary = this.$parent.$el.classList.contains('secondary-nav-item-pf');
+    this.tertiary = this.$parent?.$el.classList.contains('secondary-nav-item-pf');
   },
 
   methods: {

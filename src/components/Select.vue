@@ -54,7 +54,7 @@
           class="form-control"
           autocomplete="off"
           @keyup.esc="close"
-        />
+        >
         <span v-show="filter" class="close" @click="clearSearch">&times;</span>
       </li>
 
@@ -136,12 +136,13 @@ const PfSelect = defineComponent({
     },
 
     values() {
-      return this.options.reduce(function(values, c) {
+      const values = [];
+      for (const c of this.options) {
         if (c.checked) {
           values.push(c.modelValue);
         }
-        return values;
-      }, []);
+      }
+      return values;
     },
 
     btnType() {
@@ -166,12 +167,13 @@ const PfSelect = defineComponent({
   },
 
   updated() {
-    this.selected = this.options.reduce(function(labels, c) {
+    const selected = [];
+    for (const c of this.options) {
       if (c.checked) {
-        labels.push(c.$el.innerText);
+        selected.push(c.$el.innerText);
       }
-      return labels;
-    }, []).join(', ');
+    }
+    this.selected = selected.join(', ');
   },
 
   mounted() {

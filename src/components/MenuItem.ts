@@ -36,7 +36,7 @@ export default defineComponent({
   render() {
     let tag: string | DefineComponent = this.to ? 'router-link' : 'li';
 
-    const linkBuilder = (href: string) => {
+    const linkBuilder = (href: string | undefined) => {
       const linkChildren = [];
 
       if (this.icon) {

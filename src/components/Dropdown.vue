@@ -172,13 +172,13 @@ export default defineComponent({
     },
 
     setDropdownPosition() {
-      if (!(this.$refs.dropdown instanceof HTMLElement) || !(this.$refs.trigger instanceof Element) || !this.appendTo) {
+      if (!(this.$refs.dropdown instanceof HTMLElement) || !(this.$refs.trigger instanceof Element) || !this.appendTo?.offsetParent) {
         return;
       }
 
       const rP = this.appendTo.offsetParent.getBoundingClientRect();
       const rT = this.$refs.trigger.getBoundingClientRect();
-      let rD: DOMRect;
+      let rD: DOMRect | undefined;
       if (this.menuRight || this.dropup) {
         rD = this.$refs.dropdown.getBoundingClientRect();
       }
@@ -186,11 +186,11 @@ export default defineComponent({
       let top = rT.top - rP.top;
       let left = rT.left - rP.left;
 
-      if (this.menuRight) {
+      if (rD && this.menuRight) {
         left -= rD.width - rT.width;
       }
 
-      if (this.dropup) {
+      if (rD && this.dropup) {
         top -= rD.height;
       } else {
         top += rT.height;

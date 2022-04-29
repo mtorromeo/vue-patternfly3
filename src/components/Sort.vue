@@ -128,16 +128,16 @@ export default defineComponent({
 
   methods: {
     normalizeField(fieldDefinition: SortFieldDefinition, name?: string): SortField {
-      const field: SortField = {
+      const field: Partial<SortField> = {
         name: typeof fieldDefinition === 'object' ? fieldDefinition.name : '',
         label: typeof fieldDefinition === 'object' ? fieldDefinition.label : fieldDefinition,
         type: typeof fieldDefinition === 'object' ? fieldDefinition.type : 'alpha',
       };
       field.name = name || field.name || field.label || '';
       if (!field.label) {
-        field.label = name;
+        field.label = field.name;
       }
-      return field;
+      return field as SortField;
     },
 
     select(field: SortField) {

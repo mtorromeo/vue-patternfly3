@@ -1,7 +1,7 @@
 <template>
   <li v-if="!filtered" v-bind="ouiaProps" :class="{'selected': checked}">
     <a href="javascript:void(0)" role="menuitem" @click.prevent="check">
-      <input ref="input" type="radio" :name="name === null ? selectName : name" :value="modelValue" :checked="checked" style="display:none">
+      <input ref="input" type="radio" :name="name === null ? (selectName ?? undefined) : name" :value="modelValue" :checked="checked" style="display:none">
       <slot />
       <pf-icon v-show="checked" name="glyphicon-close" class="check-mark" />
     </a>
@@ -24,11 +24,11 @@ export default defineComponent({
       default: null,
     },
     modelValue: {
-      type: null as unknown as PropType<unknown>,
+      type: null as unknown as PropType<any>,
       default: null,
     },
     checkedValue: {
-      type: null as unknown as PropType<unknown>,
+      type: null as unknown as PropType<any>,
       default: null,
     },
     ...ouiaProps,
@@ -42,7 +42,7 @@ export default defineComponent({
     useChildrenTracker(OptionSymbol);
     return {
       select: inject<() => void>('select', () => null),
-      selectName: inject<string>('selectName', null),
+      selectName: inject<string | null>('selectName', null),
       ...useOUIAProps(props),
     };
   },

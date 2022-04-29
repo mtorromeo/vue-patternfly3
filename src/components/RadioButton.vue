@@ -8,7 +8,7 @@
     }]"
     :disabled="disabled || null"
   >
-    <input :type="input" style="display:none" :name="name" :checked="checked" :disabled="disabled || null" :value="checkedValue" @change="change">
+    <input :type="input" style="display:none" :name="name" :checked="checked" :disabled="disabled || undefined" :value="checkedValue" @change="change">
     <slot />
   </label>
 </template>
@@ -16,6 +16,8 @@
 <script lang="ts">
 import { defineComponent, PropType } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
+
+export type RadioValueType = boolean | string | number | null | (boolean | string | number | null)[];
 
 export default defineComponent({
   name: 'PfRadioButton',
@@ -27,7 +29,8 @@ export default defineComponent({
     },
     inactiveClass: String,
     modelValue: {
-      type: [Boolean, String, Number, Array] as PropType<boolean | string | number | Array<boolean | string | number>>,
+      type: [Boolean, String, Number, Array] as PropType<RadioValueType>,
+      required: true,
     },
     name: String,
     checkedValue: {
@@ -45,7 +48,7 @@ export default defineComponent({
   },
 
   emits: {
-    'update:modelValue': (values: string | number | boolean | (string | number | boolean)[]) => values !== undefined,
+    'update:modelValue': (values: RadioValueType) => values !== undefined,
   },
 
   setup(props) {
@@ -83,7 +86,7 @@ export default defineComponent({
   },
 
   methods: {
-    test(value: boolean | string | number | Array<boolean | string | number>) {
+    test(value: RadioValueType) {
       if (this.input === 'radio') {
         if (this.loose) {
           return this.modelValue == value;

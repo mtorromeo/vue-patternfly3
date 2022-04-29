@@ -44,7 +44,7 @@
       class="pull-right"
       :variant="buttonVariant"
       :title="action.title"
-      @click="triggered(action)"
+      @click="action && triggered(action)"
     >
       {{ action.name }}
     </pf-button>

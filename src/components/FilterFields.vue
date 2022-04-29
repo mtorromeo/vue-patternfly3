@@ -1,13 +1,13 @@
 <template>
   <div v-bind="ouiaProps" class="input-group">
-    <pf-dropdown v-if="showDropdown" :text="current.label" class="input-group-btn">
+    <pf-dropdown v-if="showDropdown" :text="current?.label" class="input-group-btn">
       <li v-for="(item, i) in normFields" :key="item.name">
         <a class="filter-field" role="menuitem" tabindex="-1" @click="selected = i">
           {{ item.label }}
         </a>
       </li>
     </pf-dropdown>
-    <pf-select v-if="isSelect" close-on-select class="filter-select" :placeholder="current.placeholder">
+    <pf-select v-if="current?.values" close-on-select class="filter-select" :placeholder="current.placeholder">
       <pf-option v-for="(item, i) in current.values" :key="i" :checked-value="item" @update:model-value="set($event as string)">
         {{ item }}
       </pf-option>
@@ -18,7 +18,7 @@
         class="form-control"
         type="text"
         :value="value"
-        :placeholder="showDropdown || current.placeholder ? current.placeholder : current.label"
+        :placeholder="showDropdown || current?.placeholder ? current?.placeholder : current?.label"
         @keyup.enter.stop="set"
       >
     </div>
@@ -79,7 +79,7 @@ export default defineComponent({
   },
 
   computed: {
-    current(): FilterField {
+    current(): FilterField | null {
       let selected = this.selected;
       if (!this.normFields[selected]) {
         if (!this.normFields.length) {
@@ -88,10 +88,6 @@ export default defineComponent({
         selected = 0;
       }
       return this.normFields[selected];
-    },
-
-    isSelect() {
-      return typeof this.current.values !== 'undefined';
     },
 
     showDropdown() {
@@ -120,16 +116,16 @@ export default defineComponent({
 
   methods: {
     normalizeField(fieldDefinition: FilterFieldDefinition, name?: string): FilterField {
-      const field: FilterField = {
-        name: typeof fieldDefinition === 'object' ? fieldDefinition.name : '',
-        label: typeof fieldDefinition === 'object' ? fieldDefinition.label : fieldDefinition,
+      const field: Partial<FilterField> = {
+        name: typeof fieldDefinition === 'object' ? fieldDefinition?.name : '',
+        label: typeof fieldDefinition === 'object' ? fieldDefinition?.label : fieldDefinition,
         placeholder: typeof fieldDefinition === 'object' ? fieldDefinition.placeholder : undefined,
       };
       field.name = name || field.name || field.label || '';
       if (!field.label) {
-        field.label = name;
+        field.label = field.name;
       }
-      return field;
+      return field as FilterField;
     },
 
     set(value: KeyboardEvent | string) {

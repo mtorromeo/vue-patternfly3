@@ -98,8 +98,14 @@ export default defineComponent({
   name: 'PfUtilizationBarChart',
 
   props: {
-    value: Number,
-    total: Number,
+    value: {
+      type: Number,
+      default: 0,
+    },
+    total: {
+      type: Number,
+      default: 100,
+    },
     units: String,
     title: String,
     footer: String,
@@ -127,7 +133,7 @@ export default defineComponent({
 
   computed: {
     dataAvailable() {
-      return typeof this.value !== 'undefined' && typeof this.total !== 'undefined';
+      return this.value !== undefined && this.total !== undefined;
     },
 
     percent() {
@@ -135,11 +141,11 @@ export default defineComponent({
     },
 
     isError() {
-      return this.percent >= this.error;
+      return this.error !== undefined && this.percent >= this.error;
     },
 
     isWarning() {
-      return !this.isError && this.percent >= this.warning;
+      return !this.isError && this.warning !== undefined && this.percent >= this.warning;
     },
 
     isOk() {
@@ -147,11 +153,11 @@ export default defineComponent({
     },
 
     titleWidthPx() {
-      return this.titleWidth ? `${this.titleWidth}px` : null;
+      return this.titleWidth ? `${this.titleWidth}px` : undefined;
     },
 
     footerWidthPx() {
-      return this.footerWidth ? `${this.footerWidth}px` : null;
+      return this.footerWidth ? `${this.footerWidth}px` : undefined;
     },
   },
 

@@ -54,7 +54,7 @@ export default defineComponent({
 
   setup(props) {
     return {
-      activeGroup: inject<Component>('activeGroup', null),
+      activeGroup: inject<Component | null>('activeGroup', null),
       ...useOUIAProps(props),
     };
   },

@@ -1,4 +1,4 @@
-import { DefineComponent, defineComponent, PropType, ref } from 'vue';
+import { DefineComponent, defineComponent, PropType, Ref, ref } from 'vue';
 
 export type TooltipPlacement = 'top' | 'bottom' | 'left' | 'right';
 export type TooltipTrigger = 'hover' | 'focus' | 'click' | 'hover-focus' | 'outside-click';
@@ -55,6 +55,9 @@ export function setTooltipPosition(tooltip: HTMLElement, trigger: HTMLElement, p
     containerScrollTop = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0);
   } else {
     const container = document.querySelector(appendToSelector);
+    if (!container) {
+      return;
+    }
     containerScrollLeft = container.scrollLeft;
     containerScrollTop = container.scrollTop;
   }
@@ -212,7 +215,7 @@ export default defineComponent({
   },
 
   setup() {
-    const triggerEl: HTMLElement = ref(null);
+    const triggerEl: Ref<HTMLElement | null> = ref(null);
     return {
       triggerEl,
     };
@@ -379,7 +382,7 @@ export default defineComponent({
     },
 
     hideOnLeave() {
-      if (this.trigger === 'hover' || (this.trigger === 'hover-focus' && !this.triggerEl.matches(':focus'))) {
+      if (this.trigger === 'hover' || (this.trigger === 'hover-focus' && !this.triggerEl?.matches(':focus'))) {
         this.$hide();
       }
     },
@@ -418,7 +421,7 @@ export default defineComponent({
             if (!popUpAppendedContainer) {
               popup.className = `${this.name} ${this.placement} ${this.customClass ? this.customClass : ''} fade`;
               const container = document.querySelector(this.appendTo);
-              container.appendChild(popup);
+              container?.appendChild(popup);
               this.resetPosition();
             }
             popup.classList.add('in');
@@ -492,7 +495,7 @@ export default defineComponent({
       clearTimeout(this.autoTimeoutId);
       this.autoTimeoutId = setTimeout(() => {
         this.autoTimeoutId = 0;
-        if (this.triggerEl.matches(':hover, :focus')) {
+        if (this.triggerEl?.matches(':hover, :focus')) {
           this.show();
         } else {
           this.hide();

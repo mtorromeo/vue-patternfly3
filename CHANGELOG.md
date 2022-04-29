@@ -1,17 +1,21 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
-## [0.3.2] - 2021-03-18
+## [0.3.3] - 2022-04-29
+### Fixed
+- fix: changed typescript types to correctly handle null/undefined.
+
+## [0.3.2] - 2022-03-18
 ### Fixed
 - fix(Modal): disabled implicit attr inheritance in modals.
 - fix(ListView): do not assume a specific typescript type for pf-list-view rows.
 
-## [0.3.1] - 2021-02-08
+## [0.3.1] - 2022-02-08
 ### Fixed
 - fix(Layout): never pass undefined|null to emitted event update:collapsed.
 - fix(OUIA): reverted ouia component names to use V-PF3/ prefix.
 
-## [0.3.0] - 2021-02-03
+## [0.3.0] - 2022-02-03
 ### Added
 - refactor: converted the whole codebase to typescript.
 - feat(typescript): exported type definitions for all components.
@@ -407,7 +411,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.2...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.3...HEAD
+[0.3.3]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/mtorromeo/vue-patternfly/compare/v0.2.11...v0.3.0

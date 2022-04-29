@@ -1,15 +1,16 @@
 <template>
   <div v-bind="ouiaProps" class="table-wrapper">
-    <table v-if="scrollable"
-           class="table dataTable table-head-clone"
-           :style="{
-             opacity: showClones ? 1 : 0,
-           }"
-           :class="{
-             'table-striped': striped,
-             'table-bordered': bordered,
-             'table-hover': hover,
-           }"
+    <table
+      v-if="scrollable"
+      class="table dataTable table-head-clone"
+      :style="{
+        opacity: showClones ? 1 : 0,
+      }"
+      :class="{
+        'table-striped': striped,
+        'table-bordered': bordered,
+        'table-hover': hover,
+      }"
     >
       <thead ref="theadClone">
         <tr>
@@ -39,13 +40,17 @@
     </table>
 
     <div class="table-overflow-container">
-      <table class="table dataTable" role="grid" :class="{
-        'table-striped': striped,
-        'table-bordered': bordered,
-        'table-hover': hover,
-      }" :style="{
-        'margin-top': scrollable ? `-${headHeight + 1}px` : 0,
-      }">
+      <table
+        class="table dataTable"
+        role="grid"
+        :class="{
+          'table-striped': striped,
+          'table-bordered': bordered,
+          'table-hover': hover,
+        }" :style="{
+          'margin-top': scrollable ? `-${headHeight + 1}px` : 0,
+        }"
+      >
         <thead ref="thead">
           <tr role="row">
             <th v-if="selectable" class="table-view-pf-select" aria-label="Select all rows">
@@ -108,7 +113,7 @@ import PfTableRow from './TableRow.vue';
 import PfPaginateControl from './PaginateControl.vue';
 import debounce from 'lodash-es/debounce';
 import { ouiaProps, useOUIAProps } from '../ouia';
-import { defineComponent, nextTick, onMounted, onUnmounted, PropType, ref, watch } from 'vue';
+import { defineComponent, nextTick, onMounted, onUnmounted, PropType, Ref, ref, watch } from 'vue';
 import { SortDirection } from './Sort.vue';
 
 export default defineComponent({
@@ -120,7 +125,10 @@ export default defineComponent({
   },
 
   props: {
-    page: Number,
+    page: {
+      type: Number,
+      default: 0,
+    },
     totalItems: {
       type: Number,
       default: 0,
@@ -166,13 +174,13 @@ export default defineComponent({
   },
 
   setup(props) {
-    const thead = ref<HTMLTableSectionElement | null>(null);
-    const theadClone = ref<HTMLTableSectionElement | null>(null);
-    const rowItems = ref<InstanceType<typeof PfTableRow>[]>([]);
+    const thead: Ref<HTMLTableSectionElement | null> = ref(null);
+    const theadClone: Ref<HTMLTableSectionElement | null> = ref(null);
+    const rowItems: Ref<InstanceType<typeof PfTableRow>[]> = ref([]);
     const headHeight = ref(27);
     const showClones = ref(false);
     const paginationHeight = ref(38);
-    const pagination = ref<InstanceType<typeof PfPaginateControl> | null>(null);
+    const pagination: Ref<InstanceType<typeof PfPaginateControl> | null> = ref(null);
 
     const syncHeaders = debounce(() => {
       if (!theadClone.value || !thead.value) {
@@ -230,7 +238,7 @@ export default defineComponent({
       }
 
       for (const entry of entries) {
-        if (entry.target == pagination.value.$el) {
+        if (entry.target == pagination.value?.$el) {
           paginationHeight.value = pagination.value.$el.clientHeight;
           break;
         }
@@ -238,6 +246,10 @@ export default defineComponent({
     });
 
     const observeThead = () => {
+      if (!thead.value) {
+        return;
+      }
+
       const row = thead.value.rows[0];
       for (let i = 0; i < row.cells.length; i++) {
         if (i == 0 && props.selectable) {
@@ -256,7 +268,9 @@ export default defineComponent({
         if (thead.value instanceof HTMLTableSectionElement) {
           headObserver.observe(thead.value);
         }
-        paginationObserver.observe(pagination.value.$el);
+        if (pagination.value) {
+          paginationObserver.observe(pagination.value.$el);
+        }
         observeThead();
       } else {
         headObserver.disconnect();
@@ -274,7 +288,9 @@ export default defineComponent({
       if (thead.value instanceof HTMLTableSectionElement) {
         headObserver.observe(thead.value);
       }
-      paginationObserver.observe(pagination.value.$el);
+      if (pagination.value) {
+        paginationObserver.observe(pagination.value.$el);
+      }
     });
 
     onUnmounted(() => {

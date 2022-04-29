@@ -2,7 +2,7 @@
   <div v-bind="ouiaProps" class="card-pf" :class="{'card-pf-accented': accented}">
     <div v-if="showHeader" :class="{'card-pf-heading': showTitlesSeparator, 'card-pf-heading-no-bottom': !showTitlesSeparator}">
       <slot name="header">
-        <pf-dropdown v-if="showFilterInHeader" class="card-pf-time-frame-filter" :text="currentFilter.label" menu-right>
+        <pf-dropdown v-if="showFilterInHeader" class="card-pf-time-frame-filter" :text="currentFilter?.label" menu-right>
           <li
             v-for="(item, i) in filter.filters"
             :key="i"
@@ -26,7 +26,7 @@
     </div>
 
     <div v-if="showFooter || showFilterInFooter" class="card-pf-footer">
-      <pf-dropdown v-if="showFilterInFooter" class="card-pf-time-frame-filter" :text="currentFilter.label" menu-right>
+      <pf-dropdown v-if="showFilterInFooter" class="card-pf-time-frame-filter" :text="currentFilter?.label" menu-right>
         <li
           v-for="(item, i) in filter.filters"
           :key="i"

@@ -40,11 +40,12 @@ import { ouiaProps, useOUIAProps } from '../ouia';
 import PfButton from './Button.vue';
 
 function isDescendantOf(node: Node, ancestor: Node) {
-  while (node) {
-    if (node === ancestor) {
+  let pnode: Node | null = node;
+  while (pnode) {
+    if (pnode === ancestor) {
       return true;
     }
-    node = node.parentElement;
+    pnode = pnode.parentElement;
   }
   return false;
 }

@@ -37,7 +37,7 @@
           width: (pages.toString().length * .8 + 1.5) + 'em'
         }"
         :value="page"
-        @change="$event.target instanceof HTMLInputElement && setPage(Number($event.target.value))"
+        @change="setPage(Number(($event.target as HTMLInputElement).value))"
       >
       {{ labelOf }} {{ pages }}
 
@@ -77,7 +77,10 @@ export default defineComponent({
   },
 
   props: {
-    page: Number,
+    page: {
+      type: Number,
+      required: true,
+    },
     type: {
       type: String,
       default: 'list',

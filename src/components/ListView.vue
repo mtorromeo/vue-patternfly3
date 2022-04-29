@@ -38,7 +38,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from 'vue';
+import { defineComponent, PropType, Ref, ref } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 import PfListGroupItem from './ListGroupItem.vue';
 
@@ -80,7 +80,7 @@ export default defineComponent({
   },
 
   setup(props) {
-    const listItems = ref<InstanceType<typeof PfListGroupItem>[]>();
+    const listItems: Ref<InstanceType<typeof PfListGroupItem>[]> = ref([]);
     return {
       listItems,
       ...useOUIAProps(props),

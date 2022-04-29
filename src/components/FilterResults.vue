@@ -10,11 +10,11 @@
           <li v-for="(filter, i) in filters" :key="i">
             <span class="active-filter label label-info">
               {{ filter.label }}: {{ filter.value }}
-              <a><pf-icon name="pficon-close" @click="toolbar().clearFilter(i)" /></a>
+              <a><pf-icon name="pficon-close" @click="toolbar()?.clearFilter(i)" /></a>
             </span>
           </li>
         </ul>
-        <p><a v-if="filters.length > 0" class="clear-filters" @click="toolbar().clearAllFilters()">Clear All Filters</a></p>
+        <p><a v-if="filters.length > 0" class="clear-filters" @click="toolbar()?.clearAllFilters()">Clear All Filters</a></p>
       </div>
     </div>
   </div>

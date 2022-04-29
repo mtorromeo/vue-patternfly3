@@ -102,7 +102,10 @@ const PfToolbar = defineComponent({
   },
 
   props: {
-    view: String,
+    view: {
+      type: String as PropType<string | null>,
+      default: null,
+    },
     views: {
       type: [Object, String] as PropType<Record<string, ToolbarView> | string>,
       default: () => ({}),
@@ -139,7 +142,7 @@ const PfToolbar = defineComponent({
   },
 
   emits: {
-    'update:view': (view: string) => view !== undefined,
+    'update:view': (view: string | null) => view !== undefined,
     'update:pickedColumns': (columns: string[]) => columns !== undefined,
     'update:filters': (filters: Filter[]) => filters !== undefined,
     'update:sortBy': (field: string) => field !== undefined,
@@ -216,7 +219,7 @@ const PfToolbar = defineComponent({
     },
     views: {
       handler() {
-        if (!(this.activeView in this.viewList)) {
+        if (!this.activeView || !(this.activeView in this.viewList)) {
           const names = Object.keys(this.viewList);
           if (names.length > 0) {
             this.activeView = names[0];

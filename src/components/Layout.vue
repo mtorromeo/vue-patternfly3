@@ -95,7 +95,7 @@
 </template>
 
 <script lang="ts">
-import { ref, provide, defineComponent, DefineComponent } from 'vue';
+import { ref, provide, defineComponent, DefineComponent, Ref } from 'vue';
 import { ouiaProps, useOUIAProps } from '../ouia';
 
 const PfLayout = defineComponent({
@@ -128,7 +128,7 @@ const PfLayout = defineComponent({
     const collapsed = ref(false);
     provide('layoutCollapsed', collapsed);
 
-    const modalsTarget = ref<HTMLElement>(null);
+    const modalsTarget: Ref<HTMLElement | null> = ref(null);
     provide('modalsTarget', modalsTarget);
 
     return {

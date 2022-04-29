@@ -6,10 +6,14 @@
     <slot>
       <div v-if="icon || iconSrc || $slots.left" class="list-view-pf-left">
         <slot name="left">
-          <pf-icon :name="icon" :src="iconSrc" :class="[
-            `list-view-pf-icon-${iconSize}`,
-            {[`list-view-pf-icon-${iconVariant}`]: iconVariant},
-          ]" />
+          <pf-icon
+            :name="icon"
+            :src="iconSrc"
+            :class="[
+              `list-view-pf-icon-${iconSize}`,
+              {[`list-view-pf-icon-${iconVariant}`]: iconVariant},
+            ]"
+          />
         </slot>
       </div>
       <div class="list-view-pf-body">

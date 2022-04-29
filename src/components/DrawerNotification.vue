@@ -30,7 +30,7 @@
       class="pull-right"
       :variant="buttonVariant"
       :title="action.title"
-      @click="triggered(action)"
+      @click="action && triggered(action)"
     >
       {{ action.name }}
     </pf-button>
@@ -85,7 +85,7 @@ export default defineComponent({
   setup(props) {
     return {
       drawerExpanded: inject('drawerExpanded', false),
-      drawerDropdowns: inject<HTMLElement>('drawerDropdowns', null),
+      drawerDropdowns: inject<HTMLElement | undefined>('drawerDropdowns', undefined),
       ...useOUIAProps(props),
     };
   },

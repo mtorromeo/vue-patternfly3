@@ -74,7 +74,7 @@ export default defineComponent({
 
   methods: {
     columnValue(column: Column, i: string | number | typeof Symbol.iterator | typeof Symbol.unscopables) {
-      let value = typeof i === 'string' ? i : column;
+      let value: Column | undefined = typeof i === 'string' ? i : column;
       if (typeof value === 'object') {
         value = typeof value.name === 'undefined' ? value.label : value.name;
       }
@@ -90,7 +90,7 @@ export default defineComponent({
       const iter = Array.isArray(this.columns) ? this.columns.entries() : Object.entries(this.columns);
       for (const [i, column] of iter) {
         const value = this.columnValue(column, i);
-        if (this.iValue.indexOf(value) >= 0) {
+        if (value && this.iValue.includes(value)) {
           sortedValue.push(value);
         }
       }
