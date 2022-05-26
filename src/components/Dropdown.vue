@@ -15,7 +15,7 @@
       </slot> <span v-show="!noCaret" class="caret" />
     </button>
 
-    <ul ref="dropdown" :class="{'dropdown-menu-right': menuRight}" class="dropdown-menu">
+    <ul ref="dropdown" v-bind="ouiaMenuProps" :class="{'dropdown-menu-right': menuRight}" class="dropdown-menu">
       <slot />
     </ul>
   </component>
@@ -64,7 +64,10 @@ export default defineComponent({
       default: '',
     },
     noCaret: Boolean,
+
     ...ouiaProps,
+    ouiaMenuId: ouiaProps.ouiaId,
+    ouiaMenuSafe: ouiaProps.ouiaSafe,
   },
 
   emits: {
@@ -72,7 +75,13 @@ export default defineComponent({
   },
 
   setup(props) {
-    return useOUIAProps(props);
+    return {
+      ...useOUIAProps(props),
+      ouiaMenuProps: useOUIAProps({
+        ouiaId: props.ouiaMenuId,
+        ouiaSafe: props.ouiaMenuSafe,
+      }, { name: 'Dropdown/Menu' }).ouiaProps,
+    };
   },
 
   data(this: void) {

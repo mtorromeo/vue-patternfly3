@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.3.5] - 2022-06-25
+### Added
+- feat(OUIA): te `pf-dropdown` component assigns ouia attributes to the menu dropdown element.
+
 ## [0.3.4] - 2022-04-29
 ### Fixed
 - fix(OUIA): restored ouia type `V-PF3/` prefix.
@@ -415,7 +419,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.4...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.5...HEAD
+[0.3.5]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.1...v0.3.2
