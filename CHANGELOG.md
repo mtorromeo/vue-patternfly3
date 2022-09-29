@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.3.6] - 2022-09-29
+### Fixed
+- fix(Modal): fixed body scrollbars disappearing by simply including a modal in the page (even if not shown)
+
 ## [0.3.5] - 2022-06-25
 ### Added
 - feat(OUIA): te `pf-dropdown` component assigns ouia attributes to the menu dropdown element.
@@ -419,7 +423,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.5...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.6...HEAD
+[0.3.6]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.5...v0.3.6
 [0.3.5]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.2...v0.3.3
