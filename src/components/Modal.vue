@@ -100,8 +100,17 @@ export default defineComponent({
     };
   },
 
-  mounted() {
-    document.documentElement.classList.add('modal-open');
+  watch: {
+    show: {
+      handler() {
+        if (this.show) {
+          document.documentElement.classList.add('modal-open');
+        } else {
+          document.documentElement.classList.remove('modal-open');
+        }
+      },
+      immediate: true,
+    },
   },
 
   beforeUnmount() {
