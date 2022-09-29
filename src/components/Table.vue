@@ -358,7 +358,7 @@ export default defineComponent({
     },
 
     keyFor(value: unknown, fallback: string | number): string | number {
-      return value && (value === 'string' || typeof value === 'number') ? value : fallback;
+      return value && (typeof value === 'string' || typeof value === 'number') ? value : fallback;
     },
   },
 });
