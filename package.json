@@ -1,6 +1,6 @@
 {
   "name": "vue-patternfly",
-  "version": "0.3.5",
+  "version": "0.3.6",
   "description": "PatternFly 3 components for Vue 3",
   "main": "dist/vue-patternfly.umd.js",
   "module": "dist/vue-patternfly.es.js",
