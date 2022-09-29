@@ -42,7 +42,7 @@ export default defineComponent({
 @import "patternfly/dist/sass/patternfly/variables";
 
 .nav-pf-vertical.collapsed > .list-group > .list-group-item.vertical-header-pf {
-  height: $nav-pf-vertical-link-height / 4;
+  height: calc($nav-pf-vertical-link-height / 4);
   width: $nav-pf-vertical-collapsed-width;
   padding: 0;
 
