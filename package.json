@@ -10,6 +10,9 @@
       "import": "./dist/vue-patternfly.es.js",
       "require": "./dist/vue-patternfly.umd.js"
     },
+    "./typings/global": {
+      "types": "./typings/global.d.ts"
+    },
     "./vue-patternfly.css": "./dist/vue-patternfly.css"
   },
   "directories": {
