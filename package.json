@@ -8,7 +8,8 @@
   "exports": {
     ".": {
       "import": "./dist/vue-patternfly.es.js",
-      "require": "./dist/vue-patternfly.umd.js"
+      "require": "./dist/vue-patternfly.umd.js",
+      "types": "./dist/types/index.d.ts"
     },
     "./typings/global": {
       "types": "./typings/global.d.ts"
