@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.3.7] - 2023-05-12
+### Fixed
+- fix(ts): added types for main import in package.json
+
 ## [0.3.6] - 2022-09-29
 ### Fixed
 - fix(Modal): fixed body scrollbars disappearing by simply including a modal in the page (even if not shown)
@@ -423,7 +427,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.6...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.7...HEAD
+[0.3.7]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.6...v0.3.7
 [0.3.6]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.5...v0.3.6
 [0.3.5]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.3...v0.3.4
