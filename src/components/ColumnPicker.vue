@@ -5,10 +5,10 @@
     </pf-button>
 
     <template #popover>
-      <div v-for="(column, i) in columns" :key="i" class="column-picker checkbox">
+      <div v-for="(column, i) of columns" :key="i" class="column-picker checkbox">
         <label>
-          <input v-model="iValue" type="checkbox" :value="columnValue(column, i)" @change="setValue">
-          {{ columnLabel(column) }}
+          <input v-model="iValue" type="checkbox" :value="columnValue(column as Column, i)" @change="setValue">
+          {{ columnLabel(column as Column) }}
         </label>
       </div>
     </template>

@@ -21,6 +21,9 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    dedupe: ['vue'],
+  },
   css: {
     preprocessorOptions: {
       scss: {

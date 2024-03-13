@@ -16,8 +16,8 @@ function getContainer() {
   return cont;
 }
 
-function bind(el: (Element | DefineComponent) & { 'v-tooltip'?: App, container: HTMLElement }, binding: DirectiveBinding) {
-  unbind(el);
+function created(el: (Element | DefineComponent) & { 'v-tooltip'?: App, container?: HTMLElement }, binding: DirectiveBinding) {
+  unmounted(el);
   const options = [];
   for (const key in binding.modifiers) {
     if (Object.prototype.hasOwnProperty.call(binding.modifiers, key) && binding.modifiers[key]) {
@@ -60,7 +60,7 @@ function bind(el: (Element | DefineComponent) & { 'v-tooltip'?: App, container: 
   el['v-tooltip'] = vm;
 }
 
-function unbind(el: (Element | DefineComponent) & { 'v-tooltip'?: App, container: HTMLElement }) {
+function unmounted(el: (Element | DefineComponent) & { 'v-tooltip'?: App, container?: HTMLElement }) {
   const vm = el['v-tooltip'];
   if (!vm) {
     return;
@@ -77,14 +77,14 @@ function unbind(el: (Element | DefineComponent) & { 'v-tooltip'?: App, container
 
 function updated(el: (Element | DefineComponent) & { 'v-tooltip'?: App, container: HTMLElement }, binding: DirectiveBinding) {
   if (binding.value !== binding.oldValue) {
-    bind(el, binding);
+    created(el, binding);
   }
 }
 
 const directive: ObjectDirective = {
-  created: bind,
-  updated: updated,
-  unmounted: unbind,
+  created,
+  updated,
+  unmounted,
 };
 
 export default directive;
