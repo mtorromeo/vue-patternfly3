@@ -16,7 +16,7 @@ function getContainer() {
   return cont;
 }
 
-function bind(el: (Element | DefineComponent) & { 'v-tooltip'?: App }, binding: DirectiveBinding) {
+function bind(el: (Element | DefineComponent) & { 'v-tooltip'?: App, container: HTMLElement }, binding: DirectiveBinding) {
   unbind(el);
   const options = [];
   for (const key in binding.modifiers) {
@@ -42,11 +42,6 @@ function bind(el: (Element | DefineComponent) & { 'v-tooltip'?: App }, binding: 
 
   const container = getContainer();
   const vm = createApp(defineComponent({
-    data() {
-      return {
-        container,
-      };
-    },
     render() {
       return h(Tooltip as unknown as DefineComponent, {
         target: el,
@@ -61,25 +56,26 @@ function bind(el: (Element | DefineComponent) & { 'v-tooltip'?: App }, binding: 
     },
   }));
   vm.mount(container);
+  el.container = container;
   el['v-tooltip'] = vm;
 }
 
-function unbind(el: (Element | DefineComponent) & { 'v-tooltip'?: App }) {
+function unbind(el: (Element | DefineComponent) & { 'v-tooltip'?: App, container: HTMLElement }) {
   const vm = el['v-tooltip'];
   if (!vm) {
     return;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const container = (vm as any)?.container;
+  const { container } = el;
   if (container instanceof HTMLElement) {
     document.documentElement.removeChild(container);
   }
   vm.unmount();
   delete el['v-tooltip'];
+  delete el.container;
 }
 
-function updated(el: (Element | DefineComponent) & { 'v-tooltip'?: App }, binding: DirectiveBinding) {
+function updated(el: (Element | DefineComponent) & { 'v-tooltip'?: App, container: HTMLElement }, binding: DirectiveBinding) {
   if (binding.value !== binding.oldValue) {
     bind(el, binding);
   }
