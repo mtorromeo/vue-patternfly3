@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [0.3.9] - 2024-03-13
+### Fixed
+- fix(tooltip): cleanup containers properly (Contributed by [@MrDeerly]).
+
 ## [0.3.8] - 2023-05-15
 ### Fixed
 - fix(DrawerGroupAction): bind click event to the button element
@@ -431,7 +435,8 @@ disabled, as per PatternFly design guidelines.
 - `pf-toolbar` component
 - `pf-utilization-bar-chart` component
 
-[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.8...HEAD
+[Unreleased]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.9...HEAD
+[0.3.9]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.8...v0.3.9
 [0.3.8]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.7...v0.3.8
 [0.3.7]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.6...v0.3.7
 [0.3.6]: https://github.com/mtorromeo/vue-patternfly/compare/v0.3.5...v0.3.6
